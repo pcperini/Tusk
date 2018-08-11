@@ -7,14 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02B4F9DCB405D64D6853C214 /* libPods-TuskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B7747DEE48EE38684C875 /* libPods-TuskTests.a */; };
+		6F080EE0AA97A829E44C7AB4 /* libPods-Tusk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DA3508C4B3805B91A8A835 /* libPods-Tusk.a */; };
+		732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
+		732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
+		732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
+		732BE211211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
+		732BE212211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
+		732BE213211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
+		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
+		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
+		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
+		7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B9211F4180003BEB84 /* AuthState.swift */; };
+		7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B9211F4180003BEB84 /* AuthState.swift */; };
+		7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B9211F4180003BEB84 /* AuthState.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
-		73EAEC59211E41A900C2620F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* FirstViewController.swift */; };
-		73EAEC5B211E41A900C2620F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* SecondViewController.swift */; };
+		73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* TimelineViewController.swift */; };
+		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
 		73EAEC5E211E41A900C2620F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC5C211E41A900C2620F /* Main.storyboard */; };
 		73EAEC60211E41AA00C2620F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC5F211E41AA00C2620F /* Assets.xcassets */; };
 		73EAEC63211E41AA00C2620F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */; };
 		73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC6D211E41AA00C2620F /* TuskTests.swift */; };
 		73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC78211E41AA00C2620F /* TuskUITests.swift */; };
+		F25064820B607D459B62AD2F /* libPods-TuskUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B81F7D54056968FC55828378 /* libPods-TuskUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +50,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		007B7747DEE48EE38684C875 /* libPods-TuskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C08DAA0AB03A6FCA7564ECA /* Pods-TuskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskTests/Pods-TuskTests.debug.xcconfig"; sourceTree = "<group>"; };
+		297B24945DF67AFFA7087485 /* Pods-Tusk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tusk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tusk/Pods-Tusk.debug.xcconfig"; sourceTree = "<group>"; };
+		519EDD4E276FC10DD034A1CB /* Pods-TuskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskTests/Pods-TuskTests.release.xcconfig"; sourceTree = "<group>"; };
+		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
+		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
+		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		73EAEC58211E41A900C2620F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		73EAEC5A211E41A900C2620F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		73EAEC58211E41A900C2620F /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		73EAEC5D211E41A900C2620F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73EAEC5F211E41AA00C2620F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73EAEC62211E41AA00C2620F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +73,10 @@
 		73EAEC74211E41AA00C2620F /* TuskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC78211E41AA00C2620F /* TuskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskUITests.swift; sourceTree = "<group>"; };
 		73EAEC7A211E41AA00C2620F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tusk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tusk/Pods-Tusk.release.xcconfig"; sourceTree = "<group>"; };
+		B81F7D54056968FC55828378 /* libPods-TuskUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuskUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0999BA8B9CF151761658767 /* Pods-TuskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F1DA3508C4B3805B91A8A835 /* libPods-Tusk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tusk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F080EE0AA97A829E44C7AB4 /* libPods-Tusk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02B4F9DCB405D64D6853C214 /* libPods-TuskTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +100,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F25064820B607D459B62AD2F /* libPods-TuskUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				73EAEC58211E41A900C2620F /* TimelineViewController.swift */,
+				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
+				73EAEC5C211E41A900C2620F /* Main.storyboard */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7379C5B8211F3D4E003BEB84 /* States */ = {
+			isa = PBXGroup;
+			children = (
+				7379C5B4211F3D4B003BEB84 /* AppState.swift */,
+				7379C5B9211F4180003BEB84 /* AuthState.swift */,
+				732BE20C211F4ACE0049ADBD /* TimelineState.swift */,
+				732BE210211F93860049ADBD /* NotificationsState.swift */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
 		73EAEC4A211E41A900C2620F = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +135,8 @@
 				73EAEC6C211E41AA00C2620F /* TuskTests */,
 				73EAEC77211E41AA00C2620F /* TuskUITests */,
 				73EAEC54211E41A900C2620F /* Products */,
+				79E79A2644AEDD03F17D8F48 /* Pods */,
+				EDDF43DB9F9A610ADBF78570 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,9 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				73EAEC56211E41A900C2620F /* AppDelegate.swift */,
-				73EAEC58211E41A900C2620F /* FirstViewController.swift */,
-				73EAEC5A211E41A900C2620F /* SecondViewController.swift */,
-				73EAEC5C211E41A900C2620F /* Main.storyboard */,
+				7379C5AA211E6D89003BEB84 /* View Controllers */,
+				7379C5B8211F3D4E003BEB84 /* States */,
 				73EAEC5F211E41AA00C2620F /* Assets.xcassets */,
 				73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */,
 				73EAEC64211E41AA00C2620F /* Info.plist */,
@@ -128,6 +181,29 @@
 			path = TuskUITests;
 			sourceTree = "<group>";
 		};
+		79E79A2644AEDD03F17D8F48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				297B24945DF67AFFA7087485 /* Pods-Tusk.debug.xcconfig */,
+				7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */,
+				0C08DAA0AB03A6FCA7564ECA /* Pods-TuskTests.debug.xcconfig */,
+				519EDD4E276FC10DD034A1CB /* Pods-TuskTests.release.xcconfig */,
+				668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */,
+				D0999BA8B9CF151761658767 /* Pods-TuskUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EDDF43DB9F9A610ADBF78570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1DA3508C4B3805B91A8A835 /* libPods-Tusk.a */,
+				007B7747DEE48EE38684C875 /* libPods-TuskTests.a */,
+				B81F7D54056968FC55828378 /* libPods-TuskUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73EAEC7D211E41AA00C2620F /* Build configuration list for PBXNativeTarget "Tusk" */;
 			buildPhases = (
+				261F29198539DCF911C25853 /* [CP] Check Pods Manifest.lock */,
 				73EAEC4F211E41A900C2620F /* Sources */,
 				73EAEC50211E41A900C2620F /* Frameworks */,
 				73EAEC51211E41A900C2620F /* Resources */,
@@ -152,6 +229,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73EAEC80211E41AA00C2620F /* Build configuration list for PBXNativeTarget "TuskTests" */;
 			buildPhases = (
+				DC1B7019A8B9A40BA5EC5DDE /* [CP] Check Pods Manifest.lock */,
 				73EAEC65211E41AA00C2620F /* Sources */,
 				73EAEC66211E41AA00C2620F /* Frameworks */,
 				73EAEC67211E41AA00C2620F /* Resources */,
@@ -170,6 +248,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73EAEC83211E41AA00C2620F /* Build configuration list for PBXNativeTarget "TuskUITests" */;
 			buildPhases = (
+				FE505E6089B05111D2E33691 /* [CP] Check Pods Manifest.lock */,
 				73EAEC70211E41AA00C2620F /* Sources */,
 				73EAEC71211E41AA00C2620F /* Frameworks */,
 				73EAEC72211E41AA00C2620F /* Resources */,
@@ -254,14 +333,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		261F29198539DCF911C25853 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tusk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC1B7019A8B9A40BA5EC5DDE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TuskTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE505E6089B05111D2E33691 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TuskUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		73EAEC4F211E41A900C2620F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73EAEC5B211E41A900C2620F /* SecondViewController.swift in Sources */,
+				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
-				73EAEC59211E41A900C2620F /* FirstViewController.swift in Sources */,
+				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
+				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
+				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
+				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +410,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
+				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
+				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
+				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +422,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
+				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
+				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
+				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +580,7 @@
 		};
 		73EAEC7E211E41AA00C2620F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 297B24945DF67AFFA7087485 /* Pods-Tusk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +599,7 @@
 		};
 		73EAEC7F211E41AA00C2620F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,6 +618,7 @@
 		};
 		73EAEC81211E41AA00C2620F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C08DAA0AB03A6FCA7564ECA /* Pods-TuskTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -489,6 +640,7 @@
 		};
 		73EAEC82211E41AA00C2620F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 519EDD4E276FC10DD034A1CB /* Pods-TuskTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -510,6 +662,7 @@
 		};
 		73EAEC84211E41AA00C2620F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +683,7 @@
 		};
 		73EAEC85211E41AA00C2620F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0999BA8B9CF151761658767 /* Pods-TuskUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastodonKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        GlobalStore.dispatch(AuthState.SetInstance(value: "mastodon.social"))
+        GlobalStore.dispatch(AuthState.SetAccessToken(value: "d3aa1d3ec3030ec6353bab5d7e69c542a392195111e9a3c2ece961db6a91b4fd"))
+        
         return true
     }
 

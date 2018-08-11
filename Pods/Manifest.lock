@@ -1,0 +1,28 @@
+PODS:
+  - MastodonKit (1.0.10)
+  - ReSwift (4.0.1)
+
+DEPENDENCIES:
+  - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`)
+  - ReSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ReSwift
+
+EXTERNAL SOURCES:
+  MastodonKit:
+    :git: https://github.com/pcperini/MastodonKit.git
+
+CHECKOUT OPTIONS:
+  MastodonKit:
+    :commit: 1462bae297fb59e9821d155bf0b5a4498bb69d64
+    :git: https://github.com/pcperini/MastodonKit.git
+
+SPEC CHECKSUMS:
+  MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
+  ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
+
+PODFILE CHECKSUM: fa9ceea0bb68e9e9950f6a7330e6e89c920e3bca
+
+COCOAPODS: 1.5.3
