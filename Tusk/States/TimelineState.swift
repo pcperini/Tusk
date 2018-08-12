@@ -49,7 +49,9 @@ struct TimelineState: StateType {
         
         client.run(request) { (result) in
             switch result {
-            case .success(let statuses, _): GlobalStore.dispatch(SetStatuses(value: statuses))
+            case .success(let statuses, _): GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in
+                status.visibility != .direct
+            }))
             default: break
             }
         }

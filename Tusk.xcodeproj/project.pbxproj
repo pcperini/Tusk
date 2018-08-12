@@ -15,6 +15,15 @@
 		732BE211211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
 		732BE212211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
 		732BE213211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
+		732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE214211F96400049ADBD /* MessagesViewController.swift */; };
+		732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE214211F96400049ADBD /* MessagesViewController.swift */; };
+		732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE214211F96400049ADBD /* MessagesViewController.swift */; };
+		732BE219211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
+		732BE21A211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
+		732BE21B211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
+		732BE21D211F98BD0049ADBD /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE21C211F98BD0049ADBD /* Account+Extensions.swift */; };
+		732BE21E211F98BD0049ADBD /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE21C211F98BD0049ADBD /* Account+Extensions.swift */; };
+		732BE21F211F98BD0049ADBD /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE21C211F98BD0049ADBD /* Account+Extensions.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -57,6 +66,9 @@
 		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
+		732BE214211F96400049ADBD /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		732BE218211F96600049ADBD /* MessagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesState.swift; sourceTree = "<group>"; };
+		732BE21C211F98BD0049ADBD /* Account+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Extensions.swift"; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,11 +119,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		732BE220211F98C10049ADBD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				732BE221211F98CF0049ADBD /* MastodonKit */,
+			);
+			name = Extensions;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		732BE221211F98CF0049ADBD /* MastodonKit */ = {
+			isa = PBXGroup;
+			children = (
+				732BE21C211F98BD0049ADBD /* Account+Extensions.swift */,
+			);
+			path = MastodonKit;
+			sourceTree = "<group>";
+		};
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				73EAEC58211E41A900C2620F /* TimelineViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
+				732BE214211F96400049ADBD /* MessagesViewController.swift */,
 				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 			);
 			path = "View Controllers";
@@ -124,6 +154,7 @@
 				7379C5B9211F4180003BEB84 /* AuthState.swift */,
 				732BE20C211F4ACE0049ADBD /* TimelineState.swift */,
 				732BE210211F93860049ADBD /* NotificationsState.swift */,
+				732BE218211F96600049ADBD /* MessagesState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -159,6 +190,7 @@
 				73EAEC5F211E41AA00C2620F /* Assets.xcassets */,
 				73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */,
 				73EAEC64211E41AA00C2620F /* Info.plist */,
+				732BE220211F98C10049ADBD /* Extensions */,
 			);
 			path = Tusk;
 			sourceTree = "<group>";
@@ -401,6 +433,9 @@
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
+				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
+				732BE21D211F98BD0049ADBD /* Account+Extensions.swift in Sources */,
+				732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,11 +444,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
+				732BE21E211F98BD0049ADBD /* Account+Extensions.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
+				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,11 +459,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
+				732BE21F211F98BD0049ADBD /* Account+Extensions.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
+				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

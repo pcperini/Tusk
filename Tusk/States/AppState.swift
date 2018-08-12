@@ -13,12 +13,14 @@ struct AppState: StateType {
     var auth: AuthState
     var timeline: TimelineState
     var notifications: NotificationsState
+    var messages: MessagesState
     
     static func reducer(action: Action, state: AppState?) -> AppState {
         return AppState(
             auth: AuthState.reducer(action: action, state: state?.auth),
             timeline: TimelineState.reducer(action: action, state: state?.timeline),
-            notifications: NotificationsState.reducer(action: action, state: state?.notifications)
+            notifications: NotificationsState.reducer(action: action, state: state?.notifications),
+            messages: MessagesState.reducer(action: action, state: state?.messages)
         )
     }
 }
