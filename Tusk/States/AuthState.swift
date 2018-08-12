@@ -38,7 +38,6 @@ struct AuthState: StateType {
             state.client?.accessToken = state.accessToken
         }
         
-        print(state)
         return state
     }
 }

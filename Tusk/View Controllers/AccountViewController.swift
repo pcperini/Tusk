@@ -34,6 +34,5 @@ class AccountViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: AccountState) {
-        print(state)
     }
 }

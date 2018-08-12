@@ -14,15 +14,23 @@ typealias MastodonNotification = MastodonKit.Notification // overloaded with UIK
 
 struct NotificationsState: StateType {
     struct SetNotifications: Action { let value: [MastodonNotification] }
+    struct SetLastReadDate: Action { let value: Date }
     struct PollNotifications: Action { let client: Client }
     
     var notifications: [MastodonNotification] = []
+    var lastRead: Date = Date.distantPast
+    var unreadCount: Int {
+        return notifications.filter { (notif) in
+            notif.createdAt > self.lastRead
+        }.count
+    }
     
     static func reducer(action: Action, state: NotificationsState?) -> NotificationsState {
         var state = state ?? NotificationsState()
         
         switch action {
         case let action as SetNotifications: state.notifications = action.value
+        case let action as SetLastReadDate: state.lastRead = action.value
         case let action as PollNotifications: pollNotifications(client: action.client)
         default: break
         }

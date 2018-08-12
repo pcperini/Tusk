@@ -30,6 +30,9 @@
 		732BE22B21209DC40049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22A21209DC40049ADBD /* String+HTML.swift */; };
 		732BE22C21209DC40049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22A21209DC40049ADBD /* String+HTML.swift */; };
 		732BE22D21209DC40049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22A21209DC40049ADBD /* String+HTML.swift */; };
+		732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22E2120A9690049ADBD /* TabViewController.swift */; };
+		732BE2302120A9690049ADBD /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22E2120A9690049ADBD /* TabViewController.swift */; };
+		732BE2312120A9690049ADBD /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22E2120A9690049ADBD /* TabViewController.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -77,6 +80,7 @@
 		732BE222212089000049ADBD /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
 		732BE22621208EA40049ADBD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		732BE22A21209DC40049ADBD /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+HTML.swift"; path = "Tusk/Extensions/String+HTML.swift"; sourceTree = SOURCE_ROOT; };
+		732BE22E2120A9690049ADBD /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +143,7 @@
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				732BE22E2120A9690049ADBD /* TabViewController.swift */,
 				73EAEC58211E41A900C2620F /* TimelineViewController.swift */,
 				732BE214211F96400049ADBD /* MessagesViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
@@ -433,6 +438,7 @@
 				732BE223212089000049ADBD /* AccountState.swift in Sources */,
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22B21209DC40049ADBD /* String+HTML.swift in Sources */,
+				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
@@ -454,6 +460,7 @@
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE224212089000049ADBD /* AccountState.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
 				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
@@ -471,6 +478,7 @@
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE225212089000049ADBD /* AccountState.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
 				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,

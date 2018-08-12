@@ -35,6 +35,10 @@ class NotificationsViewController: UITableViewController, StoreSubscriber {
     }
     
     func newState(state: NotificationsState) {
+        if state.notifications[0].createdAt != state.lastRead {
+            GlobalStore.dispatch(NotificationsState.SetLastReadDate(value: state.notifications[0].createdAt))
+        }
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
