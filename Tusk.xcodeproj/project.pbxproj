@@ -21,9 +21,6 @@
 		732BE219211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
 		732BE21A211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
 		732BE21B211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
-		732BE21D211F98BD0049ADBD /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE21C211F98BD0049ADBD /* Account+Extensions.swift */; };
-		732BE21E211F98BD0049ADBD /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE21C211F98BD0049ADBD /* Account+Extensions.swift */; };
-		732BE21F211F98BD0049ADBD /* Account+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE21C211F98BD0049ADBD /* Account+Extensions.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -68,7 +65,6 @@
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
 		732BE214211F96400049ADBD /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		732BE218211F96600049ADBD /* MessagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesState.swift; sourceTree = "<group>"; };
-		732BE21C211F98BD0049ADBD /* Account+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+Extensions.swift"; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,18 +118,9 @@
 		732BE220211F98C10049ADBD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				732BE221211F98CF0049ADBD /* MastodonKit */,
 			);
 			name = Extensions;
 			path = "New Group";
-			sourceTree = "<group>";
-		};
-		732BE221211F98CF0049ADBD /* MastodonKit */ = {
-			isa = PBXGroup;
-			children = (
-				732BE21C211F98BD0049ADBD /* Account+Extensions.swift */,
-			);
-			path = MastodonKit;
 			sourceTree = "<group>";
 		};
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
@@ -434,7 +421,6 @@
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
-				732BE21D211F98BD0049ADBD /* Account+Extensions.swift in Sources */,
 				732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 			);
@@ -447,7 +433,6 @@
 				732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
-				732BE21E211F98BD0049ADBD /* Account+Extensions.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
@@ -462,7 +447,6 @@
 				732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
-				732BE21F211F98BD0049ADBD /* Account+Extensions.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
