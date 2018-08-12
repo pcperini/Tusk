@@ -215,7 +215,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account" width="20" height="21"/>
+        <image name="Account" width="20" height="20"/>
         <image name="Messages" width="20" height="16"/>
         <image name="Notification" width="18" height="22"/>
         <image name="Timeline" width="20" height="20"/>

@@ -33,6 +33,12 @@
 		732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22E2120A9690049ADBD /* TabViewController.swift */; };
 		732BE2302120A9690049ADBD /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22E2120A9690049ADBD /* TabViewController.swift */; };
 		732BE2312120A9690049ADBD /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22E2120A9690049ADBD /* TabViewController.swift */; };
+		732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */; };
+		732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */; };
+		732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */; };
+		732BE2382120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */; };
+		732BE2392120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */; };
+		732BE23A2120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -81,6 +87,8 @@
 		732BE22621208EA40049ADBD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		732BE22A21209DC40049ADBD /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+HTML.swift"; path = "Tusk/Extensions/String+HTML.swift"; sourceTree = SOURCE_ROOT; };
 		732BE22E2120A9690049ADBD /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatingTableViewController.swift; sourceTree = "<group>"; };
+		732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MastodonKit+Equatable.swift"; path = "Tusk/Extensions/MastodonKit+Equatable.swift"; sourceTree = SOURCE_ROOT; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,9 +143,18 @@
 			isa = PBXGroup;
 			children = (
 				732BE22A21209DC40049ADBD /* String+HTML.swift */,
+				732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */,
 			);
 			name = Extensions;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		732BE2322120CC2F0049ADBD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
@@ -193,6 +210,7 @@
 			children = (
 				73EAEC56211E41A900C2620F /* AppDelegate.swift */,
 				7379C5AA211E6D89003BEB84 /* View Controllers */,
+				732BE2322120CC2F0049ADBD /* Views */,
 				7379C5B8211F3D4E003BEB84 /* States */,
 				73EAEC5F211E41AA00C2620F /* Assets.xcassets */,
 				73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */,
@@ -440,6 +458,7 @@
 				732BE22B21209DC40049ADBD /* String+HTML.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				732BE2382120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
@@ -447,6 +466,7 @@
 				732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE22721208EA40049ADBD /* AccountViewController.swift in Sources */,
+				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,10 +475,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */,
+				732BE2392120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */,
 				732BE22C21209DC40049ADBD /* String+HTML.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE224212089000049ADBD /* AccountState.swift in Sources */,
+				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
@@ -473,10 +495,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */,
+				732BE23A2120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */,
 				732BE22D21209DC40049ADBD /* String+HTML.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE225212089000049ADBD /* AccountState.swift in Sources */,
+				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,

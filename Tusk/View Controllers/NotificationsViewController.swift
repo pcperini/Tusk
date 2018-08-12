@@ -8,10 +8,12 @@
 
 import UIKit
 import ReSwift
+import MastodonKit
 
-class NotificationsViewController: UITableViewController, StoreSubscriber {
+class NotificationsViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = NotificationsState
-    var state: NotificationsState { return GlobalStore.state.notifications }
+
+    var notifications: [MastodonNotification] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,19 +42,23 @@ class NotificationsViewController: UITableViewController, StoreSubscriber {
         }
         
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            if (self.notifications != state.notifications) {
+                self.notifications = state.notifications
+                self.tableView.reloadData()
+            }
         }
     }
     
     // UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.state.notifications.count
+        return self.notifications.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
         
-        let notif = self.state.notifications[indexPath.row]
+        let notif = self.notifications[indexPath.row]
         let attributedText: NSAttributedString
         
         switch notif.type {
@@ -64,6 +70,10 @@ class NotificationsViewController: UITableViewController, StoreSubscriber {
         
         cell?.textLabel?.attributedText = attributedText
         return cell!
+    }
+    
+    override func refreshControlBeganRefreshing() {
+        self.pollNotifications()
     }
 }
 

@@ -8,10 +8,12 @@
 
 import UIKit
 import ReSwift
+import MastodonKit
 
-class TimelineViewController: UITableViewController, StoreSubscriber {
+class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = TimelineState
-    var state: TimelineState { return GlobalStore.state.timeline }
+
+    var statuses: [Status] = []
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,19 +38,27 @@ class TimelineViewController: UITableViewController, StoreSubscriber {
     
     func newState(state: TimelineState) {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            if (self.statuses != state.statuses) {
+                self.statuses = state.statuses
+                self.tableView.reloadData()
+            }
         }
     }
     
     // UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.state.statuses.count
+        return self.statuses.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.attributedText = self.state.statuses[indexPath.row].content.attributedHTMLString()
+        cell?.textLabel?.attributedText = self.statuses[indexPath.row].content.attributedHTMLString()
         return cell!
+    }
+    
+    override func refreshControlBeganRefreshing() {
+        self.pollStatuses()
     }
 }
 

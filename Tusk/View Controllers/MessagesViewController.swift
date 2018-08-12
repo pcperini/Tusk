@@ -8,10 +8,12 @@
 
 import UIKit
 import ReSwift
+import MastodonKit
 
-class MessagesViewController: UITableViewController, StoreSubscriber {
+class MessagesViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = MessagesState
-    var state: MessagesState { return GlobalStore.state.messages }
+    
+    var statuses: [Status] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,7 +23,7 @@ class MessagesViewController: UITableViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pollNotifications()
+        self.pollStatuses()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -29,26 +31,34 @@ class MessagesViewController: UITableViewController, StoreSubscriber {
         GlobalStore.unsubscribe(self)
     }
     
-    func pollNotifications() {
+    func pollStatuses() {
         guard let client = GlobalStore.state.auth.client else { return }
         GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
     }
     
     func newState(state: MessagesState) {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            if (self.statuses != state.statuses) {
+                self.statuses = state.statuses
+                self.tableView.reloadData()
+            }
         }
     }
     
     // UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.state.statuses.count
+        return self.statuses.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.attributedText = self.state.statuses[indexPath.row].content.attributedHTMLString()
+        cell?.textLabel?.attributedText = self.statuses[indexPath.row].content.attributedHTMLString()
         return cell!
+    }
+    
+    override func refreshControlBeganRefreshing() {
+        self.pollStatuses()
     }
 }
 
