@@ -27,6 +27,9 @@
 		732BE22721208EA40049ADBD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22621208EA40049ADBD /* AccountViewController.swift */; };
 		732BE22821208EA40049ADBD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22621208EA40049ADBD /* AccountViewController.swift */; };
 		732BE22921208EA40049ADBD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22621208EA40049ADBD /* AccountViewController.swift */; };
+		732BE22B21209DC40049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22A21209DC40049ADBD /* String+HTML.swift */; };
+		732BE22C21209DC40049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22A21209DC40049ADBD /* String+HTML.swift */; };
+		732BE22D21209DC40049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22A21209DC40049ADBD /* String+HTML.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -73,6 +76,7 @@
 		732BE218211F96600049ADBD /* MessagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesState.swift; sourceTree = "<group>"; };
 		732BE222212089000049ADBD /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
 		732BE22621208EA40049ADBD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		732BE22A21209DC40049ADBD /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+HTML.swift"; path = "Tusk/Extensions/String+HTML.swift"; sourceTree = SOURCE_ROOT; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +130,7 @@
 		732BE220211F98C10049ADBD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				732BE22A21209DC40049ADBD /* String+HTML.swift */,
 			);
 			name = Extensions;
 			path = "New Group";
@@ -427,6 +432,7 @@
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
 				732BE223212089000049ADBD /* AccountState.swift in Sources */,
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
+				732BE22B21209DC40049ADBD /* String+HTML.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
@@ -443,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */,
+				732BE22C21209DC40049ADBD /* String+HTML.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE224212089000049ADBD /* AccountState.swift in Sources */,
@@ -459,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */,
+				732BE22D21209DC40049ADBD /* String+HTML.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE225212089000049ADBD /* AccountState.swift in Sources */,

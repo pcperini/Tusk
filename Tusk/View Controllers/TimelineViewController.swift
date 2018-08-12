@@ -9,8 +9,9 @@
 import UIKit
 import ReSwift
 
-class TimelineViewController: UIViewController, StoreSubscriber {
+class TimelineViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = TimelineState
+    var state: TimelineState { return GlobalStore.state.timeline }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,7 +35,20 @@ class TimelineViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: TimelineState) {
-        print(state)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    // UITableViewDataSource
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.state.statuses.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
+        cell?.textLabel?.attributedText = self.state.statuses[indexPath.row].content.attributedHTMLString()
+        return cell!
     }
 }
 
