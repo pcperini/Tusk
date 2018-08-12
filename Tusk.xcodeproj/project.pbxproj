@@ -140,8 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				73EAEC58211E41A900C2620F /* TimelineViewController.swift */,
-				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE214211F96400049ADBD /* MessagesViewController.swift */,
+				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* AccountViewController.swift */,
 				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 			);

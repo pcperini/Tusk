@@ -16,13 +16,13 @@ struct NotificationsState: StateType {
     struct SetNotifications: Action { let value: [MastodonNotification] }
     struct PollNotifications: Action { let client: Client }
     
-    var statuses: [MastodonNotification] = []
+    var notifications: [MastodonNotification] = []
     
     static func reducer(action: Action, state: NotificationsState?) -> NotificationsState {
         var state = state ?? NotificationsState()
         
         switch action {
-        case let action as SetNotifications: state.statuses = action.value
+        case let action as SetNotifications: state.notifications = action.value
         case let action as PollNotifications: pollNotifications(client: action.client)
         default: break
         }

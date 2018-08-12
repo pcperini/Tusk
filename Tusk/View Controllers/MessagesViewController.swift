@@ -9,8 +9,9 @@
 import UIKit
 import ReSwift
 
-class MessagesViewController: UIViewController, StoreSubscriber {
+class MessagesViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = MessagesState
+    var state: MessagesState { return GlobalStore.state.messages }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,7 +35,20 @@ class MessagesViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: MessagesState) {
-        print(state)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    // UITableViewDataSource
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.state.statuses.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
+        cell?.textLabel?.attributedText = self.state.statuses[indexPath.row].content.attributedHTMLString()
+        return cell!
     }
 }
 

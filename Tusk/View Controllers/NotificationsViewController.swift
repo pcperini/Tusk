@@ -9,8 +9,9 @@
 import UIKit
 import ReSwift
 
-class NotificationsViewController: UIViewController, StoreSubscriber {
+class NotificationsViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = NotificationsState
+    var state: NotificationsState { return GlobalStore.state.notifications }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,7 +35,31 @@ class NotificationsViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: NotificationsState) {
-        print(state)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    // UITableViewDataSource
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.state.notifications.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
+        
+        let notif = self.state.notifications[indexPath.row]
+        let attributedText: NSAttributedString
+        
+        switch notif.type {
+        case .mention: attributedText = notif.status!.content.attributedHTMLString()
+        case .favourite: attributedText = NSAttributedString(string: "\(notif.account.displayName) favorited your post")
+        case .follow: attributedText = NSAttributedString(string: "\(notif.account.displayName) followed you")
+        case .reblog: attributedText = NSAttributedString(string: "\(notif.account.displayName) reposted your post")
+        }
+        
+        cell?.textLabel?.attributedText = attributedText
+        return cell!
     }
 }
 
