@@ -60,5 +60,9 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     override func refreshControlBeganRefreshing() {
         self.pollStatuses()
     }
+    
+    override func pageControlBeganRefreshing() {
+        print("PAGE BACK")
+    }
 }
 
