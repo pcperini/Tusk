@@ -48,6 +48,12 @@ class PaginatingTableViewController: UITableViewController {
     func pageControlBeganRefreshing() {
     }
     
+    func endPaginating() {
+        var contentOffset = self.tableView.contentOffset
+        contentOffset.y -= self.paginationActivityIndicator.bounds.height
+        self.tableView.setContentOffset(contentOffset, animated: true)
+    }
+    
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (!decelerate) {
             self.scrollViewDidEndDecelerating(scrollView)

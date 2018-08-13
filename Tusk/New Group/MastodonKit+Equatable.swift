@@ -19,3 +19,13 @@ extension MastodonKit.Notification: Equatable {
         return lhs.id == rhs.id
     }
 }
+
+extension RequestRange: Comparable {
+    public static func < (lhs: RequestRange, rhs: RequestRange) -> Bool {
+        switch (lhs, rhs) {
+        case (.max(let lhID as NSString, _), .max(let rhID as NSString, _)): return lhID.longLongValue < rhID.longLongValue
+        case (.since(let lhID as NSString, _), .since(let rhID as NSString, _)): return lhID.longLongValue < rhID.longLongValue
+        default: return false
+        }
+    }
+}
