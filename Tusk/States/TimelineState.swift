@@ -17,7 +17,8 @@ struct TimelineState: StateType {
     }
     private struct SetPage: Action { let value: Pagination? }
     struct PollStatuses: Action { let client: Client }
-    struct PollEarlierStatuses: Action { let client: Client }
+    struct PollOlderStatuses: Action { let client: Client }
+    struct PollNewerStatuses: Action { let client: Client }
     
     var statuses: [Status] = []
     private var nextPage: RequestRange? // EARLIER statuses, the "next page" in reverse chronological order
@@ -30,7 +31,8 @@ struct TimelineState: StateType {
         case let action as SetStatuses: state.statuses = action.merge(state.statuses, action.value)
         case let action as SetPage: (state.nextPage, state.previousPage) = updatePages(pagination: action.value, state: state)
         case let action as PollStatuses: pollStatuses(client: action.client)
-        case let action as PollEarlierStatuses: pollStatuses(client: action.client, range: state.nextPage)
+        case let action as PollOlderStatuses: pollStatuses(client: action.client, range: state.nextPage)
+        case let action as PollNewerStatuses: pollStatuses(client: action.client, range: state.previousPage)
         default: break
         }
         
@@ -66,16 +68,12 @@ struct TimelineState: StateType {
     }
     
     static func updatePages(pagination: Pagination?, state: TimelineState) -> (RequestRange?, RequestRange?) {
-        // some shit in here
-        print(pagination)
-        
         guard let oldNext = state.nextPage, let oldPrev = state.previousPage else { return (pagination?.next, pagination?.previous) }
         guard let newNext = pagination?.next, let newPrev = pagination?.previous else { return (state.nextPage, state.previousPage) }
 
         let setNext: RequestRange? = newNext < oldNext ? newNext : oldNext
         let setPrev: RequestRange? = newPrev > oldPrev ? newPrev : oldPrev
         
-        print(setNext, setPrev)
         return (setNext, setPrev)
     }
 }

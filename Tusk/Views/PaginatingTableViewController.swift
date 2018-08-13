@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum PageDirection {
+    case NextPage
+    case PreviousPage
+    case Reload
+}
+
 class PaginatingTableViewController: UITableViewController {
     private static let paginationActivityIndicatorSize: CGFloat = 44.0
     private var paginationActivityIndicator: UIActivityIndicatorView!
@@ -49,9 +55,10 @@ class PaginatingTableViewController: UITableViewController {
     }
     
     func endPaginating() {
-        var contentOffset = self.tableView.contentOffset
-        contentOffset.y -= self.paginationActivityIndicator.bounds.height
-        self.tableView.setContentOffset(contentOffset, animated: true)
+        // FIX THIS
+//        var contentOffset = self.tableView.contentOffset
+//        contentOffset.y -= self.paginationActivityIndicator.bounds.height
+//        self.tableView.setContentOffset(contentOffset, animated: true)
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

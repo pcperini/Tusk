@@ -31,9 +31,16 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         GlobalStore.unsubscribe(self)
     }
     
-    func pollStatuses(prevPage: Bool = false) {
+    func pollStatuses(pageDirection: PageDirection = .Reload) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(prevPage ? TimelineState.PollEarlierStatuses(client: client) : TimelineState.PollStatuses(client: client))
+        let action: Action
+        switch pageDirection {
+        case .NextPage: action = TimelineState.PollOlderStatuses(client: client)
+        case .PreviousPage: action = TimelineState.PollNewerStatuses(client: client)
+        case .Reload: action = TimelineState.PollStatuses(client: client)
+        }
+        
+        GlobalStore.dispatch(action)
     }
     
     func newState(state: TimelineState) {
@@ -63,7 +70,7 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     override func pageControlBeganRefreshing() {
-        self.pollStatuses(prevPage: true)
+        self.pollStatuses(pageDirection: .NextPage)
     }
 }
 
