@@ -10,10 +10,12 @@ import Foundation
 import MastodonKit
 import ReSwift
 
-struct TimelineState: StateType {
+struct TimelineState: PaginatableState {
+    typealias DataType = Status
+    
     struct SetStatuses: Action {
         let value: [Status]
-        let merge: ([Status], [Status]) -> [Status]
+        let merge: PaginatingData<Status>.MergeFunction
     }
     private struct SetPage: Action { let value: Pagination? }
     struct PollStatuses: Action { let client: Client }
@@ -21,59 +23,39 @@ struct TimelineState: StateType {
     struct PollNewerStatuses: Action { let client: Client }
     
     var statuses: [Status] = []
-    private var nextPage: RequestRange? // EARLIER statuses, the "next page" in reverse chronological order
-    private var previousPage: RequestRange? // LATER statuses, the "prev page" in reverse chronological order
+    
+    internal var nextPage: RequestRange? = nil
+    internal var previousPage: RequestRange? = nil
+    internal var paginatingData: PaginatingData<Status> = PaginatingData<Status>()
     
     static func reducer(action: Action, state: TimelineState?) -> TimelineState {
         var state = state ?? TimelineState()
         
         switch action {
         case let action as SetStatuses: state.statuses = action.merge(state.statuses, action.value)
-        case let action as SetPage: (state.nextPage, state.previousPage) = updatePages(pagination: action.value, state: state)
-        case let action as PollStatuses: pollStatuses(client: action.client)
-        case let action as PollOlderStatuses: pollStatuses(client: action.client, range: state.nextPage)
-        case let action as PollNewerStatuses: pollStatuses(client: action.client, range: state.previousPage)
+        case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
+        case let action as PollStatuses: state.pollStatuses(client: action.client)
+        case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
+        case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
         default: break
         }
         
         return state
     }
     
-    static func pollStatuses(client: Client, range: RequestRange? = nil) {
-        let request: Request<[Status]>
-        let merge: ([Status], [Status]) -> [Status]
-        
-        if let range = range {
-            request = Timelines.home(range: range)
-            switch range {
-            case .since(_, _): merge = { (old, new) in new + old }
-            case .max(_, _): merge = { (old, new) in old + new }
-            default: merge = { (old, new) in new }
-            }
-        }
-        else {
-            request = Timelines.home()
-            merge = { (old, new) in new }
-        }
-        
-        client.run(request) { (result) in
-            switch result {
-            case .success(let statuses, let pagination): do {
-                GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in status.visibility != .direct }, merge: merge))
-                GlobalStore.dispatch(SetPage(value: pagination))
-            }
-            default: break
-            }
+    func pollStatuses(client: Client, range: RequestRange? = nil) {
+        self.paginatingData.pollData(client: client, range: range, provider: TimelineState.provider) { (
+            statuses: [Status],
+            pagination: Pagination?,
+            merge: @escaping PaginatingData<Status>.MergeFunction
+        ) in
+            GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in status.visibility != .direct }, merge: merge))
+            GlobalStore.dispatch(SetPage(value: pagination))
         }
     }
     
-    static func updatePages(pagination: Pagination?, state: TimelineState) -> (RequestRange?, RequestRange?) {
-        guard let oldNext = state.nextPage, let oldPrev = state.previousPage else { return (pagination?.next, pagination?.previous) }
-        guard let newNext = pagination?.next, let newPrev = pagination?.previous else { return (state.nextPage, state.previousPage) }
-
-        let setNext: RequestRange? = newNext < oldNext ? newNext : oldNext
-        let setPrev: RequestRange? = newPrev > oldPrev ? newPrev : oldPrev
-        
-        return (setNext, setPrev)
+    static func provider(range: RequestRange? = nil) -> Request<[Status]> {
+        guard let range = range else { return Timelines.home() }
+        return Timelines.home(range: range)
     }
 }
