@@ -31,14 +31,23 @@ class MessagesViewController: PaginatingTableViewController, StoreSubscriber {
         GlobalStore.unsubscribe(self)
     }
     
-    func pollStatuses() {
+    func pollStatuses(pageDirection: PageDirection = .Reload) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
+        let action: Action
+        switch pageDirection {
+        case .NextPage: action = MessagesState.PollOlderStatuses(client: client)
+        case .PreviousPage: action = MessagesState.PollNewerStatuses(client: client)
+        case .Reload: action = MessagesState.PollStatuses(client: client)
+        }
+        
+        GlobalStore.dispatch(action)
     }
     
     func newState(state: MessagesState) {
         DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
+            self.endRefreshing()
+            self.endPaginating()
+            
             if (self.statuses != state.statuses) {
                 self.statuses = state.statuses
                 self.tableView.reloadData()
@@ -58,7 +67,13 @@ class MessagesViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     override func refreshControlBeganRefreshing() {
-        self.pollStatuses()
+        super.refreshControlBeganRefreshing()
+        self.pollStatuses(pageDirection: .PreviousPage)
+    }
+    
+    override func pageControlBeganRefreshing() {
+        super.pageControlBeganRefreshing()
+        self.pollStatuses(pageDirection: .NextPage)
     }
 }
 

@@ -83,7 +83,7 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
-        self.pollNotifications()
+        self.pollNotifications(pageDirection: .PreviousPage)
     }
     
     override func pageControlBeganRefreshing() {
