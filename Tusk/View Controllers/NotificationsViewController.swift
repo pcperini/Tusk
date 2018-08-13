@@ -13,7 +13,7 @@ import MastodonKit
 class NotificationsViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = NotificationsState
 
-    var notifications: [MastodonNotification] = []
+    var notifications: [MKNotification] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
