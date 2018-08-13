@@ -38,8 +38,9 @@ struct NotificationsState: StateType {
         var state = state ?? NotificationsState()
         
         switch action {
-        case let action as SetNotifications: state.notifications = action.value
+        case let action as SetNotifications: state.notifications = action.merge(state.notifications, action.value)
         case let action as SetLastReadDate: state.lastRead = action.value
+        case let action as SetPage: (state.nextPage, state.previousPage) = updatePages(pagination: action.value, state: state)
         case let action as PollNotifications: pollNotifications(client: action.client)
         case let action as PollOlderNotifications: pollNotifications(client: action.client, range: state.nextPage)
         case let action as PollNewerNotifications: pollNotifications(client: action.client, range: state.nextPage)

@@ -45,8 +45,9 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     
     func newState(state: TimelineState) {
         DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
+            self.endRefreshing()
             self.endPaginating()
+            
             if (self.statuses != state.statuses) {
                 self.statuses = state.statuses
                 self.tableView.reloadData()
@@ -66,10 +67,12 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     override func refreshControlBeganRefreshing() {
+        super.refreshControlBeganRefreshing()
         self.pollStatuses()
     }
     
     override func pageControlBeganRefreshing() {
+        super.pageControlBeganRefreshing()
         self.pollStatuses(pageDirection: .NextPage)
     }
 }

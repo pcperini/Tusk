@@ -31,22 +31,31 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
         GlobalStore.unsubscribe(self)
     }
     
-    func pollNotifications() {
+    func pollNotifications(pageDirection: PageDirection = .Reload) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
+        let action: Action
+        switch pageDirection {
+        case .NextPage: action = NotificationsState.PollOlderNotifications(client: client)
+        case .PreviousPage: action = NotificationsState.PollNewerNotifications(client: client)
+        case .Reload: action = NotificationsState.PollNotifications(client: client)
+        }
+        
+        GlobalStore.dispatch(action)
     }
     
     func newState(state: NotificationsState) {
-        if state.notifications[0].createdAt != state.lastRead {
+        if (state.notifications.count > 0 && state.notifications[0].createdAt != state.lastRead) {
             GlobalStore.dispatch(NotificationsState.SetLastReadDate(value: state.notifications[0].createdAt))
         }
         
         DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
             if (self.notifications != state.notifications) {
                 self.notifications = state.notifications
                 self.tableView.reloadData()
             }
+            
+            self.endRefreshing()
+            self.endPaginating()
         }
     }
     
@@ -73,7 +82,13 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     }
     
     override func refreshControlBeganRefreshing() {
+        super.refreshControlBeganRefreshing()
         self.pollNotifications()
+    }
+    
+    override func pageControlBeganRefreshing() {
+        super.pageControlBeganRefreshing()
+        self.pollNotifications(pageDirection: .NextPage)
     }
 }
 

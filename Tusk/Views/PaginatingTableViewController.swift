@@ -17,6 +17,14 @@ enum PageDirection {
 class PaginatingTableViewController: UITableViewController {
     private static let paginationActivityIndicatorSize: CGFloat = 44.0
     private var paginationActivityIndicator: UIActivityIndicatorView!
+
+    private var state: State = .Resting
+    
+    private enum State {
+        case Refreshing
+        case Paging
+        case Resting
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,7 @@ class PaginatingTableViewController: UITableViewController {
     }
 
     @objc private func _refreshControlBeganRefreshing() {
+        self.state = .Refreshing
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
             self.refreshControlBeganRefreshing()
         }
@@ -51,13 +60,23 @@ class PaginatingTableViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
     }
     
+    func endRefreshing() {
+        guard self.state == .Refreshing else { return }
+        self.state = .Resting
+        self.refreshControl?.endRefreshing()
+    }
+    
     func pageControlBeganRefreshing() {
+        self.state = .Paging
     }
     
     func endPaginating() {
-        // FIX THIS
-//        var contentOffset = self.tableView.contentOffset
-//        contentOffset.y -= self.paginationActivityIndicator.bounds.height
+        guard self.state == .Paging else { return }
+        self.state = .Resting
+
+//        var contentOffset = CGPoint(x: 0, y: self.tableView.contentSize.height)
+//        contentOffset.y -= self.tableView.bounds.size.height
+////        contentOffset.y -= self.paginationActivityIndicator.bounds.height
 //        self.tableView.setContentOffset(contentOffset, animated: true)
     }
     
