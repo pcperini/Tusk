@@ -12,10 +12,12 @@ import ReSwift
 
 typealias MastodonNotification = MastodonKit.Notification // overloaded with UIKit.Notification
 
-struct NotificationsState: StateType {
+struct NotificationsState: PaginatableState {
+    typealias DataType = MastodonNotification
+    
     struct SetNotifications: Action {
         let value: [MastodonNotification]
-        let merge: ([MastodonNotification], [MastodonNotification]) -> [MastodonNotification]
+        let merge: PaginatingData<MastodonNotification>.MergeFunction
     }
     struct SetLastReadDate: Action { let value: Date }
     private struct SetPage: Action { let value: Pagination? }
@@ -24,8 +26,10 @@ struct NotificationsState: StateType {
     struct PollNewerNotifications: Action { let client: Client }
     
     var notifications: [MastodonNotification] = []
-    private var nextPage: RequestRange? // EARLIER statuses, the "next page" in reverse chronological order
-    private var previousPage: RequestRange? // LATER statuses, the "prev page" in reverse chronological order
+    
+    internal var nextPage: RequestRange? = nil
+    internal var previousPage: RequestRange? = nil
+    internal var paginatingData: PaginatingData<MastodonNotification> = PaginatingData<MastodonNotification>()
     
     var lastRead: Date = Date.distantPast
     var unreadCount: Int {
@@ -40,51 +44,29 @@ struct NotificationsState: StateType {
         switch action {
         case let action as SetNotifications: state.notifications = action.merge(state.notifications, action.value)
         case let action as SetLastReadDate: state.lastRead = action.value
-        case let action as SetPage: (state.nextPage, state.previousPage) = updatePages(pagination: action.value, state: state)
-        case let action as PollNotifications: pollNotifications(client: action.client)
-        case let action as PollOlderNotifications: pollNotifications(client: action.client, range: state.nextPage)
-        case let action as PollNewerNotifications: pollNotifications(client: action.client, range: state.nextPage)
+        case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
+        case let action as PollNotifications: state.pollNotifications(client: action.client)
+        case let action as PollOlderNotifications: state.pollNotifications(client: action.client, range: state.nextPage)
+        case let action as PollNewerNotifications: state.pollNotifications(client: action.client, range: state.nextPage)
         default: break
         }
         
         return state
     }
     
-    static func pollNotifications(client: Client, range: RequestRange? = nil) {
-        let request: Request<[MastodonNotification]>
-        let merge: ([MastodonNotification], [MastodonNotification]) -> [MastodonNotification]
-        
-        if let range = range {
-            request = Notifications.all(range: range)
-            switch range {
-            case .since(_, _): merge = { (old, new) in new + old }
-            case .max(_, _): merge = { (old, new) in old + new }
-            default: merge = { (old, new) in new }
-            }
-        }
-        else {
-            request = Notifications.all()
-            merge = { (old, new) in new }
-        }
-        
-        client.run(request) { (result) in
-            switch result {
-            case .success(let notifications, let pagination): do {
-                GlobalStore.dispatch(SetNotifications(value: notifications, merge: merge))
-                GlobalStore.dispatch(SetPage(value: pagination))
-            }
-            default: break
-            }
+    func pollNotifications(client: Client, range: RequestRange? = nil) {
+        self.paginatingData.pollData(client: client, range: range, provider: NotificationsState.provider) { (
+            notifications: [MastodonNotification],
+            pagination: Pagination?,
+            merge: @escaping PaginatingData<MastodonNotification>.MergeFunction
+        ) in
+            GlobalStore.dispatch(SetNotifications(value: notifications, merge: merge))
+            GlobalStore.dispatch(SetPage(value: pagination))
         }
     }
     
-    static func updatePages(pagination: Pagination?, state: NotificationsState) -> (RequestRange?, RequestRange?) {
-        guard let oldNext = state.nextPage, let oldPrev = state.previousPage else { return (pagination?.next, pagination?.previous) }
-        guard let newNext = pagination?.next, let newPrev = pagination?.previous else { return (state.nextPage, state.previousPage) }
-        
-        let setNext: RequestRange? = newNext < oldNext ? newNext : oldNext
-        let setPrev: RequestRange? = newPrev > oldPrev ? newPrev : oldPrev
-        
-        return (setNext, setPrev)
+    static func provider(range: RequestRange? = nil) -> Request<[MastodonNotification]> {
+        guard let range = range else { return Notifications.all() }
+        return Notifications.all(range: range)
     }
 }

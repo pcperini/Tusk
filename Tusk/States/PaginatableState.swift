@@ -17,6 +17,8 @@ protocol PaginatableState: StateType {
     var nextPage: RequestRange? { get set }
     var previousPage: RequestRange? { get set }
     var paginatingData: PaginatingData<DataType> { get set }
+    
+    static func provider(range: RequestRange?) -> Request<[DataType]>
 }
 
 struct PaginatingData<DataType> where DataType: Encodable, DataType: Decodable {
