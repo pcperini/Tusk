@@ -99,6 +99,7 @@
                             <constraint firstAttribute="bottom" secondItem="gnQ-r2-OLe" secondAttribute="bottom" id="k0n-rb-Ubb"/>
                             <constraint firstItem="gxf-m2-l9b" firstAttribute="trailing" secondItem="65V-dD-Kcf" secondAttribute="trailing" id="ozV-BA-TOm"/>
                             <constraint firstItem="8DL-gh-lI1" firstAttribute="leading" secondItem="0Ry-N8-jIJ" secondAttribute="leading" id="vj7-Ct-C7X"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jpF-mu-6o0" secondAttribute="trailing" id="ywQ-tM-Oso"/>
                         </constraints>
                     </view>
                 </subviews>

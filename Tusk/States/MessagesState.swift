@@ -41,7 +41,7 @@ struct MessagesState: PaginatableState {
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
-        case let action as ForceOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage, override: true)
+        case let action as ForceOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage, override: state.statuses.isEmpty)
         default: break
         }
         
