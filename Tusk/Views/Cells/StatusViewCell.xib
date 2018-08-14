@@ -51,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="60" y="21.75" width="291" height="41"/>
+                                <rect key="frame" x="60" y="23" width="291" height="38.5"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

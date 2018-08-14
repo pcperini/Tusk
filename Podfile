@@ -1,7 +1,7 @@
 platform :ios, '11.0'
 
 target 'Tusk' do
-  pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git'
+pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git', :branch => 'master'
   pod 'ReSwift', '~> 4.0'
   pod 'AlamofireImage', '~> 3.3'
   pod 'AFDateHelper', '~> 4.2'

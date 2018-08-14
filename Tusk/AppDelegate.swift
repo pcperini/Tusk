@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         GlobalStore.dispatch(AuthState.SetInstance(value: "mastodon.social"))
-        GlobalStore.dispatch(AuthState.SetAccessToken(value: "d3aa1d3ec3030ec6353bab5d7e69c542a392195111e9a3c2ece961db6a91b4fd"))
+        GlobalStore.dispatch(AuthState.SetAccessToken(value: "0255add4d5d3c54596745d833b518de0eadb8f4530088c9a00a4125af001f22b"))
 
         return true
     }

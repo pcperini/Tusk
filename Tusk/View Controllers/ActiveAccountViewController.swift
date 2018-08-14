@@ -23,7 +23,7 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.accountViewController?.account = GlobalStore.state.account.account
+        self.accountViewController?.account = GlobalStore.state.account.activeAccount
         
         self.pollAccount()
     }
@@ -35,12 +35,12 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     
     func pollAccount() {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(AccountState.PollAccount(client: client))
+        GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
     }
     
     func newState(state: AccountState) {
         DispatchQueue.main.async {
-            self.accountViewController?.account = state.account
+            self.accountViewController?.account = state.activeAccount
         }
     }
 }

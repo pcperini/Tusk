@@ -9,7 +9,7 @@ PODS:
 DEPENDENCIES:
   - AFDateHelper (~> 4.2)
   - AlamofireImage (~> 3.3)
-  - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`)
+  - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, branch `master`)
   - ReSwift (~> 4.0)
 
 SPEC REPOS:
@@ -21,11 +21,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   MastodonKit:
+    :branch: master
     :git: https://github.com/pcperini/MastodonKit.git
 
 CHECKOUT OPTIONS:
   MastodonKit:
-    :commit: 1462bae297fb59e9821d155bf0b5a4498bb69d64
+    :commit: fef7eb79bde9c3f8b82481541f1bb8e7ac047d0f
     :git: https://github.com/pcperini/MastodonKit.git
 
 SPEC CHECKSUMS:
@@ -35,6 +36,6 @@ SPEC CHECKSUMS:
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: ab265ab37e65fa730cdc00fe577c9b8898af3697
+PODFILE CHECKSUM: a53ea0c162980096d71fa2e847e2a43d4268b917
 
 COCOAPODS: 1.5.3

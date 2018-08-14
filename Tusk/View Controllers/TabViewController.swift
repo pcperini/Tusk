@@ -27,7 +27,7 @@ class TabViewController: UITabBarController, StoreSubscriber {
         GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
         GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
         GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
-        GlobalStore.dispatch(AccountState.PollAccount(client: client))
+        GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
     }
     
     override func viewWillDisappear(_ animated: Bool) {

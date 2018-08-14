@@ -55,7 +55,7 @@ struct MessagesState: PaginatableState {
             merge: @escaping PaginatingData<Status>.MergeFunction
         ) in
             let filtered = statuses.filter { (status) in
-                status.visibility == .direct && status.account != GlobalStore.state.account.account
+                status.visibility == .direct && status.account != GlobalStore.state.account.activeAccount
             }
             let merge = override ? { (old, new) in return new } : merge
             
