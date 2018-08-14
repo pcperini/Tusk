@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -214,16 +214,16 @@
 		2D8ACA539E030CEC7F0D003BC8534F2E /* MastodonKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MastodonKit-umbrella.h"; path = "../../Headers/Public/MastodonKit/MastodonKit-umbrella.h"; sourceTree = "<group>"; };
 		2E5E22B8ED81CBF657504F00F7A27FCF /* Mention.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mention.swift; path = Sources/MastodonKit/Models/Mention.swift; sourceTree = "<group>"; };
 		2F3E634A9FB8AF6CD4FEC748B0264DD4 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		3087E779FC5C2B9996D1A302DE7791EE /* libReSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libReSwift.a; path = libReSwift.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3087E779FC5C2B9996D1A302DE7791EE /* libReSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReSwift.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E3BE63B268F490E7A065F725DBC96F /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Sources/MastodonKit/Requests/Notifications.swift; sourceTree = "<group>"; };
-		316835E7A9D8E6BA4205D9ABA727737F /* libMastodonKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMastodonKit.a; path = libMastodonKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		316835E7A9D8E6BA4205D9ABA727737F /* libMastodonKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMastodonKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A819787F73BE2B87EB3CF1C23483F3 /* TypeHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypeHelper.swift; path = ReSwift/Utils/TypeHelper.swift; sourceTree = "<group>"; };
 		31B78CCC281CA16A18079D8F24AA1F37 /* Results.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Results.swift; path = Sources/MastodonKit/Models/Results.swift; sourceTree = "<group>"; };
-		3295FB95D53F0C516FAAC1AFA7B612B0 /* libPods-TuskUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TuskUITests.a"; path = "libPods-TuskUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3295FB95D53F0C516FAAC1AFA7B612B0 /* libPods-TuskUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuskUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		335C2E9EA84A986FB5BC2AA367BE2C88 /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Source/ImageCache.swift; sourceTree = "<group>"; };
 		36AC8896E3200B5846F48F11375FFFAB /* ReSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReSwift.xcconfig; sourceTree = "<group>"; };
 		395E194B2B68ED3FBDF122D6A87DBE32 /* ReSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReSwift-prefix.pch"; sourceTree = "<group>"; };
-		3AA02DDD93898705C768D0CCE19A6F49 /* libAFDateHelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFDateHelper.a; path = libAFDateHelper.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA02DDD93898705C768D0CCE19A6F49 /* libAFDateHelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFDateHelper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA07BAAA293D3844C72A63A52863F28 /* Pods-Tusk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tusk.release.xcconfig"; sourceTree = "<group>"; };
 		3B015A3BE8B45CE3CE9825B4CEB1B68F /* Login.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Sources/MastodonKit/Requests/Login.swift; sourceTree = "<group>"; };
 		3B70F03DD3AD5B8FA7A2267F81AD4FE8 /* AlamofireImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireImage-prefix.pch"; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 		56DE1489B8CED8DABC1C5D8021682DF8 /* MastodonKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MastodonKit-prefix.pch"; sourceTree = "<group>"; };
 		58749A7EC7F7099E554821DF0F2A6AB4 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		58FF1714D8E9D6B5C238F117C85FBDC3 /* Card.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Sources/MastodonKit/Models/Card.swift; sourceTree = "<group>"; };
-		593673595F26F83B93CFE64F50FF5722 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAlamofire.a; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		593673595F26F83B93CFE64F50FF5722 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A0F3D98651D03300FDD5684DB03DF06 /* LoginSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginSettings.swift; path = Sources/MastodonKit/Models/LoginSettings.swift; sourceTree = "<group>"; };
 		5C71A8F931B6033DF7543012C80C3624 /* Pods-Tusk-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tusk-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5FF8A4E404F2B8791F908193567A395F /* RequestRange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestRange.swift; path = Sources/MastodonKit/RequestRange.swift; sourceTree = "<group>"; };
@@ -256,9 +256,9 @@
 		6AE65B5797E3C9F177FE813B84B021E1 /* DateHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateHelper.swift; path = Sources/DateHelper.swift; sourceTree = "<group>"; };
 		6FE1BBC83B0FD6210B7FB4150572C585 /* AFDateHelper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFDateHelper-prefix.pch"; sourceTree = "<group>"; };
 		7015BC5036A10D89A324D9FC98746FAF /* Pods-TuskTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TuskTests-frameworks.sh"; sourceTree = "<group>"; };
-		705172420199FE651F769F9A0131284B /* libPods-Tusk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Tusk.a"; path = "libPods-Tusk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		705172420199FE651F769F9A0131284B /* libPods-Tusk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tusk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D429226BE77E913101B9692688069F /* Coding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coding.swift; path = ReSwift/Utils/Coding.swift; sourceTree = "<group>"; };
-		716B182BE1871D9B9C6634FDD8E4BC55 /* libAlamofireImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAlamofireImage.a; path = libAlamofireImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		716B182BE1871D9B9C6634FDD8E4BC55 /* libAlamofireImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAlamofireImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7209C696C515A82FB6AE33FD906D84FB /* Favourites.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Favourites.swift; path = Sources/MastodonKit/Requests/Favourites.swift; sourceTree = "<group>"; };
 		7283727A511613B59F42B6D693724881 /* Pods-TuskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuskTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7382A92F0392916715FDA1D4D22DD5E0 /* Status.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Sources/MastodonKit/Models/Status.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 		8D19730993BF253F668C1BAD9B8ABF5B /* DomainBlocks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DomainBlocks.swift; path = Sources/MastodonKit/Requests/DomainBlocks.swift; sourceTree = "<group>"; };
 		8DDB9F09D561F1F63E97B77EE478C90D /* Action.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Action.swift; path = ReSwift/CoreTypes/Action.swift; sourceTree = "<group>"; };
 		910935F9F7F5BAC7EC40204A2D8E81D9 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Alamofire-umbrella.h"; path = "../../Headers/Public/Alamofire/Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		950317A3A9158AC009F35BDCAEC94AA0 /* Payload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Payload.swift; path = Sources/MastodonKit/Payload.swift; sourceTree = "<group>"; };
 		9639696C02ECAEAB137CDCB64408B5A2 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = Sources/MastodonKit/Models/Attachment.swift; sourceTree = "<group>"; };
 		9B32AABE3E87D893620325AA7EDDB7DC /* DateFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateFormatter.swift; path = Sources/MastodonKit/Foundation/DateFormatter.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 		CCF4CCA55EB1A9704E4022BFDF36515A /* Client.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Sources/MastodonKit/Client.swift; sourceTree = "<group>"; };
 		D04C430151873A079483D8E8D2703999 /* Pods-TuskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuskUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D058F43EBDE4BE9414503EF91A874B81 /* Pods-TuskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TuskTests.release.xcconfig"; sourceTree = "<group>"; };
-		D13583654442840D4026D1CAED4D804D /* libPods-TuskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TuskTests.a"; path = "libPods-TuskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D13583654442840D4026D1CAED4D804D /* libPods-TuskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D1127BE47EE6628C87C68895DD6B48 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Sources/MastodonKit/Request.swift; sourceTree = "<group>"; };
 		DA60916102A9FCA636119397436C50E6 /* MastodonKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MastodonKit.xcconfig; sourceTree = "<group>"; };
 		DA7D47F73D9AAAC4FAAA1EFB9EB54E1D /* Mutes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mutes.swift; path = Sources/MastodonKit/Requests/Mutes.swift; sourceTree = "<group>"; };
@@ -417,7 +417,6 @@
 				31A819787F73BE2B87EB3CF1C23483F3 /* TypeHelper.swift */,
 				CA33394F4247E14107F6BB7B866FB823 /* Support Files */,
 			);
-			name = ReSwift;
 			path = ReSwift;
 			sourceTree = "<group>";
 		};
@@ -556,7 +555,6 @@
 				BEE6C9D687EC32F411C8C4691933984A /* Validation.swift */,
 				2CDF5855E049E93EEE21F4AC26C05AF3 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -602,7 +600,6 @@
 				A62D5BE80A3BD158E6004A9947FC8C3E /* UIImageView+AlamofireImage.swift */,
 				F452C53D22E941562F74C724F2A7EA32 /* Support Files */,
 			);
-			name = AlamofireImage;
 			path = AlamofireImage;
 			sourceTree = "<group>";
 		};
@@ -684,7 +681,6 @@
 				47FB62810A47E1F5CAD588797417D6A1 /* Visibility.swift */,
 				1C9AE588EF6F2881B8B5C37DCA566936 /* Support Files */,
 			);
-			name = MastodonKit;
 			path = MastodonKit;
 			sourceTree = "<group>";
 		};
@@ -707,7 +703,6 @@
 				6AE65B5797E3C9F177FE813B84B021E1 /* DateHelper.swift */,
 				F983C329398F2DA1669586C051AB0008 /* Support Files */,
 			);
-			name = AFDateHelper;
 			path = AFDateHelper;
 			sourceTree = "<group>";
 		};
@@ -919,7 +914,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -965,7 +960,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/AlamofireImage/AlamofireImage.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/AlamofireImage/AlamofireImage-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
-			showEnvVarsInLog = 1;
 		};
 		4B756EDA051025413D0EF5CA38562F39 /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -986,7 +980,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/AFDateHelper/AFDateHelper.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/AFDateHelper/AFDateHelper-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
-			showEnvVarsInLog = 1;
 		};
 		5D257AE991614B2667ECDFDA62B94519 /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1007,7 +1000,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Alamofire/Alamofire.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Alamofire/Alamofire-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
-			showEnvVarsInLog = 1;
 		};
 		9533D972C3715F3C168C979C8D385C61 /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1028,7 +1020,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/ReSwift/ReSwift.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/ReSwift/ReSwift-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
-			showEnvVarsInLog = 1;
 		};
 		C3957F2C473841B5849202BC354D3AA4 /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1049,7 +1040,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/MastodonKit/MastodonKit.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/MastodonKit/MastodonKit-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
-			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1325,6 +1315,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;

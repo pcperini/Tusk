@@ -22,7 +22,7 @@ class StatusViewCell: UITableViewCell {
             
             self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
             self.displayNameLabel.text = status.account.name
-            self.usernameLabel.text = "@\(status.account.username)"
+            self.usernameLabel.text = status.account.handle
             self.timestampLabel.date = status.createdAt
 
             self.statusTextView.text = status.plainContent

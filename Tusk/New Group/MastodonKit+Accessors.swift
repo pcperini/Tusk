@@ -29,4 +29,12 @@ extension Account {
     var name: String {
         return self.displayName.isEmpty ? self.username : self.displayName
     }
+    
+    var handle: String {
+        return "@\(self.username)"
+    }
+    
+    var plainNote: String {
+        return self.note.attributedHTMLString().string.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
