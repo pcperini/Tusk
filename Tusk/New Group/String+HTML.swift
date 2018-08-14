@@ -11,12 +11,12 @@ import UIKit
 
 extension String{
     func attributedHTMLString() -> NSAttributedString{
-        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        guard let data = data(using: .utf16) else { return NSAttributedString() }
         do {
             return try NSAttributedString(data: data,
                                           options: [
                                             .documentType: NSAttributedString.DocumentType.html,
-                                            .defaultAttributes: String.Encoding.utf8.rawValue
+                                            .defaultAttributes: String.Encoding.utf16.rawValue
                                           ],
                                           documentAttributes: nil)
         } catch {

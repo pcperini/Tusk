@@ -13,3 +13,20 @@ extension Status {
         return self.content.attributedHTMLString().string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
+
+extension Notification {
+    var action: String {
+        switch self.type {
+        case .favourite: return "liked"
+        case .mention: return self.status?.inReplyToID == nil ? "mentioned" : "replied"
+        case .reblog: return "reposted"
+        case .follow: return "followed you"
+        }
+    }
+}
+
+extension Account {
+    var name: String {
+        return self.displayName.isEmpty ? self.username : self.displayName
+    }
+}

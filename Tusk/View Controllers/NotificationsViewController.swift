@@ -65,20 +65,13 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
-        
-        let notif = self.notifications[indexPath.row]
-        let attributedText: NSAttributedString
-        
-        switch notif.type {
-        case .mention: attributedText = notif.status!.content.attributedHTMLString()
-        case .favourite: attributedText = NSAttributedString(string: "\(notif.account.displayName) favorited your post")
-        case .follow: attributedText = NSAttributedString(string: "\(notif.account.displayName) followed you")
-        case .reblog: attributedText = NSAttributedString(string: "\(notif.account.displayName) reposted your post")
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Notification") as? NotificationViewCell else {
+            self.tableView.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "Notification")
+            return self.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell?.textLabel?.attributedText = attributedText
-        return cell!
+        cell.notification = self.notifications[indexPath.row]
+        return cell
     }
     
     override func refreshControlBeganRefreshing() {

@@ -1,5 +1,5 @@
 //
-//  AvatarView.swift
+//  ImageView.swift
 //  Tusk
 //
 //  Created by Patrick Perini on 8/13/18.
@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-@IBDesignable class AvatarView: UIImageView {
+@IBDesignable class ImageView: UIImageView {
     @IBInspectable var round: Bool = false {
         didSet {
             self.clipsToBounds = self.round

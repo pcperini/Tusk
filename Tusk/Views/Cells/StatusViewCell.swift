@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 
 class StatusViewCell: UITableViewCell {
-    @IBOutlet var avatarView: AvatarView!
+    @IBOutlet var avatarView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var statusTextView: UITextView!
@@ -18,10 +18,13 @@ class StatusViewCell: UITableViewCell {
     var status: Status? {
         didSet {
             guard let status = self.status else { return }
+            
             self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
-            self.displayNameLabel.text = status.account.displayName
+            self.displayNameLabel.text = status.account.name
             self.usernameLabel.text = "@\(status.account.username)"
+
             self.statusTextView.text = status.plainContent
+            self.statusTextView.setNeedsLayout()
         }
     }
 }

@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SE0-fc-EoD">
                         <rect key="frame" x="12" y="12" width="351" height="61.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB0-3m-ZVQ" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB0-3m-ZVQ" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aB0-3m-ZVQ" secondAttribute="height" multiplier="1:1" id="0Gh-Uy-2JB"/>
@@ -66,6 +66,7 @@
                             <constraint firstItem="aB0-3m-ZVQ" firstAttribute="leading" secondItem="SE0-fc-EoD" secondAttribute="leading" id="TOQ-VW-MCs"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="bottom" constant="2" id="UF9-tn-JIQ"/>
                             <constraint firstAttribute="trailing" secondItem="sHe-5U-G8n" secondAttribute="trailing" id="W10-Q7-Bob"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aB0-3m-ZVQ" secondAttribute="bottom" id="W9B-Ol-Xbd"/>
                             <constraint firstAttribute="bottom" secondItem="sHe-5U-G8n" secondAttribute="bottom" id="b5D-QE-qOH"/>
                             <constraint firstItem="keD-FY-tv9" firstAttribute="leading" secondItem="aB0-3m-ZVQ" secondAttribute="trailing" constant="10" id="emp-oI-NfN"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="hHI-vJ-qUg"/>
