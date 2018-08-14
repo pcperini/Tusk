@@ -59,6 +59,9 @@
 		732BE25E212327490049ADBD /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE25D212327490049ADBD /* NotificationViewCell.swift */; };
 		732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE25D212327490049ADBD /* NotificationViewCell.swift */; };
 		732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE25D212327490049ADBD /* NotificationViewCell.swift */; };
+		732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE261212338EA0049ADBD /* TimestampLabel.swift */; };
+		732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE261212338EA0049ADBD /* TimestampLabel.swift */; };
+		732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE261212338EA0049ADBD /* TimestampLabel.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -117,6 +120,7 @@
 		732BE255212319830049ADBD /* MastodonKit+Accessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Accessors.swift"; sourceTree = "<group>"; };
 		732BE259212327350049ADBD /* NotificationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewCell.xib; sourceTree = "<group>"; };
 		732BE25D212327490049ADBD /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
+		732BE261212338EA0049ADBD /* TimestampLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampLabel.swift; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +178,7 @@
 				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
 				732BE24D2122240D0049ADBD /* ImageView.swift */,
 				732BE251212233A30049ADBD /* TextView.swift */,
+				732BE261212338EA0049ADBD /* TimestampLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				732BE22B21209DC40049ADBD /* String+HTML.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				732BE2382120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */,
 				732BE24E2122240D0049ADBD /* ImageView.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
@@ -547,6 +553,7 @@
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
 				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE22821208EA40049ADBD /* AccountViewController.swift in Sources */,
+				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +578,7 @@
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
 				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE22921208EA40049ADBD /* AccountViewController.swift in Sources */,
+				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

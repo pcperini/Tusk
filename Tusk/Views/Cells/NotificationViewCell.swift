@@ -15,6 +15,7 @@ class NotificationViewCell: UITableViewCell {
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var actionLabel: UILabel!
     @IBOutlet var statusLabel: UILabel!
+    @IBOutlet var timestampLabel: TimestampLabel!
     
     private var statusLabelHeight: CGFloat = 0.0
     
@@ -30,6 +31,9 @@ class NotificationViewCell: UITableViewCell {
             self.avatarView.af_setImage(withURL: URL(string: notification.account.avatar)!)
             self.displayNameLabel.text = notification.account.name
             self.actionLabel.text = notification.action
+            self.timestampLabel.date = notification.createdAt
+            
+            self.setActionIcon(notificationType: notification.type)
             
             let heightConstraint = self.statusLabel.constraints.filter({ (constraint) in constraint.identifier == "HeightConstraint" }).first
             if let status = notification.status {
@@ -38,6 +42,15 @@ class NotificationViewCell: UITableViewCell {
             } else {
                 heightConstraint?.constant = 0
             }
+        }
+    }
+    
+    private func setActionIcon(notificationType: NotificationType) {
+        switch notificationType {
+        case .follow: self.actionIconView.backgroundColor = .gray
+        case .mention: self.actionIconView.backgroundColor = .green
+        case .favourite: self.actionIconView.backgroundColor = .red
+        case .reblog: self.actionIconView.backgroundColor = .blue
         }
     }
 }

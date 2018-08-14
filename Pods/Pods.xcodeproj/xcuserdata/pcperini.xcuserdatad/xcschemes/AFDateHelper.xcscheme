@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E69C8FEAA6DF3EA1EEDF670B4EFDAB3E"
-               BlueprintName = "MastodonKit"
+               BlueprintIdentifier = "8813C81301ACB7739D789B6EF756C05B"
+               BlueprintName = "AFDateHelper"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libMastodonKit.a">
+               BuildableName = "libAFDateHelper.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

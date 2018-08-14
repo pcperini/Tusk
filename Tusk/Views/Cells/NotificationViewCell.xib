@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="QNJ-vc-XHA"/>
-                                    <constraint firstAttribute="width" secondItem="65V-dD-Kcf" secondAttribute="height" multiplier="1:1" priority="750" id="b99-Q4-hKF"/>
+                                    <constraint firstAttribute="width" secondItem="65V-dD-Kcf" secondAttribute="height" multiplier="1:1" id="b99-Q4-hKF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
@@ -73,7 +73,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relative time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnQ-r2-OLe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relative time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnQ-r2-OLe" customClass="TimestampLabel" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="70" y="48" width="73" height="13"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,6 +112,7 @@
                 <outlet property="avatarView" destination="65V-dD-Kcf" id="cIv-Wu-Ic7"/>
                 <outlet property="displayNameLabel" destination="0Ry-N8-jIJ" id="xuT-d9-PXW"/>
                 <outlet property="statusLabel" destination="8DL-gh-lI1" id="uOM-Gn-DrC"/>
+                <outlet property="timestampLabel" destination="gnQ-r2-OLe" id="fIW-nM-8Gz"/>
             </connections>
             <point key="canvasLocation" x="289.5" y="-26"/>
         </tableViewCell>
