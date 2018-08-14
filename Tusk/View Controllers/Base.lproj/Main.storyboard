@@ -131,7 +131,7 @@
             <objects>
                 <navigationController id="i9X-bR-Wh3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Account" id="m7N-gm-Gup">
-                        <inset key="imageInsets" minX="0.0" minY="-6" maxX="0.0" maxY="-6"/>
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fDK-It-6yq">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -404,9 +404,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account" width="20" height="20"/>
-        <image name="Messages" width="20" height="16"/>
-        <image name="Notification" width="18" height="22"/>
-        <image name="Timeline" width="20" height="20"/>
+        <image name="Account" width="40" height="42"/>
+        <image name="Messages" width="40" height="30"/>
+        <image name="Notification" width="32" height="40"/>
+        <image name="Timeline" width="40" height="40"/>
     </resources>
 </document>
