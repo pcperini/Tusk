@@ -11,6 +11,7 @@ import MastodonKit
 import ReSwift
 
 // TODO: Think about how "threading" works here
+// TODO: ForceOlderStatuses is a hack, think about filling out pages
 
 struct MessagesState: PaginatableState {
     typealias DataType = Status
@@ -21,8 +22,9 @@ struct MessagesState: PaginatableState {
     }
     private struct SetPage: Action { let value: Pagination? }
     struct PollStatuses: Action { let client: Client }
-    struct PollOlderStatuses: Action { let client: Client }
     struct PollNewerStatuses: Action { let client: Client }
+    struct PollOlderStatuses: Action { let client: Client }
+    private struct ForceOlderStatuses: Action { let client: Client }
 
     var statuses: [Status] = []
     
@@ -39,20 +41,30 @@ struct MessagesState: PaginatableState {
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
+        case let action as ForceOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage, override: true)
         default: break
         }
         
         return state
     }
     
-    func pollStatuses(client: Client, range: RequestRange? = nil) {
+    func pollStatuses(client: Client, range: RequestRange? = nil, override: Bool = false) {
         self.paginatingData.pollData(client: client, range: range, provider: MessagesState.provider) { (
             statuses: [Status],
             pagination: Pagination?,
             merge: @escaping PaginatingData<Status>.MergeFunction
         ) in
-            GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in status.visibility == .direct }, merge: merge))
+            let filtered = statuses.filter { (status) in
+                status.visibility == .direct && status.account != GlobalStore.state.account.account
+            }
+            let merge = override ? { (old, new) in return new } : merge
+            
+            GlobalStore.dispatch(SetStatuses(value: filtered, merge: merge))
             GlobalStore.dispatch(SetPage(value: pagination))
+            
+            if (filtered.count < 1) {
+                GlobalStore.dispatch(ForceOlderStatuses(client: client))
+            }
         }
     }
     

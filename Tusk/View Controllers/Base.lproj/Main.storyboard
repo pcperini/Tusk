@@ -77,7 +77,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="351"/>
         </scene>
-        <!--Messages-->
+        <!--Direct Messages-->
         <scene sceneID="p2c-1X-zCd">
             <objects>
                 <tableViewController id="qog-6A-4wu" customClass="MessagesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,7 +100,7 @@
                             <outlet property="delegate" destination="qog-6A-4wu" id="UuF-Fi-sg5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Messages" id="3dh-9B-Nvh"/>
+                    <navigationItem key="navigationItem" title="Direct Messages" id="3dh-9B-Nvh"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tea-zl-92U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -125,6 +125,55 @@
             </objects>
             <point key="canvasLocation" x="750" y="1028"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q2A-pp-duu">
+            <objects>
+                <navigationController id="i9X-bR-Wh3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Account" id="m7N-gm-Gup">
+                        <inset key="imageInsets" minX="0.0" minY="-6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fDK-It-6yq">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Qg5-Ed-HA6" kind="relationship" relationship="rootViewController" id="UC3-7E-OPh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NiX-6a-Wvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1701"/>
+        </scene>
+        <!--Active Account View Controller-->
+        <scene sceneID="Fqz-mJ-f6t">
+            <objects>
+                <viewController id="Qg5-Ed-HA6" customClass="ActiveAccountViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ax7-Jq-ey4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCy-QX-OcM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <segue destination="5kC-2r-ywg" kind="embed" id="TXZ-Ng-jjC"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wCy-QX-OcM" firstAttribute="trailing" secondItem="h3e-B3-lkS" secondAttribute="trailing" id="0MA-ap-CTU"/>
+                            <constraint firstItem="wCy-QX-OcM" firstAttribute="leading" secondItem="h3e-B3-lkS" secondAttribute="leading" id="2Lu-gw-jgq"/>
+                            <constraint firstItem="wCy-QX-OcM" firstAttribute="top" secondItem="h3e-B3-lkS" secondAttribute="top" id="5t2-r9-PAo"/>
+                            <constraint firstItem="wCy-QX-OcM" firstAttribute="bottom" secondItem="h3e-B3-lkS" secondAttribute="bottom" id="OCR-N9-9cN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="h3e-B3-lkS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2LP-SK-YTs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P4H-gM-A3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="1700.5997001499252"/>
+        </scene>
         <!--Tab View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -138,51 +187,12 @@
                         <segue destination="2BH-ME-ZWd" kind="relationship" relationship="viewControllers" id="3wV-Ne-0oi"/>
                         <segue destination="OIJ-A4-znk" kind="relationship" relationship="viewControllers" id="OSJ-25-OtG"/>
                         <segue destination="69B-FA-TRd" kind="relationship" relationship="viewControllers" id="mIG-jV-dr2"/>
-                        <segue destination="Sea-CN-XzW" kind="relationship" relationship="viewControllers" id="NX9-Jw-afp"/>
+                        <segue destination="i9X-bR-Wh3" kind="relationship" relationship="viewControllers" id="9BH-MZ-BYX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-409" y="1142"/>
-        </scene>
-        <!--Account-->
-        <scene sceneID="83M-vl-WHw">
-            <objects>
-                <viewController title="Account" id="Sea-CN-XzW" customClass="AccountViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Rdh-Pt-Lrq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Third View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="soj-WR-NCd">
-                                <rect key="frame" x="106.5" y="312" width="163" height="43"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P25-8K-COU">
-                                <rect key="frame" x="80" y="363" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="soj-WR-NCd" secondAttribute="centerX" id="VdT-2g-4Jh"/>
-                            <constraint firstItem="P25-8K-COU" firstAttribute="centerX" secondItem="soj-WR-NCd" secondAttribute="centerX" id="XqZ-yq-gfG"/>
-                            <constraint firstItem="P25-8K-COU" firstAttribute="top" secondItem="soj-WR-NCd" secondAttribute="bottom" constant="8" symbolic="YES" id="nMw-57-Ges"/>
-                            <constraint firstAttribute="centerY" secondItem="soj-WR-NCd" secondAttribute="centerY" id="nT3-SF-Zal"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="d2a-5c-UU3"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" image="Account" id="h9T-l4-c1Z">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="67f-6q-rvE" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="750" y="1697"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="VtJ-vr-zli">
@@ -212,6 +222,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbd-Vi-7hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1628" y="1028"/>
+        </scene>
+        <!--Account View Controller-->
+        <scene sceneID="cIy-zW-D2R">
+            <objects>
+                <viewController id="5kC-2r-ywg" customClass="AccountViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pku-KT-QZP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xl-YQ-6Gt">
+                                <rect key="frame" x="166" y="276.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0Xl-YQ-6Gt" firstAttribute="centerX" secondItem="BhB-YR-yNu" secondAttribute="centerX" id="JgZ-d2-HyG"/>
+                            <constraint firstItem="0Xl-YQ-6Gt" firstAttribute="centerY" secondItem="BhB-YR-yNu" secondAttribute="centerY" id="YzD-da-gJg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BhB-YR-yNu"/>
+                    </view>
+                    <connections>
+                        <outlet property="displayNameLabel" destination="0Xl-YQ-6Gt" id="f6e-dA-RVu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vR0-fI-Ciq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2905" y="394"/>
         </scene>
     </scenes>
     <resources>

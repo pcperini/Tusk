@@ -61,9 +61,13 @@ class MessagesViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.attributedText = self.statuses[indexPath.row].content.attributedHTMLString()
-        return cell!
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Status") as? StatusViewCell else {
+            self.tableView.register(UINib(nibName: "StatusViewCell", bundle: nil), forCellReuseIdentifier: "Status")
+            return self.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        cell.status = self.statuses[indexPath.row]
+        return cell
     }
     
     override func refreshControlBeganRefreshing() {
