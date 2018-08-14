@@ -1,13 +1,19 @@
 PODS:
+  - Alamofire (4.7.3)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
   - MastodonKit (1.0.10)
   - ReSwift (4.0.1)
 
 DEPENDENCIES:
+  - AlamofireImage (~> 3.3)
   - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`)
   - ReSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
     - ReSwift
 
 EXTERNAL SOURCES:
@@ -20,9 +26,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/pcperini/MastodonKit.git
 
 SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: fa9ceea0bb68e9e9950f6a7330e6e89c920e3bca
+PODFILE CHECKSUM: edf75b491f86962808ceeb4f39fa80c544f309a6
 
 COCOAPODS: 1.5.3

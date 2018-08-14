@@ -38,6 +38,21 @@
 		732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2402121F0BA0049ADBD /* PaginatableState.swift */; };
 		732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2402121F0BA0049ADBD /* PaginatableState.swift */; };
 		732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE2402121F0BA0049ADBD /* PaginatableState.swift */; };
+		732BE245212222460049ADBD /* StatusViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732BE244212222460049ADBD /* StatusViewCell.xib */; };
+		732BE246212222460049ADBD /* StatusViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732BE244212222460049ADBD /* StatusViewCell.xib */; };
+		732BE247212222460049ADBD /* StatusViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732BE244212222460049ADBD /* StatusViewCell.xib */; };
+		732BE249212222500049ADBD /* StatusViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE248212222500049ADBD /* StatusViewCell.swift */; };
+		732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE248212222500049ADBD /* StatusViewCell.swift */; };
+		732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE248212222500049ADBD /* StatusViewCell.swift */; };
+		732BE24E2122240D0049ADBD /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE24D2122240D0049ADBD /* AvatarView.swift */; };
+		732BE24F2122240D0049ADBD /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE24D2122240D0049ADBD /* AvatarView.swift */; };
+		732BE2502122240D0049ADBD /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE24D2122240D0049ADBD /* AvatarView.swift */; };
+		732BE252212233A30049ADBD /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE251212233A30049ADBD /* TextView.swift */; };
+		732BE253212233A30049ADBD /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE251212233A30049ADBD /* TextView.swift */; };
+		732BE254212233A30049ADBD /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE251212233A30049ADBD /* TextView.swift */; };
+		732BE256212319830049ADBD /* MastodonKit+Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE255212319830049ADBD /* MastodonKit+Accessors.swift */; };
+		732BE257212319830049ADBD /* MastodonKit+Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE255212319830049ADBD /* MastodonKit+Accessors.swift */; };
+		732BE258212319830049ADBD /* MastodonKit+Accessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE255212319830049ADBD /* MastodonKit+Accessors.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -89,6 +104,11 @@
 		732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatingTableViewController.swift; sourceTree = "<group>"; };
 		732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MastodonKit+Equatable.swift"; path = "Tusk/New Group/MastodonKit+Equatable.swift"; sourceTree = SOURCE_ROOT; };
 		732BE2402121F0BA0049ADBD /* PaginatableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatableState.swift; sourceTree = "<group>"; };
+		732BE244212222460049ADBD /* StatusViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusViewCell.xib; sourceTree = "<group>"; };
+		732BE248212222500049ADBD /* StatusViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewCell.swift; sourceTree = "<group>"; };
+		732BE24D2122240D0049ADBD /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		732BE251212233A30049ADBD /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		732BE255212319830049ADBD /* MastodonKit+Accessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Accessors.swift"; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +162,10 @@
 		732BE2322120CC2F0049ADBD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				732BE24C212223F80049ADBD /* Cells */,
 				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
+				732BE24D2122240D0049ADBD /* AvatarView.swift */,
+				732BE251212233A30049ADBD /* TextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,9 +175,19 @@
 			children = (
 				732BE22A21209DC40049ADBD /* String+HTML.swift */,
 				732BE2372120D19B0049ADBD /* MastodonKit+Equatable.swift */,
+				732BE255212319830049ADBD /* MastodonKit+Accessors.swift */,
 			);
 			name = Extensions;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		732BE24C212223F80049ADBD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				732BE248212222500049ADBD /* StatusViewCell.swift */,
+				732BE244212222460049ADBD /* StatusViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
@@ -371,6 +404,7 @@
 			files = (
 				73EAEC63211E41AA00C2620F /* LaunchScreen.storyboard in Resources */,
 				73EAEC60211E41AA00C2620F /* Assets.xcassets in Resources */,
+				732BE245212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73EAEC5E211E41A900C2620F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732BE246212222460049ADBD /* StatusViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732BE247212222460049ADBD /* StatusViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,15 +496,19 @@
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2382120D19B0049ADBD /* MastodonKit+Equatable.swift in Sources */,
+				732BE24E2122240D0049ADBD /* AvatarView.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
+				732BE256212319830049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE22721208EA40049ADBD /* AccountViewController.swift in Sources */,
 				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
+				732BE252212233A30049ADBD /* TextView.swift in Sources */,
+				732BE249212222500049ADBD /* StatusViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,12 +518,16 @@
 			files = (
 				732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
+				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
+				732BE257212319830049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732BE224212089000049ADBD /* AccountState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
+				732BE253212233A30049ADBD /* TextView.swift in Sources */,
+				732BE24F2122240D0049ADBD /* AvatarView.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
 				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
@@ -497,12 +541,16 @@
 			files = (
 				732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
+				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
+				732BE258212319830049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732BE225212089000049ADBD /* AccountState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
+				732BE254212233A30049ADBD /* TextView.swift in Sources */,
+				732BE2502122240D0049ADBD /* AvatarView.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
 				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,

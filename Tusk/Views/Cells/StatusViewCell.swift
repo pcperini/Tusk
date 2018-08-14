@@ -1,0 +1,27 @@
+//
+//  StatusViewCell.swift
+//  Tusk
+//
+//  Created by Patrick Perini on 8/13/18.
+//  Copyright © 2018 Patrick Perini. All rights reserved.
+//
+
+import UIKit
+import MastodonKit
+
+class StatusViewCell: UITableViewCell {
+    @IBOutlet var avatarView: AvatarView!
+    @IBOutlet var displayNameLabel: UILabel!
+    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet var statusTextView: UITextView!
+    
+    var status: Status? {
+        didSet {
+            guard let status = self.status else { return }
+            self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
+            self.displayNameLabel.text = status.account.displayName
+            self.usernameLabel.text = "@\(status.account.username)"
+            self.statusTextView.text = status.plainContent
+        }
+    }
+}

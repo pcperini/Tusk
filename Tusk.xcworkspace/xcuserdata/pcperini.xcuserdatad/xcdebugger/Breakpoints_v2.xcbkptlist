@@ -24,7 +24,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/PaginatingTableViewController.swift"
-            timestampString = "555884907.164629"
+            timestampString = "555951523.730832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -36,97 +36,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/States/MessagesState.swift"
-            timestampString = "555884907.164898"
+            filePath = "Tusk/Views/AvatarView.swift"
+            timestampString = "555951523.7311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "pollStatuses(client:range:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "layoutSubviews()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;MastodonKit.Status&gt;, Swift.Optional&lt;MastodonKit.Pagination&gt;, (Swift.Array&lt;MastodonKit.Status&gt;, Swift.Array&lt;MastodonKit.Status&gt;) -&gt; Swift.Array&lt;MastodonKit.Status&gt;) -&gt; () in Tusk.MessagesState.pollStatuses(client: MastodonKit.Client, range: Swift.Optional&lt;MastodonKit.RequestRange&gt;) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/MessagesState.swift"
-                  timestampString = "555884681.866496"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "37">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (MastodonKit.Status) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;MastodonKit.Status&gt;, Swift.Optional&lt;MastodonKit.Pagination&gt;, (Swift.Array&lt;MastodonKit.Status&gt;, Swift.Array&lt;MastodonKit.Status&gt;) -&gt; Swift.Array&lt;MastodonKit.Status&gt;) -&gt; () in Tusk.MessagesState.pollStatuses(client: MastodonKit.Client, range: Swift.Optional&lt;MastodonKit.RequestRange&gt;) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/MessagesState.swift"
-                  timestampString = "555884681.870928"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/States/MessagesState.swift"
-            timestampString = "555884907.165082"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "pollStatuses(client:range:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Tusk.MessagesState.pollStatuses(client: MastodonKit.Client, range: Swift.Optional&lt;MastodonKit.RequestRange&gt;) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/MessagesState.swift"
-                  timestampString = "555884681.88903"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;MastodonKit.Status&gt;, Swift.Optional&lt;MastodonKit.Pagination&gt;, (Swift.Array&lt;MastodonKit.Status&gt;, Swift.Array&lt;MastodonKit.Status&gt;) -&gt; Swift.Array&lt;MastodonKit.Status&gt;) -&gt; () in Tusk.MessagesState.pollStatuses(client: MastodonKit.Client, range: Swift.Optional&lt;MastodonKit.RequestRange&gt;) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/MessagesState.swift"
-                  timestampString = "555884681.891519"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
