@@ -14,6 +14,7 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var statusTextView: UITextView!
+    @IBOutlet var timestampLabel: TimestampLabel!
     
     var status: Status? {
         didSet {
@@ -22,6 +23,7 @@ class StatusViewCell: UITableViewCell {
             self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
             self.displayNameLabel.text = status.account.name
             self.usernameLabel.text = "@\(status.account.username)"
+            self.timestampLabel.date = status.createdAt
 
             self.statusTextView.text = status.plainContent
             self.statusTextView.setNeedsLayout()

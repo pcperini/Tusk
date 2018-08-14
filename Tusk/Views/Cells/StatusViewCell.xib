@@ -57,17 +57,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-5S-dyd" customClass="TimestampLabel" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="317.5" y="0.0" width="33" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullLength" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="aB0-3m-ZVQ" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="3Xd-gr-5Vf"/>
+                            <constraint firstItem="PaA-5S-dyd" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="8Ox-jc-B5q"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="trailing" constant="4" id="DOi-3p-g1M"/>
                             <constraint firstItem="keD-FY-tv9" firstAttribute="top" secondItem="aB0-3m-ZVQ" secondAttribute="top" id="GhS-kJ-Ynp"/>
+                            <constraint firstAttribute="trailing" secondItem="PaA-5S-dyd" secondAttribute="trailing" constant="0.5" id="Jh3-Cv-G5i"/>
                             <constraint firstItem="aB0-3m-ZVQ" firstAttribute="leading" secondItem="SE0-fc-EoD" secondAttribute="leading" id="TOQ-VW-MCs"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="bottom" constant="2" id="UF9-tn-JIQ"/>
                             <constraint firstAttribute="trailing" secondItem="sHe-5U-G8n" secondAttribute="trailing" id="W10-Q7-Bob"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aB0-3m-ZVQ" secondAttribute="bottom" id="W9B-Ol-Xbd"/>
                             <constraint firstAttribute="bottom" secondItem="sHe-5U-G8n" secondAttribute="bottom" id="b5D-QE-qOH"/>
                             <constraint firstItem="keD-FY-tv9" firstAttribute="leading" secondItem="aB0-3m-ZVQ" secondAttribute="trailing" constant="10" id="emp-oI-NfN"/>
+                            <constraint firstItem="PaA-5S-dyd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rzF-6F-ABL" secondAttribute="trailing" constant="4" id="g7P-he-vxd"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="hHI-vJ-qUg"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="leading" id="qG4-hS-szv"/>
                         </constraints>
@@ -84,6 +96,7 @@
                 <outlet property="avatarView" destination="aB0-3m-ZVQ" id="86R-6Z-yFK"/>
                 <outlet property="displayNameLabel" destination="keD-FY-tv9" id="u7a-Yf-EsG"/>
                 <outlet property="statusTextView" destination="sHe-5U-G8n" id="vWC-mT-PxO"/>
+                <outlet property="timestampLabel" destination="PaA-5S-dyd" id="Z05-US-JRU"/>
                 <outlet property="usernameLabel" destination="rzF-6F-ABL" id="Zf5-MX-E1K"/>
             </connections>
             <point key="canvasLocation" x="289.5" y="-26"/>
