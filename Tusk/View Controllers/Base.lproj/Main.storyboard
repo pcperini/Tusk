@@ -37,7 +37,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHq-YW-5mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="-322"/>
+            <point key="canvasLocation" x="1628" y="-1069"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="FQx-Es-GsG">
@@ -56,13 +56,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ey-cP-RBW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-322"/>
+            <point key="canvasLocation" x="750" y="-1069"/>
+        </scene>
+        <!--Timeline-->
+        <scene sceneID="0NI-RM-beG">
+            <objects>
+                <navigationController title="Timeline" id="EdK-g5-g3k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" image="Mentions" id="hPs-lc-rNp">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2W-1t-zVm">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z92-nM-Mbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-360"/>
         </scene>
         <!--Messages-->
         <scene sceneID="Rct-aC-Kfq">
             <objects>
                 <navigationController title="Messages" id="OIJ-A4-znk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Messages" id="kaC-QM-ynx">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" image="Messages" id="kaC-QM-ynx">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z6x-RE-0u2">
@@ -185,6 +201,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2BH-ME-ZWd" kind="relationship" relationship="viewControllers" id="3wV-Ne-0oi"/>
+                        <segue destination="EdK-g5-g3k" kind="relationship" relationship="viewControllers" id="Taw-Nm-jXW"/>
                         <segue destination="OIJ-A4-znk" kind="relationship" relationship="viewControllers" id="OSJ-25-OtG"/>
                         <segue destination="69B-FA-TRd" kind="relationship" relationship="viewControllers" id="mIG-jV-dr2"/>
                         <segue destination="i9X-bR-Wh3" kind="relationship" relationship="viewControllers" id="9BH-MZ-BYX"/>
@@ -192,7 +209,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-409" y="1142"/>
+            <point key="canvasLocation" x="-401" y="720"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="VtJ-vr-zli">
@@ -363,7 +380,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Field value" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-eF-yBa" customClass="TextView" customModule="Tusk" customModuleProvider="target">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Field value" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-eF-yBa" customClass="TextView" customModule="Tusk" customModuleProvider="target">
                                             <rect key="frame" x="272.5" y="11.5" width="86.5" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -412,6 +429,7 @@
     </scenes>
     <resources>
         <image name="Account" width="20" height="21"/>
+        <image name="Mentions" width="20" height="21"/>
         <image name="Messages" width="20" height="15"/>
         <image name="Notification" width="16" height="20"/>
         <image name="Timeline" width="20" height="20"/>

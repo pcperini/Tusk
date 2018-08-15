@@ -51,12 +51,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func reloadHeaderView() {
         if let headerView = self.tableView.tableHeaderView {
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-            
-            var frame = headerView.frame
-            frame.size.height = headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-            headerView.frame = frame
+            DispatchQueue.main.async {
+                var frame = headerView.frame
+                frame.size.height = headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                headerView.frame = frame
+            }
         }
     }
     
