@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="QNJ-vc-XHA"/>
-                                    <constraint firstAttribute="height" constant="50" id="zn9-qA-0uS"/>
+                                    <constraint firstAttribute="height" priority="999" constant="50" id="zn9-qA-0uS"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
@@ -39,7 +39,7 @@
                                 <color key="backgroundColor" red="0.8941602099" green="0.052000258170000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Hcq-ox-Xfi"/>
-                                    <constraint firstAttribute="height" constant="20" id="ZoA-SO-McH"/>
+                                    <constraint firstAttribute="height" priority="999" constant="20" id="ZoA-SO-McH"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>

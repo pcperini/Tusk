@@ -7,12 +7,21 @@
 //
 
 import Foundation
+import DTCoreText
 
 extension NSAttributedString {
     public func attributedStringByTrimmingCharacterSet(charSet: CharacterSet) -> NSAttributedString {
         let modifiedString = NSMutableAttributedString(attributedString: self)
         modifiedString.trimCharactersInSet(charSet: charSet)
         return NSAttributedString(attributedString: modifiedString)
+    }
+    
+    convenience init?(htmlString: String) {
+        let stringBuilder = DTHTMLAttributedStringBuilder(html: htmlString.data(using: .utf8),
+                                                          options: [DTUseiOS6Attributes: NSNumber(booleanLiteral: true)],
+                                                          documentAttributes: nil)
+        guard let builder = stringBuilder else { return nil }
+        self.init(attributedString: builder.generatedAttributedString().attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines))
     }
 }
 
