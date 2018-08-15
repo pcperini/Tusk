@@ -21,7 +21,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         static var count = 3
     }
     
-    enum Stats: Int {
+    enum Stat: Int {
         case Statuses = 0
         case Follows = 1
         case Followers = 2
@@ -30,7 +30,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     }
     
     var account: Account? { didSet { self.updateAccount() } }
-    var pinnedStatuses: [Status] = []
+    var pinnedStatuses: [Status]? = nil
     
     @IBOutlet var headerImageView: UIImageView!
     @IBOutlet var avatarView: ImageView!
@@ -70,7 +70,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.usernameLabel.text = account.handle
         self.bioTextView.text = account.plainNote
         
-        self.pollPinnedStatuses()
+        self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
+        if (self.pinnedStatuses == nil) {
+            self.pollPinnedStatuses()
+        }
     }
     
     func pollPinnedStatuses() {
@@ -103,8 +106,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         switch section {
         case .About: return account.fields.count
-        case .Stats: return Stats.count
-        case .Statuses: return self.pinnedStatuses.count
+        case .Stats: return Stat.count
+        case .Statuses: return self.pinnedStatuses?.count ?? 0
         }
     }
     
@@ -132,7 +135,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func tableView(_ tableView: UITableView, cellForStatsSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
-        guard let stat = Stats(rawValue: row) else { return FieldViewCell() }
+        guard let stat = Stat(rawValue: row) else { return FieldViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FieldCell") as? FieldViewCell else {
             return FieldViewCell()
         }
@@ -154,16 +157,18 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             }
         }
 
+        cell.iconView.image = FieldViewCell.iconForStat(stat: stat)
         return cell
     }
     
     func tableView(_ tableView: UITableView, cellForStatusesSectionRow row: Int) -> StatusViewCell {
+        guard let pinnedStatuses = self.pinnedStatuses else { return StatusViewCell() }
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Status") as? StatusViewCell else {
             self.tableView.register(UINib(nibName: "StatusViewCell", bundle: nil), forCellReuseIdentifier: "Status")
             return self.tableView(tableView, cellForStatusesSectionRow: row)
         }
         
-        cell.status = self.pinnedStatuses[row]
+        cell.status = pinnedStatuses[row]
         return cell
     }
     

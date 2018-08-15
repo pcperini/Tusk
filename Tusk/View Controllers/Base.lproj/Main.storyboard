@@ -341,16 +341,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="acP-gi-fWs">
-                                            <rect key="frame" x="16" y="11" width="20" height="20"/>
-                                            <color key="backgroundColor" red="0.8941602099" green="0.052000258170000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="acP-gi-fWs">
+                                            <rect key="frame" x="16" y="16" width="10" height="10"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="1oV-le-O2D"/>
+                                                <constraint firstAttribute="height" constant="10" id="1oV-le-O2D"/>
                                                 <constraint firstAttribute="width" secondItem="acP-gi-fWs" secondAttribute="height" multiplier="1:1" id="A0E-s0-fHe"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR7-c3-ZTG">
-                                            <rect key="frame" x="44" y="10" width="86" height="21"/>
+                                            <rect key="frame" x="34" y="10" width="86" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="yms-d5-0QI"/>
                                             </constraints>
@@ -381,6 +380,7 @@
                                 <connections>
                                     <outlet property="fieldNameLabel" destination="tR7-c3-ZTG" id="2Hb-1I-p0P"/>
                                     <outlet property="fieldValueTextView" destination="0H4-eF-yBa" id="6Hd-2S-Ddn"/>
+                                    <outlet property="iconView" destination="acP-gi-fWs" id="PGP-nV-Xxu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -404,9 +404,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account" width="40" height="42"/>
-        <image name="Messages" width="40" height="30"/>
-        <image name="Notification" width="32" height="40"/>
-        <image name="Timeline" width="40" height="40"/>
+        <image name="Account" width="20" height="21"/>
+        <image name="Messages" width="20" height="15"/>
+        <image name="Notification" width="16" height="20"/>
+        <image name="Timeline" width="20" height="20"/>
     </resources>
 </document>

@@ -24,9 +24,9 @@ class TabViewController: UITabBarController, StoreSubscriber {
         super.viewDidLoad()
         
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
-        GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
-        GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
+//        GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
+//        GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
+//        GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
         GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
     }
     

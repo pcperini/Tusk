@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/AccountViewController.swift"
-            timestampString = "555983924.426688"
+            timestampString = "555985205.293702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "newState(state:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/AccountViewController.swift"
-            timestampString = "555983924.4269609"
+            timestampString = "555985205.294392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "tableView(_:cellForStatusesSectionRow:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/AccountViewController.swift"
-            timestampString = "555983924.427012"
+            timestampString = "555985205.2946579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,13 +90,93 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/AccountViewController.swift"
-            timestampString = "555983924.427055"
+            timestampString = "555985205.294886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/States/AccountState.swift"
+            timestampString = "555985205.295102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "pollAccount(client:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/States/AccountState.swift"
+            timestampString = "555985205.295336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "pollPinnedStatuses(client:account:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/States/AccountState.swift"
+            timestampString = "555985205.295385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "reducer(action:state:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Tusk.AccountState.reducer(action: ReSwift.Action, state: Swift.Optional&lt;Tusk.AccountState&gt;) -&gt; Tusk.AccountState"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/AccountState.swift"
+                  timestampString = "555985205.4926111"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "1055">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static Tusk.AccountState.reducer(action: ReSwift.Action, state: Swift.Optional&lt;Tusk.AccountState&gt;) -&gt; Tusk.AccountState"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/AccountState.swift"
+                  timestampString = "555985205.495222"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "1216">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
