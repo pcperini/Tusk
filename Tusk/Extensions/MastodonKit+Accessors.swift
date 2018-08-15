@@ -8,11 +8,6 @@
 
 import MastodonKit
 
-extension Status {
-    var plainContent: String {
-        return self.content.plainHTMLString()
-    }
-}
 
 extension Notification {
     var action: String {
@@ -32,18 +27,5 @@ extension Account {
     
     var handle: String {
         return "@\(self.username)"
-    }
-    
-    var plainNote: String {
-        return self.note.plainHTMLString()
-    }
-    
-    var plainFields: [[String: String]] {
-        return self.fields.map{ (pair) in
-            return [
-                "name": pair["name"]!.plainHTMLString(),
-                "value": pair["value"]!.plainHTMLString()
-            ]
-        }
     }
 }

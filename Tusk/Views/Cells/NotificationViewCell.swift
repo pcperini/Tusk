@@ -37,7 +37,7 @@ class NotificationViewCell: UITableViewCell {
             
             let heightConstraint = self.statusLabel.constraints.filter({ (constraint) in constraint.identifier == "HeightConstraint" }).first
             if let status = notification.status {
-                self.statusLabel.text = status.plainContent
+                self.statusLabel.text = status.content
                 heightConstraint?.constant = self.statusLabelHeight
             } else {
                 heightConstraint?.constant = 0

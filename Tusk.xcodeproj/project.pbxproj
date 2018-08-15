@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02B4F9DCB405D64D6853C214 /* libPods-TuskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007B7747DEE48EE38684C875 /* libPods-TuskTests.a */; };
-		6F080EE0AA97A829E44C7AB4 /* libPods-Tusk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DA3508C4B3805B91A8A835 /* libPods-Tusk.a */; };
+		0F961AB861EC2B34A68DC3D6 /* Pods_TuskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */; };
+		5CAFB9310DA93F9007869142 /* Pods_TuskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E8FF97B389C231E1BF2689 /* Pods_TuskUITests.framework */; };
 		732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
@@ -78,6 +78,9 @@
 		7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B9211F4180003BEB84 /* AuthState.swift */; };
 		7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B9211F4180003BEB84 /* AuthState.swift */; };
 		7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B9211F4180003BEB84 /* AuthState.swift */; };
+		73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
+		73CBAE3A2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
+		73CBAE3B2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* TimelineViewController.swift */; };
 		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
@@ -86,7 +89,7 @@
 		73EAEC63211E41AA00C2620F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */; };
 		73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC6D211E41AA00C2620F /* TuskTests.swift */; };
 		73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC78211E41AA00C2620F /* TuskUITests.swift */; };
-		F25064820B607D459B62AD2F /* libPods-TuskUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B81F7D54056968FC55828378 /* libPods-TuskUITests.a */; };
+		A03C3893F90298C9F18476FB /* Pods_Tusk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC44596763C87A77F44C5A9 /* Pods_Tusk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,10 +110,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		007B7747DEE48EE38684C875 /* libPods-TuskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C08DAA0AB03A6FCA7564ECA /* Pods-TuskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskTests/Pods-TuskTests.debug.xcconfig"; sourceTree = "<group>"; };
+		27E8FF97B389C231E1BF2689 /* Pods_TuskUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuskUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		297B24945DF67AFFA7087485 /* Pods-Tusk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tusk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tusk/Pods-Tusk.debug.xcconfig"; sourceTree = "<group>"; };
+		4FC44596763C87A77F44C5A9 /* Pods_Tusk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tusk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		519EDD4E276FC10DD034A1CB /* Pods-TuskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskTests/Pods-TuskTests.release.xcconfig"; sourceTree = "<group>"; };
+		5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
@@ -135,6 +140,7 @@
 		732BE288212485890049ADBD /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaseIterable.swift; path = Tusk/Extensions/CaseIterable.swift; sourceTree = SOURCE_ROOT; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Trimming.swift"; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EAEC58211E41A900C2620F /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -150,9 +156,7 @@
 		73EAEC78211E41AA00C2620F /* TuskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskUITests.swift; sourceTree = "<group>"; };
 		73EAEC7A211E41AA00C2620F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tusk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tusk/Pods-Tusk.release.xcconfig"; sourceTree = "<group>"; };
-		B81F7D54056968FC55828378 /* libPods-TuskUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuskUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0999BA8B9CF151761658767 /* Pods-TuskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F1DA3508C4B3805B91A8A835 /* libPods-Tusk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tusk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F080EE0AA97A829E44C7AB4 /* libPods-Tusk.a in Frameworks */,
+				A03C3893F90298C9F18476FB /* Pods_Tusk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02B4F9DCB405D64D6853C214 /* libPods-TuskTests.a in Frameworks */,
+				0F961AB861EC2B34A68DC3D6 /* Pods_TuskTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F25064820B607D459B62AD2F /* libPods-TuskUITests.a in Frameworks */,
+				5CAFB9310DA93F9007869142 /* Pods_TuskUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,9 +205,9 @@
 				732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */,
 				732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */,
 				732BE288212485890049ADBD /* CaseIterable.swift */,
+				73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */,
 			);
-			name = Extensions;
-			path = "New Group";
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		732BE24C212223F80049ADBD /* Cells */ = {
@@ -317,9 +321,9 @@
 		EDDF43DB9F9A610ADBF78570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1DA3508C4B3805B91A8A835 /* libPods-Tusk.a */,
-				007B7747DEE48EE38684C875 /* libPods-TuskTests.a */,
-				B81F7D54056968FC55828378 /* libPods-TuskUITests.a */,
+				4FC44596763C87A77F44C5A9 /* Pods_Tusk.framework */,
+				5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */,
+				27E8FF97B389C231E1BF2689 /* Pods_TuskUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -335,6 +339,7 @@
 				73EAEC4F211E41A900C2620F /* Sources */,
 				73EAEC50211E41A900C2620F /* Frameworks */,
 				73EAEC51211E41A900C2620F /* Resources */,
+				735BAEFBC6CC7EF2437B240E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,6 +483,36 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		735BAEFBC6CC7EF2437B240E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tusk/Pods-Tusk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFDateHelper/AFDateHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
+				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFDateHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MastodonKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tusk/Pods-Tusk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DC1B7019A8B9A40BA5EC5DDE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,6 +574,7 @@
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
+				73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
 				732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
@@ -574,6 +610,7 @@
 				732BE27321238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
+				73CBAE3A2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +640,7 @@
 				732BE27421238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
+				73CBAE3B2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +807,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcperini.Tusk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -788,6 +828,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcperini.Tusk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

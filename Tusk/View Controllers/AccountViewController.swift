@@ -55,9 +55,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             headerView.layoutIfNeeded()
             
             var frame = headerView.frame
-            frame.size.height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            frame.size.height = headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
             headerView.frame = frame
-            self.tableView.tableHeaderView = headerView
         }
     }
     
@@ -69,7 +68,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
         self.displayNameLabel.text = account.name
         self.usernameLabel.text = account.handle
-        self.bioTextView.text = account.plainNote
+        self.bioTextView.htmlText = account.note
 
         self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
         if (self.pinnedStatuses == nil) {
@@ -129,10 +128,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let account = self.account else { return FieldViewCell() }
         let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
 
-        guard let name = account.plainFields[row]["name"], let value = account.plainFields[row]["value"] else { return FieldViewCell() }
+        guard let name = account.fields[row]["name"], let value = account.fields[row]["value"] else { return FieldViewCell() }
 
         cell.fieldNameLabel.text = name
-        cell.fieldValueTextView.text = value
+        cell.fieldValueTextView.htmlText = value
 
         cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
 
@@ -149,15 +148,15 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         switch stat {
         case .Statuses: do {
             cell.fieldNameLabel.text = "Posts"
-            cell.fieldValueTextView.text = format(account.statusesCount)
+            cell.fieldValueTextView.htmlText = format(account.statusesCount)
             }
         case .Follows: do {
             cell.fieldNameLabel.text = "Following"
-            cell.fieldValueTextView.text = format(account.followingCount)
+            cell.fieldValueTextView.htmlText = format(account.followingCount)
             }
         case .Followers: do {
             cell.fieldNameLabel.text = "Followers"
-            cell.fieldValueTextView.text = format(account.followersCount)
+            cell.fieldValueTextView.htmlText = format(account.followersCount)
             }
         }
 

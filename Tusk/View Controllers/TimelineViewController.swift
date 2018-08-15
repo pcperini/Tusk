@@ -66,6 +66,8 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         }
         
         cell.status = self.statuses[indexPath.row]
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         return cell
     }
     

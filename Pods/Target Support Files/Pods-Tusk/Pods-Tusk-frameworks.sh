@@ -141,6 +141,25 @@ strip_invalid_archs() {
   STRIP_BINARY_RETVAL=1
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AFDateHelper/AFDateHelper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AFDateHelper/AFDateHelper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
+fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi

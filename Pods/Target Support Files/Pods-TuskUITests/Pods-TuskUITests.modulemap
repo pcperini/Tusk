@@ -1,0 +1,6 @@
+framework module Pods_TuskUITests {
+  umbrella header "Pods-TuskUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

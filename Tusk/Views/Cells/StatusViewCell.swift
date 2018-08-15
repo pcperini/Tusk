@@ -13,7 +13,7 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var avatarView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var statusTextView: UITextView!
+    @IBOutlet var statusTextView: TextView!
     @IBOutlet var timestampLabel: TimestampLabel!
     
     var status: Status? {
@@ -25,7 +25,7 @@ class StatusViewCell: UITableViewCell {
             self.usernameLabel.text = status.account.handle
             self.timestampLabel.date = status.createdAt
 
-            self.statusTextView.text = status.plainContent
+            self.statusTextView.htmlText = status.content
             self.statusTextView.setNeedsLayout()
         }
     }

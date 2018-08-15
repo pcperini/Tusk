@@ -1,4 +1,4 @@
-module Pods_Tusk {
+framework module Pods_Tusk {
   umbrella header "Pods-Tusk-umbrella.h"
 
   export *
