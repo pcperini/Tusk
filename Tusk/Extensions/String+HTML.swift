@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension String{
-    func attributedHTMLString() -> NSAttributedString{
+extension String {
+    func attributedHTMLString() -> NSAttributedString {
         guard let data = data(using: .utf16) else { return NSAttributedString() }
         do {
             return try NSAttributedString(data: data,
@@ -22,5 +22,9 @@ extension String{
         } catch {
             return NSAttributedString()
         }
+    }
+    
+    func plainHTMLString() -> String {
+        return self.attributedHTMLString().string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

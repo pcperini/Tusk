@@ -72,6 +72,9 @@
 		732BE2812123972F0049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE27A2123972F0049ADBD /* String+HTML.swift */; };
 		732BE2822123972F0049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE27A2123972F0049ADBD /* String+HTML.swift */; };
 		732BE2832123972F0049ADBD /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE27A2123972F0049ADBD /* String+HTML.swift */; };
+		732BE289212485890049ADBD /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE288212485890049ADBD /* CaseIterable.swift */; };
+		732BE28A212485890049ADBD /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE288212485890049ADBD /* CaseIterable.swift */; };
+		732BE28B212485890049ADBD /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE288212485890049ADBD /* CaseIterable.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -133,6 +136,7 @@
 		732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MastodonKit+Accessors.swift"; path = "Tusk/Extensions/MastodonKit+Accessors.swift"; sourceTree = SOURCE_ROOT; };
 		732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MastodonKit+Comparable.swift"; path = "Tusk/Extensions/MastodonKit+Comparable.swift"; sourceTree = SOURCE_ROOT; };
 		732BE27A2123972F0049ADBD /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+HTML.swift"; path = "Tusk/Extensions/String+HTML.swift"; sourceTree = SOURCE_ROOT; };
+		732BE288212485890049ADBD /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaseIterable.swift; path = Tusk/Extensions/CaseIterable.swift; sourceTree = SOURCE_ROOT; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,7 @@
 				732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */,
 				732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */,
 				732BE27A2123972F0049ADBD /* String+HTML.swift */,
+				732BE288212485890049ADBD /* CaseIterable.swift */,
 			);
 			name = Extensions;
 			path = "New Group";
@@ -522,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
+				732BE289212485890049ADBD /* CaseIterable.swift in Sources */,
 				732BE223212089000049ADBD /* AccountState.swift in Sources */,
 				732BE25E212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				732BE2812123972F0049ADBD /* String+HTML.swift in Sources */,
@@ -556,6 +562,7 @@
 				732BE2822123972F0049ADBD /* String+HTML.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
+				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE224212089000049ADBD /* AccountState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -585,6 +592,7 @@
 				732BE2832123972F0049ADBD /* String+HTML.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
+				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				732BE225212089000049ADBD /* AccountState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,

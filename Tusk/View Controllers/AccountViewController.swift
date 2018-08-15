@@ -13,20 +13,16 @@ import ReSwift
 class AccountViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountState
     
-    enum Section: Int {
+    enum Section: Int, CaseIterable {
         case About = 0
         case Stats = 1
         case Statuses = 2
-        
-        static var count = 3
     }
     
-    enum Stat: Int {
+    enum Stat: Int, CaseIterable {
         case Statuses = 0
-        case Follows = 1
-        case Followers = 2
-        
-        static var count = 3
+        case Followers = 1
+        case Follows = 2
     }
     
     var account: Account? { didSet { self.updateAccount() } }
@@ -97,7 +93,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     // UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.count
+        return Section.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +102,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         switch section {
         case .About: return account.fields.count
-        case .Stats: return Stat.count
+        case .Stats: return Stat.allCases.count
         case .Statuses: return self.pinnedStatuses?.count ?? 0
         }
     }
@@ -127,8 +123,12 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             return FieldViewCell()
         }
         
-        cell.fieldNameLabel.text = account.fields[row]["name"]
-        cell.fieldValueTextView.text = account.fields[row]["value"]
+        guard let name = account.plainFields[row]["name"], let value = account.plainFields[row]["value"] else { return FieldViewCell() }
+        
+        cell.fieldNameLabel.text = name
+        cell.fieldValueTextView.text = value
+        
+        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
         
         return cell
     }

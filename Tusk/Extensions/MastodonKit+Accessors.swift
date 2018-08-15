@@ -10,7 +10,7 @@ import MastodonKit
 
 extension Status {
     var plainContent: String {
-        return self.content.attributedHTMLString().string.trimmingCharacters(in: .whitespacesAndNewlines)
+        return self.content.plainHTMLString()
     }
 }
 
@@ -35,6 +35,15 @@ extension Account {
     }
     
     var plainNote: String {
-        return self.note.attributedHTMLString().string.trimmingCharacters(in: .whitespacesAndNewlines)
+        return self.note.plainHTMLString()
+    }
+    
+    var plainFields: [[String: String]] {
+        return self.fields.map{ (pair) in
+            return [
+                "name": pair["name"]!.plainHTMLString(),
+                "value": pair["value"]!.plainHTMLString()
+            ]
+        }
     }
 }
