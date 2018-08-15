@@ -49,8 +49,9 @@ struct AccountState: StateType {
             case .success(let account, _): do {
                 GlobalStore.dispatch(SetAccount(value: account))
                 GlobalStore.dispatch(PollAccountPinnedStatuses(client: client, account: account))
+                print("success", #file, #line)
                 }
-            case .failure(let error): print(error)
+            case .failure(let error): print(error, #file, #line)
             }
         }
     }
@@ -63,8 +64,11 @@ struct AccountState: StateType {
                                         range: .default)
         client.run(request) { (result) in
             switch result {
-            case .success(let statuses, _): GlobalStore.dispatch(SetAccountPinnedStatuses(value: statuses))
-            case .failure(let error): print(error)
+            case .success(let statuses, _): do {
+                GlobalStore.dispatch(SetAccountPinnedStatuses(value: statuses))
+                print("success", #file, #line)
+                }
+            case .failure(let error): print(error, #file, #line)
             }
         }
     }

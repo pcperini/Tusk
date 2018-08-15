@@ -25,7 +25,6 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.accountViewController?.account = GlobalStore.state.account.activeAccount
-        self.pollAccount()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

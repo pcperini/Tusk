@@ -37,8 +37,11 @@ struct PaginatingData<DataType> where DataType: Encodable, DataType: Decodable {
         
         client.run(request) { (result) in
             switch result {
-            case .success(let data, let pagination): completion(data, pagination, merge)
-            case .failure(let error): print(error)
+            case .success(let data, let pagination): do {
+                completion(data, pagination, merge)
+                print("success", #file, #line)
+                }
+            case .failure(let error): print(error, #file, #line)
             }
         }
     }
