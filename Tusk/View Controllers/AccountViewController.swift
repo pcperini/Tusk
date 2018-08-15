@@ -25,7 +25,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         case Follows = 2
     }
     
-    var account: Account? { didSet { self.updateAccount() } }
+    var account: Account? { didSet { if (oldValue != self.account) { self.updateAccount() } } }
     var pinnedStatuses: [Status]? = nil
     
     @IBOutlet var headerImageView: UIImageView!
@@ -49,22 +49,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.updateAccount()
     }
     
-    func updateAccount() {
-        guard let account = self.account else { return }
-        self.parent?.navigationItem.title = account.name
-        
-        self.headerImageView.af_setImage(withURL: URL(string: account.header)!)
-        self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
-        self.displayNameLabel.text = account.name
-        self.usernameLabel.text = account.handle
-        self.bioTextView.text = account.plainNote
-        
-        self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
-        if (self.pinnedStatuses == nil) {
-            self.pollPinnedStatuses()
-        }
-        
-        // Reload header view
+    func reloadHeaderView() {
         if let headerView = self.tableView.tableHeaderView {
             headerView.setNeedsLayout()
             headerView.layoutIfNeeded()
@@ -74,6 +59,25 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             headerView.frame = frame
             self.tableView.tableHeaderView = headerView
         }
+    }
+    
+    func updateAccount() {
+        guard let account = self.account else { return }
+        self.parent?.navigationItem.title = account.name
+
+        self.headerImageView.af_setImage(withURL: URL(string: account.header)!)
+        self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
+        self.displayNameLabel.text = account.name
+        self.usernameLabel.text = account.handle
+        self.bioTextView.text = account.plainNote
+
+        self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
+        if (self.pinnedStatuses == nil) {
+            self.pollPinnedStatuses()
+        }
+        
+        self.tableView.reloadData()
+        self.reloadHeaderView()
     }
     
     func pollPinnedStatuses() {
@@ -86,7 +90,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func newState(state: AccountState) {
         guard let account = self.account else { return }
         guard let newStatuses = state.pinnedStatuses[account] else { return }
-        
+
         DispatchQueue.main.async {
             if (self.pinnedStatuses != newStatuses) {
                 self.pinnedStatuses = newStatuses
@@ -97,16 +101,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     // UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-        //return Section.allCases.count
+        return Section.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let account = self.account else { return 0 }
         guard let section = Section(rawValue: section) else { return 0 }
-        
-        print(account.fields.count)
-        
+                
         switch section {
         case .About: return account.fields.count
         case .Stats: return Stat.allCases.count
@@ -127,26 +128,21 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func tableView(_ tableView: UITableView, cellForAboutSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
         let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
-        
 
         guard let name = account.plainFields[row]["name"], let value = account.plainFields[row]["value"] else { return FieldViewCell() }
-        return FieldViewCell()
 
-//
-////        cell.fieldNameLabel.text = name
-////        cell.fieldValueTextView.text = value
-//
-//        //cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
-//
-//        return cell
+        cell.fieldNameLabel.text = name
+        cell.fieldValueTextView.text = value
+
+        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
+
+        return cell
     }
     
     func tableView(_ tableView: UITableView, cellForStatsSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
         guard let stat = Stat(rawValue: row) else { return FieldViewCell() }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FieldCell") as? FieldViewCell else {
-            return FieldViewCell()
-        }
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
         
         let format = { (n: Int) in NumberFormatter.localizedString(from: NSNumber(value: n), number: .decimal) }
 

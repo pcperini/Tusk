@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -228,7 +227,7 @@
         <scene sceneID="sdp-Mu-cs8">
             <objects>
                 <tableViewController id="V4Z-JF-EcV" customClass="AccountViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qGw-xj-uvk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="41" sectionHeaderHeight="18" sectionFooterHeight="18" id="qGw-xj-uvk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -354,15 +353,12 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="acP-gi-fWs">
                                             <rect key="frame" x="16" y="13.5" width="15" height="15"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="1oV-le-O2D"/>
-                                                <constraint firstAttribute="width" secondItem="acP-gi-fWs" secondAttribute="height" multiplier="1:1" id="A0E-s0-fHe"/>
+                                                <constraint firstAttribute="height" priority="999" constant="15" id="Key-rM-113"/>
+                                                <constraint firstAttribute="width" constant="15" id="gJX-TR-oAt"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Field Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR7-c3-ZTG">
-                                            <rect key="frame" x="47" y="10" width="77" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="yms-d5-0QI"/>
-                                            </constraints>
+                                            <rect key="frame" x="47" y="11.5" width="77" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -370,9 +366,6 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Field value" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-eF-yBa" customClass="TextView" customModule="Tusk" customModuleProvider="target">
                                             <rect key="frame" x="282.5" y="11.5" width="76.5" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="p0i-GD-BFj"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -380,11 +373,14 @@
                                     <constraints>
                                         <constraint firstItem="0H4-eF-yBa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tR7-c3-ZTG" secondAttribute="trailing" constant="16" id="9Qd-xb-g9x"/>
                                         <constraint firstAttribute="trailing" secondItem="0H4-eF-yBa" secondAttribute="trailing" constant="16" id="ANe-wr-ElI"/>
-                                        <constraint firstItem="0H4-eF-yBa" firstAttribute="centerY" secondItem="tR7-c3-ZTG" secondAttribute="centerY" id="Ajl-Ew-xUM"/>
-                                        <constraint firstItem="acP-gi-fWs" firstAttribute="centerY" secondItem="fAU-27-50a" secondAttribute="centerY" id="GBH-Ec-aSQ"/>
-                                        <constraint firstItem="tR7-c3-ZTG" firstAttribute="centerY" secondItem="acP-gi-fWs" secondAttribute="centerY" id="MZP-m4-2Wr"/>
+                                        <constraint firstItem="0H4-eF-yBa" firstAttribute="top" secondItem="fAU-27-50a" secondAttribute="top" constant="12" id="CL1-PT-GPs"/>
+                                        <constraint firstAttribute="bottom" secondItem="tR7-c3-ZTG" secondAttribute="bottom" constant="12" id="OIg-Rd-Afg"/>
                                         <constraint firstItem="acP-gi-fWs" firstAttribute="leading" secondItem="fAU-27-50a" secondAttribute="leading" constant="16" id="SgU-p2-3wr"/>
+                                        <constraint firstItem="tR7-c3-ZTG" firstAttribute="top" secondItem="fAU-27-50a" secondAttribute="top" constant="12" id="UUP-w0-hvW"/>
+                                        <constraint firstAttribute="bottom" secondItem="0H4-eF-yBa" secondAttribute="bottom" constant="12" id="WnI-hd-fmW"/>
                                         <constraint firstItem="tR7-c3-ZTG" firstAttribute="leading" secondItem="acP-gi-fWs" secondAttribute="trailing" constant="16" id="jDl-wW-lCN"/>
+                                        <constraint firstAttribute="bottom" secondItem="acP-gi-fWs" secondAttribute="bottom" constant="13" id="k48-Vk-q3n"/>
+                                        <constraint firstItem="acP-gi-fWs" firstAttribute="top" secondItem="fAU-27-50a" secondAttribute="top" constant="13" id="zjF-RT-KEQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
