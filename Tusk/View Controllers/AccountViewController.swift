@@ -49,10 +49,21 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         // TODO: Fix this magic number
         if let headerView = self.tableView.tableHeaderView {
+            headerView.setNeedsLayout()
+            headerView.layoutIfNeeded()
+            
+            self.displayNameLabel.preferredMaxLayoutWidth = self.displayNameLabel.frame.width
+            self.usernameLabel.preferredMaxLayoutWidth = self.usernameLabel.frame.width
+//            self.bioTextView.pref
+            
+            
             var frame = headerView.frame
-            frame.size.height = headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingExpandedSize).height + 30
+            frame.size.height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
             headerView.frame = frame
-            self.tableView.reloadData()
+            self.tableView.tableHeaderView = headerView
+            
+            print(headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingCompressedSize))
+            print(headerView.subviews.last!.subviews)
         }
     }
     

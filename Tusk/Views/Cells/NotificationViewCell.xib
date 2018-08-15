@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="QNJ-vc-XHA"/>
-                                    <constraint firstAttribute="width" secondItem="65V-dD-Kcf" secondAttribute="height" multiplier="1:1" id="b99-Q4-hKF"/>
+                                    <constraint firstAttribute="height" constant="50" id="zn9-qA-0uS"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
@@ -39,8 +38,8 @@
                                 <rect key="frame" x="30" y="30" width="20" height="20"/>
                                 <color key="backgroundColor" red="0.8941602099" green="0.052000258170000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="gxf-m2-l9b" secondAttribute="height" multiplier="1:1" id="3p8-f3-igp"/>
                                     <constraint firstAttribute="width" constant="20" id="Hcq-ox-Xfi"/>
+                                    <constraint firstAttribute="height" constant="20" id="ZoA-SO-McH"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>

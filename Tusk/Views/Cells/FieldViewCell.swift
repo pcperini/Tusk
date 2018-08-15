@@ -40,6 +40,7 @@ extension FieldViewCell {
         case Dribbble = "(dribbble)"
         case Snapchat = "(snap|snapchat)"
         case Medium = "(medium)"
+        case Tumblr = "(tumblr)"
         
         case Games = "(3ds|switch|friend code|nintendo|xbox)"
         case Support = "(donations|support)"
