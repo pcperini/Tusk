@@ -12,19 +12,19 @@ import ReSwift
 class ActiveAccountViewController: UIViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountState
     var accountViewController: AccountViewController? {
-        return self.childViewControllers.filter({ (child) in (child as? AccountViewController) != nil }).first as? AccountViewController
+        return self.childViewControllers.filter({ (child) in
+            (child as? AccountViewController) != nil
+        }).first as? AccountViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.account } }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.accountViewController?.account = GlobalStore.state.account.activeAccount
-        
         self.pollAccount()
     }
     
@@ -40,7 +40,9 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     
     func newState(state: AccountState) {
         DispatchQueue.main.async {
-            self.accountViewController?.account = state.activeAccount
+            if (self.accountViewController?.account != state.activeAccount) {
+                self.accountViewController?.account = state.activeAccount
+            }
         }
     }
 }

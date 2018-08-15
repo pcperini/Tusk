@@ -45,26 +45,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.updateAccount()
-        
-        // TODO: Fix this magic number
-        if let headerView = self.tableView.tableHeaderView {
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-            
-            self.displayNameLabel.preferredMaxLayoutWidth = self.displayNameLabel.frame.width
-            self.usernameLabel.preferredMaxLayoutWidth = self.usernameLabel.frame.width
-//            self.bioTextView.pref
-            
-            
-            var frame = headerView.frame
-            frame.size.height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-            headerView.frame = frame
-            self.tableView.tableHeaderView = headerView
-            
-            print(headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingCompressedSize))
-            print(headerView.subviews.last!.subviews)
-        }
     }
     
     func updateAccount() {
@@ -80,6 +62,17 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
         if (self.pinnedStatuses == nil) {
             self.pollPinnedStatuses()
+        }
+        
+        // Reload header view
+        if let headerView = self.tableView.tableHeaderView {
+            headerView.setNeedsLayout()
+            headerView.layoutIfNeeded()
+            
+            var frame = headerView.frame
+            frame.size.height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            headerView.frame = frame
+            self.tableView.tableHeaderView = headerView
         }
     }
     
@@ -104,12 +97,15 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     // UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        return 1
+        //return Section.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let account = self.account else { return 0 }
         guard let section = Section(rawValue: section) else { return 0 }
+        
+        print(account.fields.count)
         
         switch section {
         case .About: return account.fields.count
@@ -130,18 +126,19 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func tableView(_ tableView: UITableView, cellForAboutSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FieldCell") as? FieldViewCell else {
-            return FieldViewCell()
-        }
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
         
+
         guard let name = account.plainFields[row]["name"], let value = account.plainFields[row]["value"] else { return FieldViewCell() }
-        
-        cell.fieldNameLabel.text = name
-        cell.fieldValueTextView.text = value
-        
-        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
-        
-        return cell
+        return FieldViewCell()
+
+//
+////        cell.fieldNameLabel.text = name
+////        cell.fieldValueTextView.text = value
+//
+//        //cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
+//
+//        return cell
     }
     
     func tableView(_ tableView: UITableView, cellForStatsSectionRow row: Int) -> FieldViewCell {
