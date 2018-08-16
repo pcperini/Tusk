@@ -46,7 +46,7 @@
         <scene sceneID="FQx-Es-GsG">
             <objects>
                 <navigationController title="Timeline" id="2BH-ME-ZWd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Timeline" id="y5H-KK-oQ1">
+                    <tabBarItem key="tabBarItem" title="" image="TimelineTab" id="y5H-KK-oQ1">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9VN-qT-Xrs">
@@ -65,7 +65,7 @@
         <scene sceneID="0NI-RM-beG">
             <objects>
                 <navigationController title="Timeline" id="EdK-g5-g3k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="" image="Mentions" id="hPs-lc-rNp">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" image="MentionsTab" id="hPs-lc-rNp">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2W-1t-zVm">
@@ -81,7 +81,7 @@
         <scene sceneID="Rct-aC-Kfq">
             <objects>
                 <navigationController title="Messages" id="OIJ-A4-znk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="" image="Messages" id="kaC-QM-ynx">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" image="MessagesTab" id="kaC-QM-ynx">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z6x-RE-0u2">
@@ -129,7 +129,7 @@
         <scene sceneID="qPu-Hx-oTB">
             <objects>
                 <navigationController title="Notifications" id="69B-FA-TRd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Notification" id="BoH-9j-2KB">
+                    <tabBarItem key="tabBarItem" title="" image="NotificationTab" id="BoH-9j-2KB">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1HC-tC-BA2">
@@ -148,7 +148,7 @@
         <scene sceneID="q2A-pp-duu">
             <objects>
                 <navigationController id="i9X-bR-Wh3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Account" id="m7N-gm-Gup">
+                    <tabBarItem key="tabBarItem" title="" image="AccountTab" id="m7N-gm-Gup">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fDK-It-6yq">
@@ -432,11 +432,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account" width="20" height="21"/>
-        <image name="Mentions" width="20" height="21"/>
-        <image name="Messages" width="20" height="15"/>
-        <image name="Notification" width="16" height="20"/>
-        <image name="Timeline" width="20" height="20"/>
+        <image name="AccountTab" width="20" height="21"/>
+        <image name="MentionsTab" width="20" height="21"/>
+        <image name="MessagesTab" width="20" height="15"/>
+        <image name="NotificationTab" width="16" height="20"/>
+        <image name="TimelineTab" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yZp-vv-Az6"/>

@@ -15,9 +15,9 @@ class FieldViewCell: UITableViewCell {
     
     static func iconForStat(stat: AccountViewController.Stat) -> UIImage? {
         switch stat {
-        case .Statuses: return UIImage(named: "Statuses")
-        case .Followers: return UIImage(named: "Followers")
-        case .Follows: return UIImage(named: "Follows")
+        case .Statuses: return UIImage(named: "StatusesField")
+        case .Followers: return UIImage(named: "FollowersField")
+        case .Follows: return UIImage(named: "FollowsField")
         }
     }
 }
@@ -70,6 +70,6 @@ extension FieldViewCell {
     
     static func iconForCustomField(fieldName: String, fieldValue: String) -> UIImage? {
         let fieldType = CustomFieldCellType(fieldName: fieldName, fieldValue: fieldValue)
-        return UIImage(named: "\(fieldType)")
+        return UIImage(named: "\(fieldType)Field")
     }
 }

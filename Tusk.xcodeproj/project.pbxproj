@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0F961AB861EC2B34A68DC3D6 /* Pods_TuskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */; };
 		5CAFB9310DA93F9007869142 /* Pods_TuskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E8FF97B389C231E1BF2689 /* Pods_TuskUITests.framework */; };
+		732557F62125C63100ED1AF3 /* AuthFlowHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowHandler.swift */; };
+		732557F72125C63100ED1AF3 /* AuthFlowHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowHandler.swift */; };
+		732557F82125C63100ED1AF3 /* AuthFlowHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowHandler.swift */; };
 		732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
@@ -117,6 +120,7 @@
 		519EDD4E276FC10DD034A1CB /* Pods-TuskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskTests/Pods-TuskTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		732557F52125C63000ED1AF3 /* AuthFlowHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowHandler.swift; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
 		732BE214211F96400049ADBD /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +191,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		732557F92125C73900ED1AF3 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				732557F52125C63000ED1AF3 /* AuthFlowHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
 		732BE2322120CC2F0049ADBD /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +251,7 @@
 		7379C5B8211F3D4E003BEB84 /* States */ = {
 			isa = PBXGroup;
 			children = (
+				732557F92125C73900ED1AF3 /* Handlers */,
 				7379C5B4211F3D4B003BEB84 /* AppState.swift */,
 				7379C5B9211F4180003BEB84 /* AuthState.swift */,
 				732BE20C211F4ACE0049ADBD /* TimelineState.swift */,
@@ -566,6 +579,7 @@
 				732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				732BE24E2122240D0049ADBD /* ImageView.swift in Sources */,
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				732557F62125C63100ED1AF3 /* AuthFlowHandler.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
@@ -596,6 +610,7 @@
 				732BE224212089000049ADBD /* AccountState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				732557F72125C63100ED1AF3 /* AuthFlowHandler.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
@@ -626,6 +641,7 @@
 				732BE225212089000049ADBD /* AccountState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				732557F82125C63100ED1AF3 /* AuthFlowHandler.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,

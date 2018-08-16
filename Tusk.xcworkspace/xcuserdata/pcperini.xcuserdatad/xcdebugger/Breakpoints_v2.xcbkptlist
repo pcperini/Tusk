@@ -22,11 +22,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/AppDelegate.swift"
-            timestampString = "556081631.5591691"
+            timestampString = "556124943.109908"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "application(_:open:options:)"
             landmarkType = "7">
             <Locations>
