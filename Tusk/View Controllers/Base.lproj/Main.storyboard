@@ -328,7 +328,7 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="centerX" secondItem="sv6-Mm-Zu1" secondAttribute="centerX" id="9E4-jh-FRj"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YPZ-0d-BdO" secondAttribute="trailing" id="BcE-vx-JXb"/>
