@@ -78,6 +78,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         self.tableView.reloadData()
         self.reloadHeaderView()
+        self.navigationItem.title = account.displayName
     }
     
     func pollPinnedStatuses() {
