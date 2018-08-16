@@ -31,7 +31,9 @@ struct NotificationsState: PaginatableState {
     internal var previousPage: RequestRange? = nil
     internal var paginatingData: PaginatingData<MKNotification> = PaginatingData<MKNotification>()
     
-    var lastRead: Date = Date.distantPast
+    private static let lastReadDefaultsKey = "notifications.lastRead"
+    
+    var lastRead: Date = UserDefaults.standard.value(forKey: NotificationsState.lastReadDefaultsKey) as? Date ?? Date.distantPast
     var unreadCount: Int {
         return notifications.filter { (notif) in
             notif.createdAt > self.lastRead
@@ -43,7 +45,7 @@ struct NotificationsState: PaginatableState {
         
         switch action {
         case let action as SetNotifications: state.notifications = action.merge(state.notifications, action.value)
-        case let action as SetLastReadDate: state.lastRead = action.value
+        case let action as SetLastReadDate: state.setLastRead(date: action.value)
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
         case let action as PollNotifications: state.pollNotifications(client: action.client)
         case let action as PollOlderNotifications: state.pollNotifications(client: action.client, range: state.nextPage)
@@ -63,6 +65,13 @@ struct NotificationsState: PaginatableState {
             GlobalStore.dispatch(SetNotifications(value: notifications, merge: merge))
             GlobalStore.dispatch(SetPage(value: pagination))
         }
+    }
+    
+    private mutating func setLastRead(date: Date) {
+        self.lastRead = date
+        
+        UserDefaults.standard.set(date, forKey: NotificationsState.lastReadDefaultsKey)
+        UserDefaults.standard.synchronize()
     }
     
     static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
