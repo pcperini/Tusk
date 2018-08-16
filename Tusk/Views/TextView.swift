@@ -22,9 +22,6 @@ import DTCoreText
     
     var htmlText: String? {
         didSet {
-            self.text = ""
-            self.textColor = self.textColor
-            
             guard let text = self.htmlText else { return }
             guard text.contains("<") else { self.text = text; return }
             
@@ -32,7 +29,7 @@ import DTCoreText
                 DTUseiOS6Attributes: NSNumber(booleanLiteral: true),
                 DTDefaultFontName: NSString(string: self.font!.fontName),
                 DTDefaultFontSize: NSNumber(value: Float(self.font!.pointSize)),
-                DTDefaultLinkColor: self.tintColor,
+                DTDefaultLinkColor: self.textColor ?? .black,
                 DTDefaultTextColor: self.textColor ?? .black,
                 DTDefaultTextAlignment: NSNumber(value: self.coreTextAlignment.rawValue),
                 DTDocumentPreserveTrailingSpaces: NSNumber(booleanLiteral: false)
