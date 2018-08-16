@@ -42,6 +42,21 @@ struct AppState: StateType {
             GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
         }
     }
+    
+    static func handleURL(url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return false }
+        guard let host = urlComponents.host else { return false }
+        
+        switch host {
+        case "oauth": do {
+            guard let code = urlComponents.queryItems?.first(where: { (queryItem) in queryItem.name == "code" })?.value else { return false }
+            GlobalStore.dispatch(AuthState.PollAccessToken(code: code))
+            }
+        default: return false
+        }
+        
+        return true
+    }
 }
 
 let GlobalStore = Store(reducer: AppState.reducer, state: nil, middleware: [])

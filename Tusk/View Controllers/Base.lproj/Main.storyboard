@@ -129,7 +129,7 @@
         <scene sceneID="qPu-Hx-oTB">
             <objects>
                 <navigationController title="Notifications" id="69B-FA-TRd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="NotificationTab" id="BoH-9j-2KB">
+                    <tabBarItem key="tabBarItem" tag="10" title="" image="NotificationTab" id="BoH-9j-2KB">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1HC-tC-BA2">

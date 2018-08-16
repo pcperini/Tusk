@@ -148,6 +148,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
 fi
@@ -157,6 +158,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
 fi

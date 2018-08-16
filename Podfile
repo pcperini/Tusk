@@ -7,6 +7,7 @@ pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git', :branc
   pod 'AlamofireImage', '~> 3.3'
   pod 'AFDateHelper', '~> 4.2'
   pod 'DTCoreText', '~> 1.6'
+  pod 'KeychainAccess', '~> 3.1'
 
   target 'TuskTests' do
     inherit! :search_paths

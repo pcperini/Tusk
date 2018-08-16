@@ -17,9 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-//        GlobalStore.dispatch(AuthState.SetInstance(value: "mastodon.social"))
-//        GlobalStore.dispatch(AuthState.SetAccessToken(value: "c5fc8c0b9e2626acf57e34527e57f963c5d7a8b5a783dda252a34b879e2739b3"))
+        GlobalStore.dispatch(AuthState.LoadAuth(value: nil))
+        GlobalStore.dispatch(AppState.PollData())
 
         return true
     }
@@ -47,22 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return false }
-        guard let host = urlComponents.host else { return false }
-        
-        print(urlComponents.host, urlComponents.path, urlComponents.queryItems)
-        
-        switch host {
-        case "oauth": do {
-            guard let code = urlComponents.queryItems?.first(where: { (queryItem) in queryItem.name == "code" })?.value else { return false }
-            GlobalStore.dispatch(AuthState.PollAccessToken(code: code))
-            }
-        default: return true
-        }
-//        switch urlComponents.host
-        
-        return true
+        return AppState.handleURL(url: url, options: options)
     }
-
 }
 

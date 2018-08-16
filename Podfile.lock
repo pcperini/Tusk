@@ -20,6 +20,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.13):
     - DTFoundation/Core
+  - KeychainAccess (3.1.1)
   - MastodonKit (1.0.10)
   - ReSwift (4.0.1)
 
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - AFDateHelper (~> 4.2)
   - AlamofireImage (~> 3.3)
   - DTCoreText (~> 1.6)
+  - KeychainAccess (~> 3.1)
   - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, branch `master`)
   - ReSwift (~> 4.0)
 
@@ -37,6 +39,7 @@ SPEC REPOS:
     - AlamofireImage
     - DTCoreText
     - DTFoundation
+    - KeychainAccess
     - ReSwift
 
 EXTERNAL SOURCES:
@@ -55,9 +58,10 @@ SPEC CHECKSUMS:
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   DTCoreText: e5d688cffc9f6a61eddd1a4f94e2046851230de3
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: dda17cfeaa44203f37b04c4543e2c1f04f50d7d3
+PODFILE CHECKSUM: 9f46409fd2cc23749dceb569eb5f43e9015fcd20
 
 COCOAPODS: 1.5.3
