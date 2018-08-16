@@ -16,6 +16,8 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var statusTextView: TextView!
     @IBOutlet var timestampLabel: TimestampLabel!
     
+    var avatarWasTapped: (() -> Void)?
+    
     var status: Status? {
         didSet {
             guard let status = self.status else { return }
@@ -28,5 +30,16 @@ class StatusViewCell: UITableViewCell {
             self.statusTextView.htmlText = status.content
             self.statusTextView.setNeedsLayout()
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let avatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
+        self.avatarView.addGestureRecognizer(avatarTapRecognizer)
+    }
+    
+    @objc func avatarViewWasTapped(recognizer: UIGestureRecognizer!) {
+        self.avatarWasTapped?()
     }
 }

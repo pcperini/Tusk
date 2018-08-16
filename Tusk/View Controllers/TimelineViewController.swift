@@ -65,9 +65,10 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
             return self.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.status = self.statuses[indexPath.row]
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
+        let status = self.statuses[indexPath.row]
+        cell.status = status
+        cell.avatarWasTapped = { self.pushToAccount(account: status.account) }
+        
         return cell
     }
     
@@ -84,6 +85,27 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     override func pageControlBeganRefreshing() {
         super.pageControlBeganRefreshing()
         self.pollStatuses(pageDirection: .NextPage)
+    }
+    
+    // Navigation
+    func pushToAccount(account: Account) {
+        self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "PushAccountViewController": do {
+            guard let accountVC = segue.destination as? AccountViewController, let account = sender as? Account else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountVC.account = account
+            }
+        default: return
+        }
     }
 }
 

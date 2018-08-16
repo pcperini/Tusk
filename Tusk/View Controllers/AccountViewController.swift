@@ -61,6 +61,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func updateAccount() {
         guard let account = self.account else { return }
+        guard self.view != nil else { return }
+        
         self.parent?.navigationItem.title = account.name
 
         self.headerImageView.af_setImage(withURL: URL(string: account.header)!)

@@ -21,8 +21,9 @@
                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SE0-fc-EoD">
                         <rect key="frame" x="12" y="12" width="351" height="61.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB0-3m-ZVQ" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB0-3m-ZVQ" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="50" id="HZh-gU-7Wi"/>
                                     <constraint firstAttribute="width" constant="50" id="IiG-J9-rPz"/>
