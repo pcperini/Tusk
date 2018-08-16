@@ -179,9 +179,9 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
-        case .About: return "About"
+        case .About: return self.account?.fields.count ?? 0 > 0 ? "About" : nil
         case .Stats: return nil
-        case .Statuses: return "Pinned"
+        case .Statuses: return self.pinnedStatuses?.count ?? 0 > 0 ? "Pinned" : nil
         }
     }
 }
