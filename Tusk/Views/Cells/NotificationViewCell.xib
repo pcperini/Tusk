@@ -34,9 +34,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-m2-l9b" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-m2-l9b" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="30" y="30" width="20" height="20"/>
                                 <color key="backgroundColor" red="0.8941602099" green="0.052000258170000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Hcq-ox-Xfi"/>
                                     <constraint firstAttribute="height" priority="999" constant="20" id="ZoA-SO-McH"/>

@@ -10,6 +10,8 @@ import UIKit
 import MastodonKit
 
 class NotificationViewCell: UITableViewCell {
+    private static let actionIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+    
     @IBOutlet var avatarView: ImageView!
     @IBOutlet var actionIconView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
@@ -46,11 +48,8 @@ class NotificationViewCell: UITableViewCell {
     }
     
     private func setActionIcon(notificationType: NotificationType) {
-        switch notificationType {
-        case .follow: self.actionIconView.backgroundColor = .gray
-        case .mention: self.actionIconView.backgroundColor = .green
-        case .favourite: self.actionIconView.backgroundColor = .red
-        case .reblog: self.actionIconView.backgroundColor = .blue
-        }
+        let notificationTypeName = "\(notificationType)".capitalized
+        self.actionIconView.backgroundColor = UIColor(named: "\(notificationTypeName)AlertColor")
+        self.actionIconView.image = UIImage(named: "\(notificationTypeName)Alert")?.imageWithInsets(insets: NotificationViewCell.actionIconEdgeInsets)
     }
 }
