@@ -42,14 +42,19 @@ class NotificationViewCell: UITableViewCell {
             self.timestampLabel.date = notification.createdAt
             
             self.setActionIcon(notificationType: notification.type)
-            
-            let heightConstraint = self.statusLabel.constraints.filter({ (constraint) in constraint.identifier == "HeightConstraint" }).first
+
             if let status = notification.status {
                 self.statusLabel.text = NSAttributedString(htmlString: status.content)?.string
-                heightConstraint?.constant = self.statusLabelHeight
             } else {
-                heightConstraint?.constant = 0
+                self.statusLabel.text = nil
             }
+//            let heightConstraint = self.statusLabel.constraints.filter({ (constraint) in constraint.identifier == "HeightConstraint" }).first
+//            if let status = notification.status {
+//                self.statusLabel.text = NSAttributedString(htmlString: status.content)?.string
+//                heightConstraint?.constant = self.statusLabelHeight
+//            } else {
+//                heightConstraint?.constant = 0
+//            }
         }
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Patrick Perini. All rights reserved.
 //
 
-// TODO: Restructure for composition over inheritance
+// TODO: Refactor for OrderedSet and AddStatuses instead of SetStatuses
 
 import ReSwift
 import MastodonKit
