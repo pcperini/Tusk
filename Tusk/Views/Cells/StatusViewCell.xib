@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="xaK-wf-zmD" customClass="StatusViewCell" customModule="Tusk" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="285" id="xaK-wf-zmD" customClass="StatusViewCell" customModule="Tusk" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="291"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xaK-wf-zmD" id="GcV-6W-sHs">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="290.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SE0-fc-EoD">
-                        <rect key="frame" x="12" y="12" width="351" height="61.5"/>
+                        <rect key="frame" x="12" y="12" width="351" height="266.5"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB0-3m-ZVQ" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -50,13 +50,6 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="60" y="23" width="291" height="38.5"/>
-                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaA-5S-dyd" customClass="TimestampLabel" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="317.5" y="0.0" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
@@ -66,19 +59,43 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fullLength" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="60" y="31" width="291" height="41"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BoR-xo-HiS">
+                                <rect key="frame" x="60" y="82" width="291" height="185"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5fR-GH-GBk">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="xaK-wf-zmD" id="dbf-Yh-1gf"/>
+                                    <outlet property="delegate" destination="xaK-wf-zmD" id="ZFL-xL-BL7"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="aB0-3m-ZVQ" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="3Xd-gr-5Vf"/>
+                            <constraint firstAttribute="trailing" secondItem="BoR-xo-HiS" secondAttribute="trailing" id="7xQ-2I-Fvw"/>
                             <constraint firstItem="PaA-5S-dyd" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="8Ox-jc-B5q"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="trailing" constant="4" id="DOi-3p-g1M"/>
+                            <constraint firstItem="BoR-xo-HiS" firstAttribute="leading" secondItem="sHe-5U-G8n" secondAttribute="leading" id="GMS-Q9-RIi"/>
                             <constraint firstItem="keD-FY-tv9" firstAttribute="top" secondItem="aB0-3m-ZVQ" secondAttribute="top" id="GhS-kJ-Ynp"/>
                             <constraint firstAttribute="trailing" secondItem="PaA-5S-dyd" secondAttribute="trailing" constant="0.5" id="Jh3-Cv-G5i"/>
                             <constraint firstItem="aB0-3m-ZVQ" firstAttribute="leading" secondItem="SE0-fc-EoD" secondAttribute="leading" id="TOQ-VW-MCs"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="bottom" constant="2" id="UF9-tn-JIQ"/>
                             <constraint firstAttribute="trailing" secondItem="sHe-5U-G8n" secondAttribute="trailing" id="W10-Q7-Bob"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aB0-3m-ZVQ" secondAttribute="bottom" id="W9B-Ol-Xbd"/>
-                            <constraint firstAttribute="bottom" secondItem="sHe-5U-G8n" secondAttribute="bottom" id="b5D-QE-qOH"/>
+                            <constraint firstItem="BoR-xo-HiS" firstAttribute="top" secondItem="sHe-5U-G8n" secondAttribute="bottom" constant="2" id="boI-Zd-Vy8"/>
                             <constraint firstItem="keD-FY-tv9" firstAttribute="leading" secondItem="aB0-3m-ZVQ" secondAttribute="trailing" constant="10" id="emp-oI-NfN"/>
+                            <constraint firstAttribute="bottom" secondItem="BoR-xo-HiS" secondAttribute="bottom" id="fsS-Qp-n9G"/>
                             <constraint firstItem="PaA-5S-dyd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rzF-6F-ABL" secondAttribute="trailing" constant="4" id="g7P-he-vxd"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="hHI-vJ-qUg"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="leading" id="qG4-hS-szv"/>
@@ -93,13 +110,14 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="attachmentCollectionView" destination="BoR-xo-HiS" id="0eu-iX-hIx"/>
                 <outlet property="avatarView" destination="aB0-3m-ZVQ" id="86R-6Z-yFK"/>
                 <outlet property="displayNameLabel" destination="keD-FY-tv9" id="u7a-Yf-EsG"/>
                 <outlet property="statusTextView" destination="sHe-5U-G8n" id="vWC-mT-PxO"/>
                 <outlet property="timestampLabel" destination="PaA-5S-dyd" id="Z05-US-JRU"/>
                 <outlet property="usernameLabel" destination="rzF-6F-ABL" id="Zf5-MX-E1K"/>
             </connections>
-            <point key="canvasLocation" x="289.5" y="-26"/>
+            <point key="canvasLocation" x="289.5" y="76.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -49,12 +49,14 @@ struct TimelineState: PaginatableState {
             pagination: Pagination?,
             merge: @escaping PaginatingData<Status>.MergeFunction
         ) in
-            GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in status.visibility != .direct }, merge: merge))
+            GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in
+                status.visibility != .direct
+            }, merge: merge))
             GlobalStore.dispatch(SetPage(value: pagination))
         }
     }
     
-    static func provider(range: RequestRange? = nil) -> Request<[Status]> {        
+    static func provider(range: RequestRange? = nil) -> Request<[Status]> {
         guard let range = range else { return Timelines.home(range: .limit(40)) }
         return Timelines.home(range: range)
     }

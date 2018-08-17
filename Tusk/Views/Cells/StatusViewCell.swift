@@ -15,8 +15,10 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var statusTextView: TextView!
     @IBOutlet var timestampLabel: TimestampLabel!
+    @IBOutlet var attachmentCollectionView: UICollectionView!
     
     var avatarWasTapped: (() -> Void)?
+    var linkWasTapped: ((URL?) -> Void)?
     
     var status: Status? {
         didSet {
@@ -29,17 +31,47 @@ class StatusViewCell: UITableViewCell {
 
             self.statusTextView.htmlText = status.content
             self.statusTextView.setNeedsLayout()
+            
+            self.attachmentCollectionView.reloadData()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+     
+        self.attachmentCollectionView.register(UINib(nibName: "ImageAttachmentViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageViewCell")
         
         let avatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.avatarView.addGestureRecognizer(avatarTapRecognizer)
+        
+        self.statusTextView.delegate = self
     }
     
     @objc func avatarViewWasTapped(recognizer: UIGestureRecognizer!) {
         self.avatarWasTapped?()
+    }
+}
+
+extension StatusViewCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        self.linkWasTapped?(URL)
+        return false
+    }
+}
+
+extension StatusViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let status = self.status else { return 0 }
+        return status.mediaAttachments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let status = self.status else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell", for: indexPath) as? ImageAttachmentViewCell else { return UICollectionViewCell() }
+        
+        let attachment = status.mediaAttachments[indexPath.item]
+        cell.imageView.af_setImage(withURL: URL(string: attachment.previewURL)!)
+        
+        return cell
     }
 }

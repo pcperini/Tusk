@@ -37,7 +37,6 @@ struct AppState: StateType {
         guard let client = self.auth.client else { return }
         DispatchQueue.global(qos: .background).async {
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
-            GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
         }

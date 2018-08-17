@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import MastodonKit
+import SafariServices
 
 class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = TimelineState
@@ -68,12 +69,19 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         let status = self.statuses[indexPath.row]
         cell.status = status
         cell.avatarWasTapped = { self.pushToAccount(account: status.account) }
+        cell.linkWasTapped = { (url) in
+            guard let url = url else { return }
+            self.pushToURL(url: url)
+        }
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let status = self.statuses[indexPath.row]
+        guard let url = status.url else { return }
+        
+        self.pushToURL(url: url)
     }
     
     // Paging
@@ -88,6 +96,14 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     // Navigation
+    func pushToURL(url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.navigationItem.title = "Mastodon"
+        safariViewController.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(safariViewController, animated: true)
+    }
+    
     func pushToAccount(account: Account) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
     }
