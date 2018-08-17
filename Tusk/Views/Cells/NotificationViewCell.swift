@@ -19,11 +19,17 @@ class NotificationViewCell: UITableViewCell {
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var timestampLabel: TimestampLabel!
     
+    var avatarWasTapped: (() -> Void)?
+    
     private var statusLabelHeight: CGFloat = 0.0
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         self.statusLabelHeight = self.statusLabel.bounds.height
+        
+        let avatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
+        self.avatarView.addGestureRecognizer(avatarTapRecognizer)
     }
     
     var notification: MastodonKit.Notification? {
@@ -45,6 +51,10 @@ class NotificationViewCell: UITableViewCell {
                 heightConstraint?.constant = 0
             }
         }
+    }
+    
+    @objc func avatarViewWasTapped(recognizer: UIGestureRecognizer!) {
+        self.avatarWasTapped?()
     }
     
     private func setActionIcon(notificationType: NotificationType) {

@@ -70,7 +70,10 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
             return self.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        cell.notification = self.notifications[indexPath.row]
+        let notification = self.notifications[indexPath.row]
+        cell.notification = notification
+        cell.avatarWasTapped = { self.pushToAccount(account: notification.account) }
+        
         return cell
     }
     
@@ -82,6 +85,27 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     override func pageControlBeganRefreshing() {
         super.pageControlBeganRefreshing()
         self.pollNotifications(pageDirection: .NextPage)
+    }
+    
+    // Navigation
+    func pushToAccount(account: Account) {
+        self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "PushAccountViewController": do {
+            guard let accountVC = segue.destination as? AccountViewController, let account = sender as? Account else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountVC.account = account
+            }
+        default: return
+        }
     }
 }
 

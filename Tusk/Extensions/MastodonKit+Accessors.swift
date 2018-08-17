@@ -28,4 +28,13 @@ extension Account {
     var handle: String {
         return "@\(self.username)"
     }
+    
+    var displayFields: [[String: String]] {
+        let prepareForDisplay = { (value: String?) in
+            (value ?? "").replacingOccurrences(of: "https://", with: "")
+                .replacingOccurrences(of: "http://", with: "")
+        }
+        
+        return self.fields.map { (field) in [ "name": field["name"]!, "value": prepareForDisplay(field["value"]) ] }
+    }
 }

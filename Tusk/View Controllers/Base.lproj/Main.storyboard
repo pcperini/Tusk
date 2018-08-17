@@ -33,7 +33,9 @@
                             <outlet property="delegate" destination="dPN-7S-HJE" id="bsP-Zo-uCr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Timeline" id="XDi-ww-jcj"/>
+                    <navigationItem key="navigationItem" title="Timeline" id="XDi-ww-jcj">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="UGQ-Xx-afX"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="V4Z-JF-EcV" kind="show" identifier="PushAccountViewController" id="yZp-vv-Az6"/>
                     </connections>
@@ -238,6 +240,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notifications" id="OSf-Rx-KHP"/>
+                    <connections>
+                        <segue destination="V4Z-JF-EcV" kind="show" identifier="PushAccountViewController" id="dBA-ni-Qgw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbd-Vi-7hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -322,7 +327,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Bio" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-8m-ATl" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="170.5" y="152" width="34.5" height="133.5"/>
+                                            <rect key="frame" x="175.5" y="208.25" width="24.5" height="20.5"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -385,7 +390,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Field value" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-eF-yBa" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="272.5" y="11.5" width="86.5" height="18"/>
+                                            <rect key="frame" x="282.5" y="11.5" width="76.5" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -433,12 +438,13 @@
     </scenes>
     <resources>
         <image name="AccountTab" width="20" height="21"/>
+        <image name="EditButton" width="20" height="20"/>
         <image name="MentionsTab" width="20" height="21"/>
         <image name="MessagesTab" width="20" height="15"/>
         <image name="NotificationTab" width="16" height="20"/>
         <image name="TimelineTab" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yZp-vv-Az6"/>
+        <segue reference="dBA-ni-Qgw"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -110,7 +110,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let section = Section(rawValue: section) else { return 0 }
                 
         switch section {
-        case .About: return account.fields.count
+        case .About: return account.displayFields.count
         case .Stats: return Stat.allCases.count
         case .Statuses: return self.pinnedStatuses?.count ?? 0
         }
@@ -130,7 +130,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let account = self.account else { return FieldViewCell() }
         let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
 
-        guard let name = account.fields[row]["name"], let value = account.fields[row]["value"] else { return FieldViewCell() }
+        guard let name = account.displayFields[row]["name"], let value = account.displayFields[row]["value"] else { return FieldViewCell() }
 
         cell.fieldNameLabel.text = name
         cell.fieldValueTextView.htmlText = value
@@ -180,7 +180,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
-        case .About: return self.account?.fields.count ?? 0 > 0 ? "About" : nil
+        case .About: return self.account?.displayFields.count ?? 0 > 0 ? "About" : nil
         case .Stats: return nil
         case .Statuses: return self.pinnedStatuses?.count ?? 0 > 0 ? "Pinned" : nil
         }

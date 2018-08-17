@@ -40,7 +40,7 @@ class TabViewController: UITabBarController, StoreSubscriber {
     
     func reloadData() {
         self.authFlowHandler.state = self.state.auth
-        self.notificationTab.badgeValue = self.state.notifications.unreadCount > 0 ? "\(self.state.notifications.unreadCount)" : nil
+        self.notificationTab.badgeValue = self.state.notifications.unreadCount > 0 ? " " : nil
     }
     
     func newState(state: AppState) {
