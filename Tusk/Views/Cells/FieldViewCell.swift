@@ -63,7 +63,7 @@ extension FieldViewCell {
                 let regex = try! NSRegularExpression(pattern: cellType.rawValue, options: [.caseInsensitive])
                 let matches = regex.matches(in: rawValue.folding(options: .diacriticInsensitive, locale: .current),
                                             range: NSRange(rawValue.startIndex..., in: rawValue))
-                return matches.count > 0
+                return !matches.isEmpty
             }).first ?? .Default
         }
     }

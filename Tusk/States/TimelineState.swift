@@ -54,8 +54,8 @@ struct TimelineState: PaginatableState {
         }
     }
     
-    static func provider(range: RequestRange? = nil) -> Request<[Status]> {
-        guard let range = range else { return Timelines.home() }
+    static func provider(range: RequestRange? = nil) -> Request<[Status]> {        
+        guard let range = range else { return Timelines.home(range: .limit(40)) }
         return Timelines.home(range: range)
     }
 }

@@ -44,7 +44,7 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     }
     
     func newState(state: NotificationsState) {
-        if (state.notifications.count > 0 && state.notifications[0].createdAt != state.lastRead) {
+        if (!state.notifications.isEmpty && state.notifications[0].createdAt != state.lastRead) {
             GlobalStore.dispatch(NotificationsState.SetLastReadDate(value: state.notifications[0].createdAt))
         }
         

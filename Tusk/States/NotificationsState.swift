@@ -75,7 +75,7 @@ struct NotificationsState: PaginatableState {
     }
     
     static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
-        guard let range = range else { return Notifications.all() }
+        guard let range = range else { return Notifications.all(range: .limit(30)) }
         return Notifications.all(range: range)
     }
 }
