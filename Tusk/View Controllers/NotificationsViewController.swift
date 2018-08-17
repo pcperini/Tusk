@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import MastodonKit
+import SafariServices
 
 class NotificationsViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = NotificationsState
@@ -77,6 +78,14 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let notification = self.notifications[indexPath.row]
+        let url = notification.status?.url ?? URL(string: notification.account.url)!
+        
+        self.pushToURL(url: url)
+    }
+    
+    // Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
         self.pollNotifications(pageDirection: .PreviousPage)
@@ -88,6 +97,15 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     }
     
     // Navigation
+    func pushToURL(url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.navigationItem.title = "Mastodon"
+        safariViewController.hidesBottomBarWhenPushed = true
+        safariViewController.script
+        
+        self.navigationController?.pushViewController(safariViewController, animated: true)
+    }
+    
     func pushToAccount(account: Account) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
     }

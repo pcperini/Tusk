@@ -21,9 +21,6 @@
 		732BE211211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
 		732BE212211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
 		732BE213211F93860049ADBD /* NotificationsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE210211F93860049ADBD /* NotificationsState.swift */; };
-		732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE214211F96400049ADBD /* MessagesViewController.swift */; };
-		732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE214211F96400049ADBD /* MessagesViewController.swift */; };
-		732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE214211F96400049ADBD /* MessagesViewController.swift */; };
 		732BE219211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
 		732BE21A211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
 		732BE21B211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
@@ -133,7 +130,6 @@
 		732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Insets.swift"; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
-		732BE214211F96400049ADBD /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		732BE218211F96600049ADBD /* MessagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesState.swift; sourceTree = "<group>"; };
 		732BE222212089000049ADBD /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
 		732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAccountViewController.swift; sourceTree = "<group>"; };
@@ -255,7 +251,6 @@
 			children = (
 				732BE22E2120A9690049ADBD /* TabViewController.swift */,
 				73EAEC58211E41A900C2620F /* TimelineViewController.swift */,
-				732BE214211F96400049ADBD /* MessagesViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
 				732BE265212345080049ADBD /* AccountViewController.swift */,
@@ -609,7 +604,6 @@
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
 				73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
-				732BE215211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				739426DF21272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
@@ -624,7 +618,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				732BE216211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
@@ -657,7 +650,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				732BE217211F96400049ADBD /* MessagesViewController.swift in Sources */,
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
