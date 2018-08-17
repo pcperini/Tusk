@@ -53,7 +53,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         if let headerView = self.tableView.tableHeaderView {
             DispatchQueue.main.async {
                 var frame = headerView.frame
-                frame.size.height = headerView.subviews.last!.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                
+                headerView.setNeedsLayout()
+                headerView.layoutIfNeeded()
+                
+                frame.size.height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
                 headerView.frame = frame
             }
         }
