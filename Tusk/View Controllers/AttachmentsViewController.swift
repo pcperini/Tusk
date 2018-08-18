@@ -12,9 +12,9 @@ import MastodonKit
 class AttachmentsViewController: NYTPhotosViewController {
     private let dataHandler: AttachmentsViewControllerDataHandler
     
-    convenience init(attachments: [Attachment]) {
+    convenience init(attachments: [Attachment], initialAttachment: Attachment?) {
         let dataHandler = AttachmentsViewControllerDataHandler(attachments: attachments)
-        self.init(dataSource: dataHandler, initialPhoto: nil, delegate: dataHandler)
+        self.init(dataSource: dataHandler, initialPhoto: dataHandler.photo(for: initialAttachment), delegate: dataHandler)
     }
     
     override init(dataSource: NYTPhotoViewerDataSource, initialPhoto: NYTPhoto?, delegate: NYTPhotosViewControllerDelegate?) {
@@ -30,10 +30,15 @@ class AttachmentsViewController: NYTPhotosViewController {
 
 fileprivate class AttachmentsViewControllerDataHandler: NSObject, NYTPhotosViewControllerDelegate, NYTPhotoViewerDataSource {
     var numberOfPhotos: NSNumber? { return NSNumber(integerLiteral: self.photos.count) }
-    private let photos: [AttachmentPhoto]
+    let photos: [AttachmentPhoto]
     
     init(attachments: [Attachment]) {
         self.photos = attachments.map { (attachment) in AttachmentPhoto(attachment: attachment) }
+    }
+    
+    func photo(for attachment: Attachment?) -> NYTPhoto? {
+        guard let attachment = attachment else { return nil }
+        return self.photos.first { (photo) in photo.attachment == attachment }
     }
 
     func index(of photo: NYTPhoto) -> Int {

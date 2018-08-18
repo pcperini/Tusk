@@ -118,7 +118,7 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     func presentAttachment(attachment: Attachment, forStatus status: Status) {
-        let photoViewer = AttachmentsViewController(attachments: status.mediaAttachments)
+        let photoViewer = AttachmentsViewController(attachments: status.mediaAttachments, initialAttachment: attachment)
         self.present(photoViewer, animated: true, completion: nil)
     }
     
