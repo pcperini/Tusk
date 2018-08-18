@@ -19,14 +19,15 @@ class StatusViewCell: UITableViewCell {
     
     private var attachmentCollectionViewTopConstraintConstant: CGFloat = 0.0
     private var attachmentCollectionViewTopConstraint: NSLayoutConstraint? {
-        get { return self.attachmentCollectionView.superview?.constraints.first { (c) in c.identifier == "TopConstraint" } }
+        return self.attachmentCollectionView.superview?.constraints.first { (c) in c.identifier == "TopConstraint" }
     }
     private var attachmentCollectionViewHeightConstraint: NSLayoutConstraint? {
-        get { return self.attachmentCollectionView.constraints.first { (c) in c.identifier == "HeightConstraint" } }
+        return self.attachmentCollectionView.constraints.first { (c) in c.identifier == "HeightConstraint" }
     }
     
     var accountElementWasTapped: ((Account?) -> Void)?
     var linkWasTapped: ((URL?) -> Void)?
+    var attachmentWasTapped: ((Attachment) -> Void)?
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
@@ -111,5 +112,10 @@ extension StatusViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         size.height -= layout.minimumInteritemSpacing
         
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let attachment = self.status?.mediaAttachments[indexPath.row] else { return }
+        self.attachmentWasTapped?(attachment)
     }
 }

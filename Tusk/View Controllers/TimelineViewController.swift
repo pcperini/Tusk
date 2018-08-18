@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 import MastodonKit
 import SafariServices
+import NYTPhotoViewer
 
 class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = TimelineState
@@ -70,6 +71,7 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         let displayStatus = status.reblog ?? status
         
         cell.originalStatus = status
+        cell.attachmentWasTapped = { (attachment) in self.presentAttachment(attachment: attachment, forStatus: displayStatus) }
         cell.accountElementWasTapped = { (account) in
             guard let account = account else { return }
             self.pushToAccount(account: account)
@@ -113,6 +115,11 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     
     func pushToAccount(account: Account) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
+    }
+    
+    func presentAttachment(attachment: Attachment, forStatus status: Status) {
+        let photoViewer = AttachmentsViewController(attachments: status.mediaAttachments)
+        self.present(photoViewer, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -87,6 +87,9 @@
 		739426DF21272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */; };
 		739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */; };
 		739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */; };
+		739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E221288375005CBEDA /* AttachmentsViewController.swift */; };
+		739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E221288375005CBEDA /* AttachmentsViewController.swift */; };
+		739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E221288375005CBEDA /* AttachmentsViewController.swift */; };
 		73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
@@ -152,6 +155,7 @@
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageAttachmentViewCell.xib; sourceTree = "<group>"; };
 		739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentViewCell.swift; sourceTree = "<group>"; };
+		739426E221288375005CBEDA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Trimming.swift"; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
 				732BE265212345080049ADBD /* AccountViewController.swift */,
+				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
 				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 			);
 			path = "View Controllers";
@@ -521,8 +526,10 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework",
+				"${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -532,8 +539,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MastodonKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NYTPhotoViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,6 +606,7 @@
 				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
+				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
@@ -631,6 +641,7 @@
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
+				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
@@ -663,6 +674,7 @@
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
+				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,

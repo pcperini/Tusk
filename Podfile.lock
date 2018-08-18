@@ -20,8 +20,16 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.13):
     - DTFoundation/Core
+  - FLAnimatedImage (1.0.12)
   - KeychainAccess (3.1.1)
   - MastodonKit (1.0.10)
+  - NYTPhotoViewer (2.0.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 2.0.0)
+    - NYTPhotoViewer/Core (= 2.0.0)
+  - NYTPhotoViewer/AnimatedGifSupport (2.0.0):
+    - FLAnimatedImage (~> 1.0.12)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (2.0.0)
   - ReSwift (4.0.1)
 
 DEPENDENCIES:
@@ -30,6 +38,7 @@ DEPENDENCIES:
   - DTCoreText (~> 1.6)
   - KeychainAccess (~> 3.1)
   - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, branch `master`)
+  - NYTPhotoViewer (~> 2.0)
   - ReSwift (~> 4.0)
 
 SPEC REPOS:
@@ -39,7 +48,9 @@ SPEC REPOS:
     - AlamofireImage
     - DTCoreText
     - DTFoundation
+    - FLAnimatedImage
     - KeychainAccess
+    - NYTPhotoViewer
     - ReSwift
 
 EXTERNAL SOURCES:
@@ -58,10 +69,12 @@ SPEC CHECKSUMS:
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   DTCoreText: e5d688cffc9f6a61eddd1a4f94e2046851230de3
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
+  NYTPhotoViewer: 34b8bd6bcc297466adec1668f9a01249d73c90e6
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: 9f46409fd2cc23749dceb569eb5f43e9015fcd20
+PODFILE CHECKSUM: 157823510f4b60ddce5503fd8e2d2dc2b8d0fc8b
 
 COCOAPODS: 1.5.3
