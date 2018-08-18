@@ -67,12 +67,19 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         }
         
         let status = self.statuses[indexPath.row]
-        cell.status = status
-        cell.avatarWasTapped = { self.pushToAccount(account: status.account) }
+        let displayStatus = status.reblog ?? status
+        
+        cell.originalStatus = status
+        cell.accountElementWasTapped = { (account) in
+            guard let account = account else { return }
+            self.pushToAccount(account: account)
+        }
         cell.linkWasTapped = { (url) in
             guard let url = url else { return }
             self.pushToURL(url: url)
         }
+        
+        cell.status = displayStatus
         
         return cell
     }

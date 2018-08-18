@@ -17,38 +17,11 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var timestampLabel: TimestampLabel!
     @IBOutlet var attachmentCollectionView: UICollectionView!
     
-    var avatarWasTapped: (() -> Void)?
+    var accountElementWasTapped: ((Account?) -> Void)?
     var linkWasTapped: ((URL?) -> Void)?
     
-    var status: Status? {
-        didSet {
-            guard let status = self.status else { return }
-            
-            self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
-            self.displayNameLabel.text = status.account.name
-            self.usernameLabel.text = status.account.handle
-            self.timestampLabel.date = status.createdAt
-
-            self.statusTextView.htmlText = status.content
-            self.statusTextView.setNeedsLayout()
-            
-//            let activeHeightConstraint = self.attachmentCollectionView.constraints.first {
-//                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "CollapsedHeightConstraint" : "ExpandedHeightConstraint")
-//            }
-//            
-//            let inactiveHeightConstraint = self.attachmentCollectionView.constraints.first {
-//                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "ExpandedHeightConstraint" : "CollapsedHeightConstraint")
-//            }
-//            
-//            activeHeightConstraint?.priority = .defaultHigh
-//            inactiveHeightConstraint?.priority = .defaultLow
-//            
-//            self.attachmentCollectionView.reloadData()
-            
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
-        }
-    }
+    var originalStatus: Status?
+    var status: Status? { didSet { self.updateStatus() } }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,8 +34,36 @@ class StatusViewCell: UITableViewCell {
         self.statusTextView.delegate = self
     }
     
+    private func updateStatus() {
+        guard let status = self.status else { return }
+        
+        self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
+        self.displayNameLabel.text = status.account.name
+        self.usernameLabel.text = status.account.handle
+        self.timestampLabel.date = status.createdAt
+        
+        self.statusTextView.htmlText = status.content
+        self.statusTextView.setNeedsLayout()
+        
+        //            let activeHeightConstraint = self.attachmentCollectionView.constraints.first {
+        //                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "CollapsedHeightConstraint" : "ExpandedHeightConstraint")
+        //            }
+        //
+        //            let inactiveHeightConstraint = self.attachmentCollectionView.constraints.first {
+        //                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "ExpandedHeightConstraint" : "CollapsedHeightConstraint")
+        //            }
+        //
+        //            activeHeightConstraint?.priority = .defaultHigh
+        //            inactiveHeightConstraint?.priority = .defaultLow
+        //
+        //            self.attachmentCollectionView.reloadData()
+        
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+    }
+    
     @objc func avatarViewWasTapped(recognizer: UIGestureRecognizer!) {
-        self.avatarWasTapped?()
+        self.accountElementWasTapped?(self.status?.account)
     }
 }
 
