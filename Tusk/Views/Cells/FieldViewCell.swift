@@ -29,7 +29,7 @@ extension FieldViewCell {
         case Work = "(resume|work|job|cv)"
         case Location = "(location)"
         
-        case Instagram = "(\\big\\b|\\binsta\\b|instragram|\\bgram\\b)"
+        case Instagram = "(\\big\\b|\\binsta\\b|instagram|\\bgram\\b)"
         case YouTube = "(youtube|\\byt\\b)"
         case Patreon = "(patreon)"
         case Twitter = "(twitter)"
