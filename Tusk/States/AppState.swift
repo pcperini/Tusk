@@ -35,7 +35,7 @@ struct AppState: StateType {
     
     func pollData() {
         guard let client = self.auth.client else { return }
-        DispatchQueue(label: "ThrowawayPollQueue").async {
+        DispatchQueue.main.async {
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))

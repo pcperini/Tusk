@@ -15,19 +15,26 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var statusTextView: TextView!
     @IBOutlet var timestampLabel: TimestampLabel!
-    @IBOutlet var attachmentCollectionView: UICollectionView!
     
-    private var attachmentCollectionViewTopConstraintConstant: CGFloat = 0.0
-    private var attachmentCollectionViewTopConstraint: NSLayoutConstraint? {
-        return self.attachmentCollectionView.superview?.constraints.first { (c) in c.identifier == "TopConstraint" }
-    }
-    private var attachmentCollectionViewHeightConstraint: NSLayoutConstraint? {
-        return self.attachmentCollectionView.constraints.first { (c) in c.identifier == "HeightConstraint" }
-    }
+    @IBOutlet var attachmentCollectionView: UICollectionView!
+    @IBOutlet var attachmentTopConstraint: ToggleLayoutConstraint!
+    @IBOutlet var attachmentHeightConstraint: ToggleLayoutConstraint!
+    
+    @IBOutlet var reblogView: UIView!
+    @IBOutlet var reblogIndicatorView: ImageView!
+    @IBOutlet var reblogAvatarView: ImageView!
+    @IBOutlet var reblogLabel: UILabel!
+    @IBOutlet var reblogTopConstraint: ToggleLayoutConstraint!
+    @IBOutlet var reblogHeightConstraint: ToggleLayoutConstraint!
+    
+    private static let reblogIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     var accountElementWasTapped: ((Account?) -> Void)?
     var linkWasTapped: ((URL?) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
+    
+    private var avatarTapRecognizer: UITapGestureRecognizer!
+    private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
@@ -37,11 +44,17 @@ class StatusViewCell: UITableViewCell {
      
         self.attachmentCollectionView.register(UINib(nibName: "ImageAttachmentViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageViewCell")
         
-        let avatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
-        self.avatarView.addGestureRecognizer(avatarTapRecognizer)
+        self.avatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
+        self.avatarView.addGestureRecognizer(self.avatarTapRecognizer)
+        
+        self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
+        self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
         
         self.statusTextView.delegate = self
-        self.attachmentCollectionViewTopConstraintConstant = self.attachmentCollectionViewTopConstraint?.constant ?? 0.0
+        
+        self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
+        self.reblogTopConstraint.toggle(on: false)
+        self.reblogHeightConstraint.toggle(on: false)
     }
     
     private func updateStatus() {
@@ -55,18 +68,30 @@ class StatusViewCell: UITableViewCell {
         self.statusTextView.htmlText = status.content
         self.statusTextView.setNeedsLayout()
     
-        self.attachmentCollectionViewTopConstraint?.constant = status.mediaAttachments.isEmpty ? 0 : self.attachmentCollectionViewTopConstraintConstant
+        self.attachmentTopConstraint.toggle(on: !status.mediaAttachments.isEmpty)
         self.attachmentCollectionView.reloadData()
-        self.attachmentCollectionViewHeightConstraint?.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
+        self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         self.attachmentCollectionView.layoutIfNeeded()
+        
+        if let originalStatus = self.originalStatus {
+            self.reblogAvatarView.af_setImage(withURL: URL(string: originalStatus.account.avatar)!)
+            self.reblogLabel.text = originalStatus.account.displayName
+        }
+        
+        self.reblogTopConstraint.toggle(on: self.originalStatus != status)
+        self.reblogHeightConstraint.toggle(on: self.originalStatus != status)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }
     
     @objc func avatarViewWasTapped(recognizer: UIGestureRecognizer!) {
-        self.accountElementWasTapped?(self.status?.account)
+        switch recognizer {
+        case self.avatarTapRecognizer: self.accountElementWasTapped?(self.status?.account)
+        case self.reblogAvatarTapRecognizer: self.accountElementWasTapped?(self.originalStatus?.account)
+        default: return
+        }
     }
 }
 

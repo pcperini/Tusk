@@ -90,6 +90,9 @@
 		739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E221288375005CBEDA /* AttachmentsViewController.swift */; };
 		739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E221288375005CBEDA /* AttachmentsViewController.swift */; };
 		739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E221288375005CBEDA /* AttachmentsViewController.swift */; };
+		739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
+		739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
+		739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
 		73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
@@ -156,6 +159,7 @@
 		739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageAttachmentViewCell.xib; sourceTree = "<group>"; };
 		739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentViewCell.swift; sourceTree = "<group>"; };
 		739426E221288375005CBEDA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
+		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Trimming.swift"; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 				732BE24D2122240D0049ADBD /* ImageView.swift */,
 				732BE251212233A30049ADBD /* TextView.swift */,
 				732BE261212338EA0049ADBD /* TimestampLabel.swift */,
+				739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				732BE24E2122240D0049ADBD /* ImageView.swift in Sources */,
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
@@ -638,6 +644,7 @@
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
@@ -671,6 +678,7 @@
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
