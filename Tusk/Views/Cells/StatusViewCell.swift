@@ -17,6 +17,14 @@ class StatusViewCell: UITableViewCell {
     @IBOutlet var timestampLabel: TimestampLabel!
     @IBOutlet var attachmentCollectionView: UICollectionView!
     
+    private var attachmentCollectionViewTopConstraintConstant: CGFloat = 0.0
+    private var attachmentCollectionViewTopConstraint: NSLayoutConstraint? {
+        get { return self.attachmentCollectionView.superview?.constraints.first { (c) in c.identifier == "TopConstraint" } }
+    }
+    private var attachmentCollectionViewHeightConstraint: NSLayoutConstraint? {
+        get { return self.attachmentCollectionView.constraints.first { (c) in c.identifier == "HeightConstraint" } }
+    }
+    
     var accountElementWasTapped: ((Account?) -> Void)?
     var linkWasTapped: ((URL?) -> Void)?
     
@@ -32,6 +40,7 @@ class StatusViewCell: UITableViewCell {
         self.avatarView.addGestureRecognizer(avatarTapRecognizer)
         
         self.statusTextView.delegate = self
+        self.attachmentCollectionViewTopConstraintConstant = self.attachmentCollectionViewTopConstraint?.constant ?? 0.0
     }
     
     private func updateStatus() {
@@ -44,19 +53,12 @@ class StatusViewCell: UITableViewCell {
         
         self.statusTextView.htmlText = status.content
         self.statusTextView.setNeedsLayout()
-        
-        //            let activeHeightConstraint = self.attachmentCollectionView.constraints.first {
-        //                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "CollapsedHeightConstraint" : "ExpandedHeightConstraint")
-        //            }
-        //
-        //            let inactiveHeightConstraint = self.attachmentCollectionView.constraints.first {
-        //                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "ExpandedHeightConstraint" : "CollapsedHeightConstraint")
-        //            }
-        //
-        //            activeHeightConstraint?.priority = .defaultHigh
-        //            inactiveHeightConstraint?.priority = .defaultLow
-        //
-        //            self.attachmentCollectionView.reloadData()
+    
+        self.attachmentCollectionViewTopConstraint?.constant = status.mediaAttachments.isEmpty ? 0 : self.attachmentCollectionViewTopConstraintConstant
+        self.attachmentCollectionView.reloadData()
+        self.attachmentCollectionViewHeightConstraint?.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
+        self.attachmentCollectionView.setNeedsLayout()
+        self.attachmentCollectionView.layoutIfNeeded()
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
@@ -74,7 +76,7 @@ extension StatusViewCell: UITextViewDelegate {
     }
 }
 
-extension StatusViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension StatusViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let status = self.status else { return 0 }
         return status.mediaAttachments.count
@@ -88,5 +90,26 @@ extension StatusViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.imageView.af_setImage(withURL: URL(string: attachment.previewURL)!)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
+        guard let status = self.status else { return layout.itemSize }
+
+        var size = CGSize(width: 0, height: collectionView.bounds.width / 2)
+        if (indexPath.row < status.mediaAttachments.count - 1) {
+            size.width = size.height
+        } else { // Last element
+            if (status.mediaAttachments.count % 2 == 0) { // Even
+                size.width = size.height
+            } else { // Odd
+                size.width = collectionView.bounds.width
+            }
+        }
+        
+        size.width -= layout.minimumInteritemSpacing
+        size.height -= layout.minimumInteritemSpacing
+        
+        return size
     }
 }
