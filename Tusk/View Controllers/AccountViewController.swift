@@ -12,6 +12,7 @@ import ReSwift
 
 class AccountViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountState
+    private var state: AccountState { return GlobalStore.state.account }
     
     enum Section: Int, CaseIterable {
         case About = 0
@@ -84,6 +85,21 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.tableView.reloadData()
         self.reloadHeaderView()
         self.navigationItem.title = account.displayName
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem()
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        guard let activeAccount = self.state.activeAccount else { return }
+        let image: UIImage?
+        if (account == activeAccount) {
+            image = UIImage(named: "SettingsButton")
+        } else if (self.state.following[activeAccount]?.contains(account) ?? false) {
+            image = UIImage(named: "StopFollowingButton")
+        } else {
+            image = UIImage(named: "FollowButton")
+        }
+        
+        self.navigationItem.rightBarButtonItem?.image = image
     }
     
     func pollPinnedStatuses() {

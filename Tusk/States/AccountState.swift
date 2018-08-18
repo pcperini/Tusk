@@ -13,15 +13,24 @@ import ReSwift
 struct AccountState: StateType {
     struct SetAccount: Action { let value: Account? }
     struct SetAccountPinnedStatuses: Action { let value: [Status] }
+    struct SetAccountFollowing: Action {
+        let value: [Account]
+        let account: Account
+    }
     
     struct PollActiveAccount: Action { let client: Client }
     struct PollAccountPinnedStatuses: Action {
         let client: Client
         let account: Account
     }
+    struct PollAccountFollowing: Action {
+        let client: Client
+        let account: Account
+    }
     
     var activeAccount: Account?
     var pinnedStatuses: [Account: [Status]] = [:]
+    var following: [Account: [Account]] = [:]
     
     static func reducer(action: Action, state: AccountState?) -> AccountState {
         var state = state ?? AccountState()
@@ -29,8 +38,10 @@ struct AccountState: StateType {
         switch action {
         case let action as SetAccount: state.activeAccount = action.value
         case let action as SetAccountPinnedStatuses: state.setAccountPinnedStatuses(statuses: action.value)
+        case let action as SetAccountFollowing: state.following[action.account] = action.value
         case let action as PollActiveAccount: pollAccount(client: action.client)
         case let action as PollAccountPinnedStatuses: pollPinnedStatuses(client: action.client, account: action.account)
+        case let action as PollAccountFollowing: pollAccountFollowing(client: action.client, account: action.account)
         default: break
         }
         
@@ -49,6 +60,20 @@ struct AccountState: StateType {
             case .success(let account, _): do {
                 GlobalStore.dispatch(SetAccount(value: account))
                 GlobalStore.dispatch(PollAccountPinnedStatuses(client: client, account: account))
+                GlobalStore.dispatch(PollAccountFollowing(client: client, account: account))
+                print("success", #file, #line)
+                }
+            case .failure(let error): print(error, #file, #line)
+            }
+        }
+    }
+    
+    static func pollAccountFollowing(client: Client, account: Account) {
+        let request = Accounts.following(id: account.id, range: .limit(80))
+        client.run(request) { (result) in
+            switch result {
+            case .success(let following, _): do {
+                GlobalStore.dispatch(SetAccountFollowing(value: following, account: account))
                 print("success", #file, #line)
                 }
             case .failure(let error): print(error, #file, #line)
@@ -61,7 +86,7 @@ struct AccountState: StateType {
                                         mediaOnly: false,
                                         pinnedOnly: true,
                                         excludeReplies: true,
-                                        range: .default)
+                                        range: .limit(40))
         client.run(request) { (result) in
             switch result {
             case .success(let statuses, _): do {
