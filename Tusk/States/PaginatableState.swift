@@ -32,7 +32,7 @@ struct PaginatingData<DataType> where DataType: Paginatable {
         client.run(request) { (result) in
             switch result {
             case .success(let data, let pagination): do {
-                completion(PaginatingData.mergeData(existingData: existingData, newData: data), pagination)
+                completion(self.mergeData(existingData: existingData, newData: data), pagination)
                 print("success", #file, #line, DataType.self)
                 }
             case .failure(let error): print(error, #file, #line)
@@ -40,7 +40,7 @@ struct PaginatingData<DataType> where DataType: Paginatable {
         }
     }
     
-    static func mergeData(existingData: [DataType], newData: [DataType]) -> [DataType] {
+    private func mergeData(existingData: [DataType], newData: [DataType]) -> [DataType] {
         guard let newFirst = newData.first, let newLast = newData.last else { return existingData }
         var dataSet = Set<DataType>()
         dataSet = dataSet.union(existingData.filter { (item) in
