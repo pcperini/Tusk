@@ -59,6 +59,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
                 
                 frame.size.height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
                 headerView.frame = frame
+                self.tableView.tableHeaderView = headerView
             }
         }
     }

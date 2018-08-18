@@ -101,7 +101,6 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.navigationItem.title = "Mastodon"
         safariViewController.hidesBottomBarWhenPushed = true
-        safariViewController.script
         
         self.navigationController?.pushViewController(safariViewController, animated: true)
     }

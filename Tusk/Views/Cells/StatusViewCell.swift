@@ -32,7 +32,21 @@ class StatusViewCell: UITableViewCell {
             self.statusTextView.htmlText = status.content
             self.statusTextView.setNeedsLayout()
             
-            self.attachmentCollectionView.reloadData()
+//            let activeHeightConstraint = self.attachmentCollectionView.constraints.first {
+//                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "CollapsedHeightConstraint" : "ExpandedHeightConstraint")
+//            }
+//            
+//            let inactiveHeightConstraint = self.attachmentCollectionView.constraints.first {
+//                (c) in c.identifier == (status.mediaAttachments.isEmpty ? "ExpandedHeightConstraint" : "CollapsedHeightConstraint")
+//            }
+//            
+//            activeHeightConstraint?.priority = .defaultHigh
+//            inactiveHeightConstraint?.priority = .defaultLow
+//            
+//            self.attachmentCollectionView.reloadData()
+            
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
         }
     }
     
