@@ -18,12 +18,13 @@ struct AuthState: StateType {
     struct PollAccessToken: Action { let code: String }
     
     static let defaultInstance: String = "mastodon.social"
-    static let clientID: String = "8d378392a7320d1c24b69bf7b908d91fadc91634996b5afaed9aad6a03c284ef"
-    static let clientSecret: String = "a00962b37dfc52c662f0b618e7c6ab16509d5b55b74135352fa1edb9720a5f5d"
     static let redirectURL: String = "tusk://oauth"
     static let keychain = Keychain(service: Bundle.main.bundleIdentifier!).synchronizable(true)
     
     var instance: String? = nil
+    var clientID: String? = nil
+    var clientSecret: String? = nil
+    
     var code: String?
     var oauthURL: URL?
     
