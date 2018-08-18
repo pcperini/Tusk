@@ -15,10 +15,7 @@ typealias MKNotification = MastodonKit.Notification // overloaded with UIKit.Not
 struct NotificationsState: PaginatableState {
     typealias DataType = MKNotification
     
-    struct SetNotifications: Action {
-        let value: [MKNotification]
-        let merge: PaginatingData<MKNotification>.MergeFunction
-    }
+    struct SetNotifications: Action { let value: [MKNotification] }
     struct SetLastReadDate: Action { let value: Date }
     private struct SetPage: Action { let value: Pagination? }
     struct PollNotifications: Action { let client: Client }
@@ -44,7 +41,7 @@ struct NotificationsState: PaginatableState {
         var state = state ?? NotificationsState()
         
         switch action {
-        case let action as SetNotifications: state.notifications = action.merge(state.notifications, action.value)
+        case let action as SetNotifications: state.notifications = action.value
         case let action as SetLastReadDate: state.setLastRead(date: action.value)
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
         case let action as PollNotifications: state.pollNotifications(client: action.client)
@@ -57,12 +54,11 @@ struct NotificationsState: PaginatableState {
     }
     
     func pollNotifications(client: Client, range: RequestRange? = nil) {
-        self.paginatingData.pollData(client: client, range: range, provider: NotificationsState.provider) { (
+        self.paginatingData.pollData(client: client, range: range, existingData: self.notifications, provider: NotificationsState.provider) { (
             notifications: [MKNotification],
-            pagination: Pagination?,
-            merge: @escaping PaginatingData<MKNotification>.MergeFunction
+            pagination: Pagination?
         ) in
-            GlobalStore.dispatch(SetNotifications(value: notifications, merge: merge))
+            GlobalStore.dispatch(SetNotifications(value: notifications))
             GlobalStore.dispatch(SetPage(value: pagination))
         }
     }

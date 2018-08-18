@@ -16,10 +16,7 @@ import ReSwift
 struct MessagesState: PaginatableState {
     typealias DataType = Status
     
-    struct SetStatuses: Action {
-        let value: [Status]
-        let merge: PaginatingData<Status>.MergeFunction
-    }
+    struct SetStatuses: Action { let value: [Status] }
     private struct SetPage: Action { let value: Pagination? }
     struct PollStatuses: Action { let client: Client }
     struct PollNewerStatuses: Action { let client: Client }
@@ -36,7 +33,7 @@ struct MessagesState: PaginatableState {
         var state = state ?? MessagesState()
         
         switch action {
-        case let action as SetStatuses: state.statuses = action.merge(state.statuses, action.value)
+        case let action as SetStatuses: state.statuses = action.value
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
@@ -49,17 +46,15 @@ struct MessagesState: PaginatableState {
     }
     
     func pollStatuses(client: Client, range: RequestRange? = nil, override: Bool = false) {
-        self.paginatingData.pollData(client: client, range: range, provider: MessagesState.provider) { (
+        self.paginatingData.pollData(client: client, range: range, existingData: self.statuses, provider: MessagesState.provider) { (
             statuses: [Status],
-            pagination: Pagination?,
-            merge: @escaping PaginatingData<Status>.MergeFunction
+            pagination: Pagination?
         ) in
             let filtered = statuses.filter { (status) in
                 status.visibility == .direct && status.account != GlobalStore.state.account.activeAccount
             }
-            let merge = override ? { (old, new) in return new } : merge
             
-            GlobalStore.dispatch(SetStatuses(value: filtered, merge: merge))
+            GlobalStore.dispatch(SetStatuses(value: filtered))
             GlobalStore.dispatch(SetPage(value: pagination))
             
             if (filtered.count < 1) {

@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 
 class NotificationViewCell: UITableViewCell {
-    private static let actionIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+    private static let actionIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     @IBOutlet var avatarView: ImageView!
     @IBOutlet var actionIconView: ImageView!

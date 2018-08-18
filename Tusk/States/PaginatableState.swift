@@ -11,8 +11,10 @@
 import ReSwift
 import MastodonKit
 
+protocol Paginatable: Encodable, Decodable, Comparable, Hashable {}
+
 protocol PaginatableState: StateType {
-    associatedtype DataType where DataType: Encodable, DataType: Decodable
+    associatedtype DataType where DataType: Paginatable
     
     var nextPage: RequestRange? { get set }
     var previousPage: RequestRange? { get set }
@@ -21,29 +23,34 @@ protocol PaginatableState: StateType {
     static func provider(range: RequestRange?) -> Request<[DataType]>
 }
 
-struct PaginatingData<DataType> where DataType: Encodable, DataType: Decodable {
-    typealias MergeFunction = ([DataType], [DataType]) -> [DataType]
+struct PaginatingData<DataType> where DataType: Paginatable {
     typealias ProviderFunction = (RequestRange?) -> Request<[DataType]>
     
-    func pollData(client: Client, range: RequestRange? = nil, provider: ProviderFunction, completion: @escaping ([DataType], Pagination?, @escaping MergeFunction) -> Void) {
+    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], provider: ProviderFunction, completion: @escaping ([DataType], Pagination?) -> Void) {
         let request: Request<[DataType]> = provider(range)
-        let merge: MergeFunction
-        
-        switch range {
-        case .some(.since(_, _)): merge = { (old, new) in new + old }
-        case .some(.max(_, _)): merge = { (old, new) in old + new }
-        default: merge = { (old, new) in new }
-        }
-        
+
         client.run(request) { (result) in
             switch result {
             case .success(let data, let pagination): do {
-                completion(data, pagination, merge)
+                completion(PaginatingData.mergeData(existingData: existingData, newData: data), pagination)
                 print("success", #file, #line, DataType.self)
                 }
             case .failure(let error): print(error, #file, #line)
             }
         }
+    }
+    
+    static func mergeData(existingData: [DataType], newData: [DataType]) -> [DataType] {
+        guard let newFirst = newData.first, let newLast = newData.last else { return existingData }
+        var dataSet = Set<DataType>()
+        dataSet = dataSet.union(existingData.filter { (item) in
+            item > newLast || item < newFirst
+        })
+        
+        dataSet = dataSet.union(newData)
+        return Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
+            lhs > rhs
+        })
     }
     
     func updatePages<PaginatableStateType: PaginatableState>(pagination: Pagination?, state: PaginatableStateType) -> (RequestRange?, RequestRange?) {

@@ -21,7 +21,8 @@ extension NSAttributedString {
                                                           options: [DTUseiOS6Attributes: NSNumber(booleanLiteral: true)],
                                                           documentAttributes: nil)
         guard let builder = stringBuilder else { return nil }
-        self.init(attributedString: builder.generatedAttributedString().attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines))
+        guard let attributedString = builder.generatedAttributedString()?.attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines) else { return nil }
+        self.init(attributedString: attributedString)
     }
 }
 

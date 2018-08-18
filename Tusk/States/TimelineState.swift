@@ -13,10 +13,7 @@ import ReSwift
 struct TimelineState: PaginatableState {
     typealias DataType = Status
     
-    struct SetStatuses: Action {
-        let value: [Status]
-        let merge: PaginatingData<Status>.MergeFunction
-    }
+    struct SetStatuses: Action { let value: [Status] }
     private struct SetPage: Action { let value: Pagination? }
     struct PollStatuses: Action { let client: Client }
     struct PollOlderStatuses: Action { let client: Client }
@@ -32,7 +29,7 @@ struct TimelineState: PaginatableState {
         var state = state ?? TimelineState()
         
         switch action {
-        case let action as SetStatuses: state.statuses = action.merge(state.statuses, action.value)
+        case let action as SetStatuses: state.statuses = action.value
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
@@ -44,14 +41,13 @@ struct TimelineState: PaginatableState {
     }
     
     func pollStatuses(client: Client, range: RequestRange? = nil) {
-        self.paginatingData.pollData(client: client, range: range, provider: TimelineState.provider) { (
+        self.paginatingData.pollData(client: client, range: range, existingData: self.statuses, provider: TimelineState.provider) { (
             statuses: [Status],
-            pagination: Pagination?,
-            merge: @escaping PaginatingData<Status>.MergeFunction
+            pagination: Pagination?
         ) in
             GlobalStore.dispatch(SetStatuses(value: statuses.filter { (status) in
                 status.visibility != .direct
-            }, merge: merge))
+            }))
             GlobalStore.dispatch(SetPage(value: pagination))
         }
     }

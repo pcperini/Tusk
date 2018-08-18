@@ -8,13 +8,29 @@
 
 import MastodonKit
 
-extension Status: Equatable {
+extension Status: Paginatable {
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
+    
+    public static func < (lhs: Status, rhs: Status) -> Bool {
+        return lhs.createdAt < rhs.createdAt
+    }
+    
     public static func == (lhs: Status, rhs: Status) -> Bool {
         return lhs.id == rhs.id
     }
 }
 
-extension MastodonKit.Notification: Equatable {
+extension MastodonKit.Notification: Paginatable {
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
+    
+    public static func < (lhs: Notification, rhs: Notification) -> Bool {
+        return lhs.createdAt < rhs.createdAt
+    }
+    
     public static func == (lhs: MastodonKit.Notification, rhs: MastodonKit.Notification) -> Bool {
         return lhs.id == rhs.id
     }
