@@ -13,7 +13,11 @@ import KeychainAccess
 
 struct AuthState: StateType {
     struct LoadAuth: Action { let value: String? }
-    struct SetInstance: Action { let value: String }
+    struct CreateAppForInstance: Action { let value: String }
+    struct SetClientInfo: Action {
+        let id: String
+        let secret: String
+    }
     struct SetAccessToken: Action { let value: String? }
     struct PollAccessToken: Action { let code: String }
     
@@ -43,11 +47,12 @@ struct AuthState: StateType {
         
         switch action {
         case let action as LoadAuth: state.loadAuth(account: action.value)
-        case let action as SetInstance: state.setInstance(instance: action.value)
+        case let action as CreateAppForInstance: state.createAppForInstance(instance: action.value)
+        case let action as SetClientInfo: state.setClientInfo(id: action.id, secret: action.secret)
         case let action as SetAccessToken: state.setAccessToken(token: action.value)
         case let action as PollAccessToken: do {
             state.code = action.code
-            pollAccessToken(client: state.client, code: action.code)
+            state.pollAccessToken(client: state.client, code: action.code)
             }
         default: break
         }
@@ -72,10 +77,33 @@ struct AuthState: StateType {
         (self.accessToken, self.instance) = self.authForAccount(account: account)
     }
     
-    private mutating func setInstance(instance: String) {
+    private mutating func createAppForInstance(instance: String) {
         self.instance = instance
+        guard let baseURL = self.baseURL else { return }
+        
+        let client = Client(baseURL: baseURL)
+        let request =  Clients.register(
+            clientName: Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String,
+            redirectURI: AuthState.redirectURL,
+            scopes: [.read, .write, .follow],
+            website: "https://pcperini.com"
+        )
+        
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): do {
+                GlobalStore.dispatch(SetClientInfo(id: resp.clientID, secret: resp.clientSecret))
+                }
+            case .failure(let error): print(error, #file, #line)
+            }
+        }
+    }
+    
+    private mutating func setClientInfo(id: String, secret: String) {
+        self.clientID = id
+        self.clientSecret = secret
         self.oauthURL = try! Login.oauthURL(baseURL: self.baseURL!,
-                                            clientID: AuthState.clientID,
+                                            clientID: id,
                                             scopes: [.follow, .read, .write],
                                             redirectURI: AuthState.redirectURL)?.asURL()
     }
@@ -87,10 +115,10 @@ struct AuthState: StateType {
         self.saveAccessToken(token: token, forInstance: instance)
     }
     
-    static func pollAccessToken(client: Client?, code: String) {
-        guard let client = client else { return }
-        let request = Login.oauth(clientID: AuthState.clientID,
-                                  clientSecret: AuthState.clientSecret,
+    func pollAccessToken(client: Client?, code: String) {
+        guard let client = client, let id = self.clientID, let secret = self.clientSecret else { return }
+        let request = Login.oauth(clientID: id,
+                                  clientSecret: secret,
                                   code: code,
                                   redirectURI: AuthState.redirectURL)
         client.run(request) { (result) in
