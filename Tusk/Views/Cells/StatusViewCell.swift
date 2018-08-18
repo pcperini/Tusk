@@ -53,8 +53,6 @@ class StatusViewCell: UITableViewCell {
         self.statusTextView.delegate = self
         
         self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
-        self.reblogTopConstraint.toggle(on: false)
-        self.reblogHeightConstraint.toggle(on: false)
     }
     
     private func updateStatus() {
@@ -79,8 +77,8 @@ class StatusViewCell: UITableViewCell {
             self.reblogLabel.text = originalStatus.account.displayName
         }
         
-        self.reblogTopConstraint.toggle(on: self.originalStatus != status)
-        self.reblogHeightConstraint.toggle(on: self.originalStatus != status)
+        self.reblogTopConstraint.toggle(on: self.originalStatus != status && self.originalStatus != nil)
+        self.reblogHeightConstraint.toggle(on: self.originalStatus != status && self.originalStatus != nil)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
