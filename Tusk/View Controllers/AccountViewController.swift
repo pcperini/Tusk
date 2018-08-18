@@ -151,12 +151,14 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let account = self.account else { return FieldViewCell() }
         let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
 
-        guard let name = account.displayFields[row]["name"], let value = account.displayFields[row]["value"] else { return FieldViewCell() }
+        guard let name = account.displayFields[row]["name"],
+            let displayValue = account.displayFields[row]["value"],
+            let rawValue = NSAttributedString(htmlString: account.fields[row]["value"]!)?.string else { return FieldViewCell() }
 
         cell.fieldNameLabel.text = name
-        cell.fieldValueTextView.htmlText = value
+        cell.fieldValueTextView.htmlText = displayValue
 
-        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: value)
+        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: rawValue)
 
         return cell
     }
