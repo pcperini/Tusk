@@ -14,11 +14,15 @@ class ToggleLayoutConstraint: NSLayoutConstraint {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.targetConstant = self.constant
+        print("awake \(self.constant)")
+        if (self.targetConstant == 0.0 && self.constant != 0.0) {
+            self.targetConstant = self.constant
+        }
     }
     
     func toggle(on: Bool? = nil) {
         self.isToggledOn = on ?? !self.isToggledOn
+        print(self.targetConstant, self.isToggledOn ? "<" : ">", self.constant)
         self.constant = self.isToggledOn ? self.targetConstant : 0
     }
 }

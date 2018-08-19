@@ -331,6 +331,9 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Bio" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-8m-ATl" customClass="TextView" customModule="Tusk" customModuleProvider="target">
                                             <rect key="frame" x="170.5" y="152" width="34.5" height="20.5"/>
                                             <color key="tintColor" red="0.59510633680555558" green="0.78882016780422648" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" id="Ymc-Sp-guW"/>
+                                            </constraints>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -349,7 +352,7 @@
                                         <constraint firstItem="sv6-Mm-Zu1" firstAttribute="centerX" secondItem="JUq-ia-FIl" secondAttribute="centerX" id="abp-XS-I0q"/>
                                         <constraint firstItem="JUq-ia-FIl" firstAttribute="top" secondItem="JDu-B7-hhf" secondAttribute="top" constant="15" id="emC-Tw-fFu"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sv6-Mm-Zu1" secondAttribute="trailing" id="lGE-tH-Liv"/>
-                                        <constraint firstItem="NPv-8m-ATl" firstAttribute="top" secondItem="YPZ-0d-BdO" secondAttribute="bottom" constant="8" id="m1L-9a-tGv"/>
+                                        <constraint firstItem="NPv-8m-ATl" firstAttribute="top" secondItem="YPZ-0d-BdO" secondAttribute="bottom" constant="8" id="m1L-9a-tGv" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JDu-B7-hhf" secondAttribute="leading" id="nua-hc-msf"/>
                                         <constraint firstAttribute="bottom" secondItem="NPv-8m-ATl" secondAttribute="bottom" constant="15" id="s3f-Dp-8bG"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NPv-8m-ATl" secondAttribute="trailing" constant="15" id="uDW-Gh-bRp"/>
@@ -428,7 +431,9 @@
                     </tableView>
                     <connections>
                         <outlet property="avatarView" destination="JUq-ia-FIl" id="Bbm-hS-57A"/>
+                        <outlet property="bioHeightConstraint" destination="Ymc-Sp-guW" id="JKE-pW-fgL"/>
                         <outlet property="bioTextView" destination="NPv-8m-ATl" id="A1B-cy-PzP"/>
+                        <outlet property="bioTopConstraint" destination="m1L-9a-tGv" id="KDJ-Jj-QZp"/>
                         <outlet property="displayNameLabel" destination="sv6-Mm-Zu1" id="5VY-m0-0wu"/>
                         <outlet property="headerImageView" destination="K1g-fT-Nz3" id="NxA-fV-ICn"/>
                         <outlet property="usernameLabel" destination="YPZ-0d-BdO" id="BiO-Ln-K2Z"/>

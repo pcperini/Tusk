@@ -33,7 +33,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     @IBOutlet var avatarView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
+    
     @IBOutlet var bioTextView: TextView!
+    @IBOutlet var bioTopConstraint: ToggleLayoutConstraint!
+    @IBOutlet var bioHeightConstraint: NSLayoutConstraint!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -75,7 +78,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
         self.displayNameLabel.text = account.name
         self.usernameLabel.text = account.handle
+        
         self.bioTextView.htmlText = account.note
+        self.bioTopConstraint.toggle(on: !(self.bioTextView.text?.isEmpty ?? true))
+        self.bioHeightConstraint.isActive = self.bioTextView.text?.isEmpty ?? true
 
         self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
         if (self.pinnedStatuses == nil) {
@@ -129,7 +135,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let account = self.account else { return 0 }
         guard let section = Section(rawValue: section) else { return 0 }
-                
+        
         switch section {
         case .About: return account.displayFields.count
         case .Stats: return Stat.allCases.count
