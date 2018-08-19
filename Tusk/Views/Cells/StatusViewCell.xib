@@ -123,7 +123,7 @@
                                     <constraint firstItem="AZp-uC-1qb" firstAttribute="leading" secondItem="v5j-xb-QgM" secondAttribute="trailing" constant="4" id="zMJ-Vb-at6"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="60" y="23" width="291" height="41"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -162,6 +162,11 @@
                     <constraint firstItem="SE0-fc-EoD" firstAttribute="top" secondItem="GcV-6W-sHs" secondAttribute="top" constant="12" id="wma-pc-b6U"/>
                 </constraints>
             </tableViewCellContentView>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                    <color key="value" white="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="attachmentCollectionView" destination="BoR-xo-HiS" id="0eu-iX-hIx"/>
                 <outlet property="attachmentHeightConstraint" destination="5zC-z2-pWv" id="D8W-KK-YSA"/>

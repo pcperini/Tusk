@@ -57,4 +57,23 @@ import DTCoreText
     override func setContentOffset(_ contentOffset: CGPoint, animated: Bool) {
         super.setContentOffset(contentOffset, animated: false)
     }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        // location of the tap
+        var location = point
+        location.x -= self.textContainerInset.left
+        location.y -= self.textContainerInset.top
+        
+        // find the character that's been tapped
+        let characterIndex = self.layoutManager.characterIndex(for: location, in: self.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        if characterIndex < self.textStorage.length {
+            // if the character is a link, handle the tap as UITextView normally would
+            if (self.textStorage.attribute(.link, at: characterIndex, effectiveRange: nil) != nil) {
+                return self
+            }
+        }
+        
+        // otherwise return nil so the tap goes on to the next receiver
+        return nil
+    }
 }

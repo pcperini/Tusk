@@ -22,6 +22,7 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
                 self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: 0)], with: .automatic)
             } else {
                 guard let oldValue = oldValue else { return }
+                self.tableView.deselectRow(at: IndexPath(row: oldValue, section: 0), animated: true)
                 self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: 0)], with: .automatic)
             }
         }
@@ -114,10 +115,6 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         self.selectedStatusIndex = nil
         self.selectedStatusIndex = statusIndex
         self.tableView.endUpdates()
-//        let status = self.statuses[indexPath.row]
-//        guard let url = status.url else { return }
-//
-//        self.pushToURL(url: url)
     }
     
     private func statusIndexForIndexPath(indexPath: IndexPath) -> Int {

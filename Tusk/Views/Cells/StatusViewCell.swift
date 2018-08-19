@@ -10,6 +10,14 @@ import UIKit
 import MastodonKit
 
 class StatusViewCell: UITableViewCell {
+    @IBInspectable var selectedBackgroundColor: UIColor? {
+        didSet {
+            let view = UIView()
+            view.backgroundColor = self.selectedBackgroundColor
+            self.selectedBackgroundView = view
+        }
+    }
+    
     @IBOutlet var avatarView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
