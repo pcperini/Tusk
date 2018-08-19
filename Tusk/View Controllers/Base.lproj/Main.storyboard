@@ -15,7 +15,7 @@
             <objects>
                 <tableViewController id="dPN-7S-HJE" customClass="TimelineViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="q4g-zx-Huu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -42,7 +42,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHq-YW-5mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="-1069"/>
+            <point key="canvasLocation" x="2881" y="-360"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="FQx-Es-GsG">
@@ -56,12 +56,42 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dPN-7S-HJE" kind="relationship" relationship="rootViewController" id="BFI-lI-gmJ"/>
+                        <segue destination="va2-Hu-waS" kind="relationship" relationship="rootViewController" id="Cdo-ie-8hI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ey-cP-RBW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-1069"/>
+        </scene>
+        <!--Timeline-->
+        <scene sceneID="Pba-iI-AbS">
+            <objects>
+                <viewController id="va2-Hu-waS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KHq-8s-rMk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaU-no-j3r">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <segue destination="dPN-7S-HJE" kind="embed" id="G2k-fl-BiS"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gaU-no-j3r" firstAttribute="leading" secondItem="geg-qd-YoH" secondAttribute="leading" id="0yf-bI-bNq"/>
+                            <constraint firstItem="gaU-no-j3r" firstAttribute="top" secondItem="geg-qd-YoH" secondAttribute="top" id="PLq-Cl-nBf"/>
+                            <constraint firstItem="geg-qd-YoH" firstAttribute="trailing" secondItem="gaU-no-j3r" secondAttribute="trailing" id="RA0-Xa-19k"/>
+                            <constraint firstItem="geg-qd-YoH" firstAttribute="bottom" secondItem="gaU-no-j3r" secondAttribute="bottom" id="y57-Mg-0GZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="geg-qd-YoH"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Timeline" id="WVE-tz-m8C"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NwM-CL-pz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1510" y="-1069"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="0NI-RM-beG">
@@ -329,7 +359,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Bio" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-8m-ATl" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="170.5" y="152" width="34.5" height="20.5"/>
+                                            <rect key="frame" x="175.5" y="152" width="24.5" height="20.5"/>
                                             <color key="tintColor" red="0.59510633680555558" green="0.78882016780422648" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="999" id="Ymc-Sp-guW"/>
@@ -396,7 +426,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Field value" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-eF-yBa" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="272.5" y="11.5" width="86.5" height="18"/>
+                                            <rect key="frame" x="282.5" y="11.5" width="76.5" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -441,7 +471,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xO-Li-9e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881" y="719"/>
+            <point key="canvasLocation" x="2881" y="350"/>
         </scene>
     </scenes>
     <resources>
@@ -454,6 +484,6 @@
         <image name="TimelineTab" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hYm-Ne-YGK"/>
+        <segue reference="yZp-vv-Az6"/>
     </inferredMetricsTieBreakers>
 </document>

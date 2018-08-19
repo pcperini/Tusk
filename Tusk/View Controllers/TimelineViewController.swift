@@ -107,6 +107,11 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        guard let selectedStatusIndex = self.selectedStatusIndex else { return indexPath }
+        return indexPath.row != selectedStatusIndex + 1 ? indexPath : nil
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var statusIndex: Int? = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == self.selectedStatusIndex) { statusIndex = nil }
