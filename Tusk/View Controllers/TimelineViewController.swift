@@ -16,6 +16,16 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = TimelineState
 
     var statuses: [Status] = []
+    private var selectedStatusIndex: Int? = nil {
+        didSet {
+            if let selectedIndex = self.selectedStatusIndex {
+                self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: 0)], with: .automatic)
+            } else {
+                guard let oldValue = oldValue else { return }
+                self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: 0)], with: .automatic)
+            }
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,16 +68,26 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     
     // UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.statuses.count
+        return self.statuses.count + (self.selectedStatusIndex == nil ? 0 : 1)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let statusIndex = self.statusIndexForIndexPath(indexPath: indexPath)
+        if (statusIndex == NSNotFound) { // Action Cell
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Action") as? StatusActionViewCell else {
+                self.tableView.register(UINib(nibName: "StatusActionViewCell", bundle: nil), forCellReuseIdentifier: "Action")
+                return self.tableView(tableView, cellForRowAt: indexPath)
+            }
+            
+            return cell
+        }
+        
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Status") as? StatusViewCell else {
             self.tableView.register(UINib(nibName: "StatusViewCell", bundle: nil), forCellReuseIdentifier: "Status")
             return self.tableView(tableView, cellForRowAt: indexPath)
         }
         
-        let status = self.statuses[indexPath.row]
+        let status = self.statuses[statusIndex]
         let displayStatus = status.reblog ?? status
         
         cell.originalStatus = status
@@ -87,10 +107,23 @@ class TimelineViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let status = self.statuses[indexPath.row]
-        guard let url = status.url else { return }
+        var statusIndex: Int? = self.statusIndexForIndexPath(indexPath: indexPath)
+        if (statusIndex == self.selectedStatusIndex) { statusIndex = nil }
         
-        self.pushToURL(url: url)
+        self.tableView.beginUpdates()
+        self.selectedStatusIndex = nil
+        self.selectedStatusIndex = statusIndex
+        self.tableView.endUpdates()
+//        let status = self.statuses[indexPath.row]
+//        guard let url = status.url else { return }
+//
+//        self.pushToURL(url: url)
+    }
+    
+    private func statusIndexForIndexPath(indexPath: IndexPath) -> Int {
+        guard let selectedIndex = self.selectedStatusIndex, selectedIndex < indexPath.row else { return indexPath.row }
+        if (indexPath.row == selectedIndex + 1) { return NSNotFound }
+        return indexPath.row - 1
     }
     
     // Paging
