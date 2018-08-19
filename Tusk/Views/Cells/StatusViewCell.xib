@@ -36,7 +36,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keD-FY-tv9">
-                                <rect key="frame" x="60" y="0.0" width="109.5" height="77.5"/>
+                                <rect key="frame" x="60" y="0.0" width="109.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,18 +56,11 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fullLength" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="60" y="87.5" width="291" height="41"/>
-                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BoR-xo-HiS">
-                                <rect key="frame" x="60" y="148.5" width="291" height="145"/>
+                                <rect key="frame" x="60" y="76" width="291" height="218"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="999" constant="145" identifier="HeightConstraint" id="5zC-z2-pWv" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                    <constraint firstAttribute="height" priority="999" constant="218" identifier="HeightConstraint" id="5zC-z2-pWv" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="5fR-GH-GBk">
                                     <size key="itemSize" width="50" height="50"/>
@@ -130,6 +123,13 @@
                                     <constraint firstItem="AZp-uC-1qb" firstAttribute="leading" secondItem="v5j-xb-QgM" secondAttribute="trailing" constant="4" id="zMJ-Vb-at6"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sHe-5U-G8n" customClass="TextView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="60" y="23" width="291" height="41"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vi5-s1-6UD" firstAttribute="top" secondItem="BoR-xo-HiS" secondAttribute="bottom" constant="12" id="0if-c8-YYR" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
