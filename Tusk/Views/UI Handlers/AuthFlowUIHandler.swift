@@ -18,11 +18,11 @@ struct AuthFlowUIHandler {
             alert.addTextField { (textField) in textField.text = AuthState.defaultInstance }
             alert.addAction(UIAlertAction(title: "Login", style: .default) { (action) in
                 guard let instance = alert.textFields?.first?.text else { return }
-                GlobalStore.dispatch(AuthState.SetInstance(value: instance))
+                GlobalStore.dispatch(AuthState.CreateAppForInstance(value: instance))
             })
             
             self.viewController.present(alert, animated: true, completion: nil)
-        } else if (self.state.code == nil && self.state.accessToken == nil) {
+        } else if (self.state.code == nil && self.state.accessToken == nil && self.state.oauthURL != nil) {
             UIApplication.shared.open(self.state.oauthURL!, options: [:], completionHandler: nil)
         }
     }

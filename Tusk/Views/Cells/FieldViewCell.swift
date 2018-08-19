@@ -27,7 +27,7 @@ extension FieldViewCell {
     enum CustomFieldCellType: String, CaseIterable {
         case Gender = "(pronoun|gender|sex|⚧|⚥|♂|♀|he.*him|she.*her|they.*them)"
         case Work = "(resume|work|job|cv)"
-        case Location = "(location)"
+        case Location = "(location|🏠|🏡)"
         
         case Instagram = "(\\big\\b|\\binsta\\b|instagram|\\bgram\\b)"
         case YouTube = "(youtube|\\byt\\b)"
@@ -42,7 +42,7 @@ extension FieldViewCell {
         case Medium = "(medium)"
         case Tumblr = "(tumblr)"
         
-        case Games = "(3ds|switch|friend code|nintendo|xbox)"
+        case Games = "(3ds|switch|friend code|nintendo|xbox|psn)"
         case Support = "(donations|support)"
 
         case Website = "(web|site|page|www|http(s)?:\\/\\/)"
