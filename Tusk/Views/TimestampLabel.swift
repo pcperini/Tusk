@@ -37,11 +37,12 @@ class TimestampLabel: UILabel {
         default: interval = 3600
         }
         
-        self.updateText(timer: self.timer)
-        self.timer = Timer(timeInterval: interval, repeats: true, block: self.updateText)
+        self.updateText()
+        self.timer = Timer(timeInterval: interval, repeats: true, block: { (_) in self.updateText() })
+        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
     }
     
-    private func updateText(timer: Timer?) {
+    private func updateText() {
         guard let date = self.date else { return }
         
         if self.fullLength {
@@ -75,6 +76,8 @@ class TimestampLabel: UILabel {
     }
     
     private func stopTimer() {
-        if self.timer != nil { self.timer?.invalidate() }
+        if self.timer != nil {
+            self.timer?.invalidate()
+        }
     }
 }
