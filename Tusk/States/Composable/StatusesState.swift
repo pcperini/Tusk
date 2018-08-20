@@ -32,14 +32,14 @@ extension StatusesState {
     typealias PollStatuses = StatusesStatePollStatuses<Self>
     typealias PollOlderStatuses = StatusesStatePollOlderStatuses<Self>
     typealias PollNewerStatuses = StatusesStatePollNewerStatuses<Self>
-    
+        
     static func reducer(action: Action, state: Self?) -> Self {
         var state = state ?? Self.init()
         
         switch action {
         case let action as SetFilters: state.filters = action.value
         case let action as SetStatuses: state.statuses = action.value
-        case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatePages(pagination: action.value, state: state)
+        case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value, state: state)
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)

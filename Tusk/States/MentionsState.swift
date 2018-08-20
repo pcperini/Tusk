@@ -20,5 +20,5 @@ struct MentionsState: StatusesState {
     
     var nextPage: RequestRange? = nil
     var previousPage: RequestRange? = nil
-    var paginatingData: PaginatingData<Status> = PaginatingData<Status>()
+    var paginatingData: PaginatingData<Status> = PaginatingData<Status>(minimumPageSize: 10)
 }

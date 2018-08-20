@@ -27,13 +27,26 @@ struct PaginatingData<DataType> where DataType: Paginatable {
     typealias ProviderFunction = (RequestRange?) -> Request<[DataType]>
     typealias DataFilter = (DataType) -> Bool
     
-    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], provider: ProviderFunction, filters: [DataFilter] = [], completion: @escaping ([DataType], Pagination?) -> Void) {
+    var minimumPageSize: Int = 0
+    
+    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], provider: @escaping ProviderFunction, filters: [DataFilter] = [], completion: @escaping ([DataType], Pagination?) -> Void) {
         let request: Request<[DataType]> = provider(range)
+        var allData = existingData
 
         client.run(request) { (result) in
             switch result {
             case .success(let data, let pagination): do {
-                completion(self.mergeData(existingData: existingData, newData: data, filters: filters), pagination)
+                allData = self.mergeData(existingData: allData, newData: data, filters: filters)
+                if (allData.count < self.minimumPageSize && pagination?.next != nil) {
+                    self.pollData(client: client,
+                                  range: pagination?.next,
+                                  existingData: allData,
+                                  provider: provider,
+                                  filters: filters,
+                                  completion: completion)
+                } else {
+                    completion(allData, pagination)
+                }
                 print("success", #file, #line, DataType.self)
                 }
             case .failure(let error): print(error, #file, #line)
@@ -57,7 +70,7 @@ struct PaginatingData<DataType> where DataType: Paginatable {
         return results
     }
     
-    func updatePages<PaginatableStateType: PaginatableState>(pagination: Pagination?, state: PaginatableStateType) -> (RequestRange?, RequestRange?) {
+    func updatedPages<PaginatableStateType: PaginatableState>(pagination: Pagination?, state: PaginatableStateType) -> (RequestRange?, RequestRange?) {
         guard let oldNext = state.nextPage, let oldPrev = state.previousPage else { return (pagination?.next, pagination?.previous) }
         guard let newNext = pagination?.next, let newPrev = pagination?.previous else { return (state.nextPage, state.previousPage) }
         
