@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -292,6 +293,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXW-te-ntA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                                    <color key="backgroundColor" name="ActionsBackgroundColor"/>
+                                </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K1g-fT-Nz3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                 </imageView>
@@ -369,7 +374,6 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="centerX" secondItem="sv6-Mm-Zu1" secondAttribute="centerX" id="9E4-jh-FRj"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YPZ-0d-BdO" secondAttribute="trailing" id="BcE-vx-JXb"/>
@@ -394,8 +398,12 @@
                                 <constraint firstItem="JDu-B7-hhf" firstAttribute="top" secondItem="Vnk-wj-GTA" secondAttribute="top" id="CFp-NU-V2Z"/>
                                 <constraint firstAttribute="bottom" secondItem="JDu-B7-hhf" secondAttribute="bottom" id="H6q-2V-tni"/>
                                 <constraint firstAttribute="bottom" secondItem="5gq-DD-HgH" secondAttribute="bottom" id="H95-I7-djX"/>
+                                <constraint firstAttribute="trailing" secondItem="cXW-te-ntA" secondAttribute="trailing" id="HhF-bc-d0D"/>
+                                <constraint firstItem="cXW-te-ntA" firstAttribute="leading" secondItem="Vnk-wj-GTA" secondAttribute="leading" id="MbH-ld-1fh"/>
+                                <constraint firstItem="cXW-te-ntA" firstAttribute="top" secondItem="Vnk-wj-GTA" secondAttribute="top" id="NkA-r6-WqG"/>
                                 <constraint firstAttribute="bottom" secondItem="K1g-fT-Nz3" secondAttribute="bottom" id="jqp-SY-gMt"/>
                                 <constraint firstItem="5gq-DD-HgH" firstAttribute="top" secondItem="Vnk-wj-GTA" secondAttribute="top" id="mX8-Ss-I5S"/>
+                                <constraint firstAttribute="bottom" secondItem="cXW-te-ntA" secondAttribute="bottom" id="nv6-ER-8ae"/>
                                 <constraint firstAttribute="trailing" secondItem="5gq-DD-HgH" secondAttribute="trailing" id="om0-YN-7IN"/>
                                 <constraint firstItem="K1g-fT-Nz3" firstAttribute="leading" secondItem="Vnk-wj-GTA" secondAttribute="leading" id="pQz-d9-FqC"/>
                                 <constraint firstAttribute="trailing" secondItem="K1g-fT-Nz3" secondAttribute="trailing" id="qja-WJ-cxc"/>
@@ -482,6 +490,9 @@
         <image name="NotificationTab" width="16" height="20"/>
         <image name="SettingsButton" width="20" height="20"/>
         <image name="TimelineTab" width="20" height="20"/>
+        <namedColor name="ActionsBackgroundColor">
+            <color red="0.19599999487400055" green="0.19599999487400055" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yZp-vv-Az6"/>
