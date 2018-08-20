@@ -547,7 +547,7 @@
                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="Sdc-gF-yBU"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="V4Z-JF-EcV" kind="show" id="Z4t-BD-2LQ"/>
+                        <segue destination="V4Z-JF-EcV" kind="show" identifier="PushAccountViewController" id="Z4t-BD-2LQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NU-fD-DAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -598,6 +598,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yZp-vv-Az6"/>
+        <segue reference="xba-jN-2Yp"/>
     </inferredMetricsTieBreakers>
 </document>
