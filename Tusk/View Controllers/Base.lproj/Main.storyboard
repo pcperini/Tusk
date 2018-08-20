@@ -374,6 +374,7 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="centerX" secondItem="sv6-Mm-Zu1" secondAttribute="centerX" id="9E4-jh-FRj"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YPZ-0d-BdO" secondAttribute="trailing" id="BcE-vx-JXb"/>
