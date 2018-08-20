@@ -60,6 +60,8 @@ import DTCoreText
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let attributedText = self.attributedText, attributedText.length > 0 else { return nil }
+        
         // location of the tap
         var location = point
         location.x -= self.textContainerInset.left
@@ -67,7 +69,7 @@ import DTCoreText
         
         // find the character that's been tapped
         let characterIndex = self.layoutManager.characterIndex(for: location, in: self.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: nil)
+        let attributes = attributedText.attributes(at: characterIndex, effectiveRange: nil)
         
         if attributes[.link] != nil {
             return super.hitTest(point, with: event)
