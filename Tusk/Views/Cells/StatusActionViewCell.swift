@@ -9,5 +9,8 @@
 import UIKit
 
 class StatusActionViewCell: UITableViewCell {
-    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = .none
+    }
 }
