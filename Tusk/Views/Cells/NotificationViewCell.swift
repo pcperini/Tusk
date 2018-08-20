@@ -9,7 +9,7 @@
 import UIKit
 import MastodonKit
 
-class NotificationViewCell: UITableViewCell {
+class NotificationViewCell: TableViewCell {
     private static let actionIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     @IBOutlet var avatarView: ImageView!
@@ -59,5 +59,6 @@ class NotificationViewCell: UITableViewCell {
         let notificationTypeName = "\(notificationType)".capitalized
         self.actionIconView.backgroundColor = UIColor(named: "\(notificationTypeName)AlertColor")
         self.actionIconView.image = UIImage(named: "\(notificationTypeName)Alert")?.imageWithInsets(insets: NotificationViewCell.actionIconEdgeInsets)
+        self.preserveBackgroundColors()
     }
 }

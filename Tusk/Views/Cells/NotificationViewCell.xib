@@ -110,6 +110,11 @@
                     <constraint firstItem="7mp-61-OuG" firstAttribute="leading" secondItem="mVN-tH-HRp" secondAttribute="leading" constant="12" id="k1B-SE-f6S"/>
                 </constraints>
             </tableViewCellContentView>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                    <color key="value" white="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="actionIconView" destination="gxf-m2-l9b" id="rHv-C3-bVM"/>
                 <outlet property="actionLabel" destination="jpF-mu-6o0" id="EV8-Fj-Aih"/>
@@ -117,6 +122,7 @@
                 <outlet property="displayNameLabel" destination="0Ry-N8-jIJ" id="xuT-d9-PXW"/>
                 <outlet property="statusLabel" destination="8DL-gh-lI1" id="uOM-Gn-DrC"/>
                 <outlet property="timestampLabel" destination="gnQ-r2-OLe" id="fIW-nM-8Gz"/>
+                <outletCollection property="backgroundColoredViews" destination="gxf-m2-l9b" collectionClass="NSMutableArray" id="no4-2I-Yte"/>
             </connections>
             <point key="canvasLocation" x="289.5" y="-26"/>
         </tableViewCell>

@@ -9,15 +9,7 @@
 import UIKit
 import MastodonKit
 
-class StatusViewCell: UITableViewCell {
-    @IBInspectable var selectedBackgroundColor: UIColor? {
-        didSet {
-            let view = UIView()
-            view.backgroundColor = self.selectedBackgroundColor
-            self.selectedBackgroundView = view
-        }
-    }
-    
+class StatusViewCell: TableViewCell {
     @IBOutlet var avatarView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
@@ -57,10 +49,9 @@ class StatusViewCell: UITableViewCell {
         
         self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
+        self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
         
         self.statusTextView.delegate = self
-        
-        self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
     }
     
     private func updateStatus() {
