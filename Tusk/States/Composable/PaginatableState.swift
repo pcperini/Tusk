@@ -37,17 +37,15 @@ struct PaginatingData<DataType> where DataType: Paginatable {
             switch result {
             case .success(let data, let pagination): do {
                 allData = self.mergeData(existingData: allData, newData: data, filters: filters)
-                if (allData.count < self.minimumPageSize && pagination?.next != nil) {
-                    self.pollData(client: client,
-                                  range: pagination?.next,
-                                  existingData: allData,
-                                  provider: provider,
-                                  filters: filters,
-                                  completion: completion)
-                } else {
-                    completion(allData, pagination)
-                }
                 print("success", #file, #line, DataType.self)
+                
+                guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
+                self.pollData(client: client,
+                              range: nextPage,
+                              existingData: allData,
+                              provider: provider,
+                              filters: filters,
+                              completion: completion)
                 }
             case .failure(let error): print(error, #file, #line)
             }

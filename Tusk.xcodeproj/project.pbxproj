@@ -33,6 +33,9 @@
 		73208E96212B319B00529FA3 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E95212B319B00529FA3 /* MentionsViewController.swift */; };
 		73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E95212B319B00529FA3 /* MentionsViewController.swift */; };
 		73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E95212B319B00529FA3 /* MentionsViewController.swift */; };
+		73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E99212B753C00529FA3 /* MessagesViewController.swift */; };
+		73208E9B212B753C00529FA3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E99212B753C00529FA3 /* MessagesViewController.swift */; };
+		73208E9C212B753C00529FA3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E99212B753C00529FA3 /* MessagesViewController.swift */; };
 		732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */; };
 		732557FB2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */; };
 		732557FC2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */; };
@@ -164,6 +167,7 @@
 		73208E8D212B2A9C00529FA3 /* StatusesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesState.swift; sourceTree = "<group>"; };
 		73208E91212B316900529FA3 /* StatusesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesContainerViewController.swift; sourceTree = "<group>"; };
 		73208E95212B319B00529FA3 /* MentionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
+		73208E99212B753C00529FA3 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowUIHandler.swift; sourceTree = "<group>"; };
 		732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Insets.swift"; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
@@ -316,6 +320,7 @@
 				732BE22E2120A9690049ADBD /* TabViewController.swift */,
 				73208E80212A3B3100529FA3 /* TimelineViewController.swift */,
 				73208E95212B319B00529FA3 /* MentionsViewController.swift */,
+				73208E99212B753C00529FA3 /* MessagesViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
@@ -683,6 +688,7 @@
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
+				73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				73208E8E212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
 				73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
@@ -717,6 +723,7 @@
 				73208E8F212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
+				73208E9B212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */,
@@ -758,6 +765,7 @@
 				73208E90212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
+				73208E9C212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */,

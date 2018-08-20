@@ -22,7 +22,6 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusesState>: 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setUpSubscriptions()
-        print(self, StoreSubscriberStateType.self)
     }
     
     override func viewDidLoad() {

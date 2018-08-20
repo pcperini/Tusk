@@ -40,6 +40,7 @@ struct AppState: StateType {
         DispatchQueue.main.async {
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
             GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
+            GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
         }
