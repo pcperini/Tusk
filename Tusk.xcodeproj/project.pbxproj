@@ -15,6 +15,12 @@
 		73208E7C212A252900529FA3 /* StatusActionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73208E7B212A252900529FA3 /* StatusActionViewCell.xib */; };
 		73208E7D212A252900529FA3 /* StatusActionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73208E7B212A252900529FA3 /* StatusActionViewCell.xib */; };
 		73208E7E212A252900529FA3 /* StatusActionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73208E7B212A252900529FA3 /* StatusActionViewCell.xib */; };
+		73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E80212A3B3100529FA3 /* TimelineViewController.swift */; };
+		73208E82212A3B3100529FA3 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E80212A3B3100529FA3 /* TimelineViewController.swift */; };
+		73208E83212A3B3100529FA3 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E80212A3B3100529FA3 /* TimelineViewController.swift */; };
+		73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E84212A41A400529FA3 /* TableViewCell.swift */; };
+		73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E84212A41A400529FA3 /* TableViewCell.swift */; };
+		73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E84212A41A400529FA3 /* TableViewCell.swift */; };
 		732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */; };
 		732557FB2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */; };
 		732557FC2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */; };
@@ -103,7 +109,7 @@
 		73CBAE3A2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
-		73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* TimelineViewController.swift */; };
+		73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
 		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
 		73EAEC5E211E41A900C2620F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC5C211E41A900C2620F /* Main.storyboard */; };
 		73EAEC60211E41AA00C2620F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC5F211E41AA00C2620F /* Assets.xcassets */; };
@@ -140,6 +146,8 @@
 		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
+		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		73208E84212A41A400529FA3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowUIHandler.swift; sourceTree = "<group>"; };
 		732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Insets.swift"; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
@@ -171,7 +179,7 @@
 		73CBAE382124EBB70048462A /* NSAttributedString+Trimming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Trimming.swift"; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		73EAEC58211E41A900C2620F /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		73EAEC58211E41A900C2620F /* StatusesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesViewController.swift; sourceTree = "<group>"; };
 		73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		73EAEC5D211E41A900C2620F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73EAEC5F211E41AA00C2620F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -215,6 +223,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73208E7F212A3B2100529FA3 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				732BE265212345080049ADBD /* AccountViewController.swift */,
+				73EAEC58211E41A900C2620F /* StatusesViewController.swift */,
+				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		732558002125D49C00ED1AF3 /* UI Handlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +279,7 @@
 				732BE27121238FA50049ADBD /* FieldViewCell.swift */,
 				739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */,
 				739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */,
+				73208E84212A41A400529FA3 /* TableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -269,11 +288,10 @@
 			isa = PBXGroup;
 			children = (
 				732BE22E2120A9690049ADBD /* TabViewController.swift */,
-				73EAEC58211E41A900C2620F /* TimelineViewController.swift */,
+				73208E80212A3B3100529FA3 /* TimelineViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
-				732BE265212345080049ADBD /* AccountViewController.swift */,
-				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
+				73208E7F212A3B2100529FA3 /* Reusable */,
 				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 			);
 			path = "View Controllers";
@@ -627,10 +645,12 @@
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
-				73EAEC59211E41A900C2620F /* TimelineViewController.swift in Sources */,
+				73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */,
+				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
+				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
 				73CBAE392124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
@@ -663,6 +683,7 @@
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
+				73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -676,6 +697,7 @@
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3A2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
+				73208E82212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +720,7 @@
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
+				73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -711,6 +734,7 @@
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3B2124EBB70048462A /* NSAttributedString+Trimming.swift in Sources */,
+				73208E83212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

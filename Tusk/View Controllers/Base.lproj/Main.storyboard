@@ -13,7 +13,7 @@
         <!--Timeline-->
         <scene sceneID="ppF-vM-SDf">
             <objects>
-                <tableViewController id="dPN-7S-HJE" customClass="TimelineViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="dPN-7S-HJE" customClass="StatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="q4g-zx-Huu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,7 +66,7 @@
         <!--Timeline-->
         <scene sceneID="Pba-iI-AbS">
             <objects>
-                <viewController id="va2-Hu-waS" sceneMemberID="viewController">
+                <viewController id="va2-Hu-waS" customClass="TimelineViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KHq-8s-rMk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

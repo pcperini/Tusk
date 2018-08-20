@@ -13,7 +13,7 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountState
     var accountViewController: AccountViewController? {
         return self.childViewControllers.filter({ (child) in
-            (child as? AccountViewController) != nil
+            child is AccountViewController
         }).first as? AccountViewController
     }
     
