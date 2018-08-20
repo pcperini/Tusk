@@ -30,6 +30,7 @@ import DTCoreText
                 DTDefaultFontName: NSString(string: self.font!.fontName),
                 DTDefaultFontSize: NSNumber(value: Float(self.font!.pointSize)),
                 DTDefaultLinkColor: self.textColor ?? .black,
+                DTDefaultLinkDecoration: NSNumber(booleanLiteral: false),
                 DTDefaultTextColor: self.textColor ?? .black,
                 DTDefaultTextAlignment: NSNumber(value: self.coreTextAlignment.rawValue),
                 DTDocumentPreserveTrailingSpaces: NSNumber(booleanLiteral: false)
@@ -66,14 +67,27 @@ import DTCoreText
         
         // find the character that's been tapped
         let characterIndex = self.layoutManager.characterIndex(for: location, in: self.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        if characterIndex < self.textStorage.length {
-            // if the character is a link, handle the tap as UITextView normally would
-            if (self.textStorage.attribute(.link, at: characterIndex, effectiveRange: nil) != nil) {
-                return self
-            }
+        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: nil)
+        
+        if attributes[.link] != nil {
+            return super.hitTest(point, with: event)
         }
         
-        // otherwise return nil so the tap goes on to the next receiver
         return nil
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // location of the tap
+        var location = touches.first!.location(in: self)
+        location.x -= self.textContainerInset.left
+        location.y -= self.textContainerInset.top
+        
+        // find the character that's been tapped
+        let characterIndex = self.layoutManager.characterIndex(for: location, in: self.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: nil)
+        
+        if let link = attributes[.link] as? URL {
+            let _ = self.delegate?.textView?(self, shouldInteractWith: link, in: NSRange(), interaction: .invokeDefaultAction)
+        }
     }
 }

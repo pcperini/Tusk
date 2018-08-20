@@ -77,7 +77,9 @@ class StatusesViewController: PaginatingTableViewController {
         let displayStatus = status.reblog ?? status
         
         cell.originalStatus = status
-        cell.attachmentWasTapped = { (attachment) in self.presentAttachment(attachment: attachment, forStatus: displayStatus) }
+        cell.attachmentWasTapped = { (attachment) in
+            self.presentAttachment(attachment: attachment, forStatus: displayStatus)
+        }
         cell.accountElementWasTapped = { (account) in
             guard let account = account else { return }
             self.pushToAccount(account: account)
