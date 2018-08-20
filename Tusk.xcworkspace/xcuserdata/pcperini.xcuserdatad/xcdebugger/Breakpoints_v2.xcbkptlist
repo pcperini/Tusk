@@ -22,7 +22,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
+<<<<<<< HEAD
             timestampString = "556494859.774798"
+=======
+            timestampString = "556495851.372586"
+>>>>>>> master
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -38,7 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
+<<<<<<< HEAD
             timestampString = "556494859.774881"
+=======
+            timestampString = "556495851.3726569"
+>>>>>>> master
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -54,7 +62,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/TextView.swift"
+<<<<<<< HEAD
             timestampString = "556494859.774933"
+=======
+            timestampString = "556495851.372707"
+>>>>>>> master
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -70,7 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/TextView.swift"
+<<<<<<< HEAD
             timestampString = "556494859.774978"
+=======
+            timestampString = "556495851.372748"
+>>>>>>> master
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
