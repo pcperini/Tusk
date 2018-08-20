@@ -14,6 +14,7 @@ struct AppState: StateType {
     
     var auth: AuthState
     var timeline: TimelineState
+    var mentions: MentionsState
     var notifications: NotificationsState
     var messages: MessagesState
     var account: AccountState
@@ -27,6 +28,7 @@ struct AppState: StateType {
         return AppState(
             auth: AuthState.reducer(action: action, state: state?.auth),
             timeline: TimelineState.reducer(action: action, state: state?.timeline),
+            mentions: MentionsState.reducer(action: action, state: state?.mentions),
             notifications: NotificationsState.reducer(action: action, state: state?.notifications),
             messages: MessagesState.reducer(action: action, state: state?.messages),
             account: AccountState.reducer(action: action, state: state?.account)
@@ -37,6 +39,7 @@ struct AppState: StateType {
         guard let client = self.auth.client else { return }
         DispatchQueue.main.async {
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
+            GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
         }

@@ -25,14 +25,15 @@ protocol PaginatableState: StateType {
 
 struct PaginatingData<DataType> where DataType: Paginatable {
     typealias ProviderFunction = (RequestRange?) -> Request<[DataType]>
+    typealias DataFilter = (DataType) -> Bool
     
-    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], provider: ProviderFunction, completion: @escaping ([DataType], Pagination?) -> Void) {
+    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], provider: ProviderFunction, filters: [DataFilter] = [], completion: @escaping ([DataType], Pagination?) -> Void) {
         let request: Request<[DataType]> = provider(range)
 
         client.run(request) { (result) in
             switch result {
             case .success(let data, let pagination): do {
-                completion(self.mergeData(existingData: existingData, newData: data), pagination)
+                completion(self.mergeData(existingData: existingData, newData: data, filters: filters), pagination)
                 print("success", #file, #line, DataType.self)
                 }
             case .failure(let error): print(error, #file, #line)
@@ -40,7 +41,7 @@ struct PaginatingData<DataType> where DataType: Paginatable {
         }
     }
     
-    private func mergeData(existingData: [DataType], newData: [DataType]) -> [DataType] {
+    private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter]) -> [DataType] {
         guard let newFirst = newData.first, let newLast = newData.last else { return existingData }
         var dataSet = Set<DataType>()
         dataSet = dataSet.union(existingData.filter { (item) in
@@ -48,9 +49,12 @@ struct PaginatingData<DataType> where DataType: Paginatable {
         })
         
         dataSet = dataSet.union(newData)
-        return Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
+        var results = Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
             lhs > rhs
         })
+        
+        results = filters.reduce(results) { (all, next) in all.filter(next) }
+        return results
     }
     
     func updatePages<PaginatableStateType: PaginatableState>(pagination: Pagination?, state: PaginatableStateType) -> (RequestRange?, RequestRange?) {

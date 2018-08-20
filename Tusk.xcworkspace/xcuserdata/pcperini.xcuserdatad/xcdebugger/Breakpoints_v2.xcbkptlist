@@ -22,7 +22,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
-            timestampString = "556420209.988325"
+            timestampString = "556480131.380479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -38,7 +38,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "556420209.988391"
+            timestampString = "556480131.380546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -54,7 +54,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/TextView.swift"
-            timestampString = "556420209.988441"
+            timestampString = "556480131.380597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -70,13 +70,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/TextView.swift"
-            timestampString = "556420209.988747"
+            timestampString = "556480131.380639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "hitTest(_:with:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/View Controllers/Reusable/StatusesContainerViewController.swift"
+            timestampString = "556480131.380679"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "newState(state:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/View Controllers/Reusable/StatusesContainerViewController.swift"
+            timestampString = "556480131.38072"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "newState(state:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tusk.StatusesContainerViewController.newState(state: A) -&gt; ()"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/View%20Controllers/Reusable/StatusesContainerViewController.swift"
+                  timestampString = "556479906.79899"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "46">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Tusk.StatusesContainerViewController.newState(state: A) -&gt; ()"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/View%20Controllers/Reusable/StatusesContainerViewController.swift"
+                  timestampString = "556479906.801337"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "63">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
