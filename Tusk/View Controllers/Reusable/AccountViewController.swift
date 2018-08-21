@@ -12,8 +12,8 @@ import ReSwift
 import SafariServices
 
 class AccountViewController: UITableViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = AccountsState
-    private var state: AccountsState { return GlobalStore.state.account }
+    typealias StoreSubscriberStateType = ActiveAccountState
+    private var state: ActiveAccountState { return GlobalStore.state.activeAccount }
     
     enum Section: Int, CaseIterable {
         case About = 0
@@ -41,7 +41,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.account } }
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.activeAccount } }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,7 +84,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.bioTopConstraint.toggle(on: !(self.bioTextView.text?.isEmpty ?? true))
         self.bioHeightConstraint.isActive = self.bioTextView.text?.isEmpty ?? true
 
-        self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
+        self.pinnedStatuses = self.state.pinnedStatuses
         if (self.pinnedStatuses == nil) {
             self.pollPinnedStatuses()
         }
@@ -96,11 +96,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
-        guard let activeAccount = self.state.activeAccount else { return }
+        guard let activeAccount = self.state.account else { return }
         let image: UIImage?
         if (account == activeAccount) {
             image = UIImage(named: "SettingsButton")
-        } else if (self.state.following[activeAccount]?.contains(account) ?? false) {
+        } else if (self.state.following.contains(account)) {
             image = UIImage(named: "StopFollowingButton")
         } else {
             image = UIImage(named: "FollowButton")
@@ -111,14 +111,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func pollPinnedStatuses() {
         guard let client = GlobalStore.state.auth.client else { return }
-        guard let account = self.account else { return }
-        
-        GlobalStore.dispatch(AccountsState.PollAccountPinnedStatuses(client: client, account: account))
+        GlobalStore.dispatch(ActiveAccountState.PollPinnedStatuses(client: client))
     }
     
-    func newState(state: AccountsState) {
-        guard let account = self.account else { return }
-        guard let newStatuses = state.pinnedStatuses[account] else { return }
+    func newState(state: ActiveAccountState) {
+        let newStatuses = state.pinnedStatuses
 
         DispatchQueue.main.async {
             if (self.pinnedStatuses != newStatuses) {
