@@ -8,6 +8,7 @@
 
 import UIKit
 import MastodonKit
+import AlamofireImage
 import AnimatedGIFImageSerialization
 
 @UIApplicationMain

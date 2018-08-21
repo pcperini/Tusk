@@ -459,6 +459,11 @@
                                         <constraint firstItem="acP-gi-fWs" firstAttribute="top" secondItem="fAU-27-50a" secondAttribute="top" constant="13" id="zjF-RT-KEQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="fieldNameLabel" destination="tR7-c3-ZTG" id="2Hb-1I-p0P"/>
                                     <outlet property="fieldValueTextView" destination="0H4-eF-yBa" id="6Hd-2S-Ddn"/>

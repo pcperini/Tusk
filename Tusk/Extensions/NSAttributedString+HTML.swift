@@ -1,5 +1,5 @@
 //
-//  NSAttributedString+Trimming.swift
+//  NSAttributedString+HTML.swift
 //  Tusk
 //
 //  Created by Patrick Perini on 8/15/18.
@@ -10,6 +10,10 @@ import Foundation
 import DTCoreText
 
 extension NSAttributedString {
+    var allAttributes: [NSAttributedStringKey: Any] {
+        return self.attributes(at: 0, longestEffectiveRange: nil, in: NSRange(location: 0, length: self.length))
+    }
+    
     public func attributedStringByTrimmingCharacterSet(charSet: CharacterSet) -> NSAttributedString {
         let modifiedString = NSMutableAttributedString(attributedString: self)
         modifiedString.trimCharactersInSet(charSet: charSet)

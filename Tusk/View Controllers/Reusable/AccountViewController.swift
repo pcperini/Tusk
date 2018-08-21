@@ -9,6 +9,7 @@
 import UIKit
 import MastodonKit
 import ReSwift
+import SafariServices
 
 class AccountViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountState
@@ -156,16 +157,25 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func tableView(_ tableView: UITableView, cellForAboutSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
         let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
+        
+        let field = account.fields[row]
+        let displayField = account.displayFields[row]
 
-        guard let name = account.displayFields[row]["name"],
-            let displayValue = account.displayFields[row]["value"],
-            let rawValue = NSAttributedString(htmlString: account.fields[row]["value"]!)?.string else { return FieldViewCell() }
-
+        guard let name = displayField["name"],
+            let displayValue = displayField["value"],
+            let rawValue = NSAttributedString(htmlString: field["value"]!) else { return cell }
+        let plainValue = rawValue.string
+        
         cell.fieldNameLabel.text = name
         cell.fieldValueTextView.htmlText = displayValue
-
-        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: rawValue)
-
+        cell.selectionStyle = .none
+        
+        if let link = rawValue.allAttributes[.link] as? URL {
+            cell.selectionStyle = .default
+            cell.url = link
+        }
+        
+        cell.iconView.image = FieldViewCell.iconForCustomField(fieldName: name, fieldValue: plainValue)
         return cell
     }
     
@@ -212,6 +222,26 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         case .About: return self.account?.displayFields.count ?? 0 > 0 ? "About" : nil
         case .Stats: return nil
         case .Statuses: return self.pinnedStatuses?.count ?? 0 > 0 ? "Pinned" : nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { return }
+        switch section {
+        case .About: do {
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? FieldViewCell else { break }
+            guard let url = cell.url else { break }
+            self.openURL(url: url)
+            }
+        default: break
+        }
+    }
+    
+    // Navigation
+    func openURL(url: URL) {
+        UIApplication.shared.open(url, options: [:]) { (success) in
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+            self.tableView.deselectRow(at: indexPath, animated: !success)
         }
     }
 }

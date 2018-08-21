@@ -8,10 +8,12 @@
 
 import UIKit
 
-class FieldViewCell: UITableViewCell {
+class FieldViewCell: TableViewCell {
     @IBOutlet var iconView: UIImageView!
     @IBOutlet var fieldNameLabel: UILabel!
     @IBOutlet var fieldValueTextView: TextView!
+    
+    var url: URL?
     
     static func iconForStat(stat: AccountViewController.Stat) -> UIImage? {
         switch stat {
