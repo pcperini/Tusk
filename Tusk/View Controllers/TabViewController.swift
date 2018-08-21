@@ -16,6 +16,7 @@ class TabViewController: UITabBarController, StoreSubscriber {
     var authFlowHandler: AuthFlowUIHandler!
     
     var notificationTab: UITabBarItem! { return self.tabBar.items!.first { (item) in item.tag == 10 } }
+    var tabSubsequentTapCounts: [UIViewController: Int] = [:]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,6 +30,8 @@ class TabViewController: UITabBarController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
+        
         self.authFlowHandler = AuthFlowUIHandler(viewController: self, state: self.state.auth)
         self.reloadData()
     }
@@ -47,5 +50,27 @@ class TabViewController: UITabBarController, StoreSubscriber {
         DispatchQueue.main.async {
             self.reloadData()
         }
+    }
+}
+
+extension TabViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let tapCount = (self.tabSubsequentTapCounts[viewController] ?? 0) + 1
+        self.tabSubsequentTapCounts[viewController] = tapCount
+        
+        if (tapCount > 1) {
+            var vc: UIViewController? = (viewController as? UINavigationController)?.topViewController
+            if (vc as? TableContainerViewController != nil) { vc = (vc as? TableContainerViewController)?.tableViewController }
+            
+            if let tableViewController = vc as? UITableViewController, let tableView = tableViewController.tableView {
+                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tabSubsequentTapCounts[viewController] = 0
+        }
+        
+        return true
     }
 }

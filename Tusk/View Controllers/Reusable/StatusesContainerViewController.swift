@@ -10,11 +10,9 @@ import UIKit
 import MastodonKit
 import ReSwift
 
-class StatusesContainerViewController<StoreSubscriberStateType: StatusesState>: UIViewController, StoreSubscriber {
+class StatusesContainerViewController<StoreSubscriberStateType: StatusesState>: TableContainerViewController, StoreSubscriber {
     var statusesViewController: StatusesViewController? {
-        return self.childViewControllers.filter({ (child) in
-            child is StatusesViewController
-        }).first as? StatusesViewController
+        return self.tableViewController as? StatusesViewController
     }
     
     func setUpSubscriptions() {}
