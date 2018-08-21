@@ -1,5 +1,5 @@
 //
-//  AccountState.swift
+//  AccountsState.swift
 //  Tusk
 //
 //  Created by Patrick Perini on 8/12/18.
@@ -10,7 +10,7 @@ import Foundation
 import MastodonKit
 import ReSwift
 
-struct AccountState: StateType {
+struct AccountsState: StateType {
     struct SetAccount: Action { let value: Account? }
     struct SetAccountPinnedStatuses: Action { let value: [Status] }
     struct SetAccountFollowing: Action {
@@ -32,8 +32,8 @@ struct AccountState: StateType {
     var pinnedStatuses: [Account: [Status]] = [:]
     var following: [Account: [Account]] = [:]
     
-    static func reducer(action: Action, state: AccountState?) -> AccountState {
-        var state = state ?? AccountState()
+    static func reducer(action: Action, state: AccountsState?) -> AccountsState {
+        var state = state ?? AccountsState()
         
         switch action {
         case let action as SetAccount: state.activeAccount = action.value

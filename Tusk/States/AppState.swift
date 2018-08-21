@@ -17,7 +17,7 @@ struct AppState: StateType {
     var mentions: MentionsState
     var notifications: NotificationsState
     var messages: MessagesState
-    var account: AccountState
+    var account: AccountsState
     
     static func reducer(action: Action, state: AppState?) -> AppState {
         switch action {
@@ -31,7 +31,7 @@ struct AppState: StateType {
             mentions: MentionsState.reducer(action: action, state: state?.mentions),
             notifications: NotificationsState.reducer(action: action, state: state?.notifications),
             messages: MessagesState.reducer(action: action, state: state?.messages),
-            account: AccountState.reducer(action: action, state: state?.account)
+            account: AccountsState.reducer(action: action, state: state?.account)
         )
     }
     
@@ -42,7 +42,7 @@ struct AppState: StateType {
             GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
             GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
-            GlobalStore.dispatch(AccountState.PollActiveAccount(client: client))
+            GlobalStore.dispatch(AccountsState.PollActiveAccount(client: client))
         }
     }
     

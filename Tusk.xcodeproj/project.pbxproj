@@ -54,9 +54,9 @@
 		732BE219211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
 		732BE21A211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
 		732BE21B211F96600049ADBD /* MessagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE218211F96600049ADBD /* MessagesState.swift */; };
-		732BE223212089000049ADBD /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE222212089000049ADBD /* AccountState.swift */; };
-		732BE224212089000049ADBD /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE222212089000049ADBD /* AccountState.swift */; };
-		732BE225212089000049ADBD /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE222212089000049ADBD /* AccountState.swift */; };
+		732BE223212089000049ADBD /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE222212089000049ADBD /* AccountsState.swift */; };
+		732BE224212089000049ADBD /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE222212089000049ADBD /* AccountsState.swift */; };
+		732BE225212089000049ADBD /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE222212089000049ADBD /* AccountsState.swift */; };
 		732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */; };
 		732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */; };
 		732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */; };
@@ -177,7 +177,7 @@
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
 		732BE218211F96600049ADBD /* MessagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesState.swift; sourceTree = "<group>"; };
-		732BE222212089000049ADBD /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
+		732BE222212089000049ADBD /* AccountsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsState.swift; sourceTree = "<group>"; };
 		732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAccountViewController.swift; sourceTree = "<group>"; };
 		732BE22E2120A9690049ADBD /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatingTableViewController.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				73208E88212B290500529FA3 /* MentionsState.swift */,
 				732BE218211F96600049ADBD /* MessagesState.swift */,
 				732BE210211F93860049ADBD /* NotificationsState.swift */,
-				732BE222212089000049ADBD /* AccountState.swift */,
+				732BE222212089000049ADBD /* AccountsState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 			);
 			path = States;
@@ -671,7 +671,7 @@
 			files = (
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
 				732BE289212485890049ADBD /* CaseIterable.swift in Sources */,
-				732BE223212089000049ADBD /* AccountState.swift in Sources */,
+				732BE223212089000049ADBD /* AccountsState.swift in Sources */,
 				732BE25E212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
@@ -720,7 +720,7 @@
 				73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
-				732BE224212089000049ADBD /* AccountState.swift in Sources */,
+				732BE224212089000049ADBD /* AccountsState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
@@ -763,7 +763,7 @@
 				73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
-				732BE225212089000049ADBD /* AccountState.swift in Sources */,
+				732BE225212089000049ADBD /* AccountsState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,

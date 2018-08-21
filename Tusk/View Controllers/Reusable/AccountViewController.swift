@@ -12,8 +12,8 @@ import ReSwift
 import SafariServices
 
 class AccountViewController: UITableViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = AccountState
-    private var state: AccountState { return GlobalStore.state.account }
+    typealias StoreSubscriberStateType = AccountsState
+    private var state: AccountsState { return GlobalStore.state.account }
     
     enum Section: Int, CaseIterable {
         case About = 0
@@ -113,10 +113,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let client = GlobalStore.state.auth.client else { return }
         guard let account = self.account else { return }
         
-        GlobalStore.dispatch(AccountState.PollAccountPinnedStatuses(client: client, account: account))
+        GlobalStore.dispatch(AccountsState.PollAccountPinnedStatuses(client: client, account: account))
     }
     
-    func newState(state: AccountState) {
+    func newState(state: AccountsState) {
         guard let account = self.account else { return }
         guard let newStatuses = state.pinnedStatuses[account] else { return }
 
