@@ -12,8 +12,11 @@ import ReSwift
 import SafariServices
 
 class AccountViewController: UITableViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = ActiveAccountState
-    private var state: ActiveAccountState { return GlobalStore.state.activeAccount }
+    typealias StoreSubscriberStateType = AccountStateType
+    private var isActiveAccount: Bool { return self.account == GlobalStore.state.activeAccount.account }
+    private var state: AccountStateType {
+        return self.isActiveAccount ? GlobalStore.state.activeAccount : GlobalStore.state.otherAccount
+    }
     
     enum Section: Int, CaseIterable {
         case About = 0
@@ -41,7 +44,9 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.activeAccount } }
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) -> AccountStateType in
+            self.isActiveAccount ? state.activeAccount : state.otherAccount
+        }}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,7 +90,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.bioHeightConstraint.isActive = self.bioTextView.text?.isEmpty ?? true
 
         self.pinnedStatuses = self.state.pinnedStatuses
-        if (self.pinnedStatuses == nil) {
+        if (self.pinnedStatuses?.isEmpty ?? true) {
             self.pollPinnedStatuses()
         }
         
@@ -111,10 +116,18 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func pollPinnedStatuses() {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(ActiveAccountState.PollPinnedStatuses(client: client))
+        
+        let action: Action
+        if (self.isActiveAccount) {
+            action = ActiveAccountState.PollPinnedStatuses(client: client)
+        } else {
+            action = OtherAccountState.PollPinnedStatuses(client: client)
+        }
+        
+        GlobalStore.dispatch(action)
     }
     
-    func newState(state: ActiveAccountState) {
+    func newState(state: AccountStateType) {
         let newStatuses = state.pinnedStatuses
 
         DispatchQueue.main.async {

@@ -107,6 +107,9 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     
     func pushToAccount(account: Account) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
+        
+        guard let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(OtherAccountState.PollAccount(client: client, accountID: account.id))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

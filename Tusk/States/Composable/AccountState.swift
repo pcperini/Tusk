@@ -39,7 +39,11 @@ extension AccountStateType {
         var state = state ?? Self.init()
         
         switch action {
-        case let action as SetAccount: state.account = action.value
+        case let action as SetAccount: do {
+            guard state.account != action.value else { break }
+            state = Self.init()
+            state.account = action.value
+            }
         case let action as SetPinnedStatuses: state.pinnedStatuses = action.value
         case let action as SetFollowing: state.following = action.value
         case let action as SetFollowers: state.followers = action.value
@@ -113,7 +117,7 @@ struct AccountStatePollFollowers<State: StateType>: Action { let client: Client 
 struct AccountStatePollStatuses<State: StateType>: Action { let client: Client }
 struct AccountStatePollAccount<State: StateType>: Action { let client: Client; let accountID: String? }
 
-struct AccountState: AccountStateType {
+struct OtherAccountState: AccountStateType {
     var account: Account? = nil
     var pinnedStatuses: [Status] = []
     var following: [Account] = []
