@@ -26,7 +26,7 @@ struct NotificationsState: PaginatableState {
     
     internal var nextPage: RequestRange? = nil
     internal var previousPage: RequestRange? = nil
-    internal var paginatingData: PaginatingData<MKNotification> = PaginatingData<MKNotification>()
+    internal var paginatingData: PaginatingData<MKNotification, MKNotification> = PaginatingData<MKNotification, MKNotification>(minimumPageSize: 0, provider: NotificationsState.provider)
     
     private static let lastReadDefaultsKey = "notifications.lastRead"
     
@@ -54,7 +54,7 @@ struct NotificationsState: PaginatableState {
     }
     
     func pollNotifications(client: Client, range: RequestRange? = nil) {
-        self.paginatingData.pollData(client: client, range: range, existingData: self.notifications, provider: NotificationsState.provider) { (
+        self.paginatingData.pollData(client: client, range: range, existingData: self.notifications) { (
             notifications: [MKNotification],
             pagination: Pagination?
         ) in

@@ -20,5 +20,16 @@ struct MessagesState: StatusesState {
     
     var nextPage: RequestRange? = nil
     var previousPage: RequestRange? = nil
-    var paginatingData: PaginatingData<Status> = PaginatingData<Status>(minimumPageSize: 10)
+    var paginatingData: PaginatingData<Status, MKNotification> = PaginatingData<Status, MKNotification>(minimumPageSize: 10,
+                                                                                                        typeMapper: MessagesState.typeMapper,
+                                                                                                        provider: MessagesState.provider)
+    
+    static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
+        guard let range = range else { return Notifications.all(range: .limit(30)) }
+        return Notifications.all(range: range)
+    }
+    
+    static func typeMapper(notifications: [MKNotification]) -> [Status] {
+        return notifications.compactMap { $0.status }
+    }
 }

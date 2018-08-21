@@ -50,18 +50,13 @@ extension StatusesState {
     }
     
     func pollStatuses(client: Client, range: RequestRange? = nil) {
-        self.paginatingData.pollData(client: client, range: range, existingData: self.statuses, provider: Self.provider, filters: self.filters) { (
+        self.paginatingData.pollData(client: client, range: range, existingData: self.statuses, filters: self.filters) { (
             statuses: [Status],
             pagination: Pagination?
         ) in
             GlobalStore.dispatch(SetStatuses(value: statuses))
             GlobalStore.dispatch(SetPage(value: pagination))
         }
-    }
-    
-    static func provider(range: RequestRange? = nil) -> Request<[Status]> {
-        guard let range = range else { return Timelines.home(range: .limit(40)) }
-        return Timelines.home(range: range)
     }
 }
 

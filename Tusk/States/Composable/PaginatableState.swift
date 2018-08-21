@@ -15,35 +15,42 @@ protocol Paginatable: Encodable, Decodable, Comparable, Hashable {}
 
 protocol PaginatableState: StateType {
     associatedtype DataType where DataType: Paginatable
+    associatedtype RequestType where RequestType: Paginatable
     
     var nextPage: RequestRange? { get set }
     var previousPage: RequestRange? { get set }
-    var paginatingData: PaginatingData<DataType> { get set }
+    var paginatingData: PaginatingData<DataType, RequestType> { get set }
     
-    static func provider(range: RequestRange?) -> Request<[DataType]>
+    static func provider(range: RequestRange?) -> Request<[RequestType]>
 }
 
-struct PaginatingData<DataType> where DataType: Paginatable {
-    typealias ProviderFunction = (RequestRange?) -> Request<[DataType]>
+struct PaginatingData<DataType, RequestType> where DataType: Paginatable, RequestType: Paginatable {
     typealias DataFilter = (DataType) -> Bool
     
-    var minimumPageSize: Int = 0
+    var minimumPageSize: Int
+    var provider: (RequestRange?) -> Request<[RequestType]>
+    var typeMapper: ([RequestType]) -> [DataType]
     
-    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], provider: @escaping ProviderFunction, filters: [DataFilter] = [], completion: @escaping ([DataType], Pagination?) -> Void) {
-        let request: Request<[DataType]> = provider(range)
+    init(minimumPageSize: Int = 0, typeMapper: @escaping ([RequestType]) -> [DataType] = { $0 as? [DataType] ?? [] }, provider: @escaping ((RequestRange?) -> Request<[RequestType]>)) {
+        self.minimumPageSize = minimumPageSize
+        self.typeMapper = typeMapper
+        self.provider = provider
+    }
+    
+    func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], filters: [DataFilter] = [], completion: @escaping ([DataType], Pagination?) -> Void) {
+        let request: Request<[RequestType]> = self.provider(range)
         var allData = existingData
 
         client.run(request) { (result) in
             switch result {
             case .success(let data, let pagination): do {
-                allData = self.mergeData(existingData: allData, newData: data, filters: filters)
+                allData = self.mergeData(existingData: allData, newData: self.typeMapper(data), filters: filters)
                 print("success", #file, #line, DataType.self)
                 
                 guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
                 self.pollData(client: client,
                               range: nextPage,
                               existingData: allData,
-                              provider: provider,
                               filters: filters,
                               completion: completion)
                 }

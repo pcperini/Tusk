@@ -251,7 +251,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-401" y="720"/>
+            <point key="canvasLocation" x="-376" y="1701"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="VtJ-vr-zli">
