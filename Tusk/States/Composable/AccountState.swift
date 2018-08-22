@@ -11,15 +11,21 @@ import ReSwift
 
 protocol AccountStateType: StateType {
     var account: Account? { get set }
-    var pinnedStatuses: [Status]  { get set }
-    var following: [Account]  { get set }
-    var followers: [Account]  { get set }
-    var statuses: [Status]  { get set }
+    var pinnedStatuses: [Status] { get set }
+    var following: [Account] { get set }
+    var followers: [Account] { get set }
+    var statuses: [Status] { get set }
+    
+    var statusesNextPage: Pagination? { get set }
+    var statusesPreviousPage: Pagination? { get set }
+    var statusesPaginatableData: PaginatingData<Status, Status> { mutating get set }
     
     init()
     static func pollAccount(client: Client, accountID: String?)
     func pollFollowing(client: Client)
     func pollPinnedStatuses(client: Client)
+    
+    func statusesProvider(range: RequestRange?) -> Request<[Status]>
 }
 
 extension AccountStateType {
@@ -103,6 +109,12 @@ extension AccountStateType {
             }
         }
     }
+    
+    func statusesProvider(range: RequestRange?) -> Request<[Status]> {
+        guard let account = self.account else { fatalError("Cannot request statuses for nill account") }
+        guard let range = range else { return Accounts.statuses(id: account.id) }
+        return Accounts.statuses(id: account.id, range: range)
+    }
 }
 
 struct AccountStateSetAccount<State: StateType>: Action { let value: Account? }
@@ -123,4 +135,8 @@ struct OtherAccountState: AccountStateType {
     var following: [Account] = []
     var followers: [Account] = []
     var statuses: [Status] = []
+    
+    var statusesNextPage: Pagination? = nil
+    var statusesPreviousPage: Pagination? = nil
+    lazy var statusesPaginatableData: PaginatingData<Status, Status> = PaginatingData<Status, Status>(provider: self.statusesProvider)
 }
