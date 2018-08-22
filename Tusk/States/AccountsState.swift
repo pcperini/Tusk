@@ -22,10 +22,9 @@ struct AccountsState: StateType {
         
         switch action {
         case let action as AccountState.PollAccount: state.allAccounts = state.allAccounts.union([AccountState.reducer(action: action, state: nil)])
-        default: break
+        default: state.allAccounts = Set(state.allAccounts.map({ (account) in AccountState.reducer(action: action, state: account) }))
         }
         
-        state.allAccounts = Set<AccountState>(state.allAccounts.map({ (account) in AccountState.reducer(action: action, state: account) }))
         return state
     }
     

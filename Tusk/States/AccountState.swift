@@ -12,7 +12,7 @@ import ReSwift
 protocol AccountAction: Action { var account: Account { get } }
 
 struct AccountState: StateType {
-    struct SetAccount: Action { let account: Account?; let active: Bool }
+    private struct SetAccount: AccountAction { let account: Account; let active: Bool }
     struct SetPinnedStatuses: AccountAction { let value: [Status]; let account: Account }
     struct SetFollowing: AccountAction { let value: [Account]; let account: Account }
     struct SetFollowers: AccountAction { let value: [Account]; let account: Account }
@@ -46,12 +46,10 @@ struct AccountState: StateType {
         switch action {
         case let action as PollAccount: do {
             pollAccount(client: action.client, accountID: action.account?.id)
-            return AccountState.reducer(action: SetAccount(account: action.account, active: action.account?.id == nil), state: AccountState())
-            }
-        case let action as SetAccount: do {
-//            if (state.account != action.account) { state = AccountState() }
+            state = AccountState()
             state.account = action.account
-            state.isActiveAccount = action.active
+            state.isActiveAccount = action.account?.id == nil
+            return state
             }
         default: break
         }
@@ -59,6 +57,10 @@ struct AccountState: StateType {
         guard let action = action as? AccountAction, state.account == nil || state.account == action.account else { return state }
         
         switch action {
+        case let action as SetAccount: do {
+            state.account = action.account
+            state.isActiveAccount = action.active
+            }
         case let action as SetPinnedStatuses: state.pinnedStatuses = action.value
         case let action as SetFollowing: state.following = action.value
         case let action as SetFollowers: state.followers = action.value
@@ -150,11 +152,14 @@ struct AccountState: StateType {
 
 extension AccountState: Hashable {
     static func == (lhs: AccountState, rhs: AccountState) -> Bool {
+        print("\(lhs.account?.id) == \(rhs.account?.id) [\(lhs.account == rhs.account)] && \(lhs.isActiveAccount) == \(rhs.isActiveAccount) [\(lhs.isActiveAccount == rhs.isActiveAccount)]")
         return lhs.account == rhs.account && lhs.isActiveAccount == rhs.isActiveAccount
     }
     
     var hashValue: Int {
-        return (self.account?.id.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0)
+        let hash = (self.account?.id.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0)
+        print("\n\nHash for account \(self.account?.id) \(hash)")
+        return hash
     }
     
     
