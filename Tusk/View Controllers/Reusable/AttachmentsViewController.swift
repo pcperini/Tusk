@@ -6,63 +6,32 @@
 //  Copyright © 2018 Patrick Perini. All rights reserved.
 //
 
-import NYTPhotoViewer
+import Lightbox
 import MastodonKit
 
-class AttachmentsViewController: NYTPhotosViewController {
-    private let dataHandler: AttachmentsViewControllerDataHandler
+class AttachmentsViewController: LightboxController {
+    static func configure() {
+        LightboxConfig.CloseButton.enabled = false
+    }
     
     convenience init(attachments: [Attachment], initialAttachment: Attachment?) {
-        let dataHandler = AttachmentsViewControllerDataHandler(attachments: attachments)
-        self.init(dataSource: dataHandler, initialPhoto: dataHandler.photo(for: initialAttachment), delegate: dataHandler)
+        let images = attachments.compactMap { (attachment) -> LightboxImage? in
+            switch attachment.type {
+            case .image: return LightboxImage(imageURL: URL(string: attachment.url)!, text: "", videoURL: nil)
+            case .gifv, .video: return LightboxImage(imageURL: URL(string: attachment.previewURL)!, text: "", videoURL: URL(string: attachment.url)!)
+            default: return nil
+            }
+        }
+        
+        let startIndex = (initialAttachment != nil ? attachments.index(of: initialAttachment!) : 0) ?? 0
+        self.init(images: images, startIndex: startIndex)
     }
     
-    override init(dataSource: NYTPhotoViewerDataSource, initialPhoto: NYTPhoto?, delegate: NYTPhotosViewControllerDelegate?) {
-        guard let dataHandler = dataSource as? AttachmentsViewControllerDataHandler else { fatalError("AttachmentsViewController may only have AttachmentsViewControllerDataHandler as data source") }
-        self.dataHandler = dataHandler
-        super.init(dataSource: dataSource, initialPhoto: initialPhoto, delegate: delegate)
+    override init(images: [LightboxImage], startIndex index: Int) {
+        super.init(images: images, startIndex: index)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-fileprivate class AttachmentsViewControllerDataHandler: NSObject, NYTPhotosViewControllerDelegate, NYTPhotoViewerDataSource {
-    var numberOfPhotos: NSNumber? { return NSNumber(integerLiteral: self.photos.count) }
-    let photos: [AttachmentPhoto]
-    
-    init(attachments: [Attachment]) {
-        self.photos = attachments.map { (attachment) in AttachmentPhoto(attachment: attachment) }
-    }
-    
-    func photo(for attachment: Attachment?) -> NYTPhoto? {
-        guard let attachment = attachment else { return nil }
-        return self.photos.first { (photo) in photo.attachment == attachment }
-    }
-
-    func index(of photo: NYTPhoto) -> Int {
-        guard let photo = photo as? AttachmentPhoto else { return NSNotFound }
-        guard let index = self.photos.index(of: photo) else { return NSNotFound }
-        return index
-    }
-    
-    func photo(at photoIndex: Int) -> NYTPhoto? {
-        guard photoIndex < self.photos.count else { return nil }
-        return self.photos[photoIndex]
-    }
-}
-
-fileprivate class AttachmentPhoto: NSObject, NYTPhoto {
-    let attachment: Attachment
-    var image: UIImage? { return try? UIImage(contentsOf: URL(string: attachment.url), cachePolicy: .reloadRevalidatingCacheData) }
-    var imageData: Data? { return try? Data(contentsOf: URL(string: attachment.url)!) }
-    var placeholderImage: UIImage? { return nil }
-    var attributedCaptionTitle: NSAttributedString? { return nil }
-    var attributedCaptionSummary: NSAttributedString? { return nil }
-    var attributedCaptionCredit: NSAttributedString? { return nil }
-    
-    init(attachment: Attachment) {
-        self.attachment = attachment
     }
 }

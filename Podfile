@@ -8,8 +8,8 @@ pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git', :branc
   pod 'AFDateHelper', '~> 4.2'
   pod 'DTCoreText', '~> 1.6'
   pod 'KeychainAccess', '~> 3.1'
-  pod 'NYTPhotoViewer', '~> 2.0'
   pod 'AnimatedGIFImageSerialization', '~> 0.2'
+  pod 'Lightbox', '~> 2.1'
 
   target 'TuskTests' do
     inherit! :search_paths
