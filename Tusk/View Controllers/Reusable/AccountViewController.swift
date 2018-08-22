@@ -238,6 +238,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             guard let stat = Stat(rawValue: indexPath.row) else { break }
             switch stat {
             case .Statuses: self.pushToStatuses()
+            case .Followers: self.pushToFollowers()
+            case .Follows: self.pushToFollows()
             default: break
             }
             }
@@ -259,11 +261,31 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.performSegue(withIdentifier: "PushAccountStatusesViewController", sender: self.account)
     }
     
+    func pushToFollowers() {
+        guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollFollowers(client: client, account: account))
+        self.performSegue(withIdentifier: "PushFollowsViewController", sender: self.account)
+    }
+    
+    func pushToFollows() {
+        guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollFollowing(client: client, account: account))
+        self.performSegue(withIdentifier: "PushFollowsViewController", sender: self.account)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
         switch segue.identifier {
         case "PushAccountStatusesViewController": do {
+            guard let accountStatusesVC = segue.destination as? AccountStatusesViewController, let account = sender as? Account else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountStatusesVC.account = account
+            }
+        case "PushFollowsViewController": do {
             guard let accountStatusesVC = segue.destination as? AccountStatusesViewController, let account = sender as? Account else {
                 segue.destination.dismiss(animated: true, completion: nil)
                 return
