@@ -12,7 +12,7 @@ import ReSwift
 protocol AccountAction: Action { var account: Account { get } }
 
 struct AccountState: StateType {
-    struct SetAccount: AccountAction { let account: Account }
+    struct SetAccount: Action { let account: Account?; let active: Bool }
     struct SetPinnedStatuses: AccountAction { let value: [Status]; let account: Account }
     struct SetFollowing: AccountAction { let value: [Account]; let account: Account }
     struct SetFollowers: AccountAction { let value: [Account]; let account: Account }
@@ -29,6 +29,7 @@ struct AccountState: StateType {
     struct PollOlderStatuses: AccountAction { let client: Client; let account: Account }
     struct PollNewerStatuses: AccountAction { let client: Client; let account: Account }
     
+    var isActiveAccount: Bool = false
     var account: Account? = nil
     var pinnedStatuses: [Status] = []
     var following: [Account] = []
@@ -45,7 +46,11 @@ struct AccountState: StateType {
         switch action {
         case let action as PollAccount: do {
             pollAccount(client: action.client, accountID: action.account?.id)
-            return AccountState()
+            return AccountState.reducer(action: SetAccount(account: action.account, active: action.account?.id == nil), state: state)
+            }
+        case let action as SetAccount: do {
+            state.account = action.account
+            state.isActiveAccount = action.active
             }
         default: break
         }
@@ -53,10 +58,6 @@ struct AccountState: StateType {
         guard let action = action as? AccountAction, state.account == nil || state.account == action.account else { return state }
         
         switch action {
-        case let action as SetAccount: do {
-            guard state.account != action.account else { break }
-            state.account = action.account
-            }
         case let action as SetPinnedStatuses: state.pinnedStatuses = action.value
         case let action as SetFollowing: state.following = action.value
         case let action as SetFollowers: state.followers = action.value
@@ -81,7 +82,7 @@ struct AccountState: StateType {
         client.run(request) { (result) in
             switch result {
             case .success(let account, _): do {
-                GlobalStore.dispatch(SetAccount(account: account))
+                GlobalStore.dispatch(SetAccount(account: account, active: accountID == nil))
                 GlobalStore.dispatch(PollPinnedStatuses(client: client, account: account))
                 GlobalStore.dispatch(PollFollowing(client: client, account: account))
                 print("success", #file, #line)
@@ -134,7 +135,7 @@ struct AccountState: StateType {
     }
     
     func statusesProvider(range: RequestRange?) -> Request<[Status]> {
-        guard let account = self.account else { fatalError("Cannot request statuses for nill account") }
+        guard let account = self.account else { fatalError("Cannot request statuses for nil account") }
         guard let range = range else { return Accounts.statuses(id: account.id) }
         return Accounts.statuses(id: account.id, range: range)
     }
@@ -144,4 +145,16 @@ struct AccountState: StateType {
                                                          nextPage: self.statusesNextPage,
                                                          previousPage: self.statusesPreviousPage)
     }
+}
+
+extension AccountState: Hashable {
+    static func == (lhs: AccountState, rhs: AccountState) -> Bool {
+        return lhs.account == rhs.account && lhs.isActiveAccount == rhs.isActiveAccount
+    }
+    
+    var hashValue: Int {
+        return (self.account?.id.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0)
+    }
+    
+    
 }

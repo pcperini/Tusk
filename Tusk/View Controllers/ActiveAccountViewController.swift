@@ -19,12 +19,12 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.activeAccount } }
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.activeAccount! } }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.accountViewController?.account = GlobalStore.state.activeAccount.account
+        self.accountViewController?.account = GlobalStore.state.accounts.activeAccount?.account
     }
     
     override func viewWillDisappear(_ animated: Bool) {

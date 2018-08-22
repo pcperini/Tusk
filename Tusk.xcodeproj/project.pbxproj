@@ -134,6 +134,9 @@
 		73EAEC63211E41AA00C2620F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */; };
 		73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC6D211E41AA00C2620F /* TuskTests.swift */; };
 		73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC78211E41AA00C2620F /* TuskUITests.swift */; };
+		73FBF8B3212DBF10009B2619 /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B2212DBF10009B2619 /* AccountsState.swift */; };
+		73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B2212DBF10009B2619 /* AccountsState.swift */; };
+		73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B2212DBF10009B2619 /* AccountsState.swift */; };
 		A03C3893F90298C9F18476FB /* Pods_Tusk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC44596763C87A77F44C5A9 /* Pods_Tusk.framework */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +218,7 @@
 		73EAEC74211E41AA00C2620F /* TuskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC78211E41AA00C2620F /* TuskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskUITests.swift; sourceTree = "<group>"; };
 		73EAEC7A211E41AA00C2620F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73FBF8B2212DBF10009B2619 /* AccountsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsState.swift; sourceTree = "<group>"; };
 		7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tusk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tusk/Pods-Tusk.release.xcconfig"; sourceTree = "<group>"; };
 		D0999BA8B9CF151761658767 /* Pods-TuskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -343,6 +347,7 @@
 				73208E88212B290500529FA3 /* MentionsState.swift */,
 				732BE218211F96600049ADBD /* MessagesState.swift */,
 				732BE210211F93860049ADBD /* NotificationsState.swift */,
+				73FBF8B2212DBF10009B2619 /* AccountsState.swift */,
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 			);
@@ -705,6 +710,7 @@
 				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE252212233A30049ADBD /* TextView.swift in Sources */,
 				732557FB2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
+				73FBF8B3212DBF10009B2619 /* AccountsState.swift in Sources */,
 				732BE249212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73208E92212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 			);
@@ -749,6 +755,7 @@
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
+				73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */,
 				73208E82212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,6 +799,7 @@
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
+				73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */,
 				73208E83212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

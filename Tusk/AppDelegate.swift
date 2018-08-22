@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        GlobalStore.dispatch(AppState.Init())
         GlobalStore.dispatch(AuthState.LoadAuth(value: nil))
         GlobalStore.dispatch(AppState.PollData())
 
