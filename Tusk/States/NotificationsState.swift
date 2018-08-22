@@ -43,7 +43,9 @@ struct NotificationsState: PaginatableState {
         switch action {
         case let action as SetNotifications: state.notifications = action.value
         case let action as SetLastReadDate: state.setLastRead(date: action.value)
-        case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value, state: state)
+        case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
+                                                                                                             nextPage: state.nextPage,
+                                                                                                             previousPage: state.previousPage)
         case let action as PollNotifications: state.pollNotifications(client: action.client)
         case let action as PollOlderNotifications: state.pollNotifications(client: action.client, range: state.nextPage)
         case let action as PollNewerNotifications: state.pollNotifications(client: action.client, range: state.nextPage)

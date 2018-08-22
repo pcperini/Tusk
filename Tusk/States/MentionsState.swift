@@ -14,7 +14,7 @@ struct MentionsState: StatusesState {
     var filters: [(Status) -> Bool] = [
         { $0.visibility != .direct },
         { (status: Status) in
-            status.mentions.first(where: { $0.id == GlobalStore.state.account.activeAccount?.id }) != nil
+            status.mentions.first(where: { $0.id == GlobalStore.state.accounts.activeAccount?.account?.id }) != nil
         }
     ]
     

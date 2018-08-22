@@ -137,6 +137,9 @@ class StatusesViewController: PaginatingTableViewController {
     
     func pushToAccount(account: Account) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
+        
+        guard let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollAccount(client: client, account: account))
     }
     
     func presentAttachment(attachment: Attachment, forStatus status: Status) {

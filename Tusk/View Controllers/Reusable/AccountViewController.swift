@@ -13,7 +13,10 @@ import SafariServices
 
 class AccountViewController: UITableViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountsState
-    private var state: AccountsState { return GlobalStore.state.account }
+    private var state: AccountState? {
+        guard let accountID = self.account?.id else { return nil }
+        return GlobalStore.state.accounts.accountWithID(id: accountID)
+    }
     
     enum Section: Int, CaseIterable {
         case About = 0
@@ -41,7 +44,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.account } }
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts }}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,8 +87,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.bioTopConstraint.toggle(on: !(self.bioTextView.text?.isEmpty ?? true))
         self.bioHeightConstraint.isActive = self.bioTextView.text?.isEmpty ?? true
 
-        self.pinnedStatuses = GlobalStore.state.account.pinnedStatuses[account]
-        if (self.pinnedStatuses == nil) {
+        self.pinnedStatuses = self.state?.pinnedStatuses
+        if (self.pinnedStatuses?.isEmpty ?? true) {
             self.pollPinnedStatuses()
         }
         
@@ -96,11 +99,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
-        guard let activeAccount = self.state.activeAccount else { return }
+        guard let activeAccount = self.state?.account else { return }
         let image: UIImage?
         if (account == activeAccount) {
             image = UIImage(named: "SettingsButton")
-        } else if (self.state.following[activeAccount]?.contains(account) ?? false) {
+        } else if (self.state?.following.contains(account) ?? false) {
             image = UIImage(named: "StopFollowingButton")
         } else {
             image = UIImage(named: "FollowButton")
@@ -110,15 +113,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     }
     
     func pollPinnedStatuses() {
-        guard let client = GlobalStore.state.auth.client else { return }
-        guard let account = self.account else { return }
-        
-        GlobalStore.dispatch(AccountsState.PollAccountPinnedStatuses(client: client, account: account))
+        guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
+        GlobalStore.dispatch(AccountState.PollPinnedStatuses(client: client, account: account))
     }
     
     func newState(state: AccountsState) {
-        guard let account = self.account else { return }
-        guard let newStatuses = state.pinnedStatuses[account] else { return }
+        guard let accountID = self.account?.id, let state = state.accountWithID(id: accountID) else { return }
+        let newStatuses = state.pinnedStatuses
 
         DispatchQueue.main.async {
             if (self.pinnedStatuses != newStatuses) {
@@ -233,6 +234,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             guard let url = cell.url else { break }
             self.openURL(url: url)
             }
+        case .Stats: do {
+            guard let stat = Stat(rawValue: indexPath.row) else { break }
+            switch stat {
+            case .Statuses: self.pushToStatuses()
+            default: break
+            }
+            }
         default: break
         }
     }
@@ -242,6 +250,28 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         UIApplication.shared.open(url, options: [:]) { (success) in
             guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
             self.tableView.deselectRow(at: indexPath, animated: !success)
+        }
+    }
+    
+    func pushToStatuses() {
+        guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollStatuses(client: client, account: account))
+        self.performSegue(withIdentifier: "PushAccountStatusesViewController", sender: self.account)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "PushAccountStatusesViewController": do {
+            guard let accountStatusesVC = segue.destination as? AccountStatusesViewController, let account = sender as? Account else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountStatusesVC.account = account
+            }
+        default: return
         }
     }
 }

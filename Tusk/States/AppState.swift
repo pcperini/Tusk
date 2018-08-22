@@ -10,6 +10,8 @@ import Foundation
 import ReSwift
 
 struct AppState: StateType {
+    struct Init: Action {}
+    struct PurgeMemory: Action {} // TODO: Implement
     struct PollData: Action {}
     
     var auth: AuthState
@@ -17,21 +19,21 @@ struct AppState: StateType {
     var mentions: MentionsState
     var notifications: NotificationsState
     var messages: MessagesState
-    var account: AccountsState
+    var accounts: AccountsState
     
     static func reducer(action: Action, state: AppState?) -> AppState {
         switch action {
-        case _ as PollData: state?.pollData()
+        case is PollData: state?.pollData()
         default: break
         }
-        
+
         return AppState(
             auth: AuthState.reducer(action: action, state: state?.auth),
             timeline: TimelineState.reducer(action: action, state: state?.timeline),
             mentions: MentionsState.reducer(action: action, state: state?.mentions),
             notifications: NotificationsState.reducer(action: action, state: state?.notifications),
             messages: MessagesState.reducer(action: action, state: state?.messages),
-            account: AccountsState.reducer(action: action, state: state?.account)
+            accounts: AccountsState.reducer(action: action, state: state?.accounts)
         )
     }
     
@@ -42,7 +44,7 @@ struct AppState: StateType {
             GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
             GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
-            GlobalStore.dispatch(AccountsState.PollActiveAccount(client: client))
+            GlobalStore.dispatch(AccountState.PollAccount(client: client, account: nil))
         }
     }
     
