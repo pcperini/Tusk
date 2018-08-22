@@ -234,6 +234,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             guard let url = cell.url else { break }
             self.openURL(url: url)
             }
+        case .Stats: do {
+            guard let stat = Stat(rawValue: indexPath.row) else { break }
+            switch stat {
+            case .Statuses: self.pushToStatuses()
+            default: break
+            }
+            }
         default: break
         }
     }
@@ -243,6 +250,28 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         UIApplication.shared.open(url, options: [:]) { (success) in
             guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
             self.tableView.deselectRow(at: indexPath, animated: !success)
+        }
+    }
+    
+    func pushToStatuses() {
+        guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollStatuses(client: client, account: account))
+        self.performSegue(withIdentifier: "PushAccountStatusesViewController", sender: self.account)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "PushAccountStatusesViewController": do {
+            guard let accountStatusesVC = segue.destination as? AccountStatusesViewController, let account = sender as? Account else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountStatusesVC.account = account
+            }
+        default: return
         }
     }
 }

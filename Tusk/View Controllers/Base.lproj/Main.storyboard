@@ -485,6 +485,7 @@
                         <outlet property="displayNameLabel" destination="sv6-Mm-Zu1" id="5VY-m0-0wu"/>
                         <outlet property="headerImageView" destination="K1g-fT-Nz3" id="NxA-fV-ICn"/>
                         <outlet property="usernameLabel" destination="YPZ-0d-BdO" id="BiO-Ln-K2Z"/>
+                        <segue destination="75i-6n-r7C" kind="show" identifier="PushAccountStatusesViewController" id="h0v-4h-t86"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xO-Li-9e7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -588,6 +589,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLi-zc-sbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1628" y="350"/>
+        </scene>
+        <!--Account Statuses Container-->
+        <scene sceneID="QdS-0S-AcN">
+            <objects>
+                <viewController title="Account Statuses Container" id="75i-6n-r7C" customClass="AccountStatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TWe-r3-YDf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P8-hP-hsQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="534"/>
+                                <connections>
+                                    <segue destination="qW7-XN-y9P" kind="embed" id="FZ9-N9-hqX"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hcz-br-M5q" firstAttribute="bottom" secondItem="5P8-hP-hsQ" secondAttribute="bottom" id="2Sf-ST-5al"/>
+                            <constraint firstItem="5P8-hP-hsQ" firstAttribute="top" secondItem="hcz-br-M5q" secondAttribute="top" id="PZ7-nw-a2f"/>
+                            <constraint firstItem="hcz-br-M5q" firstAttribute="trailing" secondItem="5P8-hP-hsQ" secondAttribute="trailing" id="bmb-Yj-lYd"/>
+                            <constraint firstItem="5P8-hP-hsQ" firstAttribute="leading" secondItem="hcz-br-M5q" secondAttribute="leading" id="ofX-Th-Lky"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hcz-br-M5q"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Posts" id="lCB-XY-JpU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="31n-Mp-qT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5094" y="300"/>
+        </scene>
+        <!--Account Statuses-->
+        <scene sceneID="XXj-4D-htf">
+            <objects>
+                <tableViewController title="Account Statuses" id="qW7-XN-y9P" customClass="StatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Eu-e9-Syb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="534"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="0wz-Zl-RkX">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0wz-Zl-RkX" id="mGH-8A-NTk">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qW7-XN-y9P" id="9Ne-JB-QSg"/>
+                            <outlet property="delegate" destination="qW7-XN-y9P" id="n9r-Wj-SJp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Timeline" id="Lpt-lV-xT2">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="On4-TU-KKr"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hk7-uj-1jz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5902" y="290"/>
         </scene>
     </scenes>
     <resources>

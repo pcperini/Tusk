@@ -137,6 +137,12 @@
 		73FBF8B3212DBF10009B2619 /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B2212DBF10009B2619 /* AccountsState.swift */; };
 		73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B2212DBF10009B2619 /* AccountsState.swift */; };
 		73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B2212DBF10009B2619 /* AccountsState.swift */; };
+		73FBF8B7212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */; };
+		73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */; };
+		73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */; };
+		73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */; };
+		73FBF8BC212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */; };
+		73FBF8BD212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */; };
 		A03C3893F90298C9F18476FB /* Pods_Tusk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC44596763C87A77F44C5A9 /* Pods_Tusk.framework */; };
 /* End PBXBuildFile section */
 
@@ -219,6 +225,8 @@
 		73EAEC78211E41AA00C2620F /* TuskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskUITests.swift; sourceTree = "<group>"; };
 		73EAEC7A211E41AA00C2620F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73FBF8B2212DBF10009B2619 /* AccountsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsState.swift; sourceTree = "<group>"; };
+		73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStatusesViewController.swift; sourceTree = "<group>"; };
+		73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Deduplication.swift"; sourceTree = "<group>"; };
 		7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tusk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tusk/Pods-Tusk.release.xcconfig"; sourceTree = "<group>"; };
 		D0999BA8B9CF151761658767 /* Pods-TuskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -302,6 +310,7 @@
 				732BE288212485890049ADBD /* CaseIterable.swift */,
 				73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */,
 				732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */,
+				73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +341,7 @@
 				73208E99212B753C00529FA3 /* MessagesViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
+				73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
 				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 			);
@@ -680,6 +690,7 @@
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
+				73FBF8B7212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */,
@@ -694,6 +705,7 @@
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
+				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
@@ -740,6 +752,7 @@
 				73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				73208EAB212C750600529FA3 /* TableContainerViewController.swift in Sources */,
+				73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -751,6 +764,7 @@
 				73208E93212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27321238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				73FBF8BC212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
@@ -784,6 +798,7 @@
 				73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				73208EAC212C750600529FA3 /* TableContainerViewController.swift in Sources */,
+				73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -795,6 +810,7 @@
 				73208E94212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27421238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				73FBF8BD212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,

@@ -10,13 +10,10 @@ import Foundation
 import MastodonKit
 import ReSwift
 
-protocol StatusesState: PaginatableState where DataType == Status {
+protocol StatusesState: StatusViewableState, PaginatableState where DataType == Status {
     associatedtype SetFilters: Action
     associatedtype SetStatuses: Action
     associatedtype SetPage: Action
-    associatedtype PollStatuses: Action
-    associatedtype PollOlderStatuses: Action
-    associatedtype PollNewerStatuses: Action
     
     var statuses: [Status] { get set }
     var filters: [(Status) -> Bool] { get set }
@@ -65,6 +62,6 @@ extension StatusesState {
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
 struct StatusesStateSetStatuses<State: StateType>: Action { let value: [Status] }
 struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
-struct StatusesStatePollStatuses<State: StateType>: Action { let client: Client }
-struct StatusesStatePollOlderStatuses<State: StateType>: Action { let client: Client }
-struct StatusesStatePollNewerStatuses<State: StateType>: Action { let client: Client }
+struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
+struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
+struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }

@@ -10,8 +10,9 @@ import MastodonKit
 import ReSwift
 
 protocol AccountAction: Action { var account: Account { get } }
+protocol AccountPollingAction: AccountAction, PollAction {}
 
-struct AccountState: StateType {
+struct AccountState: StateType, StatusViewableState {
     private struct SetAccount: AccountAction { let account: Account; let active: Bool }
     struct SetPinnedStatuses: AccountAction { let value: [Status]; let account: Account }
     struct SetFollowing: AccountAction { let value: [Account]; let account: Account }
@@ -25,9 +26,9 @@ struct AccountState: StateType {
     struct PollFollowing: AccountAction { let client: Client; let account: Account }
     struct PollFollowers: AccountAction { let client: Client; let account: Account }
     
-    struct PollStatuses: AccountAction { let client: Client; let account: Account }
-    struct PollOlderStatuses: AccountAction { let client: Client; let account: Account }
-    struct PollNewerStatuses: AccountAction { let client: Client; let account: Account }
+    struct PollStatuses: AccountPollingAction { let client: Client; let account: Account }
+    struct PollOlderStatuses: AccountPollingAction { let client: Client; let account: Account }
+    struct PollNewerStatuses: AccountPollingAction { let client: Client; let account: Account }
     
     var isActiveAccount: Bool = false
     var account: Account? = nil
@@ -39,6 +40,8 @@ struct AccountState: StateType {
     var statusesNextPage: RequestRange? = nil
     var statusesPreviousPage: RequestRange? = nil
     lazy var statusesPaginatableData: PaginatingData<Status, Status> = PaginatingData<Status, Status>(provider: self.statusesProvider)
+    
+    var hashableValue: Int { return (self.account?.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0) }
     
     static func reducer(action: Action, state: AccountState?) -> AccountState {
         var state = state ?? AccountState()
@@ -148,16 +151,4 @@ struct AccountState: StateType {
                                                          nextPage: self.statusesNextPage,
                                                          previousPage: self.statusesPreviousPage)
     }
-}
-
-extension AccountState: Hashable {
-    static func == (lhs: AccountState, rhs: AccountState) -> Bool {
-        return lhs.account == rhs.account && lhs.isActiveAccount == rhs.isActiveAccount
-    }
-    
-    var hashValue: Int {
-        return (self.account?.id.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0)
-    }
-    
-    
 }

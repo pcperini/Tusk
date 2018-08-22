@@ -12,6 +12,7 @@ import ReSwift
 import MastodonKit
 
 protocol Paginatable: Encodable, Decodable, Comparable, Hashable {}
+protocol PollAction: Action { var client: Client { get } }
 
 protocol PaginatableState: StateType {
     associatedtype DataType where DataType: Paginatable

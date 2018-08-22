@@ -12,7 +12,7 @@ import ReSwift
 import KeychainAccess
 
 struct AccountsState: StateType {
-    private var allAccounts: Set<AccountState> = Set<AccountState>()    
+    private var allAccounts: [AccountState] = []
     var activeAccount: AccountState? {
         return self.allAccounts.first(where: { (account) in account.isActiveAccount })
     }
@@ -21,11 +21,16 @@ struct AccountsState: StateType {
         var state = state ?? AccountsState()
         
         switch action {
-        case let action as AccountState.PollAccount: state.allAccounts = state.allAccounts.union([AccountState.reducer(action: action, state: nil)])
-        default: state.allAccounts = Set(state.allAccounts.map({ (account) in AccountState.reducer(action: action, state: account) }))
+        case let action as AccountState.PollAccount: state.allAccounts += [AccountState.reducer(action: action, state: nil)]
+        default: state.allAccounts = self.passThroughReducer(action: action, state: state)
         }
         
         return state
+    }
+    
+    private static func passThroughReducer(action: Action, state: AccountsState) -> [AccountState] {
+        return state.allAccounts.map({ (account) in AccountState.reducer(action: action, state: account) })
+            .dedupe(on: { (account) in account.hashableValue })
     }
     
     func accountWithID(id: String) -> AccountState? {
