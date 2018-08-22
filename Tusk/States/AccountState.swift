@@ -46,9 +46,10 @@ struct AccountState: StateType {
         switch action {
         case let action as PollAccount: do {
             pollAccount(client: action.client, accountID: action.account?.id)
-            return AccountState.reducer(action: SetAccount(account: action.account, active: action.account?.id == nil), state: state)
+            return AccountState.reducer(action: SetAccount(account: action.account, active: action.account?.id == nil), state: AccountState())
             }
         case let action as SetAccount: do {
+//            if (state.account != action.account) { state = AccountState() }
             state.account = action.account
             state.isActiveAccount = action.active
             }
