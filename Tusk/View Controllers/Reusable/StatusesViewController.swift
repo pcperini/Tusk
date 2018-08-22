@@ -10,7 +10,6 @@ import UIKit
 import ReSwift
 import MastodonKit
 import SafariServices
-import NYTPhotoViewer
 
 class StatusesViewController: PaginatingTableViewController {
     private var statuses: [Status] = []

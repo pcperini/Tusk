@@ -4,6 +4,7 @@ PODS:
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
   - AnimatedGIFImageSerialization (0.2.0)
+  - Cache (4.2.0)
   - DTCoreText (1.6.21):
     - DTCoreText/Core (= 1.6.21)
     - DTFoundation/Core (~> 1.7.5)
@@ -21,16 +22,14 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.13):
     - DTFoundation/Core
-  - FLAnimatedImage (1.0.12)
+  - Hue (3.0.1)
+  - Imaginary (3.0.3):
+    - Cache (~> 4.0)
   - KeychainAccess (3.1.1)
+  - Lightbox (2.1.2):
+    - Hue (~> 3.0)
+    - Imaginary (~> 3.0)
   - MastodonKit (1.0.10)
-  - NYTPhotoViewer (2.0.0):
-    - NYTPhotoViewer/AnimatedGifSupport (= 2.0.0)
-    - NYTPhotoViewer/Core (= 2.0.0)
-  - NYTPhotoViewer/AnimatedGifSupport (2.0.0):
-    - FLAnimatedImage (~> 1.0.12)
-    - NYTPhotoViewer/Core
-  - NYTPhotoViewer/Core (2.0.0)
   - ReSwift (4.0.1)
 
 DEPENDENCIES:
@@ -39,8 +38,8 @@ DEPENDENCIES:
   - AnimatedGIFImageSerialization (~> 0.2)
   - DTCoreText (~> 1.6)
   - KeychainAccess (~> 3.1)
+  - Lightbox (~> 2.1)
   - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, branch `master`)
-  - NYTPhotoViewer (~> 2.0)
   - ReSwift (~> 4.0)
 
 SPEC REPOS:
@@ -49,11 +48,13 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - AnimatedGIFImageSerialization
+    - Cache
     - DTCoreText
     - DTFoundation
-    - FLAnimatedImage
+    - Hue
+    - Imaginary
     - KeychainAccess
-    - NYTPhotoViewer
+    - Lightbox
     - ReSwift
 
 EXTERNAL SOURCES:
@@ -71,14 +72,16 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
+  Cache: f28f8dd64b632155aabf9b3906b036a659048251
   DTCoreText: e5d688cffc9f6a61eddd1a4f94e2046851230de3
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
+  Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
-  NYTPhotoViewer: 34b8bd6bcc297466adec1668f9a01249d73c90e6
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: f09443c6e4ab6307ee8a7699083ca705375ae9e4
+PODFILE CHECKSUM: c2432bf78eb3baee1a35ad6ef60322f30b355543
 
 COCOAPODS: 1.5.3
