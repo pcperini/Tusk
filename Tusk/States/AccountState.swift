@@ -152,14 +152,11 @@ struct AccountState: StateType {
 
 extension AccountState: Hashable {
     static func == (lhs: AccountState, rhs: AccountState) -> Bool {
-        print("\(lhs.account?.id) == \(rhs.account?.id) [\(lhs.account == rhs.account)] && \(lhs.isActiveAccount) == \(rhs.isActiveAccount) [\(lhs.isActiveAccount == rhs.isActiveAccount)]")
         return lhs.account == rhs.account && lhs.isActiveAccount == rhs.isActiveAccount
     }
     
     var hashValue: Int {
-        let hash = (self.account?.id.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0)
-        print("\n\nHash for account \(self.account?.id) \(hash)")
-        return hash
+        return (self.account?.id.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0)
     }
     
     
