@@ -145,20 +145,3 @@ struct AccountState: StateType {
                                                          previousPage: self.statusesPreviousPage)
     }
 }
-
-//struct AccountStateSetAccount: Action { let value: Account? }
-//struct AccountStateSetPinnedStatuses: Action { let value: [Status] }
-//struct AccountStateSetFollowing: Action { let value: [Account] }
-//struct AccountStateSetFollowers: Action { let value: [Account] }
-//
-//struct AccountStateSetStatuses: Action { let value: [Status] }
-//struct AccountStateSetStatusesPage: Action { let value: Pagination? }
-//
-//struct AccountStatePollPinnedStatuses: Action { let client: Client }
-//struct AccountStatePollFollowing: Action { let client: Client }
-//struct AccountStatePollFollowers: Action { let client: Client }
-//struct AccountStatePollAccount: Action { let client: Client; let accountID: String? }
-//
-//struct AccountStatePollStatuses: Action { let client: Client }
-//struct AccountStatePollOlderStatuses: Action { let client: Client }
-//struct AccountStatePollNewerStatuses: Action { let client: Client }
