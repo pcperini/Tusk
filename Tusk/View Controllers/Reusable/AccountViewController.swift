@@ -12,9 +12,9 @@ import ReSwift
 import SafariServices
 
 class AccountViewController: UITableViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = AccountStateType
+    typealias StoreSubscriberStateType = AccountState
     private var isActiveAccount: Bool { return self.account == GlobalStore.state.activeAccount.account }
-    private var state: AccountStateType {
+    private var state: AccountState {
         return self.isActiveAccount ? GlobalStore.state.activeAccount : GlobalStore.state.otherAccount
     }
     
@@ -44,7 +44,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) -> AccountStateType in
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) -> AccountState in
             self.isActiveAccount ? state.activeAccount : state.otherAccount
         }}
     }
@@ -115,19 +115,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     }
     
     func pollPinnedStatuses() {
-        guard let client = GlobalStore.state.auth.client else { return }
-        
-        let action: Action
-        if (self.isActiveAccount) {
-            action = ActiveAccountState.PollPinnedStatuses(client: client)
-        } else {
-            action = OtherAccountState.PollPinnedStatuses(client: client)
-        }
-        
-        GlobalStore.dispatch(action)
+        guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
+        GlobalStore.dispatch(AccountState.PollPinnedStatuses(client: client, account: account))
     }
     
-    func newState(state: AccountStateType) {
+    func newState(state: AccountState) {
         let newStatuses = state.pinnedStatuses
 
         DispatchQueue.main.async {

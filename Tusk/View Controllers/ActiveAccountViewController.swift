@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 class ActiveAccountViewController: UIViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = ActiveAccountState
+    typealias StoreSubscriberStateType = AccountState
     var accountViewController: AccountViewController? {
         return self.childViewControllers.filter({ (child) in
             child is AccountViewController
@@ -34,10 +34,10 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     
     func pollAccount() {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(ActiveAccountState.PollAccount(client: client, accountID: nil))
+        GlobalStore.dispatch(AccountState.PollAccount(client: client, account: nil))
     }
     
-    func newState(state: ActiveAccountState) {
+    func newState(state: AccountState) {
         DispatchQueue.main.async {
             if (self.accountViewController?.account != state.account) {
                 self.accountViewController?.account = state.account
