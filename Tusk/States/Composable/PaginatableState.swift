@@ -75,9 +75,9 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
         return results
     }
     
-    func updatedPages<PaginatableStateType: PaginatableState>(pagination: Pagination?, state: PaginatableStateType) -> (RequestRange?, RequestRange?) {
-        guard let oldNext = state.nextPage, let oldPrev = state.previousPage else { return (pagination?.next, pagination?.previous) }
-        guard let newNext = pagination?.next, let newPrev = pagination?.previous else { return (state.nextPage, state.previousPage) }
+    func updatedPages(pagination: Pagination?, nextPage: RequestRange?, previousPage: RequestRange?) -> (RequestRange?, RequestRange?) {
+        guard let oldNext = nextPage, let oldPrev = previousPage else { return (pagination?.next, pagination?.previous) }
+        guard let newNext = pagination?.next, let newPrev = pagination?.previous else { return (nextPage, previousPage) }
         
         let setNext: RequestRange? = newNext < oldNext ? newNext : oldNext
         let setPrev: RequestRange? = newPrev > oldPrev ? newPrev : oldPrev

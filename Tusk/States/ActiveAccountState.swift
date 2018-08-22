@@ -16,7 +16,7 @@ struct ActiveAccountState: AccountStateType {
     var followers: [Account] = []
     var statuses: [Status] = []
     
-    var statusesNextPage: Pagination? = nil
-    var statusesPreviousPage: Pagination? = nil
+    var statusesNextPage: RequestRange? = nil
+    var statusesPreviousPage: RequestRange? = nil
     lazy var statusesPaginatableData: PaginatingData<Status, Status> = PaginatingData<Status, Status>(provider: self.statusesProvider)
 }
