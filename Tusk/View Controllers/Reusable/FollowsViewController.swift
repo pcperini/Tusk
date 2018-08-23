@@ -91,6 +91,7 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
         cell.displayNameLabel.text = follow.name
         cell.usernameLabel.text = follow.handle
         cell.detailLabel.text = follow.behaviorTidbit
+        cell.preserveBackgroundColors()
         
         return cell
     }
