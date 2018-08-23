@@ -1,0 +1,105 @@
+//
+//  FollowsViewController.swift
+//  Tusk
+//
+//  Created by Patrick Perini on 8/22/18.
+//  Copyright © 2018 Patrick Perini. All rights reserved.
+//
+
+import UIKit
+import MastodonKit
+import ReSwift
+
+enum RelationshipDirection {
+    case Follower
+    case Following
+}
+
+class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
+    typealias StoreSubscriberStateType = AccountState
+    
+    var relationshipDirection: RelationshipDirection = .Follower
+    var account: Account!
+    var follows: [Account] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.accountWithID(id: self.account.id)! } }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        GlobalStore.unsubscribe(self)
+    }
+    
+    func newState(state: StoreSubscriberStateType) {
+        DispatchQueue.main.async {
+            switch self.relationshipDirection {
+            case .Follower: self.updateFollows(follows: state.followers)
+            case .Following: self.updateFollows(follows: state.following)
+            }
+        }
+    }
+    
+    func updateFollows(follows: [Account]) {
+        if (follows != self.follows) {
+            self.follows = follows
+            self.tableView.reloadData()
+        }
+    }
+    
+    func pollFollowers(pageDirection: PageDirection = .Reload) {
+        guard let client = GlobalStore.state.auth.client else { return }
+        
+        let possibleAction: Action?
+        switch self.relationshipDirection {
+        case .Follower: do {
+            switch pageDirection {
+            case .NextPage: possibleAction = AccountState.PollOlderFollowers(client: client, account: self.account)
+            case .PreviousPage: possibleAction = AccountState.PollNewerFollowers(client: client, account: self.account)
+            case .Reload: possibleAction = AccountState.PollFollowers(client: client, account: self.account)
+            }
+            }
+        case .Following: do {
+            switch pageDirection {
+            case .NextPage: possibleAction = AccountState.PollOlderFollowing(client: client, account: self.account)
+            case .PreviousPage: possibleAction = AccountState.PollNewerFollowing(client: client, account: self.account)
+            case .Reload: possibleAction = AccountState.PollFollowing(client: client, account: self.account)
+            }
+            }
+        }
+        
+        guard let action = possibleAction else { return }
+        GlobalStore.dispatch(action)
+    }
+    
+    // Table View Data Source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.follows.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FollowCellView", for: indexPath) as? FollowViewCell else {
+            return UITableViewCell()
+        }
+        
+        let follow = self.follows[indexPath.row]
+        cell.avatarView.af_setImage(withURL: URL(string: follow.avatar)!)
+        cell.displayNameLabel.text = follow.name
+        cell.usernameLabel.text = follow.handle
+        cell.detailLabel.text = follow.behaviorTidbit
+        
+        return cell
+    }
+    
+    // Paging
+    override func refreshControlBeganRefreshing() {
+        super.refreshControlBeganRefreshing()
+        self.pollFollowers(pageDirection: .PreviousPage)
+    }
+    
+    override func pageControlBeganRefreshing() {
+        super.pageControlBeganRefreshing()
+        self.pollFollowers(pageDirection: .NextPage)
+    }
+}

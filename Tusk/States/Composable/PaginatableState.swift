@@ -11,7 +11,7 @@
 import ReSwift
 import MastodonKit
 
-protocol Paginatable: Encodable, Decodable, Comparable, Hashable {}
+protocol Paginatable: Encodable, Decodable, Comparable, Hashable { static var sortedByPageIndex: Bool { get } }
 protocol PollAction: Action { var client: Client { get } }
 
 protocol PaginatableState: StateType {
@@ -45,7 +45,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
         client.run(request) { (result) in
             switch result {
             case .success(let data, let pagination): do {
-                allData = self.mergeData(existingData: allData, newData: self.typeMapper(data), filters: filters)
+                allData = self.mergeData(existingData: allData, newData: self.typeMapper(data), filters: filters, range: range)
                 print("success", #file, #line, DataType.self)
                 
                 guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
@@ -60,7 +60,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
         }
     }
     
-    private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter]) -> [DataType] {
+    private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter], range: RequestRange? = nil) -> [DataType] {
         guard let newFirst = newData.first, let newLast = newData.last else { return existingData }
         var dataSet = Set<DataType>()
         dataSet = dataSet.union(existingData.filter { (item) in
@@ -69,7 +69,23 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
         
         dataSet = dataSet.union(newData)
         var results = Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
-            lhs > rhs
+            if DataType.sortedByPageIndex {
+                let topPage: [DataType], bottomPage: [DataType]
+                switch range {
+                case .some(.max): (topPage, bottomPage) = (existingData, newData)
+                default: (topPage, bottomPage) = (newData, existingData)
+                }
+                
+                if (topPage.contains(lhs) && topPage.contains(rhs)) {
+                    return topPage.index(of: lhs)! < topPage.index(of: rhs)!
+                } else if (bottomPage.contains(lhs) && bottomPage.contains(rhs)) {
+                    return bottomPage.index(of: lhs)! < bottomPage.index(of: rhs)!
+                }
+                
+                return topPage.contains(lhs)
+            } else {
+                return lhs > rhs
+            }
         })
         
         results = filters.reduce(results) { (all, next) in all.filter(next) }

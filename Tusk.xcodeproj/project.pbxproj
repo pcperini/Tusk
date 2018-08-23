@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		0F961AB861EC2B34A68DC3D6 /* Pods_TuskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */; };
 		5CAFB9310DA93F9007869142 /* Pods_TuskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E8FF97B389C231E1BF2689 /* Pods_TuskUITests.framework */; };
+		73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FEE212E245800BC1E9A /* FollowsViewController.swift */; };
+		73022FF0212E245800BC1E9A /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FEE212E245800BC1E9A /* FollowsViewController.swift */; };
+		73022FF1212E245800BC1E9A /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FEE212E245800BC1E9A /* FollowsViewController.swift */; };
+		73022FF3212E2AD600BC1E9A /* FollowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF2212E2AD600BC1E9A /* FollowCellView.swift */; };
+		73022FF4212E2AD600BC1E9A /* FollowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF2212E2AD600BC1E9A /* FollowCellView.swift */; };
+		73022FF5212E2AD600BC1E9A /* FollowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF2212E2AD600BC1E9A /* FollowCellView.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -171,6 +177,8 @@
 		519EDD4E276FC10DD034A1CB /* Pods-TuskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuskTests/Pods-TuskTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C1B803EF892DFEAE3605A34 /* Pods_TuskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		73022FEE212E245800BC1E9A /* FollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
+		73022FF2212E2AD600BC1E9A /* FollowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCellView.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -263,8 +271,10 @@
 			isa = PBXGroup;
 			children = (
 				732BE265212345080049ADBD /* AccountViewController.swift */,
+				73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */,
 				73208E91212B316900529FA3 /* StatusesContainerViewController.swift */,
 				73EAEC58211E41A900C2620F /* StatusesViewController.swift */,
+				73022FEE212E245800BC1E9A /* FollowsViewController.swift */,
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
 				73208EA9212C750600529FA3 /* TableContainerViewController.swift */,
 			);
@@ -325,6 +335,7 @@
 				732BE25D212327490049ADBD /* NotificationViewCell.swift */,
 				732BE259212327350049ADBD /* NotificationViewCell.xib */,
 				732BE27121238FA50049ADBD /* FieldViewCell.swift */,
+				73022FF2212E2AD600BC1E9A /* FollowCellView.swift */,
 				739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */,
 				739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */,
 				73208E84212A41A400529FA3 /* TableViewCell.swift */,
@@ -341,7 +352,6 @@
 				73208E99212B753C00529FA3 /* MessagesViewController.swift */,
 				73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
-				73FBF8B6212DD42B009B2619 /* AccountStatusesViewController.swift */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
 				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 			);
@@ -716,6 +726,7 @@
 				73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				73208EAA212C750600529FA3 /* TableContainerViewController.swift in Sources */,
 				73208E8E212B2A9C00529FA3 /* StatusesState.swift in Sources */,
+				73022FF3212E2AD600BC1E9A /* FollowCellView.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
 				73208EBA212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
@@ -729,6 +740,7 @@
 				73FBF8B3212DBF10009B2619 /* AccountsState.swift in Sources */,
 				732BE249212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73208E92212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
+				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +750,7 @@
 			files = (
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
 				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
+				73022FF4212E2AD600BC1E9A /* FollowCellView.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
@@ -771,6 +784,7 @@
 				73FBF8BC212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
+				73022FF0212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */,
@@ -784,6 +798,7 @@
 			files = (
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
 				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
+				73022FF5212E2AD600BC1E9A /* FollowCellView.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
@@ -817,6 +832,7 @@
 				73FBF8BD212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
+				73022FF1212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */,

@@ -9,6 +9,7 @@
 import MastodonKit
 
 extension Status: Paginatable {
+    static let sortedByPageIndex: Bool = false
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -23,6 +24,7 @@ extension Status: Paginatable {
 }
 
 extension MastodonKit.Notification: Paginatable {
+    static let sortedByPageIndex: Bool = false
     public var hashValue: Int {
         return self.id.hashValue
     }
@@ -46,9 +48,14 @@ extension RequestRange: Comparable {
     }
 }
 
-extension Account: Hashable {
+extension Account: Paginatable {
+    static let sortedByPageIndex = true
     public var hashValue: Int {
         return self.id.hashValue
+    }
+    
+    public static func < (lhs: Account, rhs: Account) -> Bool {
+        return lhs.createdAt < rhs.createdAt
     }
     
     public static func == (lhs: Account, rhs: Account) -> Bool {

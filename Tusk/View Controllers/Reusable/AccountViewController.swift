@@ -238,7 +238,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             guard let stat = Stat(rawValue: indexPath.row) else { break }
             switch stat {
             case .Statuses: self.pushToStatuses()
-            default: break
+            case .Followers: self.pushToFollowers()
+            case .Follows: self.pushToFollows()
             }
             }
         default: break
@@ -259,6 +260,18 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.performSegue(withIdentifier: "PushAccountStatusesViewController", sender: self.account)
     }
     
+    func pushToFollowers() {
+        guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollFollowers(client: client, account: account))
+        self.performSegue(withIdentifier: "PushFollowsViewController", sender: (self.account, RelationshipDirection.Follower))
+    }
+    
+    func pushToFollows() {
+        guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollFollowing(client: client, account: account))
+        self.performSegue(withIdentifier: "PushFollowsViewController", sender: (self.account, RelationshipDirection.Following))
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -270,6 +283,17 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             }
             
             accountStatusesVC.account = account
+            }
+        case "PushFollowsViewController": do {
+            guard let accountStatusesVC = segue.destination as? FollowsViewController,
+                let sender = sender as? (Account?, RelationshipDirection),
+                let account = sender.0 else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountStatusesVC.account = account
+            accountStatusesVC.relationshipDirection = sender.1
             }
         default: return
         }
