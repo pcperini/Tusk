@@ -45,7 +45,7 @@ extension FieldViewCell {
         case Tumblr = "(tumblr)"
         
         case Games = "(3ds|switch|friend code|nintendo|xbox|psn)"
-        case Support = "(donations|support|cash)"
+        case Support = "(donations|support|cash|pay|venmo)"
 
         case Website = "(web|site|page|www|http(s)?:\\/\\/)"
         case Email = "(contact|e?mail|.+@.+\\.)"
