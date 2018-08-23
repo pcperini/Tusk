@@ -18,7 +18,6 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.notifications } }
     }
     

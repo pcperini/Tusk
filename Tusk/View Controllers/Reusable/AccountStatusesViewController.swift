@@ -14,9 +14,7 @@ class AccountStatusesViewController: StatusesContainerViewController<AccountStat
     var account: Account!
     
     override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in
-            return state.accounts.accountWithID(id: self.account.id)!
-        } }
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.accountWithID(id: self.account.id)! } }
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {

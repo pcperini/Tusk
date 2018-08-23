@@ -26,7 +26,7 @@ extension Account {
     }
     
     var handle: String {
-        return "@\(self.username)"
+        return "@\(self.acct)"
     }
     
     var displayFields: [[String: String]] {
@@ -37,5 +37,9 @@ extension Account {
         }
         
         return self.fields.map { (field) in [ "name": field["name"]!, "value": prepareForDisplay(field["value"]) ] }
+    }
+    
+    var behaviorTidbit: String {
+        return "User since \(self.createdAt.toString(format: .custom("d MMM yyyy")))"
     }
 }
