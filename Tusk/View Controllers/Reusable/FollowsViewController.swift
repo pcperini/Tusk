@@ -10,9 +10,9 @@ import UIKit
 import MastodonKit
 import ReSwift
 
-enum RelationshipDirection {
-    case Follower
-    case Following
+enum RelationshipDirection: String {
+    case Follower = "Followers"
+    case Following = "Following"
 }
 
 class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
@@ -25,6 +25,8 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.accountWithID(id: self.account.id)! } }
+        
+        self.navigationItem.title = self.relationshipDirection.rawValue
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,6 +94,11 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let account = self.follows[indexPath.row]
+        self.pushToAccount(account: account)
+    }
+    
     // Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
@@ -101,5 +108,29 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
     override func pageControlBeganRefreshing() {
         super.pageControlBeganRefreshing()
         self.pollFollowers(pageDirection: .NextPage)
+    }
+    
+    // Navigation
+    func pushToAccount(account: Account) {
+        self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
+        
+        guard let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(AccountState.PollAccount(client: client, account: account))
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "PushAccountViewController": do {
+            guard let accountVC = segue.destination as? AccountViewController, let account = sender as? Account else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            accountVC.account = account
+            }
+        default: return
+        }
     }
 }

@@ -99,11 +99,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
-        guard let activeAccount = self.state?.account else { return }
+        guard let activeAccountState = GlobalStore.state.accounts.activeAccount,
+            let activeAccount = activeAccountState.account else { return }
+        
         let image: UIImage?
         if (account == activeAccount) {
             image = UIImage(named: "SettingsButton")
-        } else if (self.state?.following.contains(account) ?? false) {
+        } else if (activeAccountState.following.contains(account)) {
             image = UIImage(named: "StopFollowingButton")
         } else {
             image = UIImage(named: "FollowButton")

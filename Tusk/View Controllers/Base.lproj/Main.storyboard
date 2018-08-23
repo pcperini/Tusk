@@ -334,7 +334,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JUq-ia-FIl" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="148.5" y="15" width="78" height="190.5"/>
+                                            <rect key="frame" x="148.5" y="15" width="78" height="174.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="999" constant="78" id="2lP-4e-Wh8"/>
                                                 <constraint firstAttribute="width" constant="78" id="zPA-OL-bxm"/>
@@ -350,7 +350,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv6-Mm-Zu1">
-                                            <rect key="frame" x="133" y="213.5" width="109.5" height="21"/>
+                                            <rect key="frame" x="133" y="197.5" width="109.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="oxt-Wi-zKt"/>
                                             </constraints>
@@ -359,7 +359,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPZ-0d-BdO">
-                                            <rect key="frame" x="147" y="238.5" width="81" height="18"/>
+                                            <rect key="frame" x="147" y="222.5" width="81" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="w7O-yQ-VaI"/>
                                             </constraints>
@@ -368,7 +368,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Bio" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-8m-ATl" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="175.5" y="264.5" width="24.5" height="20.5"/>
+                                            <rect key="frame" x="170.5" y="248.5" width="34.5" height="36.5"/>
                                             <color key="tintColor" red="0.59510633680555558" green="0.78882016780422648" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="999" id="Ymc-Sp-guW"/>
@@ -439,7 +439,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Field value" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-eF-yBa" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="282.5" y="11.5" width="76.5" height="18"/>
+                                            <rect key="frame" x="272.5" y="11.5" width="86.5" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -719,6 +719,11 @@
                                         <constraint firstItem="Y40-h3-tXx" firstAttribute="leading" secondItem="VjF-pt-pNg" secondAttribute="leading" constant="12" id="tdf-ov-ukz"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="avatarView" destination="Y40-h3-tXx" id="III-Tt-ZRN"/>
                                     <outlet property="detailLabel" destination="ay9-P1-rmc" id="RXJ-e5-vwN"/>
@@ -732,13 +737,16 @@
                             <outlet property="delegate" destination="DCU-X4-FCu" id="oYm-qp-Pdf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Timeline" id="9jg-2g-XdH">
+                    <navigationItem key="navigationItem" title="Follows" id="9jg-2g-XdH">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="Shq-bq-KvP"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="V4Z-JF-EcV" kind="show" identifier="PushAccountViewController" id="YQN-Ew-OQV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBN-Oe-cgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5093.6000000000004" y="1027.736131934033"/>
+            <point key="canvasLocation" x="5094" y="1028"/>
         </scene>
     </scenes>
     <resources>
@@ -754,6 +762,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="izV-ps-CS6"/>
+        <segue reference="YQN-Ew-OQV"/>
     </inferredMetricsTieBreakers>
 </document>

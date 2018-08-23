@@ -40,6 +40,6 @@ extension Account {
     }
     
     var behaviorTidbit: String {
-        return "User since \(self.createdAt.toString(format: .custom("d MMM yyyy")))"
+        return "joined \(self.createdAt.toString(format: .custom("d MMM yyyy")))"
     }
 }
