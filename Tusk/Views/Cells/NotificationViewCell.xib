@@ -74,7 +74,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Pn2-Pq-kPG"/>
-                                    <constraint firstAttribute="height" constant="50" id="dda-OO-fXs"/>
+                                    <constraint firstAttribute="height" priority="999" constant="50" id="dda-OO-fXs"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
