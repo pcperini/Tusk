@@ -31,6 +31,13 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>10</string>
+	<key>TuskEnvVars</key>
+	<dict>
+		<key>TuskDevelopers</key>
+		<array>
+			<string>pcperini</string>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

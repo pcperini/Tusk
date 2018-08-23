@@ -8,6 +8,8 @@
 
 import UIKit
 
+protocol SubviewsBackgroundColorPreservable { var subviews: [UIView] { get } }
+
 class TableViewCell: UITableViewCell {
     @IBInspectable var selectedBackgroundColor: UIColor? {
         didSet {
@@ -17,25 +19,34 @@ class TableViewCell: UITableViewCell {
         }
     }
 
-    @IBOutlet var backgroundColoredViews: [UIView]! = []
     private var backgroundColoredViewsColors: Dictionary<UIView, UIColor?> = [:]
+    @IBOutlet var backgroundColoredViews: [UIView]! = []
+    private var allBackgroundColoredViews: [UIView] {
+        return self.backgroundColoredViews.reduce([], { (all, view) in
+            if (view is SubviewsBackgroundColorPreservable) {
+                return all + view.subviews
+            } else {
+                return all + [view]
+            }
+        })
+    }
     
     func preserveBackgroundColors() {
-        self.backgroundColoredViewsColors = self.backgroundColoredViews.reduce(Dictionary<UIView, UIColor?>()) { (all, view) in
+        self.backgroundColoredViewsColors = self.allBackgroundColoredViews.reduce(Dictionary<UIView, UIColor?>()) { (all, view) in
             all.merging([view: view.backgroundColor]) { (a, b) in a }
         }
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        self.backgroundColoredViews.forEach { (view) in
+        self.allBackgroundColoredViews.forEach { (view) in
             view.backgroundColor = self.backgroundColoredViewsColors[view] ?? nil
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.backgroundColoredViews.forEach { (view) in
+        self.allBackgroundColoredViews.forEach { (view) in
             view.backgroundColor = self.backgroundColoredViewsColors[view] ?? nil
         }
     }

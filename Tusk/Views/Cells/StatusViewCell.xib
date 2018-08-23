@@ -21,20 +21,6 @@
                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SE0-fc-EoD">
                         <rect key="frame" x="12" y="12" width="351" height="321.5"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB0-3m-ZVQ" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" priority="999" constant="50" id="HZh-gU-7Wi"/>
-                                    <constraint firstAttribute="width" constant="50" id="IiG-J9-rPz"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keD-FY-tv9">
                                 <rect key="frame" x="60" y="0.0" width="109.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -130,27 +116,43 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJu-9e-u0P" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BLx-UB-z0v"/>
+                                    <constraint firstAttribute="width" constant="50" id="WAh-y0-Ipl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vi5-s1-6UD" firstAttribute="top" secondItem="BoR-xo-HiS" secondAttribute="bottom" constant="12" id="0if-c8-YYR" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                            <constraint firstItem="aB0-3m-ZVQ" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="3Xd-gr-5Vf"/>
                             <constraint firstAttribute="trailing" secondItem="BoR-xo-HiS" secondAttribute="trailing" id="7xQ-2I-Fvw"/>
                             <constraint firstItem="PaA-5S-dyd" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="8Ox-jc-B5q"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="trailing" constant="4" id="DOi-3p-g1M"/>
                             <constraint firstItem="BoR-xo-HiS" firstAttribute="leading" secondItem="sHe-5U-G8n" secondAttribute="leading" id="GMS-Q9-RIi"/>
-                            <constraint firstItem="keD-FY-tv9" firstAttribute="top" secondItem="aB0-3m-ZVQ" secondAttribute="top" id="GhS-kJ-Ynp"/>
                             <constraint firstAttribute="trailing" secondItem="PaA-5S-dyd" secondAttribute="trailing" constant="0.5" id="Jh3-Cv-G5i"/>
-                            <constraint firstItem="aB0-3m-ZVQ" firstAttribute="leading" secondItem="SE0-fc-EoD" secondAttribute="leading" id="TOQ-VW-MCs"/>
+                            <constraint firstItem="eJu-9e-u0P" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="OST-5g-gxB"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="bottom" constant="2" id="UF9-tn-JIQ"/>
                             <constraint firstAttribute="trailing" secondItem="sHe-5U-G8n" secondAttribute="trailing" id="W10-Q7-Bob"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aB0-3m-ZVQ" secondAttribute="bottom" id="W9B-Ol-Xbd"/>
                             <constraint firstItem="BoR-xo-HiS" firstAttribute="top" secondItem="sHe-5U-G8n" secondAttribute="bottom" constant="12" identifier="TopConstraint" id="boI-Zd-Vy8" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                            <constraint firstItem="keD-FY-tv9" firstAttribute="leading" secondItem="aB0-3m-ZVQ" secondAttribute="trailing" constant="10" id="emp-oI-NfN"/>
                             <constraint firstItem="vi5-s1-6UD" firstAttribute="leading" secondItem="BoR-xo-HiS" secondAttribute="leading" id="faJ-Su-1i3"/>
                             <constraint firstAttribute="bottom" secondItem="vi5-s1-6UD" secondAttribute="bottom" id="fbq-Im-r5K"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eJu-9e-u0P" secondAttribute="bottom" id="fcG-ZS-TY2"/>
                             <constraint firstItem="PaA-5S-dyd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rzF-6F-ABL" secondAttribute="trailing" constant="4" id="g7P-he-vxd"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="hHI-vJ-qUg"/>
+                            <constraint firstItem="keD-FY-tv9" firstAttribute="leading" secondItem="eJu-9e-u0P" secondAttribute="trailing" constant="10" id="iB8-Qz-EWv"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="leading" id="qG4-hS-szv"/>
+                            <constraint firstItem="eJu-9e-u0P" firstAttribute="leading" secondItem="SE0-fc-EoD" secondAttribute="leading" id="qvR-Qg-R3r"/>
+                            <constraint firstItem="eJu-9e-u0P" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="ssJ-IN-00L"/>
                             <constraint firstAttribute="trailing" secondItem="vi5-s1-6UD" secondAttribute="trailing" id="v7m-gX-Cie"/>
                         </constraints>
                     </view>
@@ -171,7 +173,7 @@
                 <outlet property="attachmentCollectionView" destination="BoR-xo-HiS" id="0eu-iX-hIx"/>
                 <outlet property="attachmentHeightConstraint" destination="5zC-z2-pWv" id="D8W-KK-YSA"/>
                 <outlet property="attachmentTopConstraint" destination="boI-Zd-Vy8" id="z6w-mm-gta"/>
-                <outlet property="avatarView" destination="aB0-3m-ZVQ" id="86R-6Z-yFK"/>
+                <outlet property="avatarView" destination="eJu-9e-u0P" id="cVZ-Aw-YC1"/>
                 <outlet property="displayNameLabel" destination="keD-FY-tv9" id="u7a-Yf-EsG"/>
                 <outlet property="reblogAvatarView" destination="AZp-uC-1qb" id="GQf-0t-BN4"/>
                 <outlet property="reblogHeightConstraint" destination="uxL-z7-boq" id="WHf-47-WaQ"/>
@@ -182,6 +184,7 @@
                 <outlet property="statusTextView" destination="sHe-5U-G8n" id="vWC-mT-PxO"/>
                 <outlet property="timestampLabel" destination="PaA-5S-dyd" id="Z05-US-JRU"/>
                 <outlet property="usernameLabel" destination="rzF-6F-ABL" id="Zf5-MX-E1K"/>
+                <outletCollection property="backgroundColoredViews" destination="eJu-9e-u0P" collectionClass="NSMutableArray" id="Jyp-Ze-n1y"/>
             </connections>
             <point key="canvasLocation" x="289.5" y="104"/>
         </tableViewCell>

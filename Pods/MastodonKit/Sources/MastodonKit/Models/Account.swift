@@ -41,6 +41,8 @@ public class Account: Codable {
     public let statusesCount: Int
     /// Array of profile metadata field, each element has 'name' and 'value'
     public let fields: [[String: String]]
+    /// Boolean to indicate that the account performs automated actions
+    public let bot: Bool?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -59,6 +61,7 @@ public class Account: Codable {
         case followingCount = "following_count"
         case statusesCount = "statuses_count"
         case fields
+        case bot
     }
     
     @available(*, deprecated, message: "Do not use.")

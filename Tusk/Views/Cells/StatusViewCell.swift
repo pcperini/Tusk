@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 
 class StatusViewCell: TableViewCell {
-    @IBOutlet var avatarView: ImageView!
+    @IBOutlet var avatarView: AvatarView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var statusTextView: TextView!
@@ -57,7 +57,10 @@ class StatusViewCell: TableViewCell {
     private func updateStatus() {
         guard let status = self.status else { return }
         
-        self.avatarView.af_setImage(withURL: URL(string: status.account.avatar)!)
+        self.avatarView.avatarURL = URL(string: status.account.avatar)
+        self.avatarView.badgeType = AvatarView.BadgeType(account: status.account)
+        self.preserveBackgroundColors()
+        
         self.displayNameLabel.text = status.account.name
         self.usernameLabel.text = status.account.handle
         self.timestampLabel.date = status.createdAt

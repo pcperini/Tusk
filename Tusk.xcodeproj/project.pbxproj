@@ -15,6 +15,15 @@
 		73022FF3212E2AD600BC1E9A /* FollowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF2212E2AD600BC1E9A /* FollowCellView.swift */; };
 		73022FF4212E2AD600BC1E9A /* FollowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF2212E2AD600BC1E9A /* FollowCellView.swift */; };
 		73022FF5212E2AD600BC1E9A /* FollowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF2212E2AD600BC1E9A /* FollowCellView.swift */; };
+		73022FF7212F1B1B00BC1E9A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF6212F1B1B00BC1E9A /* AvatarView.swift */; };
+		73022FF8212F1B1B00BC1E9A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF6212F1B1B00BC1E9A /* AvatarView.swift */; };
+		73022FF9212F1B1B00BC1E9A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FF6212F1B1B00BC1E9A /* AvatarView.swift */; };
+		73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */; };
+		73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */; };
+		73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */; };
+		73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFE212F2CF500BC1E9A /* EnvVars.swift */; };
+		73023000212F2CF500BC1E9A /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFE212F2CF500BC1E9A /* EnvVars.swift */; };
+		73023001212F2CF500BC1E9A /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFE212F2CF500BC1E9A /* EnvVars.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -179,6 +188,9 @@
 		668186435AD8DAB8214EBAE6 /* Pods-TuskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuskUITests/Pods-TuskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73022FEE212E245800BC1E9A /* FollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 		73022FF2212E2AD600BC1E9A /* FollowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCellView.swift; sourceTree = "<group>"; };
+		73022FF6212F1B1B00BC1E9A /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		73022FFE212F2CF500BC1E9A /* EnvVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvVars.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -308,6 +320,7 @@
 				732BE251212233A30049ADBD /* TextView.swift */,
 				732BE261212338EA0049ADBD /* TimestampLabel.swift */,
 				739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */,
+				73022FF6212F1B1B00BC1E9A /* AvatarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +334,8 @@
 				73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */,
 				732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */,
 				73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */,
+				73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */,
+				73022FFE212F2CF500BC1E9A /* EnvVars.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -712,6 +727,7 @@
 				73208E96212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
+				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -720,6 +736,7 @@
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
+				73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
@@ -735,6 +752,7 @@
 				732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				739426DF21272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
+				73022FF7212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				732BE252212233A30049ADBD /* TextView.swift in Sources */,
 				732557FB2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73FBF8B3212DBF10009B2619 /* AccountsState.swift in Sources */,
@@ -755,6 +773,7 @@
 				73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
+				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
@@ -772,6 +791,7 @@
 				73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
+				73023000212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732557FE2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
@@ -785,6 +805,7 @@
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
 				73022FF0212E245800BC1E9A /* FollowsViewController.swift in Sources */,
+				73022FF8212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */,
@@ -803,6 +824,7 @@
 				73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
+				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
@@ -820,6 +842,7 @@
 				73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
+				73023001212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				732557FF2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
@@ -833,6 +856,7 @@
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
 				73022FF1212E245800BC1E9A /* FollowsViewController.swift in Sources */,
+				73022FF9212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */,
