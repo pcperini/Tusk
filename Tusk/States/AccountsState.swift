@@ -9,7 +9,6 @@
 import Foundation
 import MastodonKit
 import ReSwift
-import KeychainAccess
 
 struct AccountsState: StateType {
     private var allAccounts: [AccountState] = []

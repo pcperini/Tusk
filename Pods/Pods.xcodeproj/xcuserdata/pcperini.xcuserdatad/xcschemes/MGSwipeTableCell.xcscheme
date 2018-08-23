@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5704F03B1D52504854D5752ED833B58C"
-               BuildableName = "Pods_Tusk.framework"
-               BlueprintName = "Pods-Tusk"
+               BlueprintIdentifier = "1CD80321715FDB12A3A31B7BCB09EA28"
+               BuildableName = "MGSwipeTableCell.framework"
+               BlueprintName = "MGSwipeTableCell"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5704F03B1D52504854D5752ED833B58C"
-            BuildableName = "Pods_Tusk.framework"
-            BlueprintName = "Pods-Tusk"
+            BlueprintIdentifier = "1CD80321715FDB12A3A31B7BCB09EA28"
+            BuildableName = "MGSwipeTableCell.framework"
+            BlueprintName = "MGSwipeTableCell"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

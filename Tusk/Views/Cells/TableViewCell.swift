@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
 protocol SubviewsBackgroundColorPreservable { var subviews: [UIView] { get } }
 
-class TableViewCell: UITableViewCell {
+class TableViewCell: MGSwipeTableCell {
     @IBInspectable var selectedBackgroundColor: UIColor? {
         didSet {
             let view = UIView()

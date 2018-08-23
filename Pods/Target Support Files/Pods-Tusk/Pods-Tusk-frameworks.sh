@@ -154,6 +154,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
 fi
@@ -169,6 +170,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
 fi

@@ -8,6 +8,7 @@
 
 import UIKit
 import MastodonKit
+import MGSwipeTableCell
 
 class StatusViewCell: TableViewCell {
     @IBOutlet var avatarView: AvatarView!
@@ -32,6 +33,7 @@ class StatusViewCell: TableViewCell {
     var accountElementWasTapped: ((Account?) -> Void)?
     var linkWasTapped: ((URL?) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
+    var contextPushWasTriggered: ((Status?) -> Void)?
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
     private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
@@ -52,6 +54,18 @@ class StatusViewCell: TableViewCell {
         self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
         
         self.statusTextView.delegate = self
+        
+        let contextButton = MGSwipeButton(title: "",
+                                          icon: UIImage(named: "ContextButton"),
+                                          backgroundColor: UIColor(named: "ContextBackgroundColor"),
+                                          padding: Int(self.frame.width / 8.0),
+                                          callback: { (_) in self.contextPushWasTriggered?(self.status); return false })
+        contextButton.tintColor = .lightGray
+        self.rightButtons = [contextButton]
+        self.rightExpansion.buttonIndex = 0
+        self.rightExpansion.fillOnTrigger = true
+        self.rightExpansion.threshold = 1.0
+        self.rightSwipeSettings.transition = .drag
     }
     
     private func updateStatus() {

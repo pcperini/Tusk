@@ -29,6 +29,13 @@ class StatusesViewController: PaginatingTableViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.visibleCells.forEach { (cell) in
+            (cell as? StatusViewCell)?.hideSwipe(animated: true)
+        }
+    }
+    
     func pollStatuses(pageDirection: PageDirection = .Reload) {
         let possibleAction: Action?
         switch pageDirection {
@@ -87,9 +94,12 @@ class StatusesViewController: PaginatingTableViewController {
             guard let url = url else { return }
             self.pushToURL(url: url)
         }
+        cell.contextPushWasTriggered = { (status) in
+            guard let status = status else { return }
+            self.pushToContext(status: status)
+        }
         
         cell.status = displayStatus
-        
         return cell
     }
     
@@ -141,6 +151,13 @@ class StatusesViewController: PaginatingTableViewController {
         GlobalStore.dispatch(AccountState.PollAccount(client: client, account: account))
     }
     
+    func pushToContext(status: Status) {
+        self.performSegue(withIdentifier: "PushContextViewController", sender: status)
+        
+        guard let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(ContextState.PollContext(client: client, status: status))
+    }
+    
     func presentAttachment(attachment: Attachment, forStatus status: Status) {
         let photoViewer = AttachmentsViewController(attachments: status.mediaAttachments, initialAttachment: attachment)
         self.present(photoViewer, animated: true, completion: nil)
@@ -157,6 +174,14 @@ class StatusesViewController: PaginatingTableViewController {
             }
             
             accountVC.account = account
+            }
+        case "PushContextViewController": do {
+            guard let contextVC = segue.destination as? ContextViewController, let status = sender as? Status else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            contextVC.status = status
             }
         default: return
         }

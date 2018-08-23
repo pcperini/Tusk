@@ -24,6 +24,15 @@
 		73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFE212F2CF500BC1E9A /* EnvVars.swift */; };
 		73023000212F2CF500BC1E9A /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFE212F2CF500BC1E9A /* EnvVars.swift */; };
 		73023001212F2CF500BC1E9A /* EnvVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022FFE212F2CF500BC1E9A /* EnvVars.swift */; };
+		73023003212F535000BC1E9A /* ContextState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023002212F535000BC1E9A /* ContextState.swift */; };
+		73023004212F535000BC1E9A /* ContextState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023002212F535000BC1E9A /* ContextState.swift */; };
+		73023005212F535000BC1E9A /* ContextState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023002212F535000BC1E9A /* ContextState.swift */; };
+		73023007212F55BD00BC1E9A /* ContextsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023006212F55BD00BC1E9A /* ContextsState.swift */; };
+		73023008212F55BD00BC1E9A /* ContextsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023006212F55BD00BC1E9A /* ContextsState.swift */; };
+		73023009212F55BD00BC1E9A /* ContextsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023006212F55BD00BC1E9A /* ContextsState.swift */; };
+		7302300B212F594000BC1E9A /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302300A212F594000BC1E9A /* ContextViewController.swift */; };
+		7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302300A212F594000BC1E9A /* ContextViewController.swift */; };
+		7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302300A212F594000BC1E9A /* ContextViewController.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -191,6 +200,9 @@
 		73022FF6212F1B1B00BC1E9A /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		73022FFE212F2CF500BC1E9A /* EnvVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvVars.swift; sourceTree = "<group>"; };
+		73023002212F535000BC1E9A /* ContextState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextState.swift; sourceTree = "<group>"; };
+		73023006212F55BD00BC1E9A /* ContextsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextsState.swift; sourceTree = "<group>"; };
+		7302300A212F594000BC1E9A /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +301,7 @@
 				73022FEE212E245800BC1E9A /* FollowsViewController.swift */,
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
 				73208EA9212C750600529FA3 /* TableContainerViewController.swift */,
+				7302300A212F594000BC1E9A /* ContextViewController.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -384,6 +397,8 @@
 				732BE210211F93860049ADBD /* NotificationsState.swift */,
 				73FBF8B2212DBF10009B2619 /* AccountsState.swift */,
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
+				73023006212F55BD00BC1E9A /* ContextsState.swift */,
+				73023002212F535000BC1E9A /* ContextState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 			);
 			path = States;
@@ -646,6 +661,7 @@
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/MastodonKit/MastodonKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
 			);
@@ -662,6 +678,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MastodonKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
 			);
@@ -714,8 +731,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
+				73023003212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE289212485890049ADBD /* CaseIterable.swift in Sources */,
 				732BE25E212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				7302300B212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
@@ -751,6 +770,7 @@
 				73208E89212B290500529FA3 /* MentionsState.swift in Sources */,
 				732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				739426DF21272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
+				73023007212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73022FF7212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				732BE252212233A30049ADBD /* TextView.swift in Sources */,
@@ -771,6 +791,7 @@
 				73022FF4212E2AD600BC1E9A /* FollowCellView.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */,
+				73023004212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
@@ -790,6 +811,7 @@
 				73208EAB212C750600529FA3 /* TableContainerViewController.swift in Sources */,
 				73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
+				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				73023000212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -806,6 +828,7 @@
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
 				73022FF0212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73022FF8212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
+				73023008212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */,
@@ -822,6 +845,7 @@
 				73022FF5212E2AD600BC1E9A /* FollowCellView.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */,
+				73023005212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
@@ -841,6 +865,7 @@
 				73208EAC212C750600529FA3 /* TableContainerViewController.swift in Sources */,
 				73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
+				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				73023001212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -857,6 +882,7 @@
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
 				73022FF1212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73022FF9212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
+				73023009212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */,

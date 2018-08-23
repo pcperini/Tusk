@@ -16,7 +16,7 @@ enum PageDirection {
 
 class PaginatingTableViewController: UITableViewController {
     private static let paginationActivityIndicatorSize: CGFloat = 44.0
-    private var paginationActivityIndicator: UIActivityIndicatorView!
+    var paginationActivityIndicator: UIActivityIndicatorView!
 
     private var state: State = .Resting
     
@@ -42,6 +42,7 @@ class PaginatingTableViewController: UITableViewController {
                                          y: 0,
                                          width: size,
                                          height: size)
+        activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         paginateView.addSubview(activityIndicator)
         

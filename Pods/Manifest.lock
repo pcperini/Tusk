@@ -30,6 +30,7 @@ PODS:
     - Hue (~> 3.0)
     - Imaginary (~> 3.0)
   - MastodonKit (1.0.10)
+  - MGSwipeTableCell (1.6.7)
   - ReSwift (4.0.1)
 
 DEPENDENCIES:
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - KeychainAccess (~> 3.1)
   - Lightbox (~> 2.1)
   - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, commit `head`, branch `master`)
+  - MGSwipeTableCell (~> 1.6)
   - ReSwift (~> 4.0)
 
 SPEC REPOS:
@@ -55,6 +57,7 @@ SPEC REPOS:
     - Imaginary
     - KeychainAccess
     - Lightbox
+    - MGSwipeTableCell
     - ReSwift
 
 EXTERNAL SOURCES:
@@ -81,8 +84,9 @@ SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
+  MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
 
-PODFILE CHECKSUM: 006074d3f5a5a607ed6534221197d3c793a0f253
+PODFILE CHECKSUM: d2cd68edd55a1f0d11fc7399870664ea3552a8af
 
 COCOAPODS: 1.5.3
