@@ -669,20 +669,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y40-h3-tXx" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="12" width="40" height="40"/>
-                                            <gestureRecognizers/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" priority="999" constant="40" id="JR3-t3-BXp"/>
-                                                <constraint firstAttribute="width" constant="40" id="QSd-Qe-VP5"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-zQ-VeO">
                                             <rect key="frame" x="64" y="12" width="109.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -701,20 +687,32 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xel-rN-hes" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                                            <rect key="frame" x="12" y="12" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="KEM-AL-jQx"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Y40-h3-tXx" firstAttribute="top" secondItem="VjF-pt-pNg" secondAttribute="top" constant="12" id="8JL-7r-JN0"/>
                                         <constraint firstItem="PLt-d4-7A9" firstAttribute="top" secondItem="pg9-zQ-VeO" secondAttribute="top" id="8Sc-cw-TlM"/>
                                         <constraint firstItem="pg9-zQ-VeO" firstAttribute="top" secondItem="VjF-pt-pNg" secondAttribute="top" constant="12" id="AOo-yA-Tl3"/>
-                                        <constraint firstAttribute="bottom" secondItem="Y40-h3-tXx" secondAttribute="bottom" constant="12" id="I3L-Uk-ReW"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ay9-P1-rmc" secondAttribute="trailing" constant="20" symbolic="YES" id="JuZ-Tc-Wq0"/>
-                                        <constraint firstItem="pg9-zQ-VeO" firstAttribute="leading" secondItem="Y40-h3-tXx" secondAttribute="trailing" constant="12" id="LRK-jV-c6N"/>
+                                        <constraint firstItem="xel-rN-hes" firstAttribute="leading" secondItem="VjF-pt-pNg" secondAttribute="leading" constant="12" id="ME7-Qb-c7A"/>
                                         <constraint firstItem="ay9-P1-rmc" firstAttribute="leading" secondItem="pg9-zQ-VeO" secondAttribute="leading" id="VWw-hp-BBm"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PLt-d4-7A9" secondAttribute="trailing" constant="12" id="Vgt-Hi-Pkf"/>
+                                        <constraint firstAttribute="bottom" secondItem="xel-rN-hes" secondAttribute="bottom" constant="12.5" id="Xfx-h0-hu3"/>
                                         <constraint firstAttribute="bottom" secondItem="ay9-P1-rmc" secondAttribute="bottom" constant="12" id="c5G-L6-OH2"/>
+                                        <constraint firstItem="xel-rN-hes" firstAttribute="top" secondItem="VjF-pt-pNg" secondAttribute="top" constant="12" id="iWi-bi-Jvd"/>
+                                        <constraint firstItem="pg9-zQ-VeO" firstAttribute="leading" secondItem="xel-rN-hes" secondAttribute="trailing" constant="12" id="in6-rI-3Cp"/>
                                         <constraint firstItem="PLt-d4-7A9" firstAttribute="leading" secondItem="pg9-zQ-VeO" secondAttribute="trailing" constant="4" id="npa-q2-zcT"/>
                                         <constraint firstItem="ay9-P1-rmc" firstAttribute="top" secondItem="pg9-zQ-VeO" secondAttribute="bottom" constant="4" id="ozO-hq-ZFC"/>
-                                        <constraint firstItem="Y40-h3-tXx" firstAttribute="leading" secondItem="VjF-pt-pNg" secondAttribute="leading" constant="12" id="tdf-ov-ukz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <userDefinedRuntimeAttributes>
@@ -723,10 +721,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="avatarView" destination="Y40-h3-tXx" id="III-Tt-ZRN"/>
+                                    <outlet property="avatarView" destination="xel-rN-hes" id="ieX-lP-59s"/>
                                     <outlet property="detailLabel" destination="ay9-P1-rmc" id="RXJ-e5-vwN"/>
                                     <outlet property="displayNameLabel" destination="pg9-zQ-VeO" id="Lur-Fp-U7g"/>
                                     <outlet property="usernameLabel" destination="PLt-d4-7A9" id="MZU-28-XoW"/>
+                                    <outletCollection property="backgroundColoredViews" destination="xel-rN-hes" collectionClass="NSMutableArray" id="zpb-W3-6PY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -760,7 +759,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5YB-R1-nPt"/>
         <segue reference="YQN-Ew-OQV"/>
     </inferredMetricsTieBreakers>
 </document>

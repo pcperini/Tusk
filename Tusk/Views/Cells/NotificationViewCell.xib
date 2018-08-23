@@ -123,6 +123,7 @@
                 <outlet property="statusLabel" destination="8DL-gh-lI1" id="uOM-Gn-DrC"/>
                 <outlet property="timestampLabel" destination="gnQ-r2-OLe" id="fIW-nM-8Gz"/>
                 <outletCollection property="backgroundColoredViews" destination="gxf-m2-l9b" collectionClass="NSMutableArray" id="no4-2I-Yte"/>
+                <outletCollection property="backgroundColoredViews" destination="VBX-QD-K1B" collectionClass="NSMutableArray" id="Wat-nh-VcX"/>
             </connections>
             <point key="canvasLocation" x="289.5" y="-26"/>
         </tableViewCell>

@@ -86,7 +86,8 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
         }
         
         let follow = self.follows[indexPath.row]
-        cell.avatarView.af_setImage(withURL: URL(string: follow.avatar)!)
+        cell.avatarView.avatarURL = URL(string: follow.avatar)
+        cell.avatarView.badgeType = AvatarView.BadgeType(account: follow)
         cell.displayNameLabel.text = follow.name
         cell.usernameLabel.text = follow.handle
         cell.detailLabel.text = follow.behaviorTidbit

@@ -9,7 +9,7 @@
 import UIKit
 
 class FollowViewCell: TableViewCell {
-    @IBOutlet var avatarView: ImageView!
+    @IBOutlet var avatarView: AvatarView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
