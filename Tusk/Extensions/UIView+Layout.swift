@@ -44,4 +44,22 @@ extension UIView {
                                       constant: 0.0)
         })
     }
+    
+    func constantConstraints(setting attributes: [NSLayoutAttribute: CGFloat]) -> [NSLayoutConstraint] {
+        return attributes.map({ (attribute, constant) in
+            return NSLayoutConstraint(item: self,
+                                      attribute: attribute,
+                                      relatedBy: .equal,
+                                      toItem: nil,
+                                      attribute: .notAnAttribute,
+                                      multiplier: 1.0,
+                                      constant: constant)
+        })
+    }
+    
+    func constraintsAffectingAttribute(attribute: NSLayoutAttribute) -> [NSLayoutConstraint] {
+        return self.constraints.filter({ (constraint) in
+            constraint.firstAttribute == attribute
+        })
+    }
 }

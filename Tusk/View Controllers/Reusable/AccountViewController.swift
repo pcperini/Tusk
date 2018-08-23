@@ -34,7 +34,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     var pinnedStatuses: [Status]? = nil
     
     @IBOutlet var headerImageView: UIImageView!
-    @IBOutlet var avatarView: ImageView!
+    @IBOutlet var avatarView: AvatarView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     
@@ -79,9 +79,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.parent?.navigationItem.title = account.name
 
         self.headerImageView.af_setImage(withURL: URL(string: account.header)!)
-        self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
         self.displayNameLabel.text = account.name
         self.usernameLabel.text = account.handle
+        
+        self.avatarView.avatarURL = URL(string: account.avatar)
+        self.avatarView.badgeType = AvatarView.BadgeType(account: account)
         
         self.bioTextView.htmlText = account.note
         self.bioTopConstraint.toggle(on: !(self.bioTextView.text?.isEmpty ?? true))

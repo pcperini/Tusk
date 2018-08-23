@@ -12,7 +12,7 @@ import MastodonKit
 class NotificationViewCell: TableViewCell {
     private static let actionIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
-    @IBOutlet var avatarView: ImageView!
+    @IBOutlet var avatarView: AvatarView!
     @IBOutlet var actionIconView: ImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var actionLabel: UILabel!
@@ -36,7 +36,9 @@ class NotificationViewCell: TableViewCell {
         didSet {
             guard let notification = self.notification else { return }
             
-            self.avatarView.af_setImage(withURL: URL(string: notification.account.avatar)!)
+            self.avatarView.avatarURL = URL(string: notification.account.avatar)
+            self.avatarView.badgeType = AvatarView.BadgeType(account: notification.account)
+            
             self.displayNameLabel.text = notification.account.name
             self.actionLabel.text = notification.action
             self.timestampLabel.date = notification.createdAt

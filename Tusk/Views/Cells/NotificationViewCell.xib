@@ -21,19 +21,6 @@
                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7mp-61-OuG">
                         <rect key="frame" x="12" y="12" width="351" height="61.5"/>
                         <subviews>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="65V-dD-Kcf" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="QNJ-vc-XHA"/>
-                                    <constraint firstAttribute="height" priority="999" constant="50" id="zn9-qA-0uS"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-m2-l9b" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="70" y="0.0" width="20" height="20"/>
                                 <color key="backgroundColor" red="0.8941602099" green="0.052000258170000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -82,23 +69,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBX-QD-K1B" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Pn2-Pq-kPG"/>
+                                    <constraint firstAttribute="height" constant="50" id="dda-OO-fXs"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="gnQ-r2-OLe" firstAttribute="leading" secondItem="8DL-gh-lI1" secondAttribute="leading" id="1EC-db-3pN"/>
-                            <constraint firstItem="gxf-m2-l9b" firstAttribute="leading" secondItem="65V-dD-Kcf" secondAttribute="trailing" constant="20" id="9xg-Dk-Ojz"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8DL-gh-lI1" secondAttribute="trailing" id="Cid-G3-fUi"/>
-                            <constraint firstItem="8DL-gh-lI1" firstAttribute="leading" secondItem="gxf-m2-l9b" secondAttribute="trailing" constant="-20" id="Dvg-Jq-YtN"/>
-                            <constraint firstItem="65V-dD-Kcf" firstAttribute="leading" secondItem="7mp-61-OuG" secondAttribute="leading" id="Kop-rz-Fq7"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VBX-QD-K1B" secondAttribute="bottom" id="IaX-6c-GQ5"/>
                             <constraint firstItem="0Ry-N8-jIJ" firstAttribute="leading" secondItem="gxf-m2-l9b" secondAttribute="trailing" constant="4" id="N7s-LZ-nNU"/>
                             <constraint firstItem="jpF-mu-6o0" firstAttribute="top" secondItem="0Ry-N8-jIJ" secondAttribute="top" id="NFO-SG-j75"/>
+                            <constraint firstItem="VBX-QD-K1B" firstAttribute="top" secondItem="7mp-61-OuG" secondAttribute="top" id="NbV-pn-4Dn"/>
+                            <constraint firstItem="gxf-m2-l9b" firstAttribute="leading" secondItem="VBX-QD-K1B" secondAttribute="trailing" constant="20" id="OIE-bF-i8l"/>
                             <constraint firstItem="8DL-gh-lI1" firstAttribute="top" secondItem="gxf-m2-l9b" secondAttribute="bottom" constant="1" id="OUm-vK-hgX"/>
                             <constraint firstItem="8DL-gh-lI1" firstAttribute="top" secondItem="0Ry-N8-jIJ" secondAttribute="bottom" id="S6U-5F-j8l"/>
-                            <constraint firstItem="65V-dD-Kcf" firstAttribute="top" secondItem="7mp-61-OuG" secondAttribute="top" id="TNd-aY-zzf"/>
                             <constraint firstItem="gnQ-r2-OLe" firstAttribute="top" secondItem="8DL-gh-lI1" secondAttribute="bottom" constant="2" id="UYk-UW-3za"/>
-                            <constraint firstItem="0Ry-N8-jIJ" firstAttribute="top" secondItem="65V-dD-Kcf" secondAttribute="top" id="V6q-JR-4yc"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="65V-dD-Kcf" secondAttribute="bottom" id="VgD-Rm-yZq"/>
                             <constraint firstItem="jpF-mu-6o0" firstAttribute="leading" secondItem="0Ry-N8-jIJ" secondAttribute="trailing" constant="4" id="Xab-Cn-h2K"/>
+                            <constraint firstItem="VBX-QD-K1B" firstAttribute="leading" secondItem="7mp-61-OuG" secondAttribute="leading" id="Yw1-kx-1VF"/>
                             <constraint firstAttribute="bottom" secondItem="gnQ-r2-OLe" secondAttribute="bottom" id="k0n-rb-Ubb"/>
+                            <constraint firstItem="gxf-m2-l9b" firstAttribute="top" secondItem="7mp-61-OuG" secondAttribute="top" id="m8g-XW-ziv"/>
+                            <constraint firstItem="8DL-gh-lI1" firstAttribute="leading" secondItem="gxf-m2-l9b" secondAttribute="leading" id="tXE-MA-FZQ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jpF-mu-6o0" secondAttribute="trailing" id="ywQ-tM-Oso"/>
                         </constraints>
                     </view>
@@ -107,7 +107,7 @@
                     <constraint firstAttribute="trailing" secondItem="7mp-61-OuG" secondAttribute="trailing" constant="12" id="FDx-QM-bcE"/>
                     <constraint firstItem="7mp-61-OuG" firstAttribute="top" secondItem="mVN-tH-HRp" secondAttribute="top" constant="12" id="Gbr-ba-xia"/>
                     <constraint firstAttribute="bottom" secondItem="7mp-61-OuG" secondAttribute="bottom" constant="12" id="dVB-1G-jcL"/>
-                    <constraint firstItem="7mp-61-OuG" firstAttribute="leading" secondItem="mVN-tH-HRp" secondAttribute="leading" constant="12" id="k1B-SE-f6S"/>
+                    <constraint firstItem="7mp-61-OuG" firstAttribute="leading" secondItem="mVN-tH-HRp" secondAttribute="leading" constant="12" id="wjF-Fh-Xty"/>
                 </constraints>
             </tableViewCellContentView>
             <userDefinedRuntimeAttributes>
@@ -118,7 +118,7 @@
             <connections>
                 <outlet property="actionIconView" destination="gxf-m2-l9b" id="rHv-C3-bVM"/>
                 <outlet property="actionLabel" destination="jpF-mu-6o0" id="EV8-Fj-Aih"/>
-                <outlet property="avatarView" destination="65V-dD-Kcf" id="cIv-Wu-Ic7"/>
+                <outlet property="avatarView" destination="VBX-QD-K1B" id="L1a-Yy-ZJM"/>
                 <outlet property="displayNameLabel" destination="0Ry-N8-jIJ" id="xuT-d9-PXW"/>
                 <outlet property="statusLabel" destination="8DL-gh-lI1" id="uOM-Gn-DrC"/>
                 <outlet property="timestampLabel" destination="gnQ-r2-OLe" id="fIW-nM-8Gz"/>

@@ -70,7 +70,7 @@ import MastodonKit
         self.imageView.contentMode = .scaleAspectFit
         
         self.addConstraints(self.constraints(pinning: [.bottom: -2, .right: -5], to: self.badgeView))
-        self.addConstraints(self.ratioConstraints(pinning: [.width: 0.5, .height: 0.5], to: self.badgeView))
+        self.badgeView.addConstraints(self.badgeView.constantConstraints(setting: [.width: 25.0, .height: 25.0]))
         self.badgeView.round = true
         self.badgeView.borderColor = .white
         self.badgeView.borderWidth = 2.0

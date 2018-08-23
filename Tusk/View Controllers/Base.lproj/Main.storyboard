@@ -333,24 +333,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDu-B7-hhf">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JUq-ia-FIl" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="148.5" y="15" width="78" height="174.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" priority="999" constant="78" id="2lP-4e-Wh8"/>
-                                                <constraint firstAttribute="width" constant="78" id="zPA-OL-bxm"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="3"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv6-Mm-Zu1">
-                                            <rect key="frame" x="133" y="197.5" width="109.5" height="21"/>
+                                            <rect key="frame" x="133" y="101" width="109.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="oxt-Wi-zKt"/>
                                             </constraints>
@@ -359,7 +343,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPZ-0d-BdO">
-                                            <rect key="frame" x="147" y="222.5" width="81" height="18"/>
+                                            <rect key="frame" x="147" y="126" width="81" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="w7O-yQ-VaI"/>
                                             </constraints>
@@ -368,7 +352,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Bio" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-8m-ATl" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="170.5" y="248.5" width="34.5" height="36.5"/>
+                                            <rect key="frame" x="170.5" y="152" width="34.5" height="133"/>
                                             <color key="tintColor" red="0.59510633680555558" green="0.78882016780422648" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="999" id="Ymc-Sp-guW"/>
@@ -377,22 +361,36 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfL-yS-7t2" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                                            <rect key="frame" x="149" y="15" width="78" height="78"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="78" id="VjQ-Vn-ZL8"/>
+                                                <constraint firstAttribute="height" constant="78" id="uwp-9d-80e"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="yfL-yS-7t2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JDu-B7-hhf" secondAttribute="leading" id="8EZ-hy-Dk5"/>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="centerX" secondItem="sv6-Mm-Zu1" secondAttribute="centerX" id="9E4-jh-FRj"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YPZ-0d-BdO" secondAttribute="trailing" id="BcE-vx-JXb"/>
                                         <constraint firstItem="sv6-Mm-Zu1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JDu-B7-hhf" secondAttribute="leading" id="F3A-kk-8A4"/>
                                         <constraint firstItem="NPv-8m-ATl" firstAttribute="centerX" secondItem="YPZ-0d-BdO" secondAttribute="centerX" id="HYa-kp-asz"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yfL-yS-7t2" secondAttribute="trailing" id="Iod-tf-P5g"/>
                                         <constraint firstItem="NPv-8m-ATl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JDu-B7-hhf" secondAttribute="leading" constant="15" id="JGU-w3-Hf5"/>
+                                        <constraint firstItem="yfL-yS-7t2" firstAttribute="top" secondItem="JDu-B7-hhf" secondAttribute="top" constant="15" id="PHU-OS-EVQ"/>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="top" secondItem="sv6-Mm-Zu1" secondAttribute="bottom" constant="4" id="Pae-6d-TE7"/>
-                                        <constraint firstItem="JUq-ia-FIl" firstAttribute="centerX" secondItem="JDu-B7-hhf" secondAttribute="centerX" id="RAG-On-cdB"/>
-                                        <constraint firstItem="sv6-Mm-Zu1" firstAttribute="top" secondItem="JUq-ia-FIl" secondAttribute="bottom" constant="8" id="YEg-BK-lzp"/>
-                                        <constraint firstItem="sv6-Mm-Zu1" firstAttribute="centerX" secondItem="JUq-ia-FIl" secondAttribute="centerX" id="abp-XS-I0q"/>
-                                        <constraint firstItem="JUq-ia-FIl" firstAttribute="top" secondItem="JDu-B7-hhf" secondAttribute="top" constant="15" id="emC-Tw-fFu"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sv6-Mm-Zu1" secondAttribute="trailing" id="lGE-tH-Liv"/>
+                                        <constraint firstItem="sv6-Mm-Zu1" firstAttribute="top" secondItem="yfL-yS-7t2" secondAttribute="bottom" constant="8" id="lv4-FR-RN1"/>
                                         <constraint firstItem="NPv-8m-ATl" firstAttribute="top" secondItem="YPZ-0d-BdO" secondAttribute="bottom" constant="8" id="m1L-9a-tGv" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                         <constraint firstItem="YPZ-0d-BdO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JDu-B7-hhf" secondAttribute="leading" id="nua-hc-msf"/>
+                                        <constraint firstItem="yfL-yS-7t2" firstAttribute="centerX" secondItem="JDu-B7-hhf" secondAttribute="centerX" id="pjI-6C-NaC"/>
+                                        <constraint firstItem="sv6-Mm-Zu1" firstAttribute="centerX" secondItem="yfL-yS-7t2" secondAttribute="centerX" id="qHr-fX-cf1"/>
                                         <constraint firstAttribute="bottom" secondItem="NPv-8m-ATl" secondAttribute="bottom" constant="15" id="s3f-Dp-8bG"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NPv-8m-ATl" secondAttribute="trailing" constant="15" id="uDW-Gh-bRp"/>
                                     </constraints>
@@ -478,7 +476,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="avatarView" destination="JUq-ia-FIl" id="Bbm-hS-57A"/>
+                        <outlet property="avatarView" destination="yfL-yS-7t2" id="XMa-29-h4o"/>
                         <outlet property="bioHeightConstraint" destination="Ymc-Sp-guW" id="JKE-pW-fgL"/>
                         <outlet property="bioTextView" destination="NPv-8m-ATl" id="A1B-cy-PzP"/>
                         <outlet property="bioTopConstraint" destination="m1L-9a-tGv" id="KDJ-Jj-QZp"/>
@@ -762,6 +760,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5YB-R1-nPt"/>
         <segue reference="YQN-Ew-OQV"/>
     </inferredMetricsTieBreakers>
 </document>
