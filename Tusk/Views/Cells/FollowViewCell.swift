@@ -1,5 +1,5 @@
 //
-//  FollowCellView.swift
+//  FollowViewCell.swift
 //  Tusk
 //
 //  Created by Patrick Perini on 8/22/18.

@@ -96,7 +96,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         self.tableView.reloadData()
         self.reloadHeaderView()
-        self.navigationItem.title = account.displayName
+        self.navigationItem.title = account.name
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -161,7 +161,9 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func tableView(_ tableView: UITableView, cellForAboutSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
+        let cell: FieldViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FieldCell",
+                                                                     for: IndexPath(row: row, section: Section.About.rawValue),
+                                                                     usingNibNamed: "FieldViewCell")
         
         let field = account.fields[row]
         let displayField = account.displayFields[row]
@@ -187,7 +189,9 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func tableView(_ tableView: UITableView, cellForStatsSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
         guard let stat = Stat(rawValue: row) else { return FieldViewCell() }
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "FieldCell", for: IndexPath(row: row, section: Section.About.rawValue)) as? FieldViewCell) ?? FieldViewCell()
+        let cell: FieldViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FieldCell",
+                                                                     for: IndexPath(row: row, section: Section.About.rawValue),
+                                                                     usingNibNamed: "FieldViewCell")
         
         let format = { (n: Int) in NumberFormatter.localizedString(from: NSNumber(value: n), number: .decimal) }
 
@@ -212,10 +216,9 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func tableView(_ tableView: UITableView, cellForStatusesSectionRow row: Int) -> StatusViewCell {
         guard let pinnedStatuses = self.pinnedStatuses else { return StatusViewCell() }
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Status") as? StatusViewCell else {
-            self.tableView.register(UINib(nibName: "StatusViewCell", bundle: nil), forCellReuseIdentifier: "Status")
-            return self.tableView(tableView, cellForStatusesSectionRow: row)
-        }
+        let cell: StatusViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Status",
+                                                                      for: IndexPath(row: row, section: Section.Statuses.rawValue),
+                                                                      usingNibNamed: "StatusViewCell")
         
         cell.status = pinnedStatuses[row]
         return cell

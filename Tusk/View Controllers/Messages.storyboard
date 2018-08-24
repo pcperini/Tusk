@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oUy-di-OWA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Direct Messages Statuses-->
+        <scene sceneID="HDj-AZ-ytz">
+            <objects>
+                <tableViewController title="Direct Messages Statuses" id="Yst-yh-Haj" customClass="StatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nrn-il-0Tg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="Yst-yh-Haj" id="K2k-x9-ot6"/>
+                            <outlet property="delegate" destination="Yst-yh-Haj" id="MgN-XX-0wY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Mentions" id="7AH-2i-Jt8">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="dew-pB-tLz"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="4qL-gH-oaX" kind="show" identifier="PushAccountViewController" id="OaL-qC-k8h"/>
+                        <segue destination="n8s-Ex-ILS" kind="show" identifier="PushContextViewController" id="mSN-LY-xiX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1iP-tg-Ar3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2548" y="349"/>
+        </scene>
+        <!--Direct Messages-->
+        <scene sceneID="pz8-s5-KLC">
+            <objects>
+                <viewController title="Direct Messages" id="oUy-di-OWA" customClass="MessagesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cU6-a5-JCp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-YV-J8g">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="Yst-yh-Haj" kind="embed" id="Mi9-5V-tSZ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ecQ-YV-J8g" firstAttribute="leading" secondItem="OgH-Y3-SQh" secondAttribute="leading" id="4ce-X0-pIL"/>
+                            <constraint firstItem="ecQ-YV-J8g" firstAttribute="top" secondItem="OgH-Y3-SQh" secondAttribute="top" id="6Vy-Vh-DCo"/>
+                            <constraint firstItem="OgH-Y3-SQh" firstAttribute="trailing" secondItem="ecQ-YV-J8g" secondAttribute="trailing" id="TA4-W7-gvm"/>
+                            <constraint firstItem="OgH-Y3-SQh" firstAttribute="bottom" secondItem="ecQ-YV-J8g" secondAttribute="bottom" id="evj-a2-9p2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OgH-Y3-SQh"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Direct Messages" id="Dnn-hZ-gAb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OD9-AQ-Rfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="350"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="YIK-lz-krY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Account" id="4qL-gH-oaX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPE-SF-44A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3180" y="312"/>
+        </scene>
+        <!--Context-->
+        <scene sceneID="Lqz-ep-USd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Context" id="n8s-Ex-ILS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3JJ-5w-fvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3176" y="384"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EditButton" width="20" height="20"/>
+    </resources>
+</document>

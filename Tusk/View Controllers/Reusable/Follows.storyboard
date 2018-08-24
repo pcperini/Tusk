@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oke-LI-0MI">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Follows-->
+        <scene sceneID="6LO-lI-YSA">
+            <objects>
+                <tableViewController title="Follows" id="oke-LI-0MI" customClass="FollowsViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vuR-wX-n9r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="oke-LI-0MI" id="ALl-CB-5UV"/>
+                            <outlet property="delegate" destination="oke-LI-0MI" id="MaC-y2-iMP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Follows" id="wVw-C5-wXd">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="jRI-oB-aiJ"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="P6R-y9-5Ui" kind="show" identifier="PushAccountViewController" id="EsW-3y-WNK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HLY-s4-Ukn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5094" y="1028"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="6FS-Jm-g5h">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Account" id="P6R-y9-5Ui" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="now-Zz-GAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5609" y="1027"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EditButton" width="20" height="20"/>
+    </resources>
+</document>
