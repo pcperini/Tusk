@@ -1,5 +1,5 @@
 //
-//  FieldCellView.swift
+//  FieldViewCell.swift
 //  Tusk
 //
 //  Created by Patrick Perini on 8/14/18.

@@ -65,10 +65,9 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "Notification") as? NotificationViewCell else {
-            self.tableView.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "Notification")
-            return self.tableView(tableView, cellForRowAt: indexPath)
-        }
+        let cell: NotificationViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Notification",
+                                                                            forIndexPath: indexPath,
+                                                                            usingNibNamed: "NotificationViewCell")
         
         let notification = self.notifications[indexPath.row]
         cell.notification = notification

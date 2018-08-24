@@ -33,6 +33,12 @@
 		7302300B212F594000BC1E9A /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302300A212F594000BC1E9A /* ContextViewController.swift */; };
 		7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302300A212F594000BC1E9A /* ContextViewController.swift */; };
 		7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302300A212F594000BC1E9A /* ContextViewController.swift */; };
+		7302300F213063CD00BC1E9A /* FieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302300E213063CD00BC1E9A /* FieldViewCell.xib */; };
+		73023010213063CD00BC1E9A /* FieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302300E213063CD00BC1E9A /* FieldViewCell.xib */; };
+		73023011213063CD00BC1E9A /* FieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302300E213063CD00BC1E9A /* FieldViewCell.xib */; };
+		730230132130682A00BC1E9A /* UITableView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UITableView+CellNib.swift */; };
+		730230142130682A00BC1E9A /* UITableView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UITableView+CellNib.swift */; };
+		730230152130682A00BC1E9A /* UITableView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UITableView+CellNib.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -203,6 +209,8 @@
 		73023002212F535000BC1E9A /* ContextState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextState.swift; sourceTree = "<group>"; };
 		73023006212F55BD00BC1E9A /* ContextsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextsState.swift; sourceTree = "<group>"; };
 		7302300A212F594000BC1E9A /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
+		7302300E213063CD00BC1E9A /* FieldViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldViewCell.xib; sourceTree = "<group>"; };
+		730230122130682A00BC1E9A /* UITableView+CellNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CellNib.swift"; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +357,7 @@
 				73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */,
 				73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */,
 				73022FFE212F2CF500BC1E9A /* EnvVars.swift */,
+				730230122130682A00BC1E9A /* UITableView+CellNib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -363,6 +372,7 @@
 				732BE25D212327490049ADBD /* NotificationViewCell.swift */,
 				732BE259212327350049ADBD /* NotificationViewCell.xib */,
 				732BE27121238FA50049ADBD /* FieldViewCell.swift */,
+				7302300E213063CD00BC1E9A /* FieldViewCell.xib */,
 				73022FF2212E2AD600BC1E9A /* FollowCellView.swift */,
 				739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */,
 				739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */,
@@ -591,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC63211E41AA00C2620F /* LaunchScreen.storyboard in Resources */,
+				7302300F213063CD00BC1E9A /* FieldViewCell.xib in Resources */,
 				739426DB21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
 				732BE25A212327350049ADBD /* NotificationViewCell.xib in Resources */,
 				73EAEC60211E41AA00C2620F /* Assets.xcassets in Resources */,
@@ -608,6 +619,7 @@
 				739426DC21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
 				73208E7D212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				732BE25B212327350049ADBD /* NotificationViewCell.xib in Resources */,
+				73023010213063CD00BC1E9A /* FieldViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +631,7 @@
 				739426DD21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
 				73208E7E212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				732BE25C212327350049ADBD /* NotificationViewCell.xib in Resources */,
+				73023011213063CD00BC1E9A /* FieldViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +766,7 @@
 				73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */,
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				730230132130682A00BC1E9A /* UITableView+CellNib.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */,
@@ -795,6 +809,7 @@
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				730230142130682A00BC1E9A /* UITableView+CellNib.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
@@ -849,6 +864,7 @@
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				730230152130682A00BC1E9A /* UITableView+CellNib.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
