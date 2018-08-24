@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8U2-Qv-vCO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Active Account View Controller-->
+        <scene sceneID="auY-Ky-kep">
+            <objects>
+                <viewController id="8U2-Qv-vCO" customClass="ActiveAccountViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Wl-2s-RsY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5C-uZ-Zso">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="vZI-Um-iIr" kind="embed" id="St6-hs-Pvo"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="w5C-uZ-Zso" firstAttribute="trailing" secondItem="qs6-pA-rKk" secondAttribute="trailing" id="6B3-JW-HY2"/>
+                            <constraint firstItem="w5C-uZ-Zso" firstAttribute="top" secondItem="qs6-pA-rKk" secondAttribute="top" id="jWI-AF-ASb"/>
+                            <constraint firstItem="w5C-uZ-Zso" firstAttribute="bottom" secondItem="qs6-pA-rKk" secondAttribute="bottom" id="nXJ-58-Bcl"/>
+                            <constraint firstItem="w5C-uZ-Zso" firstAttribute="leading" secondItem="qs6-pA-rKk" secondAttribute="leading" id="y7h-93-KBL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qs6-pA-rKk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TWD-W2-sUo">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="SettingsButton" id="673-b4-k5A"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6w-QF-a8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="1700.5997001499252"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="zne-g3-BhO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Account" id="vZI-Um-iIr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3nn-sx-hIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2210" y="1700"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="SettingsButton" width="20" height="20"/>
+    </resources>
+</document>

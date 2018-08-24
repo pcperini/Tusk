@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ql0-Ul-cJ1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mentions Statuses-->
+        <scene sceneID="QXQ-Wd-qep">
+            <objects>
+                <tableViewController title="Mentions Statuses" id="ptY-KU-XzM" customClass="StatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4DL-WD-Ib2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="ptY-KU-XzM" id="hJj-qC-8mG"/>
+                            <outlet property="delegate" destination="ptY-KU-XzM" id="PEW-nQ-T2n"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Mentions" id="uQ1-E1-Anc">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="MEy-pt-9cC"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Ube-49-zB4" kind="show" identifier="PushAccountViewController" id="6jT-q7-3uP"/>
+                        <segue destination="JKM-rK-Sh0" kind="show" identifier="PushContextViewController" id="15Z-j6-oIf"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHF-Rb-PnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2508" y="-290"/>
+        </scene>
+        <!--Mentions-->
+        <scene sceneID="FZn-hK-KOc">
+            <objects>
+                <viewController id="ql0-Ul-cJ1" customClass="MentionsViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="14c-4N-WWn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7U-5g-Wvb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="ptY-KU-XzM" kind="embed" id="R2L-d8-nDL"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X7U-5g-Wvb" firstAttribute="top" secondItem="fVN-fZ-pdu" secondAttribute="top" id="44K-hn-ZcZ"/>
+                            <constraint firstItem="fVN-fZ-pdu" firstAttribute="trailing" secondItem="X7U-5g-Wvb" secondAttribute="trailing" id="Sxy-1S-ilI"/>
+                            <constraint firstItem="X7U-5g-Wvb" firstAttribute="leading" secondItem="fVN-fZ-pdu" secondAttribute="leading" id="TcE-jw-7bV"/>
+                            <constraint firstItem="fVN-fZ-pdu" firstAttribute="bottom" secondItem="X7U-5g-Wvb" secondAttribute="bottom" id="Vvx-GO-4OH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fVN-fZ-pdu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mentions" id="jVj-EZ-CeB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rk4-jP-EwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1631" y="-290"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="tYu-vX-TbW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Account" id="Ube-49-zB4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y8L-dN-g0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3081" y="-327"/>
+        </scene>
+        <!--Context-->
+        <scene sceneID="RyT-SM-0OM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Context" id="JKM-rK-Sh0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jx1-wu-sVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3077" y="-255"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EditButton" width="20" height="20"/>
+    </resources>
+</document>

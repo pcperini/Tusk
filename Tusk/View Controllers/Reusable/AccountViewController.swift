@@ -96,7 +96,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         self.tableView.reloadData()
         self.reloadHeaderView()
-        self.navigationItem.title = account.displayName
+        self.navigationItem.title = account.name
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem?.isEnabled = false

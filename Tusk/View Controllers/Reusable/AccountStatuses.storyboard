@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HE7-Vo-NUZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Account Statuses Container-->
+        <scene sceneID="7co-vn-1tg">
+            <objects>
+                <viewController title="Account Statuses Container" id="HE7-Vo-NUZ" customClass="AccountStatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Es1-BS-Bqg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9Z-Gg-PaU">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <connections>
+                                    <segue destination="F6L-A3-0TE" kind="embed" id="bT3-ZK-hyN"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="le7-5c-0Yr" firstAttribute="bottom" secondItem="z9Z-Gg-PaU" secondAttribute="bottom" id="MTQ-6P-Mks"/>
+                            <constraint firstItem="z9Z-Gg-PaU" firstAttribute="leading" secondItem="le7-5c-0Yr" secondAttribute="leading" id="kwD-dI-Fgd"/>
+                            <constraint firstItem="z9Z-Gg-PaU" firstAttribute="top" secondItem="le7-5c-0Yr" secondAttribute="top" id="r31-ve-0dw"/>
+                            <constraint firstItem="le7-5c-0Yr" firstAttribute="trailing" secondItem="z9Z-Gg-PaU" secondAttribute="trailing" id="zws-Sd-a7O"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="le7-5c-0Yr"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Posts" id="ozH-Jj-DAM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Hr-Ve-fWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5094" y="300"/>
+        </scene>
+        <!--Account Statuses-->
+        <scene sceneID="6in-Yz-UtQ">
+            <objects>
+                <tableViewController title="Account Statuses" id="F6L-A3-0TE" customClass="StatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="15u-85-4sM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="F6L-A3-0TE" id="Lk1-Xm-UQJ"/>
+                            <outlet property="delegate" destination="F6L-A3-0TE" id="Pn3-ty-wTo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Timeline" id="4zk-v7-fWP">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="qFb-jB-urw"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="8CE-0Y-LfZ" kind="show" identifier="PushAccountViewController" id="phk-yj-DuW"/>
+                        <segue destination="ByW-cy-jWq" kind="show" identifier="PushContextViewController" id="ErK-IS-5j3"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IlB-x0-g6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5902" y="300"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="fcJ-9V-5T3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Account" id="8CE-0Y-LfZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="raR-ss-4Nr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6604" y="264"/>
+        </scene>
+        <!--Context-->
+        <scene sceneID="Qs9-bs-Q5Z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Context" id="ByW-cy-jWq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fyp-Yd-djt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6600" y="336"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EditButton" width="20" height="20"/>
+    </resources>
+</document>
