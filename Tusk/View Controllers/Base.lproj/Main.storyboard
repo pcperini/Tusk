@@ -611,74 +611,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowCellView" rowHeight="65" id="2RH-9h-q9f" customClass="FollowViewCell" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="65"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2RH-9h-q9f" id="VjF-pt-pNg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-zQ-VeO">
-                                            <rect key="frame" x="64" y="12" width="109.5" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLt-d4-7A9">
-                                            <rect key="frame" x="178" y="12" width="66.5" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ay9-P1-rmc">
-                                            <rect key="frame" x="64" y="37" width="39" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xel-rN-hes" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="12" width="40" height="40"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="KEM-AL-jQx"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="PLt-d4-7A9" firstAttribute="top" secondItem="pg9-zQ-VeO" secondAttribute="top" id="8Sc-cw-TlM"/>
-                                        <constraint firstItem="pg9-zQ-VeO" firstAttribute="top" secondItem="VjF-pt-pNg" secondAttribute="top" constant="12" id="AOo-yA-Tl3"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ay9-P1-rmc" secondAttribute="trailing" constant="20" symbolic="YES" id="JuZ-Tc-Wq0"/>
-                                        <constraint firstItem="xel-rN-hes" firstAttribute="leading" secondItem="VjF-pt-pNg" secondAttribute="leading" constant="12" id="ME7-Qb-c7A"/>
-                                        <constraint firstItem="ay9-P1-rmc" firstAttribute="leading" secondItem="pg9-zQ-VeO" secondAttribute="leading" id="VWw-hp-BBm"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PLt-d4-7A9" secondAttribute="trailing" constant="12" id="Vgt-Hi-Pkf"/>
-                                        <constraint firstAttribute="bottom" secondItem="xel-rN-hes" secondAttribute="bottom" constant="12.5" id="Xfx-h0-hu3"/>
-                                        <constraint firstAttribute="bottom" secondItem="ay9-P1-rmc" secondAttribute="bottom" constant="12" id="c5G-L6-OH2"/>
-                                        <constraint firstItem="xel-rN-hes" firstAttribute="top" secondItem="VjF-pt-pNg" secondAttribute="top" constant="12" id="iWi-bi-Jvd"/>
-                                        <constraint firstItem="pg9-zQ-VeO" firstAttribute="leading" secondItem="xel-rN-hes" secondAttribute="trailing" constant="12" id="in6-rI-3Cp"/>
-                                        <constraint firstItem="PLt-d4-7A9" firstAttribute="leading" secondItem="pg9-zQ-VeO" secondAttribute="trailing" constant="4" id="npa-q2-zcT"/>
-                                        <constraint firstItem="ay9-P1-rmc" firstAttribute="top" secondItem="pg9-zQ-VeO" secondAttribute="bottom" constant="4" id="ozO-hq-ZFC"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
-                                        <color key="value" white="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="avatarView" destination="xel-rN-hes" id="ieX-lP-59s"/>
-                                    <outlet property="detailLabel" destination="ay9-P1-rmc" id="RXJ-e5-vwN"/>
-                                    <outlet property="displayNameLabel" destination="pg9-zQ-VeO" id="Lur-Fp-U7g"/>
-                                    <outlet property="usernameLabel" destination="PLt-d4-7A9" id="MZU-28-XoW"/>
-                                    <outletCollection property="backgroundColoredViews" destination="xel-rN-hes" collectionClass="NSMutableArray" id="zpb-W3-6PY"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="DCU-X4-FCu" id="AhH-Lz-bE6"/>
                             <outlet property="delegate" destination="DCU-X4-FCu" id="oYm-qp-Pdf"/>
@@ -773,8 +705,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h0v-4h-t86"/>
         <segue reference="wEf-jR-6dB"/>
-        <segue reference="iv4-6K-KMr"/>
+        <segue reference="YQN-Ew-OQV"/>
     </inferredMetricsTieBreakers>
 </document>
