@@ -19,6 +19,7 @@ struct AppState: StateType {
     var mentions: MentionsState
     var notifications: NotificationsState
     var messages: MessagesState
+    var favourites: FavouritesState
     var accounts: AccountsState
     var contexts: ContextsState
     
@@ -34,6 +35,7 @@ struct AppState: StateType {
             mentions: MentionsState.reducer(action: action, state: state?.mentions),
             notifications: NotificationsState.reducer(action: action, state: state?.notifications),
             messages: MessagesState.reducer(action: action, state: state?.messages),
+            favourites: FavouritesState.reducer(action: action, state: state?.favourites),
             accounts: AccountsState.reducer(action: action, state: state?.accounts),
             contexts: ContextsState.reducer(action: action, state: state?.contexts)
         )

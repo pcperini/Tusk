@@ -159,6 +159,7 @@
                         <outlet property="usernameLabel" destination="6yP-pg-3dK" id="K26-A9-WRs"/>
                         <segue destination="rxF-CT-eSl" kind="show" identifier="PushAccountStatusesViewController" id="Ulu-R3-0Fl"/>
                         <segue destination="JlJ-Wd-fSE" kind="show" identifier="PushFollowsViewController" id="3lX-GD-Y0y"/>
+                        <segue destination="i5e-3P-cBF" kind="show" identifier="PushFavouritesViewController" id="u0O-k7-dQZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aaf-a4-E52" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -171,7 +172,7 @@
                 <viewControllerPlaceholder storyboardName="AccountStatuses" id="rxF-CT-eSl" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wzT-ht-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4904" y="266"/>
+            <point key="canvasLocation" x="4904" y="236"/>
         </scene>
         <!--Follows-->
         <scene sceneID="v2u-5L-h92">
@@ -179,7 +180,15 @@
                 <viewControllerPlaceholder storyboardName="Follows" id="JlJ-Wd-fSE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoo-Gs-qN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4858" y="330"/>
+            <point key="canvasLocation" x="4858" y="300"/>
+        </scene>
+        <!--Favourites-->
+        <scene sceneID="18b-wM-rUL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favourites" id="i5e-3P-cBF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exk-8b-WIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4872" y="360"/>
         </scene>
     </scenes>
     <resources>

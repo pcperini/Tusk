@@ -69,6 +69,15 @@
 		7302303B2130796000BC1E9A /* Follows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7302303A2130796000BC1E9A /* Follows.storyboard */; };
 		7302303C2130796000BC1E9A /* Follows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7302303A2130796000BC1E9A /* Follows.storyboard */; };
 		7302303D2130796000BC1E9A /* Follows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7302303A2130796000BC1E9A /* Follows.storyboard */; };
+		7302303F2130887D00BC1E9A /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7302303E2130887D00BC1E9A /* Favourites.storyboard */; };
+		730230402130887D00BC1E9A /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7302303E2130887D00BC1E9A /* Favourites.storyboard */; };
+		730230412130887D00BC1E9A /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7302303E2130887D00BC1E9A /* Favourites.storyboard */; };
+		73023043213089B800BC1E9A /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023042213089B800BC1E9A /* FavouritesViewController.swift */; };
+		73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023042213089B800BC1E9A /* FavouritesViewController.swift */; };
+		73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023042213089B800BC1E9A /* FavouritesViewController.swift */; };
+		73023047213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
+		73023048213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
+		73023049213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -251,6 +260,9 @@
 		73023032213078BA00BC1E9A /* AccountStatuses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountStatuses.storyboard; sourceTree = "<group>"; };
 		730230362130793C00BC1E9A /* Context.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Context.storyboard; sourceTree = "<group>"; };
 		7302303A2130796000BC1E9A /* Follows.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Follows.storyboard; sourceTree = "<group>"; };
+		7302303E2130887D00BC1E9A /* Favourites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favourites.storyboard; sourceTree = "<group>"; };
+		73023042213089B800BC1E9A /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		73023046213089E600BC1E9A /* FavouritesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesState.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -429,8 +441,8 @@
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 				732BE22E2120A9690049ADBD /* TabViewController.swift */,
+				73EAEC5C211E41A900C2620F /* Main.storyboard */,
 				73208E80212A3B3100529FA3 /* TimelineViewController.swift */,
 				7302301A2130766000BC1E9A /* Timeline.storyboard */,
 				73208E95212B319B00529FA3 /* MentionsViewController.swift */,
@@ -441,6 +453,8 @@
 				73023026213077B200BC1E9A /* Notifications.storyboard */,
 				732BE22621208EA40049ADBD /* ActiveAccountViewController.swift */,
 				7302302A2130782300BC1E9A /* ActiveAccount.storyboard */,
+				73023042213089B800BC1E9A /* FavouritesViewController.swift */,
+				7302303E2130887D00BC1E9A /* Favourites.storyboard */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
 			);
 			path = "View Controllers";
@@ -455,6 +469,7 @@
 				73208E88212B290500529FA3 /* MentionsState.swift */,
 				732BE218211F96600049ADBD /* MessagesState.swift */,
 				732BE210211F93860049ADBD /* NotificationsState.swift */,
+				73023046213089E600BC1E9A /* FavouritesState.swift */,
 				73FBF8B2212DBF10009B2619 /* AccountsState.swift */,
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
 				73023006212F55BD00BC1E9A /* ContextsState.swift */,
@@ -662,6 +677,7 @@
 				730230232130776E00BC1E9A /* Messages.storyboard in Resources */,
 				730230372130793C00BC1E9A /* Context.storyboard in Resources */,
 				7302301F213076D900BC1E9A /* Mentions.storyboard in Resources */,
+				7302303F2130887D00BC1E9A /* Favourites.storyboard in Resources */,
 				73023033213078BA00BC1E9A /* AccountStatuses.storyboard in Resources */,
 				7302301721306FF700BC1E9A /* FollowViewCell.xib in Resources */,
 				7302301B2130766000BC1E9A /* Timeline.storyboard in Resources */,
@@ -679,6 +695,7 @@
 				73023028213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DC21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
 				73208E7D212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
+				730230402130887D00BC1E9A /* Favourites.storyboard in Resources */,
 				730230242130776E00BC1E9A /* Messages.storyboard in Resources */,
 				7302301821306FF700BC1E9A /* FollowViewCell.xib in Resources */,
 				732BE25B212327350049ADBD /* NotificationViewCell.xib in Resources */,
@@ -701,6 +718,7 @@
 				73023029213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DD21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
 				73208E7E212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
+				730230412130887D00BC1E9A /* Favourites.storyboard in Resources */,
 				730230252130776E00BC1E9A /* Messages.storyboard in Resources */,
 				7302301921306FF700BC1E9A /* FollowViewCell.xib in Resources */,
 				732BE25C212327350049ADBD /* NotificationViewCell.xib in Resources */,
@@ -823,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73023043213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
 				73023003212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE289212485890049ADBD /* CaseIterable.swift in Sources */,
@@ -843,6 +862,7 @@
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
+				73023047213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */,
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
@@ -891,7 +911,9 @@
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
+				73023048213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
@@ -946,7 +968,9 @@
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
+				73023049213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,

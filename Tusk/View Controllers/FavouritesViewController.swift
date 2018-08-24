@@ -1,8 +1,8 @@
 //
-//  TimelineViewController.swift
+//  FavouritesViewController.swift
 //  Tusk
 //
-//  Created by Patrick Perini on 8/19/18.
+//  Created by Patrick Perini on 8/24/18.
 //  Copyright © 2018 Patrick Perini. All rights reserved.
 //
 
@@ -10,18 +10,9 @@ import UIKit
 import ReSwift
 import MastodonKit
 
-class TimelineViewController: StatusesContainerViewController<TimelineState> {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let rightButtonItem = UIBarButtonItem()
-        rightButtonItem.isEnabled = false
-        rightButtonItem.image = UIImage(named: "EditButton")
-        self.navigationItem.rightBarButtonItem = rightButtonItem
-    }
-    
+class FavouritesViewController: StatusesContainerViewController<FavouritesState> {
     override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.timeline } }
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.favourites } }
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {

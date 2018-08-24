@@ -98,22 +98,29 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.reloadHeaderView()
         self.navigationItem.title = account.name
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem()
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        let rightButton: UIBarButtonItem = UIBarButtonItem()
+        let leftButton: UIBarButtonItem = UIBarButtonItem()
         
         guard let activeAccountState = GlobalStore.state.accounts.activeAccount,
             let activeAccount = activeAccountState.account else { return }
         
-        let image: UIImage?
+        rightButton.isEnabled = false
+        leftButton.isEnabled = false
+        
         if (account == activeAccount) {
-            image = UIImage(named: "SettingsButton")
-        } else if (activeAccountState.following.contains(account)) {
-            image = UIImage(named: "StopFollowingButton")
+            rightButton.image = UIImage(named: "SettingsButton")
+            
+            leftButton.image = UIImage(named: "FavouriteButton")
+            leftButton.isEnabled = true
+            leftButton.target = self
+            leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else {
-            image = UIImage(named: "FollowButton")
+            rightButton.image = UIImage(named: activeAccountState.following.contains(account) ? "StopFollowingButton" : "FollowButton")
+            leftButton.image = nil
         }
         
-        self.navigationItem.rightBarButtonItem?.image = image
+        self.navigationItem.rightBarButtonItem = rightButton
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItem = leftButton
     }
     
     func pollPinnedStatuses() {
@@ -131,6 +138,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func favouritesButtonWasPressed(sender: UIBarButtonItem?) {
+        self.pushToFavourites()
     }
     
     // UITableViewDataSource
@@ -277,6 +288,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
         GlobalStore.dispatch(AccountState.PollFollowing(client: client, account: account))
         self.performSegue(withIdentifier: "PushFollowsViewController", sender: (self.account, RelationshipDirection.Following))
+    }
+    
+    func pushToFavourites() {
+        self.performSegue(withIdentifier: "PushFavouritesViewController", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
