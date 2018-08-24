@@ -36,9 +36,9 @@
 		7302300F213063CD00BC1E9A /* FieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302300E213063CD00BC1E9A /* FieldViewCell.xib */; };
 		73023010213063CD00BC1E9A /* FieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302300E213063CD00BC1E9A /* FieldViewCell.xib */; };
 		73023011213063CD00BC1E9A /* FieldViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302300E213063CD00BC1E9A /* FieldViewCell.xib */; };
-		730230132130682A00BC1E9A /* UITableView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UITableView+CellNib.swift */; };
-		730230142130682A00BC1E9A /* UITableView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UITableView+CellNib.swift */; };
-		730230152130682A00BC1E9A /* UITableView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UITableView+CellNib.swift */; };
+		730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UIView+CellNib.swift */; };
+		730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UIView+CellNib.swift */; };
+		730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230122130682A00BC1E9A /* UIView+CellNib.swift */; };
 		7302301721306FF700BC1E9A /* FollowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302301621306FF700BC1E9A /* FollowViewCell.xib */; };
 		7302301821306FF700BC1E9A /* FollowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302301621306FF700BC1E9A /* FollowViewCell.xib */; };
 		7302301921306FF700BC1E9A /* FollowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302301621306FF700BC1E9A /* FollowViewCell.xib */; };
@@ -213,7 +213,7 @@
 		73023006212F55BD00BC1E9A /* ContextsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextsState.swift; sourceTree = "<group>"; };
 		7302300A212F594000BC1E9A /* ContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
 		7302300E213063CD00BC1E9A /* FieldViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldViewCell.xib; sourceTree = "<group>"; };
-		730230122130682A00BC1E9A /* UITableView+CellNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CellNib.swift"; sourceTree = "<group>"; };
+		730230122130682A00BC1E9A /* UIView+CellNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CellNib.swift"; sourceTree = "<group>"; };
 		7302301621306FF700BC1E9A /* FollowViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowViewCell.xib; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 				73FBF8BA212E11CD009B2619 /* Sequence+Deduplication.swift */,
 				73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */,
 				73022FFE212F2CF500BC1E9A /* EnvVars.swift */,
-				730230122130682A00BC1E9A /* UITableView+CellNib.swift */,
+				730230122130682A00BC1E9A /* UIView+CellNib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -774,7 +774,7 @@
 				73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */,
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
-				730230132130682A00BC1E9A /* UITableView+CellNib.swift in Sources */,
+				730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */,
@@ -817,7 +817,7 @@
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
-				730230142130682A00BC1E9A /* UITableView+CellNib.swift in Sources */,
+				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
@@ -872,7 +872,7 @@
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
-				730230152130682A00BC1E9A /* UITableView+CellNib.swift in Sources */,
+				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,

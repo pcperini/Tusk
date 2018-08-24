@@ -162,7 +162,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func tableView(_ tableView: UITableView, cellForAboutSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
         let cell: FieldViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FieldCell",
-                                                                     forIndexPath: IndexPath(row: row, section: Section.About.rawValue),
+                                                                     for: IndexPath(row: row, section: Section.About.rawValue),
                                                                      usingNibNamed: "FieldViewCell")
         
         let field = account.fields[row]
@@ -190,8 +190,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         guard let account = self.account else { return FieldViewCell() }
         guard let stat = Stat(rawValue: row) else { return FieldViewCell() }
         let cell: FieldViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FieldCell",
-                                                                     forIndexPath: IndexPath(row: row, section: Section.About.rawValue),
-                                                                     usingNibNamed: "FieldCellView")
+                                                                     for: IndexPath(row: row, section: Section.About.rawValue),
+                                                                     usingNibNamed: "FieldViewCell")
         
         let format = { (n: Int) in NumberFormatter.localizedString(from: NSNumber(value: n), number: .decimal) }
 
@@ -217,7 +217,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func tableView(_ tableView: UITableView, cellForStatusesSectionRow row: Int) -> StatusViewCell {
         guard let pinnedStatuses = self.pinnedStatuses else { return StatusViewCell() }
         let cell: StatusViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Status",
-                                                                      forIndexPath: IndexPath(row: row, section: Section.Statuses.rawValue),
+                                                                      for: IndexPath(row: row, section: Section.Statuses.rawValue),
                                                                       usingNibNamed: "StatusViewCell")
         
         cell.status = pinnedStatuses[row]

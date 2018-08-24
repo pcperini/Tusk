@@ -81,7 +81,7 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: FollowViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Follow", forIndexPath: indexPath, usingNibNamed: "FollowViewCell")
+        let cell: FollowViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Follow", for: indexPath, usingNibNamed: "FollowViewCell")
         
         let follow = self.follows[indexPath.row]
         cell.avatarView.avatarURL = URL(string: follow.avatar)

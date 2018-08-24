@@ -124,7 +124,9 @@ extension StatusViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let status = self.status else { return UICollectionViewCell() }
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell", for: indexPath) as? ImageAttachmentViewCell else { return UICollectionViewCell() }
+        let cell: ImageAttachmentViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell",
+                                                                               for: indexPath,
+                                                                               usingNibNamed: "ImageAttachmentViewCell")
         
         let attachment = status.mediaAttachments[indexPath.item]
         cell.imageView.af_setImage(withURL: URL(string: attachment.previewURL)!)

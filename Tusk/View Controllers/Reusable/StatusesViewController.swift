@@ -67,14 +67,14 @@ class StatusesViewController: PaginatingTableViewController {
         let statusIndex = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == NSNotFound) { // Action Cell
             let cell: StatusActionViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Action",
-                                                                                forIndexPath: indexPath,
+                                                                                for: indexPath,
                                                                                 usingNibNamed: "StatusActionViewCell")
             
             return cell
         }
         
         let cell: StatusViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Status",
-                                                                      forIndexPath: indexPath,
+                                                                      for: indexPath,
                                                                       usingNibNamed: "StatusViewCell")
         
         let status = self.statuses[statusIndex]
