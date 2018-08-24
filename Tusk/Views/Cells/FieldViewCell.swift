@@ -70,6 +70,13 @@ extension FieldViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.fieldValueTextView.textContainer.maximumNumberOfLines = 1
+        self.fieldValueTextView.textContainer.lineBreakMode = .byTruncatingTail
+    }
+    
     static func iconForCustomField(fieldName: String, fieldValue: String) -> UIImage? {
         let fieldType = CustomFieldCellType(fieldName: fieldName, fieldValue: fieldValue)
         return UIImage(named: "\(fieldType)Field")
