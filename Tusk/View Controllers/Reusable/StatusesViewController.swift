@@ -95,7 +95,7 @@ class StatusesViewController: PaginatingTableViewController {
             }
             
             guard let url = url else { return }
-            self.pushToURL(url: url)
+            self.openURL(url: url)
         }
         cell.contextPushWasTriggered = { (status) in
             guard let status = status else { return }
@@ -139,12 +139,8 @@ class StatusesViewController: PaginatingTableViewController {
     }
     
     // Navigation
-    func pushToURL(url: URL) {
-        let safariViewController = SFSafariViewController(url: url)
-        safariViewController.navigationItem.title = "Mastodon"
-        safariViewController.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(safariViewController, animated: true)
+    func openURL(url: URL) {
+        UIApplication.shared.open(url,options: [:], completionHandler: nil)
     }
     
     func pushToAccount(account: AccountType) {
