@@ -64,7 +64,7 @@ class StatusViewCell: TableViewCell {
         self.rightButtons = [contextButton]
         self.rightExpansion.buttonIndex = 0
         self.rightExpansion.fillOnTrigger = true
-        self.rightExpansion.threshold = 1.0
+        self.rightExpansion.threshold = 0.3
         self.rightSwipeSettings.transition = .drag
     }
     
