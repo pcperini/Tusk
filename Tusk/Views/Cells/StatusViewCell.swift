@@ -54,6 +54,10 @@ class StatusViewCell: TableViewCell {
         self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
         
         self.statusTextView.delegate = self
+        self.statusTextView.hideLinkCriteria = { (link) in
+            guard let status = self.status else { return false }
+            return status.allMediaAttachmentURLs.contains(link)
+        }
         
         let contextButton = MGSwipeButton(title: "",
                                           icon: UIImage(named: "ContextButton"),

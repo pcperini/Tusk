@@ -43,3 +43,15 @@ extension Account {
         return "joined \(self.createdAt.toString(format: .custom("d MMM yyyy")))"
     }
 }
+
+extension Attachment {
+    var allURLs: [String] {
+        return [self.url, self.previewURL, self.remoteURL, self.textURL].compactMap { $0 }
+    }
+}
+
+extension Status {
+    var allMediaAttachmentURLs: [String] {
+        return self.mediaAttachments.reduce([]) { $0 + $1.allURLs }
+    }
+}
