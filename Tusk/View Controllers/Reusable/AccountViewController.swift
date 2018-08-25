@@ -59,6 +59,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftItemsSupplementBackButton = true
+        
         self.updateAccount()
     }
     
@@ -137,7 +139,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         self.navigationItem.rightBarButtonItem = rightButton
         if (self.navigationController?.viewControllers.first == self.parent) {
-            self.navigationController?.navigationBar.topItem?.leftBarButtonItem = leftButton
+            self.parent?.navigationItem.leftBarButtonItem = leftButton
         }
     }
     
