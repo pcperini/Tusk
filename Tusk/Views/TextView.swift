@@ -39,7 +39,8 @@ import DTCoreText
             let builder = DTHTMLAttributedStringBuilder(html: text.data(using: .utf8),
                                                         options: options,
                                                         documentAttributes: nil)
-            self.attributedText = builder?.generatedAttributedString().attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
+            self.attributedText = builder?.generatedAttributedString()
+                .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
         }
     }
     
