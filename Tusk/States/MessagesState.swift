@@ -15,7 +15,7 @@ import ReSwift
 struct MessagesState: StatusesState {
     var statuses: [Status] = []
     var filters: [(Status) -> Bool] = [
-        { $0.visibility == .direct && $0.account != GlobalStore.state.accounts.activeAccount?.account }
+        { $0.visibility == .direct && $0.account.id != GlobalStore.state.accounts.activeAccount?.account?.id }
     ]
     
     var nextPage: RequestRange? = nil

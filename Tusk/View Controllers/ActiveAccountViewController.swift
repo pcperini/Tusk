@@ -39,7 +39,7 @@ class ActiveAccountViewController: UIViewController, StoreSubscriber {
     
     func newState(state: AccountState) {
         DispatchQueue.main.async {
-            if (self.accountViewController?.account != state.account) {
+            if (self.accountViewController?.account?.id != state.account?.id) {
                 self.accountViewController?.account = state.account
             }
         }

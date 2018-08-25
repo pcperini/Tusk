@@ -9,39 +9,39 @@
 import MastodonKit
 import ReSwift
 
-protocol AccountAction: Action { var account: Account { get } }
+protocol AccountAction: Action { var account: AccountType { get } }
 protocol AccountPollingAction: AccountAction, PollAction {}
 
 struct AccountState: StateType, StatusViewableState {
-    private struct SetAccount: AccountAction { let account: Account; let active: Bool }
-    struct SetPinnedStatuses: AccountAction { let value: [Status]; let account: Account }
+    private struct SetAccount: AccountAction { let account: AccountType; let active: Bool }
+    struct SetPinnedStatuses: AccountAction { let value: [Status]; let account: AccountType }
     
-    struct SetFollowing: AccountAction { let value: [Account]; let account: Account }
-    struct SetFollowingPage: AccountAction { let value: Pagination?; let account: Account }
+    struct SetFollowing: AccountAction { let value: [Account]; let account: AccountType }
+    struct SetFollowingPage: AccountAction { let value: Pagination?; let account: AccountType }
 
-    struct SetFollowers: AccountAction { let value: [Account]; let account: Account }
-    private struct SetFollowersPage: AccountAction { let value: Pagination?; let account: Account }
+    struct SetFollowers: AccountAction { let value: [Account]; let account: AccountType }
+    private struct SetFollowersPage: AccountAction { let value: Pagination?; let account: AccountType }
     
-    struct SetStatuses: AccountAction { let value: [Status]; let account: Account }
-    private struct SetStatusesPage: AccountAction { let value: Pagination?; let account: Account }
+    struct SetStatuses: AccountAction { let value: [Status]; let account: AccountType }
+    private struct SetStatusesPage: AccountAction { let value: Pagination?; let account: AccountType }
     
-    struct PollAccount: Action { let client: Client; let account: Account? }
-    struct PollPinnedStatuses: AccountAction { let client: Client; let account: Account }
+    struct PollAccount: Action { let client: Client; let account: AccountType? }
+    struct PollPinnedStatuses: AccountAction { let client: Client; let account: AccountType }
     
-    struct PollFollowing: AccountAction { let client: Client; let account: Account }
-    struct PollOlderFollowing: AccountPollingAction { let client: Client; let account: Account }
-    struct PollNewerFollowing: AccountPollingAction { let client: Client; let account: Account }
+    struct PollFollowing: AccountAction { let client: Client; let account: AccountType }
+    struct PollOlderFollowing: AccountPollingAction { let client: Client; let account: AccountType }
+    struct PollNewerFollowing: AccountPollingAction { let client: Client; let account: AccountType }
     
-    struct PollFollowers: AccountAction { let client: Client; let account: Account }
-    struct PollOlderFollowers: AccountPollingAction { let client: Client; let account: Account }
-    struct PollNewerFollowers: AccountPollingAction { let client: Client; let account: Account }
+    struct PollFollowers: AccountAction { let client: Client; let account: AccountType }
+    struct PollOlderFollowers: AccountPollingAction { let client: Client; let account: AccountType }
+    struct PollNewerFollowers: AccountPollingAction { let client: Client; let account: AccountType }
     
-    struct PollStatuses: AccountPollingAction { let client: Client; let account: Account }
-    struct PollOlderStatuses: AccountPollingAction { let client: Client; let account: Account }
-    struct PollNewerStatuses: AccountPollingAction { let client: Client; let account: Account }
+    struct PollStatuses: AccountPollingAction { let client: Client; let account: AccountType }
+    struct PollOlderStatuses: AccountPollingAction { let client: Client; let account: AccountType }
+    struct PollNewerStatuses: AccountPollingAction { let client: Client; let account: AccountType }
     
     var isActiveAccount: Bool = false
-    var account: Account? = nil
+    var account: AccountType? = nil
     var pinnedStatuses: [Status] = []
     var following: [Account] = []
     var followers: [Account] = []
@@ -59,7 +59,7 @@ struct AccountState: StateType, StatusViewableState {
     private var followingPreviousPage: RequestRange? = nil
     private lazy var followingPaginatableData: PaginatingData<Account, Account> = PaginatingData<Account, Account>(provider: self.followingProvider)
     
-    var hashableValue: Int { return (self.account?.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0) }
+    var hashValue: Int { return (self.account?.hashValue ?? 0) + (self.isActiveAccount ? 1 : 0) }
     
     static func reducer(action: Action, state: AccountState?) -> AccountState {
         var state = state ?? AccountState()
@@ -75,7 +75,7 @@ struct AccountState: StateType, StatusViewableState {
         default: break
         }
         
-        guard let action = action as? AccountAction, state.account == nil || state.account == action.account else { return state }
+        guard let action = action as? AccountAction, state.account == nil || state.account?.id == action.account.id else { return state }
         
         switch action {
         case let action as SetAccount: do {
@@ -144,7 +144,7 @@ struct AccountState: StateType, StatusViewableState {
         }
     }
     
-    mutating func pollStatuses(client: Client, account: Account, range: RequestRange? = nil) {
+    mutating func pollStatuses(client: Client, account: AccountType, range: RequestRange? = nil) {
         self.statusesPaginatableData.pollData(client: client, range: range, existingData: self.statuses, filters: []) { (
             statuses: [Status],
             pagination: Pagination?
@@ -166,7 +166,7 @@ struct AccountState: StateType, StatusViewableState {
                                                          previousPage: self.statusesPreviousPage)
     }
     
-    mutating func pollFollowers(client: Client, account: Account, range: RequestRange? = nil) {
+    mutating func pollFollowers(client: Client, account: AccountType, range: RequestRange? = nil) {
         self.followersPaginatableData.pollData(client: client, range: range, existingData: self.followers, filters: []) { (
             followers: [Account],
             pagination: Pagination?
@@ -188,7 +188,7 @@ struct AccountState: StateType, StatusViewableState {
                                                           previousPage: self.followersPreviousPage)
     }
     
-    mutating func pollFollowing(client: Client, account: Account, range: RequestRange? = nil) {
+    mutating func pollFollowing(client: Client, account: AccountType, range: RequestRange? = nil) {
         self.followingPaginatableData.pollData(client: client, range: range, existingData: self.following, filters: []) { (
             following: [Account],
             pagination: Pagination?

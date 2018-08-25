@@ -89,8 +89,9 @@ class StatusesViewController: PaginatingTableViewController {
             self.pushToAccount(account: account)
         }
         cell.linkWasTapped = { (url, text) in
-            if let mentionMatch = status.mentions.first(where: { $0.acct == text }) {
-//                self.pushToAccount(account: <#T##Account#>)
+            if let mentionMatch = status.mentions.first(where: { text.hasSuffix($0.acct) }) {
+                self.pushToAccount(account: AccountPlaceholder(id: mentionMatch.id))
+                return
             }
             
             guard let url = url else { return }
@@ -146,7 +147,7 @@ class StatusesViewController: PaginatingTableViewController {
         self.navigationController?.pushViewController(safariViewController, animated: true)
     }
     
-    func pushToAccount(account: Account) {
+    func pushToAccount(account: AccountType) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
         
         guard let client = GlobalStore.state.auth.client else { return }
@@ -170,7 +171,8 @@ class StatusesViewController: PaginatingTableViewController {
         
         switch segue.identifier {
         case "PushAccountViewController": do {
-            guard let accountVC = segue.destination as? AccountViewController, let account = sender as? Account else {
+            let sentAccount: AccountType? = (sender as? Account) ?? (sender as? AccountPlaceholder)
+            guard let accountVC = segue.destination as? AccountViewController, let account = sentAccount else {
                 segue.destination.dismiss(animated: true, completion: nil)
                 return
             }

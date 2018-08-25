@@ -20,7 +20,7 @@ extension Notification {
     }
 }
 
-extension Account {
+extension AccountType {
     var name: String {
         return self.displayName.isEmpty ? self.username : self.displayName
     }

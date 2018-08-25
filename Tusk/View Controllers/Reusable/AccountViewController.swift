@@ -30,7 +30,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         case Follows = 2
     }
     
-    var account: Account? { didSet { if (oldValue != self.account) { self.updateAccount() } } }
+    var account: AccountType? { didSet { self.updateAccount() } }
     var pinnedStatuses: [Status]? = nil
     
     @IBOutlet var headerImageView: UIImageView!
@@ -50,6 +50,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GlobalStore.unsubscribe(self)
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        self.updateNavigationButtons()
     }
     
     override func viewDidLoad() {
@@ -78,9 +83,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         self.parent?.navigationItem.title = account.name
 
-        self.headerImageView.af_setImage(withURL: URL(string: account.header)!)
         self.displayNameLabel.text = account.name
         self.usernameLabel.text = account.handle
+        
+        self.headerImageView.image = nil
+        if let headerURL = URL(string: account.header) {
+            self.headerImageView.af_setImage(withURL: headerURL)
+        }
         
         self.avatarView.avatarURL = URL(string: account.avatar)
         self.avatarView.badgeType = AvatarView.BadgeType(account: account)
@@ -90,7 +99,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.bioHeightConstraint.isActive = self.bioTextView.text?.isEmpty ?? true
 
         self.pinnedStatuses = self.state?.pinnedStatuses
-        if (self.pinnedStatuses?.isEmpty ?? true) {
+        if (self.pinnedStatuses == nil) {
             self.pollPinnedStatuses()
         }
         
@@ -98,6 +107,12 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.reloadHeaderView()
         self.navigationItem.title = account.name
         
+        guard self.navigationController != nil else { return }
+        self.updateNavigationButtons()
+    }
+    
+    func updateNavigationButtons() {
+        guard let account = self.account as? Account else { return }
         let rightButton: UIBarButtonItem = UIBarButtonItem()
         let leftButton: UIBarButtonItem = UIBarButtonItem()
         
@@ -107,7 +122,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         rightButton.isEnabled = false
         leftButton.isEnabled = false
         
-        if (account == activeAccount) {
+        if (account.id == activeAccount.id) {
             rightButton.image = UIImage(named: "SettingsButton")
             
             leftButton.image = UIImage(named: "FavouriteButton")
@@ -115,16 +130,20 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             leftButton.target = self
             leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else {
-            rightButton.image = UIImage(named: activeAccountState.following.contains(account) ? "StopFollowingButton" : "FollowButton")
+            let following = activeAccountState.following.map({ $0.id }).contains(account.id)
+            rightButton.image = UIImage(named: following ? "StopFollowingButton" : "FollowButton")
             leftButton.image = nil
         }
         
         self.navigationItem.rightBarButtonItem = rightButton
-        self.navigationController?.navigationBar.topItem?.leftBarButtonItem = leftButton
+        if (self.navigationController?.viewControllers.first == self.parent) {
+            self.navigationController?.navigationBar.topItem?.leftBarButtonItem = leftButton
+        }
     }
     
     func pollPinnedStatuses() {
         guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
+        self.pinnedStatuses = []
         GlobalStore.dispatch(AccountState.PollPinnedStatuses(client: client, account: account))
     }
     
@@ -133,6 +152,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         let newStatuses = state.pinnedStatuses
 
         DispatchQueue.main.async {
+            self.account = state.account
             if (self.pinnedStatuses != newStatuses) {
                 self.pinnedStatuses = newStatuses
                 self.tableView.reloadData()

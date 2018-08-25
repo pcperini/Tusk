@@ -198,6 +198,9 @@
 		73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
+		73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
+		73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
+		73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
 		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
@@ -306,6 +309,7 @@
 		739426E221288375005CBEDA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
 		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
+		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EAEC58211E41A900C2620F /* StatusesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +415,7 @@
 			children = (
 				732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */,
 				732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */,
+				73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */,
 				732BE288212485890049ADBD /* CaseIterable.swift */,
 				73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */,
 				732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */,
@@ -899,6 +904,7 @@
 				732BE249212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73208E92212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
+				73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +943,7 @@
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
+				73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023000212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
@@ -995,6 +1002,7 @@
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
+				73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023001212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
