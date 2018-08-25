@@ -105,10 +105,11 @@ import DTCoreText
         
         // find the character that's been tapped
         let characterIndex = self.layoutManager.characterIndex(for: location, in: self.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: nil)
+        var range = NSRange()
+        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: &range)
         
         if let link = attributes[.link] as? URL {
-            let _ = self.delegate?.textView?(self, shouldInteractWith: link, in: NSRange(), interaction: .invokeDefaultAction)
+            let _ = self.delegate?.textView?(self, shouldInteractWith: link, in: range, interaction: .invokeDefaultAction)
         }
     }
 }
