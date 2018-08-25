@@ -13,4 +13,8 @@ class StatusActionViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
     }
+    
+    @IBAction func favouriteButtonWasTapped(sender: UIButton?) {
+        
+    }
 }

@@ -78,6 +78,9 @@
 		73023047213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
 		73023048213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
 		73023049213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
+		7302304B213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
+		7302304C213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
+		7302304D213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -263,6 +266,7 @@
 		7302303E2130887D00BC1E9A /* Favourites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favourites.storyboard; sourceTree = "<group>"; };
 		73023042213089B800BC1E9A /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		73023046213089E600BC1E9A /* FavouritesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesState.swift; sourceTree = "<group>"; };
+		7302304A213109E300BC1E9A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				732BE261212338EA0049ADBD /* TimestampLabel.swift */,
 				739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */,
 				73022FF6212F1B1B00BC1E9A /* AvatarView.swift */,
+				7302304A213109E300BC1E9A /* Button.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -859,6 +864,7 @@
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				7302304B213109E300BC1E9A /* Button.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -916,6 +922,7 @@
 				73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				7302304C213109E300BC1E9A /* Button.swift in Sources */,
 				739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				73208E8F212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
@@ -973,6 +980,7 @@
 				73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				7302304D213109E300BC1E9A /* Button.swift in Sources */,
 				739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				73208E90212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
