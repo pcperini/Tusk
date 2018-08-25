@@ -59,7 +59,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tck-or-WZk"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favourites" id="Qcr-nQ-WYL"/>
+                    <navigationItem key="navigationItem" title="Favs" id="Qcr-nQ-WYL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zP-qi-vsV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
