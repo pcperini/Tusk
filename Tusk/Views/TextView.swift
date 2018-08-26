@@ -9,7 +9,11 @@
 import UIKit
 import DTCoreText
 
-@IBDesignable class TextView: UITextView {    
+@IBDesignable class TextView: UITextView {
+    @IBInspectable var maxLinkLength: Int = 30
+    var linkLineBreakMode: NSLineBreakMode = .byTruncatingTail
+    var hideLinkCriteria: (String) -> Bool = { (_) in false }
+    
     private var coreTextAlignment: CTTextAlignment {
         switch self.textAlignment {
         case .left: return .left
@@ -22,6 +26,7 @@ import DTCoreText
     
     var htmlText: String? {
         didSet {
+            
             guard let text = self.htmlText else { return }
             guard text.contains("<") else { self.text = text; return }
             
@@ -39,7 +44,20 @@ import DTCoreText
             let builder = DTHTMLAttributedStringBuilder(html: text.data(using: .utf8),
                                                         options: options,
                                                         documentAttributes: nil)
+            let linkRegex = Regex("([a-z]+:\\/\\/.{\(self.maxLinkLength),})\\s?")
+            
             self.attributedText = builder?.generatedAttributedString()
+                .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
+                .replacingMatches(to: linkRegex, with: { (match) -> String in
+                    if (self.hideLinkCriteria(match)) { return "" }
+                    switch self.linkLineBreakMode {
+                    case .byCharWrapping, .byWordWrapping: return match
+                    case .byClipping: return "\(match.prefix(self.maxLinkLength))) "
+                    case .byTruncatingHead: return "...\(match.suffix(self.maxLinkLength - 3)) "
+                    case .byTruncatingMiddle: return "\(match.prefix((self.maxLinkLength / 2) - 3))...\(match.suffix(self.maxLinkLength / 2)) "
+                    case .byTruncatingTail: return "\(match.prefix(self.maxLinkLength - 3))... "
+                    }
+                })
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
         }
     }
@@ -87,10 +105,11 @@ import DTCoreText
         
         // find the character that's been tapped
         let characterIndex = self.layoutManager.characterIndex(for: location, in: self.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: nil)
+        var range = NSRange()
+        let attributes = self.attributedText.attributes(at: characterIndex, effectiveRange: &range)
         
         if let link = attributes[.link] as? URL {
-            let _ = self.delegate?.textView?(self, shouldInteractWith: link, in: NSRange(), interaction: .invokeDefaultAction)
+            let _ = self.delegate?.textView?(self, shouldInteractWith: link, in: range, interaction: .invokeDefaultAction)
         }
     }
 }

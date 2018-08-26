@@ -81,6 +81,9 @@
 		7302304B213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
 		7302304C213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
 		7302304D213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
+		730230532131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
+		730230542131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
+		730230552131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -198,6 +201,9 @@
 		73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
+		73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
+		73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
+		73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
 		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
@@ -267,6 +273,7 @@
 		73023042213089B800BC1E9A /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		73023046213089E600BC1E9A /* FavouritesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesState.swift; sourceTree = "<group>"; };
 		7302304A213109E300BC1E9A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		730230522131AD2400BC1E9A /* SwiftyRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRegex.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +313,7 @@
 		739426E221288375005CBEDA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
 		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
+		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EAEC58211E41A900C2620F /* StatusesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesViewController.swift; sourceTree = "<group>"; };
@@ -412,6 +420,7 @@
 			children = (
 				732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */,
 				732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */,
+				73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */,
 				732BE288212485890049ADBD /* CaseIterable.swift */,
 				73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */,
 				732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */,
@@ -419,6 +428,7 @@
 				73022FFA212F1C5600BC1E9A /* UIView+Layout.swift */,
 				73022FFE212F2CF500BC1E9A /* EnvVars.swift */,
 				730230122130682A00BC1E9A /* UIView+CellNib.swift */,
+				730230522131AD2400BC1E9A /* SwiftyRegex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -848,6 +858,7 @@
 			files = (
 				73023043213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
+				730230532131AD2400BC1E9A /* SwiftyRegex.swift in Sources */,
 				73023003212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE289212485890049ADBD /* CaseIterable.swift in Sources */,
 				732BE25E212327490049ADBD /* NotificationViewCell.swift in Sources */,
@@ -899,6 +910,7 @@
 				732BE249212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73208E92212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
+				73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +936,7 @@
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				7302304C213109E300BC1E9A /* Button.swift in Sources */,
 				739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
+				730230542131AD2400BC1E9A /* SwiftyRegex.swift in Sources */,
 				73208E8F212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
@@ -937,6 +950,7 @@
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
+				73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023000212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
@@ -982,6 +996,7 @@
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				7302304D213109E300BC1E9A /* Button.swift in Sources */,
 				739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
+				730230552131AD2400BC1E9A /* SwiftyRegex.swift in Sources */,
 				73208E90212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
@@ -995,6 +1010,7 @@
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
+				73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023001212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,

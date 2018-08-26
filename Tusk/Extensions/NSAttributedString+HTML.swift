@@ -28,6 +28,21 @@ extension NSAttributedString {
         guard let attributedString = builder.generatedAttributedString()?.attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines) else { return nil }
         self.init(attributedString: attributedString)
     }
+    
+    public func replacingOccurrences(of: String, with: String, options: NSString.CompareOptions, range: NSRange) -> NSAttributedString {
+        guard let mutable = self.mutableCopy() as? NSMutableAttributedString else { return self }
+        mutable.mutableString.replaceOccurrences(of: of, with: with, options: options, range: range)
+        return mutable
+    }
+    
+    public func replacingMatches(to regex: Regex, with: (String) -> String) -> NSAttributedString {
+        return regex.captures(input: self.string).reduce(self) { (latest, nextCapture) in
+            latest.replacingOccurrences(of: nextCapture,
+                                        with: with(nextCapture),
+                                        options: .regularExpression,
+                                        range: regex.rangeOfString(input: latest.string))
+        }
+    }
 }
 
 extension NSMutableAttributedString {

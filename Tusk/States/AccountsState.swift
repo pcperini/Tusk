@@ -29,7 +29,7 @@ struct AccountsState: StateType {
     
     private static func passThroughReducer(action: Action, state: AccountsState) -> [AccountState] {
         return state.allAccounts.map({ (account) in AccountState.reducer(action: action, state: account) })
-            .dedupe(on: { (account) in account.hashableValue })
+            .dedupe(on: { (account) in account.hashValue })
     }
     
     func accountWithID(id: String) -> AccountState? {

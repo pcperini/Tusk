@@ -88,9 +88,14 @@ class StatusesViewController: PaginatingTableViewController {
             guard let account = account else { return }
             self.pushToAccount(account: account)
         }
-        cell.linkWasTapped = { (url) in
+        cell.linkWasTapped = { (url, text) in
+            if let mentionMatch = status.mentions.first(where: { text.hasSuffix($0.acct) }) {
+                self.pushToAccount(account: AccountPlaceholder(id: mentionMatch.id))
+                return
+            }
+            
             guard let url = url else { return }
-            self.pushToURL(url: url)
+            self.openURL(url: url)
         }
         cell.contextPushWasTriggered = { (status) in
             guard let status = status else { return }
@@ -134,15 +139,11 @@ class StatusesViewController: PaginatingTableViewController {
     }
     
     // Navigation
-    func pushToURL(url: URL) {
-        let safariViewController = SFSafariViewController(url: url)
-        safariViewController.navigationItem.title = "Mastodon"
-        safariViewController.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(safariViewController, animated: true)
+    func openURL(url: URL) {
+        UIApplication.shared.open(url,options: [:], completionHandler: nil)
     }
     
-    func pushToAccount(account: Account) {
+    func pushToAccount(account: AccountType) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
         
         guard let client = GlobalStore.state.auth.client else { return }
@@ -166,7 +167,8 @@ class StatusesViewController: PaginatingTableViewController {
         
         switch segue.identifier {
         case "PushAccountViewController": do {
-            guard let accountVC = segue.destination as? AccountViewController, let account = sender as? Account else {
+            let sentAccount: AccountType? = (sender as? Account) ?? (sender as? AccountPlaceholder)
+            guard let accountVC = segue.destination as? AccountViewController, let account = sentAccount else {
                 segue.destination.dismiss(animated: true, completion: nil)
                 return
             }

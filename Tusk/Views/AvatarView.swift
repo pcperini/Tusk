@@ -34,7 +34,7 @@ import MastodonKit
             }
         }
         
-        init(account: Account) {
+        init(account: AccountType) {
             if (account.locked) { self = .Locked }
             else if (account.bot ?? false) { self = .Bot }
             else if (Bundle.main.developers.contains(account.username)) { self = .TuskDev }

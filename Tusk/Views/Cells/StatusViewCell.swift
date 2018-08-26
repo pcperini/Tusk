@@ -31,7 +31,7 @@ class StatusViewCell: TableViewCell {
     private static let reblogIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     var accountElementWasTapped: ((Account?) -> Void)?
-    var linkWasTapped: ((URL?) -> Void)?
+    var linkWasTapped: ((URL?, String) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
     var contextPushWasTriggered: ((Status?) -> Void)?
     
@@ -54,6 +54,10 @@ class StatusViewCell: TableViewCell {
         self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
         
         self.statusTextView.delegate = self
+        self.statusTextView.hideLinkCriteria = { (link) in
+            guard let status = self.status else { return false }
+            return status.allMediaAttachmentURLs.contains(link)
+        }
         
         let contextButton = MGSwipeButton(title: "",
                                           icon: UIImage(named: "ContextButton"),
@@ -111,7 +115,8 @@ class StatusViewCell: TableViewCell {
 
 extension StatusViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        self.linkWasTapped?(URL)
+        let substring = textView.attributedText.attributedSubstring(from: characterRange).string
+        self.linkWasTapped?(URL, substring)
         return false
     }
 }

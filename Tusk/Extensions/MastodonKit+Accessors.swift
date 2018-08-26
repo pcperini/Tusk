@@ -20,7 +20,7 @@ extension Notification {
     }
 }
 
-extension Account {
+extension AccountType {
     var name: String {
         return self.displayName.isEmpty ? self.username : self.displayName
     }
@@ -41,5 +41,17 @@ extension Account {
     
     var behaviorTidbit: String {
         return "joined \(self.createdAt.toString(format: .custom("d MMM yyyy")))"
+    }
+}
+
+extension Attachment {
+    var allURLs: [String] {
+        return [self.url, self.previewURL, self.remoteURL, self.textURL].compactMap { $0 }
+    }
+}
+
+extension Status {
+    var allMediaAttachmentURLs: [String] {
+        return self.mediaAttachments.reduce([]) { $0 + $1.allURLs }
     }
 }
