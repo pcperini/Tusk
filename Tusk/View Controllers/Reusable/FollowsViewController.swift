@@ -75,7 +75,7 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
         GlobalStore.dispatch(action)
     }
     
-    // Table View Data Source
+    // MARK: Table View
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.follows.count
     }
@@ -99,7 +99,7 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
         self.pushToAccount(account: account)
     }
     
-    // Paging
+    // MARK: Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
         self.pollFollowers(pageDirection: .PreviousPage)
@@ -110,7 +110,7 @@ class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
         self.pollFollowers(pageDirection: .NextPage)
     }
     
-    // Navigation
+    // MARK: Navigation
     func pushToAccount(account: Account) {
         self.performSegue(withIdentifier: "PushAccountViewController", sender: account)
         

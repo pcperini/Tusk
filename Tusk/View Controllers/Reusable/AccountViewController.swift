@@ -166,7 +166,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.pushToFavourites()
     }
     
-    // UITableViewDataSource
+    // MARK: Table View
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
     }
@@ -286,7 +286,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         }
     }
     
-    // Navigation
+    // MARK: Navigation
     func openURL(url: URL) {
         UIApplication.shared.open(url, options: [:]) { (success) in
             guard let indexPath = self.tableView.indexPathForSelectedRow else { return }

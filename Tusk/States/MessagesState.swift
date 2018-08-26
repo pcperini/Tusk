@@ -24,6 +24,8 @@ struct MessagesState: StatusesState {
                                                                                                         typeMapper: MessagesState.typeMapper,
                                                                                                         provider: MessagesState.provider)
     
+    static var additionalReducer: ((Action, MessagesState?) -> MessagesState)? = nil
+    
     static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
         guard let range = range else { return Notifications.all(range: .limit(30)) }
         return Notifications.all(range: range)

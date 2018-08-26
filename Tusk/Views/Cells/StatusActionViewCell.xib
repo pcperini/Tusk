@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -28,9 +27,13 @@
                             <rect key="frame" x="94" y="0.0" width="93.5" height="40"/>
                             <state key="normal" image="ReblogButton"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhg-Cg-Qo9">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhg-Cg-Qo9" customClass="Button" customModule="Tusk" customModuleProvider="target">
                             <rect key="frame" x="187.5" y="0.0" width="94" height="40"/>
                             <state key="normal" image="FavouriteButton"/>
+                            <state key="selected" image="FavouritedButton"/>
+                            <connections>
+                                <action selector="favouriteButtonWasTouchedUpInsideSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="AxK-j5-wZd"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muG-tL-Tha">
                             <rect key="frame" x="281.5" y="0.0" width="93.5" height="40"/>
@@ -57,12 +60,16 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="favouriteButton" destination="Rhg-Cg-Qo9" id="n6d-sN-N7s"/>
+            </connections>
             <point key="canvasLocation" x="-164" y="100"/>
         </view>
     </objects>
     <resources>
         <image name="AccountActionsButton" width="20" height="21"/>
         <image name="FavouriteButton" width="20" height="20"/>
+        <image name="FavouritedButton" width="20" height="20"/>
         <image name="ReblogButton" width="20" height="23"/>
         <image name="ReplyButton" width="20" height="16"/>
         <namedColor name="ActionsBackgroundColor">

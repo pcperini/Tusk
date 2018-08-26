@@ -78,6 +78,9 @@
 		73023047213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
 		73023048213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
 		73023049213089E600BC1E9A /* FavouritesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73023046213089E600BC1E9A /* FavouritesState.swift */; };
+		7302304B213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
+		7302304C213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
+		7302304D213109E300BC1E9A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302304A213109E300BC1E9A /* Button.swift */; };
 		730230532131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
 		730230542131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
 		730230552131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
@@ -201,6 +204,9 @@
 		73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
 		73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
 		73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
+		73D6CF3D2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */; };
+		73D6CF3E2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */; };
+		73D6CF3F2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
 		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
@@ -269,6 +275,7 @@
 		7302303E2130887D00BC1E9A /* Favourites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favourites.storyboard; sourceTree = "<group>"; };
 		73023042213089B800BC1E9A /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		73023046213089E600BC1E9A /* FavouritesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesState.swift; sourceTree = "<group>"; };
+		7302304A213109E300BC1E9A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		730230522131AD2400BC1E9A /* SwiftyRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRegex.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
@@ -310,6 +317,7 @@
 		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
+		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EAEC58211E41A900C2620F /* StatusesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */,
+				73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */,
 			);
 			path = "UI Handlers";
 			sourceTree = "<group>";
@@ -406,6 +415,7 @@
 				732BE261212338EA0049ADBD /* TimestampLabel.swift */,
 				739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */,
 				73022FF6212F1B1B00BC1E9A /* AvatarView.swift */,
+				7302304A213109E300BC1E9A /* Button.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -870,6 +880,7 @@
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				7302304B213109E300BC1E9A /* Button.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -889,6 +900,7 @@
 				73208E8E212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				73022FF3212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
+				73D6CF3D2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73208EBA212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
@@ -925,9 +937,11 @@
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73023048213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				73D6CF3E2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				7302304C213109E300BC1E9A /* Button.swift in Sources */,
 				739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				730230542131AD2400BC1E9A /* SwiftyRegex.swift in Sources */,
 				73208E8F212B2A9C00529FA3 /* StatusesState.swift in Sources */,
@@ -984,9 +998,11 @@
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73023049213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
+				73D6CF3F2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
+				7302304D213109E300BC1E9A /* Button.swift in Sources */,
 				739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				730230552131AD2400BC1E9A /* SwiftyRegex.swift in Sources */,
 				73208E90212B2A9C00529FA3 /* StatusesState.swift in Sources */,

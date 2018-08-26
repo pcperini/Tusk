@@ -13,6 +13,11 @@ import SafariServices
 
 class StatusesViewController: PaginatingTableViewController {
     private var statuses: [Status] = []
+    lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
+                                                                                              data: nil,
+                                                                                              selectedElement: nil,
+                                                                                              dataComparator: self.statusesAreEqual)
+    
     var nextPageAction: () -> Action? = { nil }
     var previousPageAction: () -> Action? = { nil }
     var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
@@ -36,6 +41,11 @@ class StatusesViewController: PaginatingTableViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.contentInsetAdjustmentBehavior = .never
+    }
+    
     func pollStatuses(pageDirection: PageDirection = .Reload) {
         let possibleAction: Action?
         switch pageDirection {
@@ -51,14 +61,12 @@ class StatusesViewController: PaginatingTableViewController {
     func updateStatuses(statuses: [Status]) {
         self.endRefreshing()
         self.endPaginating()
-        
-        if (self.statuses != statuses) {
-            self.statuses = statuses
-            self.tableView.reloadData()
-        }
+
+        self.statuses = statuses
+        self.tableMergeHandler.mergeData(data: statuses)
     }
     
-    // UITableViewDataSource
+    // MARK: Table View
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.statuses.count + (self.selectedStatusIndex == nil ? 0 : 1)
     }
@@ -66,9 +74,17 @@ class StatusesViewController: PaginatingTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let statusIndex = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == NSNotFound) { // Action Cell
+            let status = self.statuses[indexPath.row - 1]
             let cell: StatusActionViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Action",
                                                                                 for: indexPath,
                                                                                 usingNibNamed: "StatusActionViewCell")
+            
+            cell.favouriteButton.isSelected = status.favourited ?? false
+            cell.favouritedButtonWasTapped = {
+                guard let client = GlobalStore.state.auth.client else { return }
+                cell.favouriteButton.isSelected = !cell.favouriteButton.isSelected
+                GlobalStore.dispatch(TimelineState.ToggleFavourite(client: client, status: status))
+            }
             
             return cell
         }
@@ -76,7 +92,6 @@ class StatusesViewController: PaginatingTableViewController {
         let cell: StatusViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Status",
                                                                       for: indexPath,
                                                                       usingNibNamed: "StatusViewCell")
-        
         let status = self.statuses[statusIndex]
         let displayStatus = status.reblog ?? status
         
@@ -115,6 +130,11 @@ class StatusesViewController: PaginatingTableViewController {
         var statusIndex: Int? = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == self.selectedStatusIndex) { statusIndex = nil }
         
+        self.tableMergeHandler.selectedElement = nil
+        if let statusIndex = statusIndex {
+            self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
+        }
+        
         self.tableView.beginUpdates()
         self.selectedStatusIndex = nil
         self.selectedStatusIndex = statusIndex
@@ -127,7 +147,14 @@ class StatusesViewController: PaginatingTableViewController {
         return indexPath.row - 1
     }
     
-    // Paging
+    private func statusesAreEqual(lhs: Status, rhs: Status) -> Bool {
+        return (
+            lhs.id == rhs.id &&
+            lhs.favourited == rhs.favourited
+        )
+    }
+    
+    // MARK: Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
         self.pollStatuses(pageDirection: .PreviousPage)
@@ -138,7 +165,7 @@ class StatusesViewController: PaginatingTableViewController {
         self.pollStatuses(pageDirection: .NextPage)
     }
     
-    // Navigation
+    // MARK: Navigation
     func openURL(url: URL) {
         UIApplication.shared.open(url,options: [:], completionHandler: nil)
     }
