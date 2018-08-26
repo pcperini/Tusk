@@ -82,6 +82,7 @@ class StatusesViewController: PaginatingTableViewController {
             cell.favouriteButton.isSelected = status.favourited ?? false
             cell.favouritedButtonWasTapped = {
                 guard let client = GlobalStore.state.auth.client else { return }
+                cell.favouriteButton.isSelected = !cell.favouriteButton.isSelected
                 GlobalStore.dispatch(TimelineState.ToggleFavourite(client: client, status: status))
             }
             
