@@ -80,7 +80,7 @@ struct AccountState: StateType, StatusViewableState {
         switch action {
         case let action as SetAccount: do {
             state.account = action.account
-            state.isActiveAccount = action.active
+            state.isActiveAccount = action.active || state.isActiveAccount
             }
         case let action as SetPinnedStatuses: state.pinnedStatuses = action.value
             
