@@ -8,6 +8,7 @@
 
 import Foundation
 import MastodonKit
+import ReSwift
 
 struct FavouritesState: StatusesState {
     var statuses: [Status] = []
@@ -16,6 +17,8 @@ struct FavouritesState: StatusesState {
     var nextPage: RequestRange? = nil
     var previousPage: RequestRange? = nil
     var paginatingData: PaginatingData<Status, Status> = PaginatingData<Status, Status>(provider: FavouritesState.provider)
+    
+    static var additionalReducer: ((Action, FavouritesState?) -> FavouritesState)? = nil
     
     static func provider(range: RequestRange? = nil) -> Request<[Status]> {
         guard let range = range else { return Favourites.all(range: .limit(40)) }

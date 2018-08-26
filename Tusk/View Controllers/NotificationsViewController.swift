@@ -59,7 +59,7 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
         }
     }
     
-    // UITableViewDataSource
+    // MARK: Table View
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.notifications.count
     }
@@ -83,7 +83,7 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
         self.pushToURL(url: url)
     }
     
-    // Paging
+    // MARK: Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
         self.pollNotifications(pageDirection: .PreviousPage)
@@ -94,7 +94,7 @@ class NotificationsViewController: PaginatingTableViewController, StoreSubscribe
         self.pollNotifications(pageDirection: .NextPage)
     }
     
-    // Navigation
+    // MARK: Navigation
     func pushToURL(url: URL) {
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.navigationItem.title = "Mastodon"

@@ -18,8 +18,11 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
     var statuses: [Status] { get set }
     var filters: [(Status) -> Bool] { get set }
     
+    static var additionalReducer: ((Action, Self?) -> Self)? { get }
+    
     init()
     func pollStatuses(client: Client, range: RequestRange?)
+    mutating func updateStatus(status: Status)
 }
 
 extension StatusesState {
@@ -29,6 +32,7 @@ extension StatusesState {
     typealias PollStatuses = StatusesStatePollStatuses<Self>
     typealias PollOlderStatuses = StatusesStatePollOlderStatuses<Self>
     typealias PollNewerStatuses = StatusesStatePollNewerStatuses<Self>
+    typealias UpdateStatus = StatusesStateUpdateStatus
         
     static func reducer(action: Action, state: Self?) -> Self {
         var state = state ?? Self.init()
@@ -42,9 +46,11 @@ extension StatusesState {
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
+        case let action as UpdateStatus: state.updateStatus(status: action.value)
         default: break
         }
         
+        state = self.additionalReducer?(action, state) ?? state
         return state
     }
     
@@ -57,6 +63,11 @@ extension StatusesState {
             GlobalStore.dispatch(SetPage(value: pagination))
         }
     }
+    
+    mutating func updateStatus(status: Status) {
+        guard let index = self.statuses.index(where: { $0.id == status.id }) else { return }
+        self.statuses[index] = status
+    }
 }
 
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
@@ -65,3 +76,4 @@ struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
 struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }
+struct StatusesStateUpdateStatus: Action { let value: Status }

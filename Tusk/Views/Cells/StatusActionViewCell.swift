@@ -9,12 +9,15 @@
 import UIKit
 
 class StatusActionViewCell: UITableViewCell {
+    @IBOutlet var favouriteButton: UIButton!
+    var favouritedButtonWasTapped: (() -> Void)? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
     }
     
-    @IBAction func favouriteButtonWasTapped(sender: UIButton?) {
-        
+    @IBAction func favouriteButtonWasTouchedUpInside(sender: UIButton?) {
+        self.favouritedButtonWasTapped?()
     }
 }

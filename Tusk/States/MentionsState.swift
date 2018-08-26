@@ -8,6 +8,7 @@
 
 import Foundation
 import MastodonKit
+import ReSwift
 
 struct MentionsState: StatusesState {
     var statuses: [Status] = []
@@ -23,6 +24,8 @@ struct MentionsState: StatusesState {
     var paginatingData: PaginatingData<Status, MKNotification> = PaginatingData<Status, MKNotification>(minimumPageSize: 10,
                                                                                                         typeMapper: MentionsState.typeMapper,
                                                                                                         provider: MentionsState.provider)
+    
+    static var additionalReducer: ((Action, MentionsState?) -> MentionsState)? = nil
     
     static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
         guard let range = range else { return Notifications.all(range: .limit(30)) }
