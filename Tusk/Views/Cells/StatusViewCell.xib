@@ -4,8 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -132,26 +132,46 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockedBadge" translatesAutoresizingMaskIntoConstraints="NO" id="ggB-03-1Vw">
+                                <rect key="frame" x="299.5" y="4" width="14" height="14"/>
+                                <color key="tintColor" name="VisibilityBadgeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="KZh-aQ-80h"/>
+                                    <constraint firstAttribute="width" constant="14" id="PGj-fo-0rV" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FavouritedBadge" translatesAutoresizingMaskIntoConstraints="NO" id="DS6-iQ-eyN">
+                                <rect key="frame" x="281.5" y="4" width="14" height="14"/>
+                                <color key="tintColor" name="FavouritedBadgeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="4oQ-xX-Ozx" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                    <constraint firstAttribute="height" constant="14" id="Je6-gk-7Ja"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vi5-s1-6UD" firstAttribute="top" secondItem="BoR-xo-HiS" secondAttribute="bottom" constant="12" id="0if-c8-YYR" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                            <constraint firstItem="PaA-5S-dyd" firstAttribute="leading" secondItem="ggB-03-1Vw" secondAttribute="trailing" constant="4" id="6QK-9u-00T"/>
                             <constraint firstAttribute="trailing" secondItem="BoR-xo-HiS" secondAttribute="trailing" id="7xQ-2I-Fvw"/>
                             <constraint firstItem="PaA-5S-dyd" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="8Ox-jc-B5q"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="trailing" constant="4" id="DOi-3p-g1M"/>
                             <constraint firstItem="BoR-xo-HiS" firstAttribute="leading" secondItem="sHe-5U-G8n" secondAttribute="leading" id="GMS-Q9-RIi"/>
                             <constraint firstAttribute="trailing" secondItem="PaA-5S-dyd" secondAttribute="trailing" constant="0.5" id="Jh3-Cv-G5i"/>
                             <constraint firstItem="eJu-9e-u0P" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="OST-5g-gxB"/>
+                            <constraint firstItem="DS6-iQ-eyN" firstAttribute="centerY" secondItem="PaA-5S-dyd" secondAttribute="centerY" id="TIC-90-tts"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="bottom" constant="2" id="UF9-tn-JIQ"/>
                             <constraint firstAttribute="trailing" secondItem="sHe-5U-G8n" secondAttribute="trailing" id="W10-Q7-Bob"/>
+                            <constraint firstItem="DS6-iQ-eyN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rzF-6F-ABL" secondAttribute="trailing" constant="4" id="Y8e-B6-ktr"/>
+                            <constraint firstItem="ggB-03-1Vw" firstAttribute="centerY" secondItem="PaA-5S-dyd" secondAttribute="centerY" id="aTc-Sl-f1v"/>
                             <constraint firstItem="BoR-xo-HiS" firstAttribute="top" secondItem="sHe-5U-G8n" secondAttribute="bottom" constant="12" identifier="TopConstraint" id="boI-Zd-Vy8" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                             <constraint firstItem="vi5-s1-6UD" firstAttribute="leading" secondItem="BoR-xo-HiS" secondAttribute="leading" id="faJ-Su-1i3"/>
                             <constraint firstAttribute="bottom" secondItem="vi5-s1-6UD" secondAttribute="bottom" id="fbq-Im-r5K"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eJu-9e-u0P" secondAttribute="bottom" id="fcG-ZS-TY2"/>
-                            <constraint firstItem="PaA-5S-dyd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rzF-6F-ABL" secondAttribute="trailing" constant="4" id="g7P-he-vxd"/>
                             <constraint firstItem="rzF-6F-ABL" firstAttribute="top" secondItem="keD-FY-tv9" secondAttribute="top" id="hHI-vJ-qUg"/>
                             <constraint firstItem="keD-FY-tv9" firstAttribute="leading" secondItem="eJu-9e-u0P" secondAttribute="trailing" constant="10" id="iB8-Qz-EWv"/>
                             <constraint firstItem="sHe-5U-G8n" firstAttribute="leading" secondItem="keD-FY-tv9" secondAttribute="leading" id="qG4-hS-szv"/>
                             <constraint firstItem="eJu-9e-u0P" firstAttribute="leading" secondItem="SE0-fc-EoD" secondAttribute="leading" id="qvR-Qg-R3r"/>
+                            <constraint firstItem="ggB-03-1Vw" firstAttribute="leading" secondItem="DS6-iQ-eyN" secondAttribute="trailing" constant="4" id="scF-6i-m1r"/>
                             <constraint firstItem="eJu-9e-u0P" firstAttribute="top" secondItem="SE0-fc-EoD" secondAttribute="top" id="ssJ-IN-00L"/>
                             <constraint firstAttribute="trailing" secondItem="vi5-s1-6UD" secondAttribute="trailing" id="v7m-gX-Cie"/>
                         </constraints>
@@ -175,6 +195,7 @@
                 <outlet property="attachmentTopConstraint" destination="boI-Zd-Vy8" id="z6w-mm-gta"/>
                 <outlet property="avatarView" destination="eJu-9e-u0P" id="cVZ-Aw-YC1"/>
                 <outlet property="displayNameLabel" destination="keD-FY-tv9" id="u7a-Yf-EsG"/>
+                <outlet property="favouritedBadge" destination="DS6-iQ-eyN" id="al0-D7-Veb"/>
                 <outlet property="reblogAvatarView" destination="AZp-uC-1qb" id="GQf-0t-BN4"/>
                 <outlet property="reblogHeightConstraint" destination="uxL-z7-boq" id="WHf-47-WaQ"/>
                 <outlet property="reblogIndicatorView" destination="v5j-xb-QgM" id="het-9I-eEX"/>
@@ -184,12 +205,25 @@
                 <outlet property="statusTextView" destination="sHe-5U-G8n" id="vWC-mT-PxO"/>
                 <outlet property="timestampLabel" destination="PaA-5S-dyd" id="Z05-US-JRU"/>
                 <outlet property="usernameLabel" destination="rzF-6F-ABL" id="Zf5-MX-E1K"/>
+                <outlet property="visibilityBadge" destination="ggB-03-1Vw" id="W73-mq-yni"/>
                 <outletCollection property="backgroundColoredViews" destination="eJu-9e-u0P" collectionClass="NSMutableArray" id="Jyp-Ze-n1y"/>
+                <outletCollection property="favouritedWidthConstraints" destination="4oQ-xX-Ozx" collectionClass="NSMutableArray" id="1ts-u9-LxR"/>
+                <outletCollection property="favouritedWidthConstraints" destination="scF-6i-m1r" collectionClass="NSMutableArray" id="sXK-80-bBy"/>
+                <outletCollection property="visibilityWidthConstraints" destination="PGj-fo-0rV" collectionClass="NSMutableArray" id="jpF-Ac-QWu"/>
+                <outletCollection property="visibilityWidthConstraints" destination="6QK-9u-00T" collectionClass="NSMutableArray" id="xbx-96-DOG"/>
             </connections>
             <point key="canvasLocation" x="289.5" y="104"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="FavouritedBadge" width="20" height="20"/>
+        <image name="LockedBadge" width="14" height="20"/>
         <image name="ReblogAlert" width="20" height="23"/>
+        <namedColor name="FavouritedBadgeColor">
+            <color red="1" green="0.85100001096725464" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VisibilityBadgeColor">
+            <color white="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
     </resources>
 </document>

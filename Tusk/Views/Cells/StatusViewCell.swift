@@ -17,6 +17,11 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var statusTextView: TextView!
     @IBOutlet var timestampLabel: TimestampLabel!
     
+    @IBOutlet var favouritedBadge: UIImageView!
+    @IBOutlet var favouritedWidthConstraints: NSArray! = NSArray()
+    @IBOutlet var visibilityBadge: UIImageView!
+    @IBOutlet var visibilityWidthConstraints: NSArray! = NSArray()
+    
     @IBOutlet var attachmentCollectionView: UICollectionView!
     @IBOutlet var attachmentTopConstraint: ToggleLayoutConstraint!
     @IBOutlet var attachmentHeightConstraint: ToggleLayoutConstraint!
@@ -82,6 +87,22 @@ class StatusViewCell: TableViewCell {
         self.displayNameLabel.text = status.account.name
         self.usernameLabel.text = status.account.handle
         self.timestampLabel.date = status.createdAt
+        
+        self.favouritedWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: status.favourited ?? false) }
+        
+        switch status.visibility {
+        case .private: do {
+            self.visibilityBadge.image = UIImage(named: "LockedBadge")
+            self.visibilityWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: true) }
+            }
+        case .direct: do {
+            self.visibilityBadge.image = UIImage(named: "MessageBadge")
+            self.visibilityWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: true) }
+            }
+        default: do {
+            self.visibilityWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: false) }
+            }
+        }
         
         self.statusTextView.htmlText = status.content
         self.statusTextView.setNeedsLayout()
