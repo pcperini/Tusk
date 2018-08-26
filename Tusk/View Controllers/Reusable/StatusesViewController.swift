@@ -15,6 +15,7 @@ class StatusesViewController: PaginatingTableViewController {
     private var statuses: [Status] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               data: nil,
+                                                                                              selectedElement: nil,
                                                                                               dataComparator: self.statusesAreEqual)
     
     var nextPageAction: () -> Action? = { nil }
@@ -40,6 +41,11 @@ class StatusesViewController: PaginatingTableViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.contentInsetAdjustmentBehavior = .never
+    }
+    
     func pollStatuses(pageDirection: PageDirection = .Reload) {
         let possibleAction: Action?
         switch pageDirection {
@@ -58,10 +64,6 @@ class StatusesViewController: PaginatingTableViewController {
 
         self.statuses = statuses
         self.tableMergeHandler.mergeData(data: statuses)
-//        if (self.statuses.count != statuses.count) {
-//            self.statuses = statuses
-//            self.tableView.reloadData()
-//        }
     }
     
     // MARK: Table View
@@ -126,6 +128,11 @@ class StatusesViewController: PaginatingTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var statusIndex: Int? = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == self.selectedStatusIndex) { statusIndex = nil }
+        
+        self.tableMergeHandler.selectedElement = nil
+        if let statusIndex = statusIndex {
+            self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
+        }
         
         self.tableView.beginUpdates()
         self.selectedStatusIndex = nil
