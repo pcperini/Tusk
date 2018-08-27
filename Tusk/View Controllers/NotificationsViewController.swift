@@ -83,6 +83,11 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
         self.pushToURL(url: url)
     }
     
+    override func dataForRowAtIndexPath(indexPath: IndexPath) -> MKNotification? {
+        if (self.notifications.isEmpty) { return nil }
+        return self.notifications[indexPath.row]
+    }
+    
     // MARK: Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()

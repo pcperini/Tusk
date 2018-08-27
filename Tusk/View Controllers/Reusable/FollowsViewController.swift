@@ -99,6 +99,11 @@ class FollowsViewController: PaginatingTableViewController<Account>, StoreSubscr
         self.pushToAccount(account: account)
     }
     
+    override func dataForRowAtIndexPath(indexPath: IndexPath) -> Account? {
+        if (self.follows.isEmpty) { return nil }
+        return self.follows[indexPath.row]
+    }
+    
     // MARK: Paging
     override func refreshControlBeganRefreshing() {
         super.refreshControlBeganRefreshing()
