@@ -182,16 +182,81 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/AccountViewController.swift"
-            timestampString = "556988680.274951"
+            filePath = "Tusk/Views/Cells/StatusViewCell.swift"
+            timestampString = "557076598.0683579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "updateNavigationButtons()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "updateStatus()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tusk.StatusViewCell.(updateStatus in _528E7FDEA21C6353D7612E8A83A0D661)() -&gt; ()"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Views/Cells/StatusViewCell.swift"
+                  timestampString = "557076530.896142"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "2636">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Any) -&gt; () in Tusk.StatusViewCell.(updateStatus in _528E7FDEA21C6353D7612E8A83A0D661)() -&gt; ()"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Views/Cells/StatusViewCell.swift"
+                  timestampString = "557076530.898367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "25">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            condition = "(lhs.id == &quot;100621309498236800&quot; || lhs.reblog?.id == &quot;100621309498236800&quot;) &amp;&amp; (rhs.id == &quot;100621309498236800&quot; || rhs.reblog?.id == &quot;100621309498236800&quot;)"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
+            timestampString = "557081644.19253"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "statusesAreEqual(lhs:rhs:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/States/TimelineState.swift"
+            timestampString = "557078212.824663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "toggleFavourite(client:status:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,13 +266,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/AccountViewController.swift"
-            timestampString = "556988680.275013"
+            filePath = "Tusk/States/Composable/StatusesState.swift"
+            timestampString = "557081644.1926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "updateNavigationButtons()"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "updateStatus(status:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -217,13 +282,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/AccountViewController.swift"
-            timestampString = "556988680.275057"
+            filePath = "Tusk/Extensions/MastodonKit+Accessors.swift"
+            timestampString = "557081709.962341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "newState(state:)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "cloned(changes:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in Tusk):MastodonKit.Status.cloned(changes: Swift.Dictionary&lt;Swift.String, Any&gt;) throws -&gt; MastodonKit.Status"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Extensions/MastodonKit+Accessors.swift"
+                  timestampString = "557081709.971185"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((key: Swift.String, value: Any)) -&gt; () in (extension in Tusk):MastodonKit.Status.cloned(changes: Swift.Dictionary&lt;Swift.String, Any&gt;) throws -&gt; MastodonKit.Status"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Extensions/MastodonKit+Accessors.swift"
+                  timestampString = "557081709.9737231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "65">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/Extensions/MastodonKit+Accessors.swift"
+            timestampString = "557081710.277317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "cloned(changes:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -233,13 +346,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/AccountViewController.swift"
-            timestampString = "556988680.275097"
+            filePath = "Tusk/Extensions/MastodonKit+Accessors.swift"
+            timestampString = "557081710.9309421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "newState(state:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "cloned(changes:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

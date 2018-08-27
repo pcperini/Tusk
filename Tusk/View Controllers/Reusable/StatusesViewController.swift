@@ -77,15 +77,17 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         let statusIndex = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == NSNotFound) { // Action Cell
             let status = self.statuses[indexPath.row - 1]
+            let displayStatus = status.reblog ?? status
+            
             let cell: StatusActionViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Action",
                                                                                 for: indexPath,
                                                                                 usingNibNamed: "StatusActionViewCell")
             
-            cell.favouriteButton.isSelected = status.favourited ?? false
+            cell.favouriteButton.isSelected = displayStatus.favourited ?? false
             cell.favouritedButtonWasTapped = {
                 guard let client = GlobalStore.state.auth.client else { return }
                 cell.favouriteButton.isSelected = !cell.favouriteButton.isSelected
-                GlobalStore.dispatch(TimelineState.ToggleFavourite(client: client, status: status))
+                GlobalStore.dispatch(TimelineState.ToggleFavourite(client: client, status: displayStatus))
             }
             
             return cell
@@ -158,7 +160,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     private func statusesAreEqual(lhs: Status, rhs: Status) -> Bool {
         return (
             lhs.id == rhs.id &&
-            lhs.favourited == rhs.favourited
+            lhs.favourited == rhs.favourited &&
+            lhs.reblog?.favourited == rhs.reblog?.favourited
         )
     }
     
