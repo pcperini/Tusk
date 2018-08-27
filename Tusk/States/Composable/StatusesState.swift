@@ -65,8 +65,10 @@ extension StatusesState {
     }
     
     mutating func updateStatus(status: Status) {
-        if let index = self.statuses.index(where: { $0.id == status.id }) {
+        if let index = self.statuses.index(where: { $0.id == status.id || $0.id == status.reblog?.id }) {
             self.statuses[index] = status
+        } else if let reblog = status.reblog, let index = self.statuses.index(where: { $0.reblog?.id == reblog.id }) {
+            self.statuses[index] = try! self.statuses[index].cloned(changes: ["reblog": reblog.jsonValue!])
         } else if let index = self.statuses.index(where: { $0.reblog?.id == status.id }) {
             self.statuses[index] = try! self.statuses[index].cloned(changes: ["reblog": status.jsonValue!])
         }

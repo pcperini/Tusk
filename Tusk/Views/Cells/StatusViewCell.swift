@@ -116,10 +116,19 @@ class StatusViewCell: TableViewCell {
         if let originalStatus = self.originalStatus {
             self.reblogAvatarView.af_setImage(withURL: URL(string: originalStatus.account.avatar)!)
             self.reblogLabel.text = originalStatus.account.displayName
+            
+            if (status.reblogged ?? false) {
+                self.reblogLabel.text = "\(self.reblogLabel.text!) & you"
+            }
+        } else if (status.reblogged ?? false), let activeAccount = GlobalStore.state.accounts.activeAccount?.account {
+            self.reblogAvatarView.af_setImage(withURL: URL(string: activeAccount.avatar)!)
+            self.reblogLabel.text = "You"
         }
         
-        self.reblogTopConstraint.toggle(on: self.originalStatus != status && self.originalStatus != nil)
-        self.reblogHeightConstraint.toggle(on: self.originalStatus != status && self.originalStatus != nil)
+        let reblogged = (status.reblogged ?? false) || (self.originalStatus != status && self.originalStatus != nil)
+        
+        self.reblogTopConstraint.toggle(on: reblogged)
+        self.reblogHeightConstraint.toggle(on: reblogged)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()

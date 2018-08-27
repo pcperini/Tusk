@@ -12,6 +12,9 @@ class StatusActionViewCell: UITableViewCell {
     @IBOutlet var favouriteButton: UIButton!
     var favouritedButtonWasTapped: (() -> Void)? = nil
     
+    @IBOutlet var reblogButton: UIButton!
+    var reblogButtonWasTapped: (() -> Void)? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -19,5 +22,9 @@ class StatusActionViewCell: UITableViewCell {
     
     @IBAction func favouriteButtonWasTouchedUpInside(sender: UIButton?) {
         self.favouritedButtonWasTapped?()
+    }
+    
+    @IBAction func reblogButtonWasTouchedUpInside(sender: UIButton?) {
+        self.reblogButtonWasTapped?()
     }
 }

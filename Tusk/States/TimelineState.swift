@@ -13,6 +13,7 @@ import ReSwift
 struct TimelineState: StatusesState {
     // Timeline catches all status actions, generically
     struct ToggleFavourite: Action { let client: Client; let status: Status }
+    struct ToggleReblog: Action { let client: Client; let status: Status }
     
     var statuses: [Status] = []
     var filters: [(Status) -> Bool] = [{ $0.visibility != .direct }]
@@ -26,6 +27,7 @@ struct TimelineState: StatusesState {
         
         switch action {
         case let action as ToggleFavourite: state.toggleFavourite(client: action.client, status: action.status)
+        case let action as ToggleReblog: state.toggleReblog(client: action.client, status: action.status)
         default: break
         }
         
@@ -39,6 +41,19 @@ struct TimelineState: StatusesState {
     
     func toggleFavourite(client: Client, status: Status) {
         let request = (status.favourited ?? false) ? Statuses.unfavourite(id: status.id) : Statuses.favourite(id: status.id)
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): do {
+                GlobalStore.dispatch(UpdateStatus(value: resp))
+                print("success", #file, #line)
+                }
+            case .failure(let error): print(error, #file, #line)
+            }
+        }
+    }
+    
+    func toggleReblog(client: Client, status: Status) {
+        let request = (status.reblogged ?? false) ? Statuses.unreblog(id: status.id) : Statuses.reblog(id: status.id)
         client.run(request) { (result) in
             switch result {
             case .success(let resp, _): do {

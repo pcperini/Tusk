@@ -23,9 +23,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
                             <state key="normal" image="ReplyButton"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U58-fN-Blo">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U58-fN-Blo" customClass="Button" customModule="Tusk" customModuleProvider="target">
                             <rect key="frame" x="94" y="0.0" width="93.5" height="40"/>
                             <state key="normal" image="ReblogButton"/>
+                            <state key="selected" image="UndoReblogButton"/>
+                            <connections>
+                                <action selector="reblogButtonWasTouchedUpInsideSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="bU7-WZ-xJl"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhg-Cg-Qo9" customClass="Button" customModule="Tusk" customModuleProvider="target">
                             <rect key="frame" x="187.5" y="0.0" width="94" height="40"/>
@@ -62,6 +66,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="favouriteButton" destination="Rhg-Cg-Qo9" id="n6d-sN-N7s"/>
+                <outlet property="reblogButton" destination="U58-fN-Blo" id="DLX-Jc-lIP"/>
             </connections>
             <point key="canvasLocation" x="-164" y="100"/>
         </view>
@@ -72,6 +77,7 @@
         <image name="FavouritedButton" width="20" height="20"/>
         <image name="ReblogButton" width="20" height="23"/>
         <image name="ReplyButton" width="20" height="16"/>
+        <image name="UndoReblogButton" width="20" height="23"/>
         <namedColor name="ActionsBackgroundColor">
             <color red="0.19599999487400055" green="0.19599999487400055" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

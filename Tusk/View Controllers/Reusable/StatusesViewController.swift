@@ -90,6 +90,13 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                 GlobalStore.dispatch(TimelineState.ToggleFavourite(client: client, status: displayStatus))
             }
             
+            cell.reblogButton.isSelected = displayStatus.reblogged ?? false
+            cell.reblogButtonWasTapped = {
+                guard let client = GlobalStore.state.auth.client else { return }
+                cell.reblogButton.isSelected = !cell.reblogButton.isSelected
+                GlobalStore.dispatch(TimelineState.ToggleReblog(client: client, status: displayStatus))
+            }
+            
             return cell
         }
         
@@ -99,7 +106,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         let status = self.statuses[statusIndex]
         let displayStatus = status.reblog ?? status
         
-        cell.originalStatus = status
+        cell.originalStatus = nil
+        if (status != displayStatus) {
+            cell.originalStatus = status
+        }
+        
         cell.attachmentWasTapped = { (attachment) in
             self.presentAttachment(attachment: attachment, forStatus: displayStatus)
         }
@@ -161,7 +172,9 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         return (
             lhs.id == rhs.id &&
             lhs.favourited == rhs.favourited &&
-            lhs.reblog?.favourited == rhs.reblog?.favourited
+            lhs.reblogged == rhs.reblogged &&
+            lhs.reblog?.favourited == rhs.reblog?.favourited &&
+            lhs.reblog?.reblogged == rhs.reblog?.reblogged
         )
     }
     
