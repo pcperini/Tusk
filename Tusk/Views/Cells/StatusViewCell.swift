@@ -18,22 +18,21 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var timestampLabel: TimestampLabel!
     
     @IBOutlet var favouritedBadge: UIImageView!
-    @IBOutlet var favouritedWidthConstraints: NSArray! = NSArray()
+    @IBOutlet var favouritedWidthConstraints: [ToggleLayoutConstraint]!
     @IBOutlet var visibilityBadge: UIImageView!
-    @IBOutlet var visibilityWidthConstraints: NSArray! = NSArray()
+    @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
-    @IBOutlet var attachmentTopConstraint: ToggleLayoutConstraint!
-    @IBOutlet var attachmentHeightConstraint: ToggleLayoutConstraint!
+    @IBOutlet var attachmentTopConstraints: [ToggleLayoutConstraint]!
+    @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var reblogView: UIView!
-    @IBOutlet var reblogIndicatorView: ImageView!
     @IBOutlet var reblogAvatarView: ImageView!
     @IBOutlet var reblogLabel: UILabel!
-    @IBOutlet var reblogTopConstraint: ToggleLayoutConstraint!
-    @IBOutlet var reblogHeightConstraint: ToggleLayoutConstraint!
+    @IBOutlet var reblogWidthConstraints: [ToggleLayoutConstraint]!
     
-    private static let reblogIconEdgeInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    @IBOutlet var reblogStatLabel: UILabel!
+    @IBOutlet var favouriteStatLabel: UILabel!
     
     var accountElementWasTapped: ((Account?) -> Void)?
     var linkWasTapped: ((URL?, String) -> Void)?
@@ -56,7 +55,6 @@ class StatusViewCell: TableViewCell {
         
         self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
-        self.reblogIndicatorView.image = self.reblogIndicatorView.image?.imageWithInsets(insets: StatusViewCell.reblogIconEdgeInsets)
         
         self.statusTextView.delegate = self
         self.statusTextView.hideLinkCriteria = { (link) in
@@ -88,30 +86,33 @@ class StatusViewCell: TableViewCell {
         self.usernameLabel.text = status.account.handle
         self.timestampLabel.date = status.createdAt
         
-        self.favouritedWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: status.favourited ?? false) }
+        self.favouritedWidthConstraints.forEach { $0.toggle(on: status.favourited ?? false) }
         
         switch status.visibility {
         case .private: do {
             self.visibilityBadge.image = UIImage(named: "LockedBadge")
-            self.visibilityWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: true) }
+            self.visibilityWidthConstraints.forEach { $0.toggle(on: true) }
             }
         case .direct: do {
             self.visibilityBadge.image = UIImage(named: "MessageBadge")
-            self.visibilityWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: true) }
+            self.visibilityWidthConstraints.forEach { $0.toggle(on: true) }
             }
         default: do {
-            self.visibilityWidthConstraints.forEach { ($0 as? ToggleLayoutConstraint)?.toggle(on: false) }
+            self.visibilityWidthConstraints.forEach { $0.toggle(on: false) }
             }
         }
         
         self.statusTextView.htmlText = status.content
         self.statusTextView.setNeedsLayout()
     
-        self.attachmentTopConstraint.toggle(on: !status.mediaAttachments.isEmpty)
         self.attachmentCollectionView.reloadData()
+        self.attachmentTopConstraints.forEach { $0.toggle(on: !status.mediaAttachments.isEmpty) }
         self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         self.attachmentCollectionView.layoutIfNeeded()
+                
+        var hasReblogInfo = false
+        self.reblogLabel.text = ""
         
         if let originalStatus = self.originalStatus {
             self.reblogAvatarView.af_setImage(withURL: URL(string: originalStatus.account.avatar)!)
@@ -120,15 +121,19 @@ class StatusViewCell: TableViewCell {
             if (status.reblogged ?? false) {
                 self.reblogLabel.text = "\(self.reblogLabel.text!) & you"
             }
+            
+            hasReblogInfo = true
         } else if (status.reblogged ?? false), let activeAccount = GlobalStore.state.accounts.activeAccount?.account {
             self.reblogAvatarView.af_setImage(withURL: URL(string: activeAccount.avatar)!)
             self.reblogLabel.text = "You"
+            
+            hasReblogInfo = true
         }
         
-        let reblogged = (status.reblogged ?? false) || (self.originalStatus != status && self.originalStatus != nil)
+        self.reblogWidthConstraints.forEach { $0.toggle(on: hasReblogInfo) }
         
-        self.reblogTopConstraint.toggle(on: reblogged)
-        self.reblogHeightConstraint.toggle(on: reblogged)
+        self.reblogStatLabel.text = "\(status.reblogsCount)"
+        self.favouriteStatLabel.text = "\(status.favouritesCount)"
         
         self.setNeedsLayout()
         self.layoutIfNeeded()

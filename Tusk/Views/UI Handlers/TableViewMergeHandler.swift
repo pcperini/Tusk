@@ -58,9 +58,9 @@ struct TableViewMergeHandler<DataType: Comparable> {
         
         UIView.performWithoutAnimation {
             tableView.beginUpdates()
-            tableView.deleteRows(at: diffState.removedIndexPaths, with: .none)
-            tableView.insertRows(at: diffState.insertedIndexPaths, with: .none)
-            tableView.reloadRows(at: reloadRows, with: .none)
+            if (!diffState.removed.isEmpty) { tableView.deleteRows(at: diffState.removedIndexPaths, with: .none) }
+            if (!diffState.inserted.isEmpty) { tableView.insertRows(at: diffState.insertedIndexPaths, with: .none) }
+            if (!diffState.common.isEmpty) { tableView.reloadRows(at: reloadRows, with: .none) }
             tableView.endUpdates()
             
             if (!diffState.inserted.isEmpty) {
