@@ -24,7 +24,7 @@ class StatusViewCell: TableViewCell {
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
     @IBOutlet var attachmentTopConstraints: [ToggleLayoutConstraint]!
-    @IBOutlet var attachmentHeightConstraint: ToggleLayoutConstraint!
+    @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var reblogView: UIView!
     @IBOutlet var reblogAvatarView: ImageView!
@@ -110,7 +110,7 @@ class StatusViewCell: TableViewCell {
         self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         self.attachmentCollectionView.layoutIfNeeded()
-        
+                
         var hasReblogInfo = false
         self.reblogLabel.text = ""
         

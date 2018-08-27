@@ -65,8 +65,15 @@ extension StatusesState {
     }
     
     mutating func updateStatus(status: Status) {
-        if let index = self.statuses.index(where: { $0.id == status.id || $0.id == status.reblog?.id }) {
+        // Author's note: reblogs are handled as wrappers around the origin status
+        // When the active user reblogs a post, the API returns a NEW status, a wrapper post, to replace the original
+        // When the active user unreblogs a post, the API returns the ORIGINAL status, newly-devoid of wrapper
+        // This causeses unnecessary diffing in table UIs, so instead we'll just update the original status both times
+        
+        if let index = self.statuses.index(where: { $0.id == status.id }) {
             self.statuses[index] = status
+        } else if let reblog = status.reblog, let index = self.statuses.index(where: { $0.id == status.reblog?.id }) {
+            self.statuses[index] = reblog
         } else if let reblog = status.reblog, let index = self.statuses.index(where: { $0.reblog?.id == reblog.id }) {
             self.statuses[index] = try! self.statuses[index].cloned(changes: ["reblog": reblog.jsonValue!])
         } else if let index = self.statuses.index(where: { $0.reblog?.id == status.id }) {
