@@ -11,7 +11,7 @@ import ReSwift
 import MastodonKit
 import SafariServices
 
-class StatusesViewController: PaginatingTableViewController {
+class StatusesViewController: PaginatingTableViewController<Status> {
     private var statuses: [Status] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               data: nil,
@@ -64,6 +64,8 @@ class StatusesViewController: PaginatingTableViewController {
 
         self.statuses = statuses
         self.tableMergeHandler.mergeData(data: statuses)
+        
+        self.updateNewStatusesIndicator()
     }
     
     // MARK: Table View
@@ -139,6 +141,12 @@ class StatusesViewController: PaginatingTableViewController {
         self.selectedStatusIndex = nil
         self.selectedStatusIndex = statusIndex
         self.tableView.endUpdates()
+    }
+    
+    override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
+        let index = self.statusIndexForIndexPath(indexPath: indexPath)
+        guard index != NSNotFound, !self.statuses.isEmpty else { return nil }
+        return self.statuses[index]
     }
     
     private func statusIndexForIndexPath(indexPath: IndexPath) -> Int {

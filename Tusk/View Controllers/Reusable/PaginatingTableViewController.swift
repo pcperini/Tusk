@@ -14,11 +14,16 @@ enum PageDirection {
     case Reload
 }
 
-class PaginatingTableViewController: UITableViewController {
-    private static let paginationActivityIndicatorSize: CGFloat = 44.0
+class PaginatingTableViewController<DataType: Comparable>: UITableViewController {
+    private let paginationActivityIndicatorSize: CGFloat = 44.0
     var paginationActivityIndicator: UIActivityIndicatorView!
 
     private var state: State = .Resting
+    private lazy var lastSeenData: DataType? = self.dataForRowAtIndexPath(indexPath: IndexPath(row: 0, section: 0))
+    var navBar: NavigationBar? {
+        return self.navigationController?.navigationBar as? NavigationBar
+    }
+    
     
     private enum State {
         case Refreshing
@@ -32,7 +37,7 @@ class PaginatingTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(_refreshControlBeganRefreshing), for: .allEvents)
         
-        let size = PaginatingTableViewController.paginationActivityIndicatorSize
+        let size = self.paginationActivityIndicatorSize
         let paginateView = UIView(frame: CGRect(x: 0.0, y: 0.0,
                                                 width: self.tableView.frame.width,
                                                 height: size))
@@ -87,5 +92,26 @@ class PaginatingTableViewController: UITableViewController {
         if (indicatorFrame.intersects(scrollView.bounds)) {
             self.pageControlBeganRefreshing()
         }
+        
+        guard let topIndex = self.tableView.indexPathsForVisibleRows?.first,
+            let topData = dataForRowAtIndexPath(indexPath: topIndex) else { return }
+        guard let lastSeen = self.lastSeenData else {
+            self.lastSeenData = topData
+            return
+        }
+        
+        self.lastSeenData = max(topData, lastSeen)
+        self.updateNewStatusesIndicator()
+    }
+    
+    func dataForRowAtIndexPath(indexPath: IndexPath) -> DataType? {
+        fatalError("dataForRowAtIndexPath has no valid abstract implementation")
+    }
+    
+    func updateNewStatusesIndicator() {
+        guard let data = self.dataForRowAtIndexPath(indexPath: IndexPath(row: 0, section: 0)),
+            let lastSeen = self.lastSeenData else { return }
+        self.navBar?.setShadowHidden(hidden: data <= lastSeen,
+                                     animated: true)
     }
 }

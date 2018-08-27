@@ -111,9 +111,6 @@
 		73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E99212B753C00529FA3 /* MessagesViewController.swift */; };
 		73208E9B212B753C00529FA3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E99212B753C00529FA3 /* MessagesViewController.swift */; };
 		73208E9C212B753C00529FA3 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E99212B753C00529FA3 /* MessagesViewController.swift */; };
-		73208EAA212C750600529FA3 /* TableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EA9212C750600529FA3 /* TableContainerViewController.swift */; };
-		73208EAB212C750600529FA3 /* TableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EA9212C750600529FA3 /* TableContainerViewController.swift */; };
-		73208EAC212C750600529FA3 /* TableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EA9212C750600529FA3 /* TableContainerViewController.swift */; };
 		73208EBA212CC2AF00529FA3 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EB9212CC2AF00529FA3 /* AccountState.swift */; };
 		73208EBB212CC2AF00529FA3 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EB9212CC2AF00529FA3 /* AccountState.swift */; };
 		73208EBC212CC2AF00529FA3 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EB9212CC2AF00529FA3 /* AccountState.swift */; };
@@ -207,6 +204,12 @@
 		73D6CF3D2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */; };
 		73D6CF3E2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */; };
 		73D6CF3F2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */; };
+		73D6CF412133530700990AA6 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF402133530700990AA6 /* NavigationBar.swift */; };
+		73D6CF422133530700990AA6 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF402133530700990AA6 /* NavigationBar.swift */; };
+		73D6CF432133530700990AA6 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF402133530700990AA6 /* NavigationBar.swift */; };
+		73D6CF4921337C3F00990AA6 /* TableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */; };
+		73D6CF4A21337C3F00990AA6 /* TableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */; };
+		73D6CF4B21337C3F00990AA6 /* TableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */; };
 		73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
 		73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC5A211E41A900C2620F /* NotificationsViewController.swift */; };
@@ -286,7 +289,6 @@
 		73208E91212B316900529FA3 /* StatusesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesContainerViewController.swift; sourceTree = "<group>"; };
 		73208E95212B319B00529FA3 /* MentionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
 		73208E99212B753C00529FA3 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		73208EA9212C750600529FA3 /* TableContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableContainerViewController.swift; sourceTree = "<group>"; };
 		73208EB9212CC2AF00529FA3 /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
 		732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowUIHandler.swift; sourceTree = "<group>"; };
 		732557FA2125D0EB00ED1AF3 /* UIImage+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Insets.swift"; sourceTree = "<group>"; };
@@ -318,6 +320,8 @@
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
+		73D6CF402133530700990AA6 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableContainerViewController.swift; sourceTree = "<group>"; };
 		73EAEC53211E41A900C2620F /* Tusk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tusk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EAEC56211E41A900C2620F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73EAEC58211E41A900C2620F /* StatusesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesViewController.swift; sourceTree = "<group>"; };
@@ -378,10 +382,11 @@
 				7302303A2130796000BC1E9A /* Follows.storyboard */,
 				7302300A212F594000BC1E9A /* ContextViewController.swift */,
 				730230362130793C00BC1E9A /* Context.storyboard */,
-				73208EA9212C750600529FA3 /* TableContainerViewController.swift */,
 				73208E91212B316900529FA3 /* StatusesContainerViewController.swift */,
 				73EAEC58211E41A900C2620F /* StatusesViewController.swift */,
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
+				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
+				73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -409,13 +414,13 @@
 			children = (
 				732558002125D49C00ED1AF3 /* UI Handlers */,
 				732BE24C212223F80049ADBD /* Cells */,
-				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
 				732BE24D2122240D0049ADBD /* ImageView.swift */,
 				732BE251212233A30049ADBD /* TextView.swift */,
 				732BE261212338EA0049ADBD /* TimestampLabel.swift */,
 				739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */,
 				73022FF6212F1B1B00BC1E9A /* AvatarView.swift */,
 				7302304A213109E300BC1E9A /* Button.swift */,
+				73D6CF402133530700990AA6 /* NavigationBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				73023047213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */,
+				73D6CF4921337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
@@ -896,7 +902,6 @@
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */,
-				73208EAA212C750600529FA3 /* TableContainerViewController.swift in Sources */,
 				73208E8E212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				73022FF3212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732BE266212345080049ADBD /* AccountViewController.swift in Sources */,
@@ -917,6 +922,7 @@
 				73208E92212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
+				73D6CF412133530700990AA6 /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +935,7 @@
 				73022FF4212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */,
+				73D6CF422133530700990AA6 /* NavigationBar.swift in Sources */,
 				73023004212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
@@ -952,7 +959,7 @@
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */,
-				73208EAB212C750600529FA3 /* TableContainerViewController.swift in Sources */,
+				73D6CF4A21337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
@@ -990,6 +997,7 @@
 				73022FF5212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Insets.swift in Sources */,
 				73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */,
+				73D6CF432133530700990AA6 /* NavigationBar.swift in Sources */,
 				73023005212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
@@ -1013,7 +1021,7 @@
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */,
-				73208EAC212C750600529FA3 /* TableContainerViewController.swift in Sources */,
+				73D6CF4B21337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
 				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,

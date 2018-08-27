@@ -11,7 +11,7 @@ import ReSwift
 import MastodonKit
 import SafariServices
 
-class NotificationsViewController: PaginatingTableViewController, StoreSubscriber {
+class NotificationsViewController: PaginatingTableViewController<MKNotification>, StoreSubscriber {
     typealias StoreSubscriberStateType = NotificationsState
 
     var notifications: [MKNotification] = []

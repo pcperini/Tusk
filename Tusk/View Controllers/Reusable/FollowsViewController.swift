@@ -15,7 +15,7 @@ enum RelationshipDirection: String {
     case Following = "Following"
 }
 
-class FollowsViewController: PaginatingTableViewController, StoreSubscriber {
+class FollowsViewController: PaginatingTableViewController<Account>, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountState
     
     var relationshipDirection: RelationshipDirection = .Follower

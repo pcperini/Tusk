@@ -18,6 +18,11 @@ class TimelineViewController: StatusesContainerViewController<TimelineState> {
         rightButtonItem.isEnabled = false
         rightButtonItem.image = UIImage(named: "EditButton")
         self.navigationItem.rightBarButtonItem = rightButtonItem
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            let bar = self.navigationController?.navigationBar as! NavigationBar
+            bar.setShadowHidden(hidden: true, animated: true)
+        }
     }
     
     override func setUpSubscriptions() {
