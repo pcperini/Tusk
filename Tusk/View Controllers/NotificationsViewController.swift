@@ -15,6 +15,10 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
     typealias StoreSubscriberStateType = NotificationsState
 
     var notifications: [MKNotification] = []
+    lazy private var tableMergeHandler: TableViewMergeHandler<MKNotification> = TableViewMergeHandler(tableView: self.tableView,
+                                                                                                      data: nil,
+                                                                                                      selectedElement: nil,
+                                                                                                      dataComparator: ==)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,10 +53,10 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
         }
         
         DispatchQueue.main.async {
-            if (self.notifications != state.notifications) {
-                self.notifications = state.notifications
-                self.tableView.reloadData()
-            }
+            self.notifications = state.notifications
+            self.tableMergeHandler.mergeData(data: self.notifications)
+            
+            self.updateUnreadIndicator()
             
             self.endRefreshing()
             self.endPaginating()

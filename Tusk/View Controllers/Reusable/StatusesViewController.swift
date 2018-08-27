@@ -65,7 +65,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         self.statuses = statuses
         self.tableMergeHandler.mergeData(data: statuses)
         
-        self.updateNewStatusesIndicator()
+        self.updateUnreadIndicator()
     }
     
     // MARK: Table View

@@ -48,7 +48,7 @@ struct NotificationsState: PaginatableState {
                                                                                                              previousPage: state.previousPage)
         case let action as PollNotifications: state.pollNotifications(client: action.client)
         case let action as PollOlderNotifications: state.pollNotifications(client: action.client, range: state.nextPage)
-        case let action as PollNewerNotifications: state.pollNotifications(client: action.client, range: state.nextPage)
+        case let action as PollNewerNotifications: state.pollNotifications(client: action.client, range: state.previousPage)
         default: break
         }
         

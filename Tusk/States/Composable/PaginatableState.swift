@@ -25,6 +25,7 @@ protocol PaginatableState: StateType {
     static func provider(range: RequestRange?) -> Request<[RequestType]>
 }
 
+import MastodonKit
 struct PaginatingData<DataType, RequestType> where DataType: Paginatable, RequestType: Paginatable {
     typealias DataFilter = (DataType) -> Bool
     
@@ -61,13 +62,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
     }
     
     private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter], range: RequestRange? = nil) -> [DataType] {
-        guard let newFirst = newData.first, let newLast = newData.last else { return existingData }
-        var dataSet = Set<DataType>()
-        dataSet = dataSet.union(existingData.filter { (item) in
-            item > newLast || item < newFirst
-        })
-        
-        dataSet = dataSet.union(newData)
+        let dataSet = Set<DataType>(existingData).union(newData)
         var results = Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
             if DataType.sortedByPageIndex {
                 let topPage: [DataType], bottomPage: [DataType]

@@ -101,14 +101,14 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
         }
         
         self.lastSeenData = max(topData, lastSeen)
-        self.updateNewStatusesIndicator()
+        self.updateUnreadIndicator()
     }
     
     func dataForRowAtIndexPath(indexPath: IndexPath) -> DataType? {
         fatalError("dataForRowAtIndexPath has no valid abstract implementation")
     }
     
-    func updateNewStatusesIndicator() {
+    func updateUnreadIndicator() {
         guard let data = self.dataForRowAtIndexPath(indexPath: IndexPath(row: 0, section: 0)),
             let lastSeen = self.lastSeenData else { return }
         self.navBar?.setShadowHidden(hidden: data <= lastSeen,
