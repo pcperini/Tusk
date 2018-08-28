@@ -12,6 +12,7 @@ class ComposeViewController: UIViewController {
     private static let maxCharacterCount: Int = 500
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
     
+    @IBOutlet var postButton: UIBarButtonItem!
     @IBOutlet var avatarView: AvatarView!
     @IBOutlet var remainingCharactersLabel: ValidatedLabel!
     @IBOutlet var textView: UITextView!
@@ -70,13 +71,24 @@ class ComposeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func post(sender: UIBarButtonItem? = nil) {
+        guard let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(TimelineState.PostStatus(client: client, content: self.textView.text))
+        self.dismiss(sender: sender)
+    }
+    
     func updateCharacterCount() {
         self.remainingCharactersLabel.text = "\(self.remainingCharacters)"
         
         let minimumValidCharacters = ComposeViewController.maxCharacterCount / 5
+        self.postButton.isEnabled = true
+        
         switch self.remainingCharacters {
         case 0...minimumValidCharacters: self.remainingCharactersLabel.validity = .Warn
-        case ...0: self.remainingCharactersLabel.validity = .Invalid
+        case ...0: do {
+            self.remainingCharactersLabel.validity = .Invalid
+            self.postButton.isEnabled = false
+            }
         default: self.remainingCharactersLabel.validity = .Valid
         }
     }
