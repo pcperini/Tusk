@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/States/AccountState.swift"
-            timestampString = "557180773.085817"
+            timestampString = "557189228.671842"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "309"
             endingLineNumber = "309"
-            landmarkName = "pushToStatuses()"
+            landmarkName = "pushToFollows()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/States/AccountState.swift"
-            timestampString = "557180773.085925"
+            timestampString = "557189228.671955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557106863.708457"
+            timestampString = "557187291.774549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -251,11 +251,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/States/TimelineState.swift"
-            timestampString = "557180773.086041"
+            timestampString = "557189228.672079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "toggleFavourite(client:status:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -267,7 +267,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557106863.708999"
+            timestampString = "557187291.774716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
@@ -299,7 +299,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557106863.709329"
+            timestampString = "557187291.774811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -315,7 +315,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557106863.70939"
+            timestampString = "557187291.774878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -331,7 +331,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/UI Handlers/TableViewMergeHandler.swift"
-            timestampString = "557180773.086163"
+            timestampString = "557189228.672208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -375,16 +375,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/AccountViewController.swift"
-            timestampString = "557168491.377794"
+            filePath = "Tusk/States/AccountState.swift"
+            timestampString = "557189228.672272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "pollAccountInfo()"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "reducer(action:state:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -394,13 +394,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/States/AccountState.swift"
-            timestampString = "557180773.086236"
+            filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
+            timestampString = "557189228.672321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "reducer(action:state:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "keyboardWillMove(notification:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
+            timestampString = "557189228.67238"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "keyboardWillMove(notification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

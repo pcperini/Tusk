@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FlV-Yk-Utm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="qnL-Qq-c5R">
+            <objects>
+                <navigationController id="FlV-Yk-Utm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="I0x-bb-rxO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LKe-85-S3J" kind="relationship" relationship="rootViewController" id="fkP-Yy-Snt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MC7-q3-XLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1119" y="-40"/>
+        </scene>
+        <!--Compose-->
+        <scene sceneID="ig5-YH-P1E">
+            <objects>
+                <viewController id="LKe-85-S3J" customClass="ComposeViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L8R-o7-qS5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g06-Ym-zHN" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="50" id="Dfe-eO-das"/>
+                                    <constraint firstAttribute="width" constant="50" id="TVl-Ex-e4F"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oL-wr-yKJ" customClass="ValidatedLabel" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="329" y="84" width="26" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="validColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="warnColor">
+                                        <color key="value" name="FavouritedBadgeColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="invalidColor">
+                                        <color key="value" red="1" green="0.13725490200000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y0I-Fx-BV2" customClass="TextView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="82" y="84" width="235" height="36.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.1545681423611111" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LKe-85-S3J" id="7Al-q9-X46"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4oL-wr-yKJ" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="6uM-Kv-Yy8"/>
+                            <constraint firstItem="Y0I-Fx-BV2" firstAttribute="leading" secondItem="g06-Ym-zHN" secondAttribute="trailing" constant="12" id="LMW-Fd-gGg"/>
+                            <constraint firstItem="Y0I-Fx-BV2" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="SFt-fS-akX"/>
+                            <constraint firstItem="g06-Ym-zHN" firstAttribute="leading" secondItem="M3S-nh-xC1" secondAttribute="leading" constant="20" id="Yj5-Fq-Ug0"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Y0I-Fx-BV2" secondAttribute="bottom" id="apr-nj-9g7"/>
+                            <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="4oL-wr-yKJ" secondAttribute="trailing" constant="20" id="hPy-MT-Kjy"/>
+                            <constraint firstItem="4oL-wr-yKJ" firstAttribute="leading" secondItem="Y0I-Fx-BV2" secondAttribute="trailing" constant="12" id="wf8-ms-MNU"/>
+                            <constraint firstItem="g06-Ym-zHN" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="y65-bs-tVe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="M3S-nh-xC1"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Compose" id="AWk-hZ-rrg">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="lDX-nA-xc5">
+                            <connections>
+                                <action selector="dismissWithSender:" destination="LKe-85-S3J" id="3av-qO-zXc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="22m-UI-TP6" customClass="BarButtonItem" customModule="Tusk" customModuleProvider="target">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="bold" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="postWithSender:" destination="LKe-85-S3J" id="MR0-yf-wMg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="avatarView" destination="g06-Ym-zHN" id="365-PA-I7w"/>
+                        <outlet property="bottomConstraint" destination="apr-nj-9g7" id="2vT-xE-l6c"/>
+                        <outlet property="postButton" destination="22m-UI-TP6" id="QrU-TW-CrG"/>
+                        <outlet property="remainingCharactersLabel" destination="4oL-wr-yKJ" id="wVW-4R-Ndx"/>
+                        <outlet property="textView" destination="Y0I-Fx-BV2" id="MAz-DG-j1G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBe-eD-eZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-370.39999999999998" y="-40.029985007496258"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="FavouritedBadgeColor">
+            <color red="1" green="0.851000011" blue="0.1140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

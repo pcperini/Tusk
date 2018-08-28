@@ -33,6 +33,7 @@ extension StatusesState {
     typealias PollOlderStatuses = StatusesStatePollOlderStatuses<Self>
     typealias PollNewerStatuses = StatusesStatePollNewerStatuses<Self>
     typealias UpdateStatus = StatusesStateUpdateStatus
+    typealias InsertStatus = StatusesStateInsertStatus
         
     static func reducer(action: Action, state: Self?) -> Self {
         var state = state ?? Self.init()
@@ -47,6 +48,7 @@ extension StatusesState {
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
         case let action as UpdateStatus: state.updateStatus(status: action.value)
+        case let action as InsertStatus: state.statuses.insert(action.value, at: 0)
         default: break
         }
         
@@ -89,3 +91,4 @@ struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Cli
 struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStateUpdateStatus: Action { let value: Status }
+struct StatusesStateInsertStatus: Action { let value: Status }

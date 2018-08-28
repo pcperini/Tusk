@@ -84,6 +84,18 @@
 		730230532131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
 		730230542131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
 		730230552131AD2400BC1E9A /* SwiftyRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730230522131AD2400BC1E9A /* SwiftyRegex.swift */; };
+		73167BC32135E7B700C0F28E /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BC22135E7B700C0F28E /* ComposeViewController.swift */; };
+		73167BC42135E7B700C0F28E /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BC22135E7B700C0F28E /* ComposeViewController.swift */; };
+		73167BC52135E7B700C0F28E /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BC22135E7B700C0F28E /* ComposeViewController.swift */; };
+		73167BC72135E80700C0F28E /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73167BC62135E80700C0F28E /* Compose.storyboard */; };
+		73167BC82135E80700C0F28E /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73167BC62135E80700C0F28E /* Compose.storyboard */; };
+		73167BC92135E80700C0F28E /* Compose.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73167BC62135E80700C0F28E /* Compose.storyboard */; };
+		73167BCB2135ECDD00C0F28E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCA2135ECDD00C0F28E /* BarButtonItem.swift */; };
+		73167BCC2135ECDD00C0F28E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCA2135ECDD00C0F28E /* BarButtonItem.swift */; };
+		73167BCD2135ECDD00C0F28E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCA2135ECDD00C0F28E /* BarButtonItem.swift */; };
+		73167BCF2136023600C0F28E /* ValidatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCE2136023600C0F28E /* ValidatedLabel.swift */; };
+		73167BD02136023600C0F28E /* ValidatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCE2136023600C0F28E /* ValidatedLabel.swift */; };
+		73167BD12136023600C0F28E /* ValidatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCE2136023600C0F28E /* ValidatedLabel.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -280,6 +292,10 @@
 		73023046213089E600BC1E9A /* FavouritesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesState.swift; sourceTree = "<group>"; };
 		7302304A213109E300BC1E9A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		730230522131AD2400BC1E9A /* SwiftyRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRegex.swift; sourceTree = "<group>"; };
+		73167BC22135E7B700C0F28E /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		73167BC62135E80700C0F28E /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
+		73167BCA2135ECDD00C0F28E /* BarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
+		73167BCE2136023600C0F28E /* ValidatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedLabel.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -382,6 +398,8 @@
 				7302303A2130796000BC1E9A /* Follows.storyboard */,
 				7302300A212F594000BC1E9A /* ContextViewController.swift */,
 				730230362130793C00BC1E9A /* Context.storyboard */,
+				73167BC22135E7B700C0F28E /* ComposeViewController.swift */,
+				73167BC62135E80700C0F28E /* Compose.storyboard */,
 				73208E91212B316900529FA3 /* StatusesContainerViewController.swift */,
 				73EAEC58211E41A900C2620F /* StatusesViewController.swift */,
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
@@ -421,6 +439,8 @@
 				73022FF6212F1B1B00BC1E9A /* AvatarView.swift */,
 				7302304A213109E300BC1E9A /* Button.swift */,
 				73D6CF402133530700990AA6 /* NavigationBar.swift */,
+				73167BCA2135ECDD00C0F28E /* BarButtonItem.swift */,
+				73167BCE2136023600C0F28E /* ValidatedLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -697,6 +717,7 @@
 				732BE25A212327350049ADBD /* NotificationViewCell.xib in Resources */,
 				73EAEC60211E41AA00C2620F /* Assets.xcassets in Resources */,
 				732BE245212222460049ADBD /* StatusViewCell.xib in Resources */,
+				73167BC72135E80700C0F28E /* Compose.storyboard in Resources */,
 				7302303B2130796000BC1E9A /* Follows.storyboard in Resources */,
 				7302302F2130786B00BC1E9A /* Account.storyboard in Resources */,
 				730230232130776E00BC1E9A /* Messages.storyboard in Resources */,
@@ -719,6 +740,7 @@
 				732BE246212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73023028213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DC21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
+				73167BC82135E80700C0F28E /* Compose.storyboard in Resources */,
 				73208E7D212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				730230402130887D00BC1E9A /* Favourites.storyboard in Resources */,
 				730230242130776E00BC1E9A /* Messages.storyboard in Resources */,
@@ -742,6 +764,7 @@
 				732BE247212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73023029213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DD21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
+				73167BC92135E80700C0F28E /* Compose.storyboard in Resources */,
 				73208E7E212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				730230412130887D00BC1E9A /* Favourites.storyboard in Resources */,
 				730230252130776E00BC1E9A /* Messages.storyboard in Resources */,
@@ -878,6 +901,7 @@
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
+				73167BCB2135ECDD00C0F28E /* BarButtonItem.swift in Sources */,
 				73FBF8B7212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
@@ -888,6 +912,7 @@
 				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				7302304B213109E300BC1E9A /* Button.swift in Sources */,
+				73167BCF2136023600C0F28E /* ValidatedLabel.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -897,6 +922,7 @@
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
+				73167BC32135E7B700C0F28E /* ComposeViewController.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */,
@@ -941,6 +967,7 @@
 				73023004212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
+				73167BCC2135ECDD00C0F28E /* BarButtonItem.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -959,8 +986,10 @@
 				73208E9B212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				73208EBB212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
+				73167BC42135E7B700C0F28E /* ComposeViewController.swift in Sources */,
 				73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */,
+				73167BD02136023600C0F28E /* ValidatedLabel.swift in Sources */,
 				73D6CF4A21337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -1003,6 +1032,7 @@
 				73023005212F535000BC1E9A /* ContextState.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
+				73167BCD2135ECDD00C0F28E /* BarButtonItem.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -1021,8 +1051,10 @@
 				73208E9C212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				73208EBC212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
+				73167BC52135E7B700C0F28E /* ComposeViewController.swift in Sources */,
 				73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */,
+				73167BD12136023600C0F28E /* ValidatedLabel.swift in Sources */,
 				73D6CF4B21337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
