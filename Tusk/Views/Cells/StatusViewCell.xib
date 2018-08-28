@@ -310,6 +310,7 @@
                 <outletCollection property="reblogWidthConstraints" destination="juj-tY-Ozo" collectionClass="NSMutableArray" id="5dw-T3-2pI"/>
                 <outletCollection property="attachmentTopConstraints" destination="5Dg-yu-MM7" collectionClass="NSMutableArray" id="Edg-G6-QM0"/>
                 <outletCollection property="attachmentTopConstraints" destination="uUT-wX-4AF" collectionClass="NSMutableArray" id="s3O-D7-axv"/>
+                <outletCollection property="backgroundColoredViews" destination="X3Y-z1-s31" collectionClass="NSMutableArray" id="qn4-QL-R3M"/>
             </connections>
             <point key="canvasLocation" x="-200.5" y="104"/>
         </tableViewCell>
