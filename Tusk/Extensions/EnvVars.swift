@@ -16,4 +16,12 @@ extension Bundle {
     var developers: [String] {
         return self.envVars["TuskDevelopers"] as! [String]
     }
+    
+    struct LogCredentials { let id: String; let secret: String; let encryption: String }
+    var logCredentials: LogCredentials {
+        let credentials = self.envVars["SBLogCredentials"] as! [String: String]
+        return LogCredentials(id: credentials["ID"]!,
+                              secret: credentials["Secret"]!,
+                              encryption: credentials["Encryption"]!)
+    }
 }

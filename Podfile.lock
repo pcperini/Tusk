@@ -32,6 +32,7 @@ PODS:
   - MastodonKit (1.0.10)
   - MGSwipeTableCell (1.6.7)
   - ReSwift (4.0.1)
+  - SwiftyBeaver (1.6.0)
 
 DEPENDENCIES:
   - AFDateHelper (~> 4.2)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, commit `head`, branch `master`)
   - MGSwipeTableCell (~> 1.6)
   - ReSwift (~> 4.0)
+  - SwiftyBeaver (~> 1.6)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -59,6 +61,7 @@ SPEC REPOS:
     - Lightbox
     - MGSwipeTableCell
     - ReSwift
+    - SwiftyBeaver
 
 EXTERNAL SOURCES:
   MastodonKit:
@@ -86,7 +89,8 @@ SPEC CHECKSUMS:
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
+  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
 
-PODFILE CHECKSUM: d2cd68edd55a1f0d11fc7399870664ea3552a8af
+PODFILE CHECKSUM: effe0992f56e922278475954b4a5cd1086809ed4
 
 COCOAPODS: 1.5.3

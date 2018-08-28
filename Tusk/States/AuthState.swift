@@ -93,9 +93,9 @@ struct AuthState: StateType {
             switch result {
             case .success(let resp, _): do {
                 GlobalStore.dispatch(SetClientInfo(id: resp.clientID, secret: resp.clientSecret))
-                print("success", #file, #line)
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }
@@ -127,9 +127,9 @@ struct AuthState: StateType {
             case .success(let resp, _): do {
                 GlobalStore.dispatch(SetAccessToken(value: resp.accessToken))
                 GlobalStore.dispatch(AppState.PollData())
-                print("success", #file, #line)
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }

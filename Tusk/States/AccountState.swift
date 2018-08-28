@@ -115,13 +115,13 @@ struct AccountState: StateType, StatusViewableState {
         let request = accountID == nil ? Accounts.currentUser() : Accounts.account(id: accountID!)
         client.run(request) { (result) in
             switch result {
-            case .success(let account, _): do {
-                GlobalStore.dispatch(SetAccount(account: account, active: accountID == nil))
-                GlobalStore.dispatch(PollPinnedStatuses(client: client, account: account))
-                GlobalStore.dispatch(PollFollowing(client: client, account: account))
-                print("success", #file, #line)
+            case .success(let resp, _): do {
+                GlobalStore.dispatch(SetAccount(account: resp, active: accountID == nil))
+                GlobalStore.dispatch(PollPinnedStatuses(client: client, account: resp))
+                GlobalStore.dispatch(PollFollowing(client: client, account: resp))
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }
@@ -135,11 +135,11 @@ struct AccountState: StateType, StatusViewableState {
                                         range: .limit(40))
         client.run(request) { (result) in
             switch result {
-            case .success(let statuses, _): do {
-                GlobalStore.dispatch(SetPinnedStatuses(value: statuses, account: account))
-                print("success", #file, #line)
+            case .success(let resp, _): do {
+                GlobalStore.dispatch(SetPinnedStatuses(value: resp, account: account))
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }

@@ -11,6 +11,7 @@ target 'Tusk' do
   pod 'AnimatedGIFImageSerialization', '~> 0.2'
   pod 'Lightbox', '~> 2.1'
   pod 'MGSwipeTableCell', '~> 1.6'
+  pod 'SwiftyBeaver', '~> 1.6'
 
   target 'TuskTests' do
     inherit! :search_paths

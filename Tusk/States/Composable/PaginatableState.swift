@@ -45,9 +45,9 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
 
         client.run(request) { (result) in
             switch result {
-            case .success(let data, let pagination): do {
-                allData = self.mergeData(existingData: allData, newData: self.typeMapper(data), filters: filters, range: range)
-                print("success", #file, #line, DataType.self)
+            case .success(let resp, let pagination): do {
+                allData = self.mergeData(existingData: allData, newData: self.typeMapper(resp), filters: filters, range: range)
+                log.verbose("success \(request)", context: ["resp": resp, "type": DataType.self])
                 
                 guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
                 self.pollData(client: client,
@@ -56,7 +56,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
                               filters: filters,
                               completion: completion)
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }

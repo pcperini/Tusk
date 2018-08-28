@@ -10,6 +10,9 @@ import UIKit
 import MastodonKit
 import AlamofireImage
 import AnimatedGIFImageSerialization
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let destinations = [
+            ConsoleDestination(),
+            SBPlatformDestination(appID: Bundle.main.logCredentials.id,
+                                  appSecret: Bundle.main.logCredentials.secret,
+                                  encryptionKey: Bundle.main.logCredentials.encryption)
+        ]
+        
+        destinations.forEach {
+            $0.format = "$DHH:mm:ss.SSS$d $C$L$c $N.$F:$l - $M 📒 Context:\n$X\n"
+            log.addDestination($0)
+        }
+        
         AttachmentsViewController.configure()
         
         GlobalStore.dispatch(AppState.Init())

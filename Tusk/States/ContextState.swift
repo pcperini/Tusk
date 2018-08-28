@@ -44,9 +44,9 @@ struct ContextState: StateType, StatusViewableState {
             switch result {
             case .success(let resp, _): do {
                 GlobalStore.dispatch(SetContext(value: resp))
-                print("success", #file, #line)
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }

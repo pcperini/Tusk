@@ -45,9 +45,9 @@ struct TimelineState: StatusesState {
             switch result {
             case .success(let resp, _): do {
                 GlobalStore.dispatch(UpdateStatus(value: resp))
-                print("success", #file, #line)
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }
@@ -58,9 +58,9 @@ struct TimelineState: StatusesState {
             switch result {
             case .success(let resp, _): do {
                 GlobalStore.dispatch(UpdateStatus(value: resp))
-                print("success", #file, #line)
+                log.verbose("success \(request)", context: ["resp": resp])
                 }
-            case .failure(let error): print(error, #file, #line)
+            case .failure(let error): log.error("error \(request)", context: ["err": error])
             }
         }
     }

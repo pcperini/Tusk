@@ -30,11 +30,20 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>17</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>TuskEnvVars</key>
 	<dict>
+		<key>SBLogCredentials</key>
+		<dict>
+			<key>ID</key>
+			<string>0G815d</string>
+			<key>Secret</key>
+			<string>ljpp6cZpkEij2LjPcjo2pyd8wsCrm9gk</string>
+			<key>Encryption</key>
+			<string>hkxirsn0pap0b7slbxslpmDlMYcxPTvj</string>
+		</dict>
 		<key>TuskDevelopers</key>
 		<array>
 			<string>Alecdavis</string>
