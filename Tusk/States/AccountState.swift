@@ -119,9 +119,9 @@ struct AccountState: StateType, StatusViewableState {
                 GlobalStore.dispatch(SetAccount(account: resp, active: accountID == nil))
                 GlobalStore.dispatch(PollPinnedStatuses(client: client, account: resp))
                 GlobalStore.dispatch(PollFollowing(client: client, account: resp))
-                log.verbose("success \(request)", context: ["resp": resp])
+                log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request)", context: ["err": error])
+            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
             }
         }
     }
@@ -137,9 +137,9 @@ struct AccountState: StateType, StatusViewableState {
             switch result {
             case .success(let resp, _): do {
                 GlobalStore.dispatch(SetPinnedStatuses(value: resp, account: account))
-                log.verbose("success \(request)", context: ["resp": resp])
+                log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request)", context: ["err": error])
+            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
             }
         }
     }

@@ -56,7 +56,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
                               filters: filters,
                               completion: completion)
                 }
-            case .failure(let error): log.error("error \(request)", context: ["err": error])
+            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
             }
         }
     }

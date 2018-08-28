@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         destinations.forEach {
-            $0.format = "$DHH:mm:ss.SSS$d $C$L$c $N.$F:$l - $M 📒 Context:\n$X\n"
             log.addDestination($0)
         }
         
