@@ -101,7 +101,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gg8-d9-eYv" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="60" y="23" width="291" height="54"/>
+                                <rect key="frame" x="60" y="25" width="291" height="52"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -253,7 +253,7 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Gg8-d9-eYv" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="bottom" constant="2" id="0La-er-7Ua"/>
+                            <constraint firstItem="Gg8-d9-eYv" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="bottom" constant="4" id="0La-er-7Ua"/>
                             <constraint firstItem="X3Y-z1-s31" firstAttribute="leading" secondItem="JHB-dv-MFO" secondAttribute="leading" id="0Wv-Mh-cPC"/>
                             <constraint firstItem="RnT-f8-605" firstAttribute="leading" secondItem="Gg8-d9-eYv" secondAttribute="leading" id="0bX-kR-YvT"/>
                             <constraint firstAttribute="trailing" secondItem="qWp-mM-0x0" secondAttribute="trailing" id="1im-Km-SET"/>
@@ -327,9 +327,6 @@
         </namedColor>
         <namedColor name="VisibilityBadgeColor">
             <color white="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
-        <namedColor name="VisibilityBadgeColor">
-            <color white="0.66699999570000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
     </resources>
 </document>
