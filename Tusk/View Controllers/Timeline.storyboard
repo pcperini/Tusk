@@ -15,7 +15,7 @@
                 <viewControllerPlaceholder storyboardName="Compose" id="0Ly-KG-wp9" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqa-Dm-FZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3022" y="-1279"/>
+            <point key="canvasLocation" x="3038" y="-1205"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="L9T-2W-G3D">

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -59,6 +58,7 @@
                     <connections>
                         <segue destination="8CE-0Y-LfZ" kind="show" identifier="PushAccountViewController" id="phk-yj-DuW"/>
                         <segue destination="ByW-cy-jWq" kind="show" identifier="PushContextViewController" id="ErK-IS-5j3"/>
+                        <segue destination="7zj-vv-kpt" kind="presentation" identifier="PresentComposeViewController" id="KAo-Vh-OIf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlB-x0-g6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -80,6 +80,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyp-Yd-djt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6600" y="336"/>
+        </scene>
+        <!--Compose-->
+        <scene sceneID="9IH-oM-ThL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Compose" id="7zj-vv-kpt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zRi-TK-5Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6609" y="175"/>
         </scene>
     </scenes>
     <resources>

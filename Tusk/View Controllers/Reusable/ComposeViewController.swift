@@ -53,7 +53,10 @@ class ComposeViewController: UIViewController {
         self.textView.becomeFirstResponder()
         
         if let reply = self.inReplyTo {
-            self.textView.text = reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ")
+            self.textView.text = (
+                reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ") +
+                " "
+            )
         }
     }
     
