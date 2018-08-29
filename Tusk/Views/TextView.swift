@@ -10,7 +10,9 @@ import UIKit
 import DTCoreText
 
 @IBDesignable class TextView: UITextView {
+    @IBInspectable var sizesToFitContent: Bool = true
     @IBInspectable var maxLinkLength: Int = 30
+    
     var linkLineBreakMode: NSLineBreakMode = .byTruncatingTail
     var hideLinkCriteria: (String) -> Bool = { (_) in false }
     
@@ -69,9 +71,11 @@ import DTCoreText
         self.textContainer.lineFragmentPadding = 0
         self.contentInset = .zero
         
-        let minimumHeight = self.sizeThatFits(CGSize(width: self.bounds.size.width,
-                                                     height: CGFloat.greatestFiniteMagnitude)).height
-        self.bounds = CGRect(origin: .zero, size: CGSize(width: self.bounds.width, height: minimumHeight))
+        if self.sizesToFitContent {
+            let minimumHeight = self.sizeThatFits(CGSize(width: self.bounds.size.width,
+                                                         height: CGFloat.greatestFiniteMagnitude)).height
+            self.bounds = CGRect(origin: .zero, size: CGSize(width: self.bounds.width, height: minimumHeight))
+        }
     }
     
     override func setContentOffset(_ contentOffset: CGPoint, animated: Bool) {

@@ -66,11 +66,10 @@ class ComposeViewController: UIViewController {
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else { return }
         let height = endFrame.cgRectValue.height
         
-        self.textView.isScrollEnabled = height < self.textView.contentSize.height
         UIView.animate(withDuration: duration.doubleValue) {
             switch notification.name {
-            case .UIKeyboardWillShow: self.bottomConstraint.constant += height
-            case .UIKeyboardWillHide: self.bottomConstraint.constant -= height
+            case .UIKeyboardWillShow: self.bottomConstraint.constant -= height
+            case .UIKeyboardWillHide: self.bottomConstraint.constant += height
             default: break
             }
         }
@@ -106,7 +105,7 @@ class ComposeViewController: UIViewController {
 
 extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        textView.isScrollEnabled = (textView.frame.minY + self.bottomConstraint.constant) < textView.sizeThatFits(textView.frame.size).height
+        textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(textView.frame.size).height
         self.updateCharacterCount()
     }
 }
