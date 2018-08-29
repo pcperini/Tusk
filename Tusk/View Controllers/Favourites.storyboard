@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,9 +22,7 @@
                             <outlet property="delegate" destination="XjS-De-CPO" id="ohS-QA-DDw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favourites" id="02i-xM-5UP">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="S38-jC-ZXh"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favourites" id="02i-xM-5UP"/>
                     <connections>
                         <segue destination="AJQ-ke-wI6" kind="show" identifier="PushAccountViewController" id="bbc-BG-b1i"/>
                         <segue destination="DvL-LF-ih7" kind="show" identifier="PushContextViewController" id="mBv-k0-L9p"/>
@@ -82,7 +79,4 @@
             <point key="canvasLocation" x="3176" y="384"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="EditButton" width="20" height="20"/>
-    </resources>
 </document>

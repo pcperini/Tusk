@@ -52,9 +52,7 @@
                             <outlet property="delegate" destination="F6L-A3-0TE" id="Pn3-ty-wTo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Timeline" id="4zk-v7-fWP">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="qFb-jB-urw"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Timeline" id="4zk-v7-fWP"/>
                     <connections>
                         <segue destination="8CE-0Y-LfZ" kind="show" identifier="PushAccountViewController" id="phk-yj-DuW"/>
                         <segue destination="ByW-cy-jWq" kind="show" identifier="PushContextViewController" id="ErK-IS-5j3"/>
@@ -90,7 +88,4 @@
             <point key="canvasLocation" x="6609" y="175"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="EditButton" width="20" height="20"/>
-    </resources>
 </document>

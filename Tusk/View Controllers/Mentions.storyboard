@@ -22,9 +22,7 @@
                             <outlet property="delegate" destination="ptY-KU-XzM" id="PEW-nQ-T2n"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Mentions" id="uQ1-E1-Anc">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="MEy-pt-9cC"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Mentions" id="uQ1-E1-Anc"/>
                     <connections>
                         <segue destination="Ube-49-zB4" kind="show" identifier="PushAccountViewController" id="6jT-q7-3uP"/>
                         <segue destination="JKM-rK-Sh0" kind="show" identifier="PushContextViewController" id="15Z-j6-oIf"/>
@@ -90,7 +88,4 @@
             <point key="canvasLocation" x="3086" y="-413"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="EditButton" width="20" height="20"/>
-    </resources>
 </document>

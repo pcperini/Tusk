@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,9 +21,7 @@
                             <outlet property="delegate" destination="oke-LI-0MI" id="MaC-y2-iMP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Follows" id="wVw-C5-wXd">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="jRI-oB-aiJ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Follows" id="wVw-C5-wXd"/>
                     <connections>
                         <segue destination="P6R-y9-5Ui" kind="show" identifier="PushAccountViewController" id="EsW-3y-WNK"/>
                     </connections>
@@ -42,7 +39,4 @@
             <point key="canvasLocation" x="5609" y="1027"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="EditButton" width="20" height="20"/>
-    </resources>
 </document>

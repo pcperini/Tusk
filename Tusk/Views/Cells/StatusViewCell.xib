@@ -102,6 +102,9 @@
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gg8-d9-eYv" customClass="TextView" customModule="Tusk" customModuleProvider="target">
                                 <rect key="frame" x="60" y="25" width="291" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="1" id="Iiq-Ks-gCd"/>
+                                </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -295,6 +298,7 @@
                 <outlet property="reblogLabel" destination="Dkl-TP-oHi" id="yra-93-vGU"/>
                 <outlet property="reblogStatLabel" destination="Njr-zp-nPG" id="5BR-QB-zzz"/>
                 <outlet property="reblogView" destination="3wi-h1-ZDU" id="oY5-Db-w0B"/>
+                <outlet property="statusHeightConstraint" destination="Iiq-Ks-gCd" id="gpL-Ck-ufY"/>
                 <outlet property="statusTextView" destination="Gg8-d9-eYv" id="Q2B-ep-dCQ"/>
                 <outlet property="timestampLabel" destination="NDo-Ow-OmZ" id="Wdm-11-vpi"/>
                 <outlet property="usernameLabel" destination="3T9-db-jxG" id="BcG-M0-7aV"/>

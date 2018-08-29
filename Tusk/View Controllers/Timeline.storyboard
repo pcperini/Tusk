@@ -67,9 +67,7 @@
                             <outlet property="delegate" destination="aKz-Fq-oJA" id="fcK-G2-G1F"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Timeline" id="D1J-9o-BOZ">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="EditButton" id="rAa-YM-Fnx"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Timeline" id="D1J-9o-BOZ"/>
                     <connections>
                         <segue destination="ywT-Fh-u1n" kind="show" identifier="PushAccountViewController" id="5uP-A3-Qla"/>
                         <segue destination="4ec-pk-v1c" kind="show" identifier="PushContextViewController" id="2LP-8d-wHt"/>
@@ -99,9 +97,8 @@
     </scenes>
     <resources>
         <image name="ComposeButton" width="20" height="20"/>
-        <image name="EditButton" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lw2-jS-vzf"/>
+        <segue reference="giz-yJ-VMY"/>
     </inferredMetricsTieBreakers>
 </document>

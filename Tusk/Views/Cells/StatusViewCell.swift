@@ -14,8 +14,10 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var avatarView: AvatarView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var statusTextView: TextView!
     @IBOutlet var timestampLabel: TimestampLabel!
+    
+    @IBOutlet var statusTextView: TextView!
+    @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var favouritedBadge: UIImageView!
     @IBOutlet var favouritedWidthConstraints: [ToggleLayoutConstraint]!
@@ -103,10 +105,11 @@ class StatusViewCell: TableViewCell {
         }
         
         self.statusTextView.htmlText = status.content
+        self.statusHeightConstraint.priority = self.statusTextView.text.isEmpty ? .defaultHigh : .init(rawValue: 1)
         self.statusTextView.setNeedsLayout()
     
         self.attachmentCollectionView.reloadData()
-        self.attachmentTopConstraints.forEach { $0.toggle(on: !status.mediaAttachments.isEmpty) }
+        self.attachmentTopConstraints.forEach { $0.toggle(on: !status.mediaAttachments.isEmpty && !status.content.isEmpty) }
         self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         self.attachmentCollectionView.layoutIfNeeded()
