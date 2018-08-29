@@ -19,8 +19,6 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var statusTextView: TextView!
     @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet var favouritedBadge: UIImageView!
-    @IBOutlet var favouritedWidthConstraints: [ToggleLayoutConstraint]!
     @IBOutlet var visibilityBadge: UIImageView!
     @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
@@ -33,7 +31,9 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var reblogLabel: UILabel!
     @IBOutlet var reblogWidthConstraints: [ToggleLayoutConstraint]!
     
+    @IBOutlet var reblogStatBadge: UIImageView!
     @IBOutlet var reblogStatLabel: UILabel!
+    @IBOutlet var favouriteStatBadge: UIImageView!
     @IBOutlet var favouriteStatLabel: UILabel!
     
     var accountElementWasTapped: ((Account?) -> Void)?
@@ -88,8 +88,6 @@ class StatusViewCell: TableViewCell {
         self.usernameLabel.text = status.account.handle
         self.timestampLabel.date = status.createdAt
         
-        self.favouritedWidthConstraints.forEach { $0.toggle(on: status.favourited ?? false) }
-        
         switch status.visibility {
         case .private: do {
             self.visibilityBadge.image = UIImage(named: "LockedBadge")
@@ -120,23 +118,17 @@ class StatusViewCell: TableViewCell {
         if let originalStatus = self.originalStatus {
             self.reblogAvatarView.af_setImage(withURL: URL(string: originalStatus.account.avatar)!)
             self.reblogLabel.text = originalStatus.account.displayName
-            
-            if (status.reblogged ?? false) {
-                self.reblogLabel.text = "\(self.reblogLabel.text!) & you"
-            }
-            
-            hasReblogInfo = true
-        } else if (status.reblogged ?? false), let activeAccount = GlobalStore.state.accounts.activeAccount?.account {
-            self.reblogAvatarView.af_setImage(withURL: URL(string: activeAccount.avatar)!)
-            self.reblogLabel.text = "You"
-            
             hasReblogInfo = true
         }
         
         self.reblogWidthConstraints.forEach { $0.toggle(on: hasReblogInfo) }
         
-        self.reblogStatLabel.text = "\(status.reblogsCount)"
         self.favouriteStatLabel.text = "\(status.favouritesCount)"
+        self.favouriteStatBadge.tintColor = UIColor(named: status.favourited ?? false ? "FavouritedBadgeColor" : "StatBadgeColor")
+        self.favouriteStatBadge.image = UIImage(named: status.favourited ?? false ? "FavouritedBadge" : "FavouriteBadge")
+        
+        self.reblogStatLabel.text = "\(status.reblogsCount)"
+        self.reblogStatBadge.tintColor = UIColor(named: status.reblogged ?? false ? "RebloggedBadgeColor" : "StatBadgeColor")
         
         self.setNeedsLayout()
         self.layoutIfNeeded()

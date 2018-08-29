@@ -184,58 +184,10 @@
          <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557250646.8286591"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "updateStatus()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Tusk.StatusViewCell.(updateStatus in _528E7FDEA21C6353D7612E8A83A0D661)() -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Views/Cells/StatusViewCell.swift"
-                  timestampString = "557076530.896142"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "2636">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Any) -&gt; () in Tusk.StatusViewCell.(updateStatus in _528E7FDEA21C6353D7612E8A83A0D661)() -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Views/Cells/StatusViewCell.swift"
-                  timestampString = "557076530.898367"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "25">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
             condition = "(lhs.id == &quot;100621309498236800&quot; || lhs.reblog?.id == &quot;100621309498236800&quot;) &amp;&amp; (rhs.id == &quot;100621309498236800&quot; || rhs.reblog?.id == &quot;100621309498236800&quot;)"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
-            timestampString = "557250646.82875"
+            timestampString = "557251988.7124619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
@@ -251,7 +203,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/States/TimelineState.swift"
-            timestampString = "557250646.828794"
+            timestampString = "557251988.712545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -267,11 +219,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557250646.8288291"
+            timestampString = "557251988.712617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "updateStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -283,28 +235,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
-            timestampString = "557250646.828869"
+            timestampString = "557251988.712689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557250646.828962"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "updateStatus()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -379,7 +315,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
-            timestampString = "557250646.8291709"
+            timestampString = "557251988.712795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -395,7 +331,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
-            timestampString = "557250646.829307"
+            timestampString = "557251988.712853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
