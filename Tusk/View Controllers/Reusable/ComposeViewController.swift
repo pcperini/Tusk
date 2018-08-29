@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastodonKit
 
 class ComposeViewController: UIViewController {
     private static let maxCharacterCount: Int = 500
@@ -18,6 +19,8 @@ class ComposeViewController: UIViewController {
     @IBOutlet var textView: UITextView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    
+    var inReplyTo: Status? = nil
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,14 +43,18 @@ class ComposeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let activeUser = GlobalStore.state.accounts.activeAccount?.account else { self.dismiss(); return }
-        self.avatarView.avatarURL = URL(string: activeUser.avatar)!
-        self.avatarView.badgeType = AvatarView.BadgeType(account: activeUser)
+        guard let activeAccount = GlobalStore.state.accounts.activeAccount?.account else { self.dismiss(); return }
+        self.avatarView.avatarURL = URL(string: activeAccount.avatar)!
+        self.avatarView.badgeType = AvatarView.BadgeType(account: activeAccount)
         
         self.updateCharacterCount()
         
         self.textView.text = ""
         self.textView.becomeFirstResponder()
+        
+        if let reply = self.inReplyTo {
+            self.textView.text = reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ")
+        }
     }
     
     @objc func keyboardWillMove(notification: NSNotification) {
@@ -73,7 +80,7 @@ class ComposeViewController: UIViewController {
     
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(TimelineState.PostStatus(client: client, content: self.textView.text))
+        GlobalStore.dispatch(TimelineState.PostStatus(client: client, content: self.textView.text, inReplyTo: self.inReplyTo))
         self.dismiss(sender: sender)
     }
     
@@ -98,5 +105,11 @@ extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         textView.isScrollEnabled = (textView.frame.minY + self.bottomConstraint.constant) < textView.sizeThatFits(textView.frame.size).height
         self.updateCharacterCount()
+    }
+}
+
+class ComposeContainerViewController: UINavigationController {
+    var composeViewController: ComposeViewController? {
+        return self.viewControllers.first as? ComposeViewController
     }
 }

@@ -15,7 +15,7 @@
                 <viewControllerPlaceholder storyboardName="Compose" id="0Ly-KG-wp9" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqa-Dm-FZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2225" y="-1435"/>
+            <point key="canvasLocation" x="3022" y="-1279"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="L9T-2W-G3D">
@@ -44,7 +44,7 @@
                     <navigationItem key="navigationItem" title="Timeline" id="DcL-Xn-71m">
                         <barButtonItem key="rightBarButtonItem" image="ComposeButton" id="xE8-5B-EeN">
                             <connections>
-                                <segue destination="0Ly-KG-wp9" kind="presentation" id="giz-yJ-VMY"/>
+                                <segue destination="0Ly-KG-wp9" kind="presentation" identifier="" id="giz-yJ-VMY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -73,6 +73,7 @@
                     <connections>
                         <segue destination="ywT-Fh-u1n" kind="show" identifier="PushAccountViewController" id="5uP-A3-Qla"/>
                         <segue destination="4ec-pk-v1c" kind="show" identifier="PushContextViewController" id="2LP-8d-wHt"/>
+                        <segue destination="0Ly-KG-wp9" kind="presentation" identifier="PresentComposeViewController" id="lw2-jS-vzf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSx-aQ-2hh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,4 +101,7 @@
         <image name="ComposeButton" width="20" height="20"/>
         <image name="EditButton" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lw2-jS-vzf"/>
+    </inferredMetricsTieBreakers>
 </document>

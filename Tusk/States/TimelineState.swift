@@ -17,6 +17,7 @@ struct TimelineState: StatusesState {
     struct PostStatus: Action {
         let client: Client
         let content: String
+        let inReplyTo: Status?
     }
     
     var statuses: [Status] = []
@@ -32,7 +33,7 @@ struct TimelineState: StatusesState {
         switch action {
         case let action as ToggleFavourite: state.toggleFavourite(client: action.client, status: action.status)
         case let action as ToggleReblog: state.toggleReblog(client: action.client, status: action.status)
-        case let action as PostStatus: state.postStatus(client: action.client, content: action.content)
+        case let action as PostStatus: state.postStatus(client: action.client, content: action.content, inReplyTo: action.inReplyTo)
         default: break
         }
         
@@ -70,9 +71,9 @@ struct TimelineState: StatusesState {
         }
     }
     
-    func postStatus(client: Client, content: String) {
+    func postStatus(client: Client, content: String, inReplyTo: Status?) {
         let request = Statuses.create(status: content,
-                                      replyToID: nil,
+                                      replyToID: inReplyTo?.id,
                                       mediaIDs: [],
                                       sensitive: false,
                                       spoilerText: nil,

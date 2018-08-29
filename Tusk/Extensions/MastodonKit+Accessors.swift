@@ -72,4 +72,17 @@ extension Status {
         
         return try JSONDecoder().decode(Status.self, from: jsonData)
     }
+    
+    func mentionHandlesForReply(activeAccount: AccountType? = nil) -> [String] {
+        var handles = (
+            self.mentions.map { "@\($0.acct)" } +
+            [self.account.handle]
+        )
+        
+        if let activeAccount = activeAccount {
+            handles = handles.filter({ $0 != activeAccount.handle })
+        }
+        
+        return handles
+    }
 }

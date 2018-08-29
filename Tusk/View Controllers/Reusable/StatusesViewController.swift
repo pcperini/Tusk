@@ -83,6 +83,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                                                                                 for: indexPath,
                                                                                 usingNibNamed: "StatusActionViewCell")
             
+            cell.replyButtonWasTapped = {
+                self.performSegue(withIdentifier: "PresentComposeViewController", sender: displayStatus)
+            }
+            
             cell.favouriteButton.isSelected = displayStatus.favourited ?? false
             cell.favouritedButtonWasTapped = {
                 guard let client = GlobalStore.state.auth.client else { return }
@@ -233,6 +237,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             }
             
             contextVC.status = status
+            }
+        case "PresentComposeViewController": do {
+            guard let container = segue.destination as? ComposeContainerViewController,
+                let composeVC = container.composeViewController,
+                let status = sender as? Status else { return }
+            composeVC.inReplyTo = status
             }
         default: return
         }

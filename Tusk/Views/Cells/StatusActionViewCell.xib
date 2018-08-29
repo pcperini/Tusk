@@ -19,9 +19,12 @@
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vdp-Jp-l5T">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-sX-2Dr">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-sX-2Dr">
                             <rect key="frame" x="0.0" y="0.0" width="94" height="40"/>
                             <state key="normal" image="ReplyButton"/>
+                            <connections>
+                                <action selector="replyButtonWasTouchedUpInsideSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="IzR-pQ-tjy"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U58-fN-Blo" customClass="Button" customModule="Tusk" customModuleProvider="target">
                             <rect key="frame" x="94" y="0.0" width="93.5" height="40"/>
