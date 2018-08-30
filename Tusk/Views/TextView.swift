@@ -34,10 +34,10 @@ import DTCoreText
     
     var htmlText: String? {
         didSet {
-            
             guard let text = self.htmlText else { return }
             guard text.contains("<") else { self.text = text; return }
             
+            let originalFont = self.font
             let options: [String: NSObject] = [
                 DTUseiOS6Attributes: NSNumber(booleanLiteral: true),
                 DTDefaultFontName: NSString(string: self.font!.fontName),
@@ -80,6 +80,7 @@ import DTCoreText
             })
             
             self.attributedText = attributedText
+            self.font = originalFont
         }
     }
     

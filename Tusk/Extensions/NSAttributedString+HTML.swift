@@ -35,12 +35,17 @@ extension NSAttributedString {
     
     func replacingOccurrences(of: String, with: TextReplaceable, options: NSString.CompareOptions, range: NSRange) -> NSAttributedString {
         guard let mutable = self.mutableCopy() as? NSMutableAttributedString else { return self }
+        let replaceRange = mutable.mutableString.range(of: of)
+        guard replaceRange.location != NSNotFound else { return self }
         
+        let replacement: NSAttributedString
         switch with {
-        case let with as String: mutable.mutableString.replaceOccurrences(of: of, with: with, options: options, range: range)
-        case let with as NSAttributedString: mutable.replaceCharacters(in: mutable.mutableString.range(of: of), with: with)
-        default: break
+        case let with as String: replacement = NSAttributedString(string: with)
+        case let with as NSAttributedString: replacement = with
+        default: replacement = NSAttributedString()
         }
+        
+        mutable.replaceCharacters(in: replaceRange, with: replacement)
         return mutable
     }
     
