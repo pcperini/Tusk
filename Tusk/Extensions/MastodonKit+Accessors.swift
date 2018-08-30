@@ -75,8 +75,8 @@ extension Status {
     
     func mentionHandlesForReply(activeAccount: AccountType? = nil) -> [String] {
         var handles = (
-            self.mentions.map { "@\($0.acct)" } +
-            [self.account.handle]
+            [self.account.handle] +
+            self.mentions.map { "@\($0.acct)" }
         )
         
         if let activeAccount = activeAccount {
