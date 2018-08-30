@@ -83,7 +83,6 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
             }
         })
         
-        results = filters.reduce(results) { (all, next) in all.filter(next) }
         return results
     }
     

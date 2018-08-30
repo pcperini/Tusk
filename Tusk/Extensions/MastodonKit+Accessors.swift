@@ -86,3 +86,17 @@ extension Status {
         return handles
     }
 }
+
+extension Filter {
+    var filterFunction: (Status) -> Bool {
+        return { (status) in
+            switch self.phrase {
+            case _ where self.phrase.starts(with: "TuskRegex::"): do {
+                let regex = Regex(self.phrase.replacingOccurrences(of: "TuskRegex::", with: ""))
+                return !regex.test(input: status.content)
+                }
+            default: return !status.content.contains(self.phrase)
+            }
+        }
+    }
+}

@@ -32,6 +32,7 @@ extension StatusesState {
     typealias PollStatuses = StatusesStatePollStatuses<Self>
     typealias PollOlderStatuses = StatusesStatePollOlderStatuses<Self>
     typealias PollNewerStatuses = StatusesStatePollNewerStatuses<Self>
+    typealias PollFilters = StatusesStatePollFilters
     typealias UpdateStatus = StatusesStateUpdateStatus
     typealias InsertStatus = StatusesStateInsertStatus<Self>
         
@@ -39,14 +40,15 @@ extension StatusesState {
         var state = state ?? Self.init()
         
         switch action {
-        case let action as SetFilters: state.filters = action.value
-        case let action as SetStatuses: state.statuses = action.value
+        case let action as SetFilters: state.updateStatuses(statuses: state.statuses, withFilters: action.value)
+        case let action as SetStatuses: state.updateStatuses(statuses: action.value, withFilters: state.filters)
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
                                                                                                              nextPage: state.nextPage,
                                                                                                              previousPage: state.previousPage)
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
+        case let action as PollFilters: state.pollFilters(client: action.client)
         case let action as UpdateStatus: state.updateStatus(status: action.value)
         case let action as InsertStatus: state.statuses.insert(action.value, at: 0)
         default: break
@@ -64,6 +66,24 @@ extension StatusesState {
             GlobalStore.dispatch(SetStatuses(value: statuses))
             GlobalStore.dispatch(SetPage(value: pagination))
         }
+    }
+    
+    func pollFilters(client: Client) {
+        let request = Filters.all()
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): do {
+                log.verbose("success \(request)", context: ["resp": resp])
+                GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
+                }
+            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            }
+        }
+    }
+    
+    mutating func updateStatuses(statuses: [Status], withFilters filters: [(Status) -> Bool]) {
+        self.filters = filters
+        self.statuses = filters.reduce(statuses, { (all, next) in all.filter(next) })
     }
     
     mutating func updateStatus(status: Status) {
@@ -90,5 +110,6 @@ struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
 struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }
+struct StatusesStatePollFilters: PollAction { let client: Client }
 struct StatusesStateUpdateStatus: Action { let value: Status }
 struct StatusesStateInsertStatus<State: StateType>: Action { let value: Status }
