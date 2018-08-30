@@ -38,9 +38,17 @@ extension NSAttributedString {
         let replaceRange = mutable.mutableString.range(of: of)
         guard replaceRange.location != NSNotFound else { return self }
         
+        let attributes = mutable.attributes(at: replaceRange.location,
+                                            longestEffectiveRange: nil,
+                                            in: NSRange(location: 0, length: replaceRange.length))
+        
         let replacement: NSAttributedString
         switch with {
-        case let with as String: replacement = NSAttributedString(string: with)
+        case let with as String: do {
+            let mut = NSMutableAttributedString(string: with)
+            mut.setAttributes(attributes, range: NSRange(location: 0, length: mut.length))
+            replacement = mut
+            }
         case let with as NSAttributedString: replacement = with
         default: replacement = NSAttributedString()
         }
