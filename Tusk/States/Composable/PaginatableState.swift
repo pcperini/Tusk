@@ -63,7 +63,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
     
     private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter], range: RequestRange? = nil) -> [DataType] {
         let dataSet = Set<DataType>(existingData).union(newData)
-        var results = Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
+        return Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
             if DataType.sortedByPageIndex {
                 let topPage: [DataType], bottomPage: [DataType]
                 switch range {
@@ -82,8 +82,6 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
                 return lhs > rhs
             }
         })
-        
-        return results
     }
     
     func updatedPages(pagination: Pagination?, nextPage: RequestRange?, previousPage: RequestRange?) -> (RequestRange?, RequestRange?) {

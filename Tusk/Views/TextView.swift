@@ -98,11 +98,11 @@ import DTCoreText
         }
     }
     
-    override func setContentOffset(_ contentOffset: CGPoint, animated: Bool) {
-        super.setContentOffset(contentOffset, animated: false)
-    }
-    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if (self.isEditable) {
+            return super.hitTest(point, with: event)
+        }
+        
         guard let attributedText = self.attributedText, attributedText.length > 0 else { return nil }
         
         // location of the tap
@@ -122,6 +122,10 @@ import DTCoreText
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (self.isEditable) {
+            return super.touchesBegan(touches, with: event)
+        }
+        
         // location of the tap
         var location = touches.first!.location(in: self)
         location.x -= self.textContainerInset.left

@@ -19,6 +19,7 @@ class ComposeViewController: UIViewController {
     @IBOutlet var textView: UITextView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    private var bottomConstraintMinConstant: CGFloat = 0.0
     
     var inReplyTo: Status? = nil
     
@@ -58,18 +59,23 @@ class ComposeViewController: UIViewController {
                 " "
             )
         }
+        
+        self.bottomConstraintMinConstant = self.bottomConstraint.constant
     }
     
     @objc func keyboardWillMove(notification: NSNotification) {
         guard let userInfo = notification.userInfo,
-            let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            let endFrameValue = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else { return }
-        let height = endFrame.cgRectValue.height
         
         UIView.animate(withDuration: duration.doubleValue) {
             switch notification.name {
-            case .UIKeyboardWillShow: self.bottomConstraint.constant -= height
-            case .UIKeyboardWillHide: self.bottomConstraint.constant += height
+            case .UIKeyboardWillShow: do {
+                self.bottomConstraint.constant = self.bottomConstraintMinConstant - endFrameValue.height
+                }
+            case .UIKeyboardWillHide: do {
+                self.bottomConstraint.constant = self.bottomConstraintMinConstant
+                }
             default: break
             }
         }
@@ -105,7 +111,9 @@ class ComposeViewController: UIViewController {
 
 extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(textView.frame.size).height
+        print(textView.frame.height, textView.sizeThatFits(UILayoutFittingExpandedSize).height, textView.frame.height < textView.sizeThatFits(UILayoutFittingExpandedSize).height)
+        textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(UILayoutFittingExpandedSize).height
+        print(textView.isScrollEnabled)
         self.updateCharacterCount()
     }
 }
