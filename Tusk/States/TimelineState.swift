@@ -46,11 +46,16 @@ struct TimelineState: StatusesState {
     }
     
     func toggleFavourite(client: Client, status: Status) {
-        let request = (status.favourited ?? false) ? Statuses.unfavourite(id: status.id) : Statuses.favourite(id: status.id)
+        let on = !(status.favourited ?? false)
+        let request = on ? Statuses.favourite(id: status.id) : Statuses.unfavourite(id: status.id)
         client.run(request) { (result) in
             switch result {
             case .success(let resp, _): do {
-                GlobalStore.dispatch(UpdateStatus(value: resp))
+                let newStatus = try! resp.cloned(changes: [
+                    "favourites_count": resp.favouritesCount + (on ? 0 : -1)
+                ])
+                
+                GlobalStore.dispatch(UpdateStatus(value: newStatus))
                 log.verbose("success \(request)")
                 }
             case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
@@ -59,11 +64,16 @@ struct TimelineState: StatusesState {
     }
     
     func toggleReblog(client: Client, status: Status) {
-        let request = (status.reblogged ?? false) ? Statuses.unreblog(id: status.id) : Statuses.reblog(id: status.id)
+        let on = !(status.reblogged ?? false)
+        let request = on ? Statuses.reblog(id: status.id) : Statuses.unreblog(id: status.id)
         client.run(request) { (result) in
             switch result {
             case .success(let resp, _): do {
-                GlobalStore.dispatch(UpdateStatus(value: resp))
+                let newStatus = try! resp.cloned(changes: [
+                    "reblogs_count": resp.reblogsCount + (on ? 0 : -1)
+                ])
+                
+                GlobalStore.dispatch(UpdateStatus(value: newStatus))
                 log.verbose("success \(request)")
                 }
             case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
