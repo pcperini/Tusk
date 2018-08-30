@@ -9,6 +9,10 @@
 import Foundation
 import DTCoreText
 
+protocol TextReplaceable {}
+extension String: TextReplaceable {}
+extension NSAttributedString: TextReplaceable {}
+
 extension NSAttributedString {
     var allAttributes: [NSAttributedStringKey: Any] {
         return self.attributes(at: 0, longestEffectiveRange: nil, in: NSRange(location: 0, length: self.length))
@@ -29,13 +33,18 @@ extension NSAttributedString {
         self.init(attributedString: attributedString)
     }
     
-    public func replacingOccurrences(of: String, with: String, options: NSString.CompareOptions, range: NSRange) -> NSAttributedString {
+    func replacingOccurrences(of: String, with: TextReplaceable, options: NSString.CompareOptions, range: NSRange) -> NSAttributedString {
         guard let mutable = self.mutableCopy() as? NSMutableAttributedString else { return self }
-        mutable.mutableString.replaceOccurrences(of: of, with: with, options: options, range: range)
+        
+        switch with {
+        case let with as String: mutable.mutableString.replaceOccurrences(of: of, with: with, options: options, range: range)
+        case let with as NSAttributedString: mutable.replaceCharacters(in: mutable.mutableString.range(of: of), with: with)
+        default: break
+        }
         return mutable
     }
     
-    public func replacingMatches(to regex: Regex, with: (String) -> String) -> NSAttributedString {
+    func replacingMatches(to regex: Regex, with: (String) -> TextReplaceable) -> NSAttributedString {
         return regex.captures(input: self.string).reduce(self) { (latest, nextCapture) in
             latest.replacingOccurrences(of: nextCapture,
                                         with: with(nextCapture),

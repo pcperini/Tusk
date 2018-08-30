@@ -16,6 +16,12 @@ import DTCoreText
     var linkLineBreakMode: NSLineBreakMode = .byTruncatingTail
     var hideLinkCriteria: (String) -> Bool = { (_) in false }
     
+    var emojis: [(String, URL)] = []
+    var emojiSize: CGSize {
+        return CGSize(width: (self.font?.pointSize ?? UIFont.systemFontSize) * 1.5,
+                      height: (self.font?.pointSize ?? UIFont.systemFontSize) * 1.5)
+    }
+    
     private var coreTextAlignment: CTTextAlignment {
         switch self.textAlignment {
         case .left: return .left
@@ -48,7 +54,7 @@ import DTCoreText
                                                         documentAttributes: nil)
             let linkRegex = Regex("([a-z]+:\\/\\/.{\(self.maxLinkLength),})\\s?")
             
-            self.attributedText = builder?.generatedAttributedString()
+            var attributedText = builder?.generatedAttributedString()
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
                 .replacingMatches(to: linkRegex, with: { (match) -> String in
                     if (self.hideLinkCriteria(match)) { return "" }
@@ -61,6 +67,19 @@ import DTCoreText
                     }
                 })
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
+            
+            attributedText = self.emojis.reduce(attributedText, { (all, emoji) in
+                let attachment = NSTextAttachment()
+                attachment.image = try? UIImage(contentsOf: emoji.1, cachePolicy: .returnCacheDataElseLoad)
+                    .af_imageAspectScaled(toFill: self.emojiSize)
+                
+                return all?.replacingOccurrences(of: ":\(emoji.0):",
+                                                 with: NSAttributedString(attachment: attachment),
+                                                 options: .literal,
+                                                 range: NSRange(location: 0, length: all?.length ?? 0))
+            })
+            
+            self.attributedText = attributedText
         }
     }
     

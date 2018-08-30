@@ -102,6 +102,7 @@ class StatusViewCell: TableViewCell {
             }
         }
         
+        self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
         self.statusTextView.htmlText = status.content
         self.statusHeightConstraint.priority = self.statusTextView.text.isEmpty ? .defaultHigh : .init(rawValue: 1)
         self.statusTextView.setNeedsLayout()
