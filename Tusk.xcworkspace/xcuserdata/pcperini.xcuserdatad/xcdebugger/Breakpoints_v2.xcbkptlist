@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Extensions/NSAttributedString+HTML.swift"
-            timestampString = "557342404.50519"
+            timestampString = "557343291.997382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Extensions/NSAttributedString+HTML.swift"
-            timestampString = "557342404.505595"
+            timestampString = "557343291.997656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Extensions/NSAttributedString+HTML.swift"
-            timestampString = "557342404.505676"
+            timestampString = "557343291.99771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Extensions/NSAttributedString+HTML.swift"
-            timestampString = "557342404.505729"
+            timestampString = "557343291.997752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -83,14 +83,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/Extensions/MastodonKit+Accessors.swift"
-            timestampString = "557342404.505802"
+            filePath = "Tusk/Views/UI Handlers/TableViewMergeHandler.swift"
+            timestampString = "557343291.997798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "filterFunction"
-            landmarkType = "24">
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "mergeData(data:pinToTop:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -99,14 +99,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/Extensions/MastodonKit+Accessors.swift"
-            timestampString = "557342404.506434"
+            filePath = "Tusk/Views/UI Handlers/TableViewMergeHandler.swift"
+            timestampString = "557343291.9979891"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "filterFunction"
-            landmarkType = "24">
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "mergeData(data:pinToTop:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tusk.TableViewMergeHandler.mergeData(data: Swift.Array&lt;A&gt;, pinToTop: Swift.Bool) -&gt; ()"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Views/UI%20Handlers/TableViewMergeHandler.swift"
+                  timestampString = "557343292.149882"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "1171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.IndexPath) -&gt; Swift.Bool in Tusk.TableViewMergeHandler.mergeData(data: Swift.Array&lt;A&gt;, pinToTop: Swift.Bool) -&gt; ()"
+                  moduleName = "Tusk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/Views/UI%20Handlers/TableViewMergeHandler.swift"
+                  timestampString = "557343292.1516891"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

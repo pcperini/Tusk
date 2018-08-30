@@ -76,7 +76,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let statusIndex = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == NSNotFound) { // Action Cell
-            let status = self.statuses[indexPath.row - 1]
+            let statusIndex = indexPath.row - 1
+            let status = self.statuses[statusIndex]
             let displayStatus = status.reblog ?? status
             
             let cell: StatusActionViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Action",
@@ -84,6 +85,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                                                                                 usingNibNamed: "StatusActionViewCell")
             
             cell.replyButtonWasTapped = {
+                self.selectedStatusIndex = nil
                 self.performSegue(withIdentifier: "PresentComposeViewController", sender: displayStatus)
             }
             
