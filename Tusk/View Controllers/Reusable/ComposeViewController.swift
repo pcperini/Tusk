@@ -16,12 +16,23 @@ class ComposeViewController: UIViewController {
     @IBOutlet var postButton: UIBarButtonItem!
     @IBOutlet var avatarView: AvatarView!
     @IBOutlet var remainingCharactersLabel: ValidatedLabel!
+    @IBOutlet var visibilityIndicator: UIImageView!
     @IBOutlet var textView: TextView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
     
     var inReplyTo: Status? = nil
+    var visibility: Visibility = .public {
+        didSet {
+            switch self.visibility {
+            case .public: self.visibilityIndicator.image = UIImage(named: "PublicButton")
+            case .private: self.visibilityIndicator.image = UIImage(named: "PrivateButton")
+            case .direct: self.visibilityIndicator.image = UIImage(named: "MessageButton")
+            default: break
+            }
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,6 +73,8 @@ class ComposeViewController: UIViewController {
                 reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ") +
                 " "
             )
+            
+            self.visibility = reply.visibility
         }
         
         self.bottomConstraintMinConstant = self.bottomConstraint.constant
@@ -85,6 +98,26 @@ class ComposeViewController: UIViewController {
         }
     }
     
+    @IBAction func visibilityButtonWasTapped(sender: UIButton?) {
+        let handler = { (visibility: Visibility) in { (_: UIAlertAction) in self.visibility = visibility }}
+        
+        let visibilityPicker = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let publicAction = UIAlertAction(title: "Everyone", style: .default, handler: handler(.public))
+        publicAction.setValue(UIImage(named: "PublicButton"), forKey: "image")
+        visibilityPicker.addAction(publicAction)
+        
+        let privateAction = UIAlertAction(title: "Followers", style: .default, handler: handler(.private))
+        privateAction.setValue(UIImage(named: "PrivateButton"), forKey: "image")
+        visibilityPicker.addAction(privateAction)
+        
+        let dmAction = UIAlertAction(title: "Direct Message", style: .default, handler: handler(.direct))
+        dmAction.setValue(UIImage(named: "MessageButton"), forKey: "image")
+        visibilityPicker.addAction(dmAction)
+        
+        self.present(visibilityPicker, animated: true, completion: nil)
+    }
+    
     @IBAction func dismiss(sender: UIBarButtonItem? = nil) {
         self.textView.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
@@ -92,7 +125,10 @@ class ComposeViewController: UIViewController {
     
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(TimelineState.PostStatus(client: client, content: self.textView.text, inReplyTo: self.inReplyTo))
+        GlobalStore.dispatch(TimelineState.PostStatus(client: client,
+                                                      content: self.textView.text,
+                                                      inReplyTo: self.inReplyTo,
+                                                      visibility: self.visibility))
         self.dismiss(sender: sender)
     }
     

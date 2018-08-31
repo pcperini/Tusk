@@ -95,17 +95,20 @@
                                                 <state key="normal" image="CameraButton"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-md-Ekq" customClass="Button" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="71.5" y="0.0" width="72" height="44"/>
+                                                <rect key="frame" x="71.5" y="0.0" width="72.5" height="44"/>
                                                 <state key="normal" image="MentionButton"/>
                                                 <state key="selected" image="UndoReblogButton"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRH-AH-XfL" customClass="Button" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="143.5" y="0.0" width="71.5" height="44"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRH-AH-XfL" customClass="Button" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="144" y="0.0" width="71.5" height="44"/>
                                                 <state key="normal" image="VisibilityButton"/>
                                                 <state key="selected" image="FavouritedButton"/>
+                                                <connections>
+                                                    <action selector="visibilityButtonWasTappedWithSender:" destination="LKe-85-S3J" eventType="touchUpInside" id="1uT-5B-BpJ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrU-Em-sHQ">
-                                                <rect key="frame" x="215" y="0.0" width="72.5" height="44"/>
+                                                <rect key="frame" x="215.5" y="0.0" width="72" height="44"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-wJ-ZhZ">
                                                 <rect key="frame" x="287.5" y="0.0" width="71.5" height="44"/>
@@ -131,15 +134,25 @@
                                     <constraint firstAttribute="bottom" secondItem="7IF-vo-AuC" secondAttribute="bottom" id="z0S-kt-yL6"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PublicButton" translatesAutoresizingMaskIntoConstraints="NO" id="F5u-ny-Fhj">
+                                <rect key="frame" x="335" y="109" width="20" height="20"/>
+                                <color key="tintColor" name="StatBadgeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="5GX-32-u8O"/>
+                                    <constraint firstAttribute="height" constant="20" id="7S0-B0-YIO"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="5V2-mA-eja" secondAttribute="trailing" constant="8" id="3Yd-zB-PXI"/>
+                            <constraint firstItem="F5u-ny-Fhj" firstAttribute="top" secondItem="4oL-wr-yKJ" secondAttribute="bottom" constant="8" id="53V-Vc-TgO"/>
                             <constraint firstItem="4oL-wr-yKJ" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="6uM-Kv-Yy8"/>
                             <constraint firstItem="5V2-mA-eja" firstAttribute="leading" secondItem="M3S-nh-xC1" secondAttribute="leading" constant="8" id="Gyr-hk-ibC"/>
                             <constraint firstItem="Y0I-Fx-BV2" firstAttribute="leading" secondItem="g06-Ym-zHN" secondAttribute="trailing" constant="12" id="LMW-Fd-gGg"/>
                             <constraint firstItem="Y0I-Fx-BV2" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="SFt-fS-akX"/>
                             <constraint firstItem="g06-Ym-zHN" firstAttribute="leading" secondItem="M3S-nh-xC1" secondAttribute="leading" constant="20" id="Yj5-Fq-Ug0"/>
+                            <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="F5u-ny-Fhj" secondAttribute="trailing" constant="20" id="YyO-qE-CWd"/>
                             <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="4oL-wr-yKJ" secondAttribute="trailing" constant="20" id="hPy-MT-Kjy"/>
                             <constraint firstItem="5V2-mA-eja" firstAttribute="bottom" secondItem="L8R-o7-qS5" secondAttribute="bottom" constant="-4" id="kQY-yB-Apm"/>
                             <constraint firstItem="5V2-mA-eja" firstAttribute="top" secondItem="Y0I-Fx-BV2" secondAttribute="bottom" constant="8" id="o47-tH-joR"/>
@@ -170,6 +183,7 @@
                         <outlet property="postButton" destination="22m-UI-TP6" id="QrU-TW-CrG"/>
                         <outlet property="remainingCharactersLabel" destination="4oL-wr-yKJ" id="wVW-4R-Ndx"/>
                         <outlet property="textView" destination="Y0I-Fx-BV2" id="MAz-DG-j1G"/>
+                        <outlet property="visibilityIndicator" destination="F5u-ny-Fhj" id="k6b-f5-Bm2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBe-eD-eZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,10 +195,14 @@
         <image name="CameraButton" width="20" height="16"/>
         <image name="FavouritedButton" width="20" height="20"/>
         <image name="MentionButton" width="20" height="21"/>
+        <image name="PublicButton" width="20" height="20"/>
         <image name="UndoReblogButton" width="20" height="23"/>
         <image name="VisibilityButton" width="20" height="12"/>
         <namedColor name="FavouritedBadgeColor">
             <color red="1" green="0.851000011" blue="0.1140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="StatBadgeColor">
+            <color red="0.89399999380111694" green="0.89399999380111694" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
