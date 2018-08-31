@@ -72,7 +72,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y0I-Fx-BV2" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="82" y="84" width="235" height="527"/>
+                                <rect key="frame" x="82" y="84" width="235" height="465"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.1545681423611111" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -90,9 +90,12 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IF-vo-AuC">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpS-6M-jru">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpS-6M-jru">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
                                                 <state key="normal" image="CameraButton"/>
+                                                <connections>
+                                                    <action selector="attachmentButtonWasTappedWithSender:" destination="LKe-85-S3J" eventType="touchUpInside" id="mPp-Dj-G6X"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-md-Ekq" customClass="Button" customModule="Tusk" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="59.5" height="44"/>
@@ -154,20 +157,46 @@
                                     <constraint firstAttribute="height" constant="20" id="7S0-B0-YIO"/>
                                 </constraints>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DO8-UP-T4c">
+                                <rect key="frame" x="20" y="561" width="335" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="z7Q-pd-jGp" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jz3-8r-biW">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WAR-wD-PWw">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="5V2-mA-eja" secondAttribute="trailing" constant="8" id="3Yd-zB-PXI"/>
+                            <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="DO8-UP-T4c" secondAttribute="trailing" constant="20" id="3zj-sw-hYv"/>
                             <constraint firstItem="F5u-ny-Fhj" firstAttribute="top" secondItem="4oL-wr-yKJ" secondAttribute="bottom" constant="8" id="53V-Vc-TgO"/>
                             <constraint firstItem="4oL-wr-yKJ" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="6uM-Kv-Yy8"/>
                             <constraint firstItem="5V2-mA-eja" firstAttribute="leading" secondItem="M3S-nh-xC1" secondAttribute="leading" constant="8" id="Gyr-hk-ibC"/>
                             <constraint firstItem="Y0I-Fx-BV2" firstAttribute="leading" secondItem="g06-Ym-zHN" secondAttribute="trailing" constant="12" id="LMW-Fd-gGg"/>
+                            <constraint firstItem="5V2-mA-eja" firstAttribute="top" secondItem="DO8-UP-T4c" secondAttribute="bottom" constant="8" id="Rwf-r1-jrJ"/>
                             <constraint firstItem="Y0I-Fx-BV2" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="SFt-fS-akX"/>
                             <constraint firstItem="g06-Ym-zHN" firstAttribute="leading" secondItem="M3S-nh-xC1" secondAttribute="leading" constant="20" id="Yj5-Fq-Ug0"/>
                             <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="F5u-ny-Fhj" secondAttribute="trailing" constant="20" id="YyO-qE-CWd"/>
+                            <constraint firstItem="DO8-UP-T4c" firstAttribute="leading" secondItem="M3S-nh-xC1" secondAttribute="leading" constant="20" id="cSy-rc-0wQ"/>
                             <constraint firstItem="M3S-nh-xC1" firstAttribute="trailing" secondItem="4oL-wr-yKJ" secondAttribute="trailing" constant="20" id="hPy-MT-Kjy"/>
                             <constraint firstItem="5V2-mA-eja" firstAttribute="bottom" secondItem="L8R-o7-qS5" secondAttribute="bottom" constant="-4" id="kQY-yB-Apm"/>
-                            <constraint firstItem="5V2-mA-eja" firstAttribute="top" secondItem="Y0I-Fx-BV2" secondAttribute="bottom" constant="8" id="o47-tH-joR"/>
+                            <constraint firstItem="DO8-UP-T4c" firstAttribute="top" secondItem="Y0I-Fx-BV2" secondAttribute="bottom" constant="12" id="kXl-Fr-VuE" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                             <constraint firstItem="4oL-wr-yKJ" firstAttribute="leading" secondItem="Y0I-Fx-BV2" secondAttribute="trailing" constant="8" id="wf8-ms-MNU"/>
                             <constraint firstItem="g06-Ym-zHN" firstAttribute="top" secondItem="M3S-nh-xC1" secondAttribute="top" constant="20" id="y65-bs-tVe"/>
                         </constraints>
@@ -196,6 +225,8 @@
                         <outlet property="remainingCharactersLabel" destination="4oL-wr-yKJ" id="wVW-4R-Ndx"/>
                         <outlet property="textView" destination="Y0I-Fx-BV2" id="MAz-DG-j1G"/>
                         <outlet property="visibilityIndicator" destination="F5u-ny-Fhj" id="k6b-f5-Bm2"/>
+                        <outletCollection property="attachmentHeightConstraints" destination="kXl-Fr-VuE" collectionClass="NSMutableArray" id="jEb-lj-XVN"/>
+                        <outletCollection property="attachmentHeightConstraints" destination="z7Q-pd-jGp" collectionClass="NSMutableArray" id="kaP-VQ-4hW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBe-eD-eZN" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -19,9 +19,11 @@ class ComposeViewController: UIViewController {
     @IBOutlet var visibilityIndicator: UIImageView!
     @IBOutlet var textView: TextView!
     
+    @IBOutlet var attachmentHeightConstraints: [ToggleLayoutConstraint]!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
     
+    var mediaAttachments: [MediaAttachment] = []
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
         didSet {
@@ -79,7 +81,12 @@ class ComposeViewController: UIViewController {
             self.visibility = reply.visibility
         }
         
+        self.updateMediaAttachments()
         self.bottomConstraintMinConstant = self.bottomConstraint.constant
+    }
+    
+    private func updateMediaAttachments() {
+        self.attachmentHeightConstraints.forEach { $0.toggle(on: !self.mediaAttachments.isEmpty) }
     }
     
     @objc func keyboardWillMove(notification: NSNotification) {
@@ -100,6 +107,18 @@ class ComposeViewController: UIViewController {
         }
     }
     
+    @IBAction func attachmentButtonWasTapped(sender: UIButton?) {
+        
+    }
+    
+    @IBAction func mentionButtonWasTapped(sender: UIButton?) {
+        self.textView.text = self.textView.text + "@"
+    }
+    
+    @IBAction func hashtagButtonWasTapped(sender: UIButton?) {
+        self.textView.text = self.textView.text + "#"
+    }
+    
     @IBAction func visibilityButtonWasTapped(sender: UIButton?) {
         let handler = { (visibility: Visibility) in { (_: UIAlertAction) in self.visibility = visibility }}
         
@@ -118,14 +137,6 @@ class ComposeViewController: UIViewController {
         visibilityPicker.addAction(dmAction)
         
         self.present(visibilityPicker, animated: true, completion: nil)
-    }
-    
-    @IBAction func mentionButtonWasTapped(sender: UIButton?) {
-        self.textView.text = self.textView.text + "@"
-    }
-    
-    @IBAction func hashtagButtonWasTapped(sender: UIButton?) {
-        self.textView.text = self.textView.text + "#"
     }
     
     @IBAction func dismiss(sender: UIBarButtonItem? = nil) {
