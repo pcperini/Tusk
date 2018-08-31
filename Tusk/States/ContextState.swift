@@ -13,14 +13,15 @@ struct ContextState: StateType, StatusViewableState {
     struct SetContext: Action { let value: Context? }
     struct PollContext: PollAction { let client: Client; let status: Status }
     
-    let status: Status
-    var context: Context?
-    var statuses: [Status] {
-        get {
-            guard let context = self.context else { return [self.status] }
-            return context.ancestors + [self.status] + context.descendants
+    var status: Status
+    var statuses: [Status] = []
+    var context: Context? {
+        didSet {
+            self.statuses = []
+            if let context = self.context {
+                self.statuses = context.ancestors + [self.status] + context.descendants
+            }
         }
-        set {}
     }
     
     static func reducer(action: Action, state: ContextState?) -> ContextState {
@@ -29,13 +30,22 @@ struct ContextState: StateType, StatusViewableState {
         switch action {
         case let action as SetContext: state?.context = action.value
         case let action as PollContext: do {
-            state = ContextState(status: action.status, context: nil)
+            state = ContextState(status: action.status, statuses: [], context: nil)
             state?.pollContext(client: action.client)
+            }
+        case let action as StatusesState.UpdateStatus: do {
+            state?.updateStatus(status: action.value)
             }
         default: break
         }
         
         return state!
+    }
+    
+    mutating func updateStatus(status: Status) {
+        if let index = self.statuses.index(of: status) {
+            self.statuses[index] = status
+        }
     }
     
     func pollContext(client: Client) {

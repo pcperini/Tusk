@@ -124,12 +124,14 @@ class StatusViewCell: TableViewCell {
         
         self.reblogWidthConstraints.forEach { $0.toggle(on: hasReblogInfo) }
         
+        let favourited = status.favourited ?? false
         self.favouriteStatLabel.text = "\(status.favouritesCount)"
-        self.favouriteStatBadge.tintColor = UIColor(named: status.favourited ?? false ? "FavouritedBadgeColor" : "StatBadgeColor")
-        self.favouriteStatBadge.image = UIImage(named: status.favourited ?? false ? "FavouritedBadge" : "FavouriteBadge")
+        self.favouriteStatBadge.tintColor = UIColor(named: favourited ? "FavouritedBadgeColor" : "StatBadgeColor")
+        self.favouriteStatBadge.image = UIImage(named: favourited ? "FavouritedBadge" : "FavouriteBadge")
         
+        let reblogged = status.reblogged ?? false
         self.reblogStatLabel.text = "\(status.reblogsCount)"
-        self.reblogStatBadge.tintColor = UIColor(named: status.reblogged ?? false ? "RebloggedBadgeColor" : "StatBadgeColor")
+        self.reblogStatBadge.tintColor = UIColor(named: reblogged ? "RebloggedBadgeColor" : "StatBadgeColor")
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
