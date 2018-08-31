@@ -14,6 +14,7 @@ import KeychainAccess
 struct AuthState: StateType {
     struct LoadAuth: Action { let value: String? }
     struct CreateAppForInstance: Action { let value: String }
+    struct SetInstance: Action { let value: String? }
     struct SetClientInfo: Action {
         let id: String
         let secret: String
@@ -48,6 +49,7 @@ struct AuthState: StateType {
         switch action {
         case let action as LoadAuth: state.loadAuth(account: action.value)
         case let action as CreateAppForInstance: state.createAppForInstance(instance: action.value)
+        case let action as SetInstance: state.instance = action.value
         case let action as SetClientInfo: state.setClientInfo(id: action.id, secret: action.secret)
         case let action as SetAccessToken: state.setAccessToken(token: action.value)
         case let action as PollAccessToken: do {
@@ -78,7 +80,7 @@ struct AuthState: StateType {
     }
     
     private mutating func createAppForInstance(instance: String) {
-        self.instance = instance
+        self.instance = instance // temporarily
         guard let baseURL = self.baseURL else { return }
         
         let client = Client(baseURL: baseURL)
@@ -92,10 +94,15 @@ struct AuthState: StateType {
         client.run(request) { (result) in
             switch result {
             case .success(let resp, _): do {
+                GlobalStore.dispatch(SetInstance(value: instance))
                 GlobalStore.dispatch(SetClientInfo(id: resp.clientID, secret: resp.clientSecret))
                 log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                AuthState.clearAll()
+                GlobalStore.dispatch(SetInstance(value: nil))
+                }
             }
         }
     }
@@ -103,10 +110,18 @@ struct AuthState: StateType {
     private mutating func setClientInfo(id: String, secret: String) {
         self.clientID = id
         self.clientSecret = secret
-        self.oauthURL = try! Login.oauthURL(baseURL: self.baseURL!,
-                                            clientID: id,
-                                            scopes: [.follow, .read, .write],
-                                            redirectURI: AuthState.redirectURL)?.asURL()
+        do {
+            self.oauthURL = try Login.oauthURL(baseURL: self.baseURL!,
+                                               clientID: id,
+                                               scopes: [.follow, .read, .write],
+                                               redirectURI: AuthState.redirectURL)?.asURL()
+        } catch {
+            log.error("error Login.oauthURL(\(self.baseURL!), \(id)) 🚨 Error: \(error)\n")
+            AuthState.clearAll()
+            
+            self.clientID = nil
+            self.clientSecret = nil
+        }
     }
     
     private mutating func setAccessToken(token: String?) {
@@ -122,6 +137,7 @@ struct AuthState: StateType {
                                   clientSecret: secret,
                                   code: code,
                                   redirectURI: AuthState.redirectURL)
+        
         client.run(request) { (result) in
             switch result {
             case .success(let resp, _): do {
@@ -129,7 +145,11 @@ struct AuthState: StateType {
                 GlobalStore.dispatch(AppState.PollData())
                 log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                AuthState.clearAll()
+                GlobalStore.dispatch(SetAccessToken(value: nil))
+                }
             }
         }
     }
@@ -152,5 +172,13 @@ extension AuthState {
         self.accountsInKeychain += [id]
         AuthState.keychain["\(id).token"] = token
         AuthState.keychain["\(id).instance"] = instance
+    }
+    
+    static func clearAll() {
+        do {
+            try AuthState.keychain.removeAll()
+        } catch {
+            log.error("error AuthState.keychain.removeAll() 🚨 Error: \(error)\n")
+        }
     }
 }
