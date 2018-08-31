@@ -57,11 +57,11 @@ struct TableViewMergeHandler<DataType: Comparable> {
         let firstVisibleNewIndex = newData.index(of: firstVisibleElement) ?? 0
         
         UIView.performWithoutAnimation {
-            tableView.beginUpdates()
-            if (!diffState.removed.isEmpty) { tableView.deleteRows(at: diffState.removedIndexPaths, with: .none) }
-            if (!diffState.inserted.isEmpty) { tableView.insertRows(at: diffState.insertedIndexPaths, with: .none) }
-            if (!diffState.common.isEmpty) { tableView.reloadRows(at: reloadRows, with: .none) }
-            tableView.endUpdates()
+            tableView.performBatchUpdates({
+                if (!diffState.removed.isEmpty) { tableView.deleteRows(at: diffState.removedIndexPaths, with: .none) }
+                if (!diffState.inserted.isEmpty) { tableView.insertRows(at: diffState.insertedIndexPaths, with: .none) }
+                if (!diffState.common.isEmpty) { tableView.reloadRows(at: reloadRows, with: .none) }
+            }, completion: nil)
             
             if (!diffState.inserted.isEmpty) {
                 tableView.scrollToRow(at: IndexPath(row: firstVisibleNewIndex, section: 0),

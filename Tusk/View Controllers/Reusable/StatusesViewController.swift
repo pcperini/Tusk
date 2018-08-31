@@ -156,10 +156,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
         }
         
-        self.tableView.beginUpdates()
-        self.selectedStatusIndex = nil
-        self.selectedStatusIndex = statusIndex
-        self.tableView.endUpdates()
+        self.tableView.performBatchUpdates({
+            self.selectedStatusIndex = nil
+            self.selectedStatusIndex = statusIndex
+        }, completion: nil)
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
