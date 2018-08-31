@@ -65,6 +65,7 @@ class ComposeViewController: UIViewController {
         self.textView.becomeFirstResponder()
         self.textView.highlightDataMatchers = [
             Regex("@(\\w+)(@\\w+.\\w+)?"),
+            Regex("#(\\w+)"),
             Regex("[a-z]*(://)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
         ]
         
@@ -74,6 +75,7 @@ class ComposeViewController: UIViewController {
                 " "
             )
             
+            self.textView.updateHighlights()
             self.visibility = reply.visibility
         }
         
@@ -116,6 +118,14 @@ class ComposeViewController: UIViewController {
         visibilityPicker.addAction(dmAction)
         
         self.present(visibilityPicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func mentionButtonWasTapped(sender: UIButton?) {
+        self.textView.text = self.textView.text + "@"
+    }
+    
+    @IBAction func hashtagButtonWasTapped(sender: UIButton?) {
+        self.textView.text = self.textView.text + "#"
     }
     
     @IBAction func dismiss(sender: UIBarButtonItem? = nil) {

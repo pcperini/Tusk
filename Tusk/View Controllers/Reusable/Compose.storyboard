@@ -91,37 +91,49 @@
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpS-6M-jru">
-                                                <rect key="frame" x="0.0" y="0.0" width="71.5" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
                                                 <state key="normal" image="CameraButton"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-md-Ekq" customClass="Button" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="71.5" y="0.0" width="72.5" height="44"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-md-Ekq" customClass="Button" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="60" y="0.0" width="59.5" height="44"/>
                                                 <state key="normal" image="MentionButton"/>
                                                 <state key="selected" image="UndoReblogButton"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRH-AH-XfL" customClass="Button" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="144" y="0.0" width="71.5" height="44"/>
-                                                <state key="normal" image="VisibilityButton"/>
-                                                <state key="selected" image="FavouritedButton"/>
                                                 <connections>
-                                                    <action selector="visibilityButtonWasTappedWithSender:" destination="LKe-85-S3J" eventType="touchUpInside" id="1uT-5B-BpJ"/>
+                                                    <action selector="mentionButtonWasTappedWithSender:" destination="LKe-85-S3J" eventType="touchUpInside" id="mXl-2M-x3z"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzH-ui-Jps" customClass="Button" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="119.5" y="0.0" width="60" height="44"/>
+                                                <state key="normal" image="HashtagButton"/>
+                                                <state key="selected" image="UndoReblogButton"/>
+                                                <connections>
+                                                    <action selector="hashtagButtonWasTappedWithSender:" destination="LKe-85-S3J" eventType="touchUpInside" id="08o-7r-aTR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZA-nK-hNA" customClass="Button" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="179.5" y="0.0" width="60" height="44"/>
+                                                <state key="normal" image="VisibilityButton"/>
+                                                <state key="selected" image="UndoReblogButton"/>
+                                                <connections>
+                                                    <action selector="visibilityButtonWasTappedWithSender:" destination="LKe-85-S3J" eventType="touchUpInside" id="Kqf-of-ZuN"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrU-Em-sHQ">
-                                                <rect key="frame" x="215.5" y="0.0" width="72" height="44"/>
+                                                <rect key="frame" x="239.5" y="0.0" width="59.5" height="44"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-wJ-ZhZ">
-                                                <rect key="frame" x="287.5" y="0.0" width="71.5" height="44"/>
+                                                <rect key="frame" x="299" y="0.0" width="60" height="44"/>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="wRH-AH-XfL" firstAttribute="width" secondItem="XpS-6M-jru" secondAttribute="width" id="387-jn-xtV"/>
+                                            <constraint firstItem="lZA-nK-hNA" firstAttribute="width" secondItem="XpS-6M-jru" secondAttribute="width" id="3gP-20-70b"/>
                                             <constraint firstItem="lrU-Em-sHQ" firstAttribute="width" secondItem="XpS-6M-jru" secondAttribute="width" id="LM8-Pb-1wW"/>
                                             <constraint firstItem="9wX-md-Ekq" firstAttribute="width" secondItem="XpS-6M-jru" secondAttribute="width" id="LWY-Ox-Wvx"/>
                                             <constraint firstItem="hSm-wJ-ZhZ" firstAttribute="width" secondItem="XpS-6M-jru" secondAttribute="width" id="OXd-rg-GhW"/>
                                             <constraint firstAttribute="bottom" secondItem="XpS-6M-jru" secondAttribute="bottom" id="awH-J2-wU3"/>
                                             <constraint firstAttribute="height" priority="999" constant="40" id="b1e-cd-PwN"/>
                                             <constraint firstItem="XpS-6M-jru" firstAttribute="top" secondItem="7IF-vo-AuC" secondAttribute="top" id="fbo-I4-dZ7"/>
+                                            <constraint firstItem="fzH-ui-Jps" firstAttribute="width" secondItem="XpS-6M-jru" secondAttribute="width" id="wlr-IF-h5C"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -193,7 +205,7 @@
     </scenes>
     <resources>
         <image name="CameraButton" width="20" height="16"/>
-        <image name="FavouritedButton" width="20" height="20"/>
+        <image name="HashtagButton" width="16" height="20"/>
         <image name="MentionButton" width="20" height="21"/>
         <image name="PublicButton" width="20" height="20"/>
         <image name="UndoReblogButton" width="20" height="23"/>

@@ -113,7 +113,7 @@ import DTCoreText
         }
     }
     
-    private func updateHighlights() {
+    func updateHighlights() {
         guard !self.highlightDataMatchers.isEmpty else { return }
         guard let mutableText = self.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
         
