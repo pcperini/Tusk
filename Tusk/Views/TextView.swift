@@ -23,7 +23,7 @@ import DTCoreText
     }
     
     var highlightDataMatchers: [Regex] = []
-    private var preHighlightTextColor: UIColor? = nil
+    private var preHighlightTextColor: UIColor!
     
     private var coreTextAlignment: CTTextAlignment {
         switch self.textAlignment {
@@ -45,9 +45,9 @@ import DTCoreText
                 DTUseiOS6Attributes: NSNumber(booleanLiteral: true),
                 DTDefaultFontName: NSString(string: self.font!.fontName),
                 DTDefaultFontSize: NSNumber(value: Float(self.font!.pointSize)),
-                DTDefaultLinkColor: self.textColor ?? .black,
+                DTDefaultLinkColor: self.preHighlightTextColor,
                 DTDefaultLinkDecoration: NSNumber(booleanLiteral: false),
-                DTDefaultTextColor: self.textColor ?? .black,
+                DTDefaultTextColor: self.preHighlightTextColor,
                 DTDefaultTextAlignment: NSNumber(value: self.coreTextAlignment.rawValue),
                 DTDocumentPreserveTrailingSpaces: NSNumber(booleanLiteral: false)
             ]
@@ -89,6 +89,8 @@ import DTCoreText
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.preHighlightTextColor = self.textColor ?? .black
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(textViewDidChange(notification:)),
                                                name: .UITextViewTextDidChange,
@@ -117,9 +119,7 @@ import DTCoreText
         guard !self.highlightDataMatchers.isEmpty else { return }
         guard let mutableText = self.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
         
-        self.preHighlightTextColor = self.preHighlightTextColor ?? self.textColor
         mutableText.addAttribute(.foregroundColor, value: self.preHighlightTextColor as Any, range: NSRange(location: 0, length: mutableText.length))
-        
         self.highlightDataMatchers.forEach { (regex) in
             regex.matches(input: mutableText.string).forEach({ (match: NSTextCheckingResult) in
                 mutableText.addAttribute(.foregroundColor, value: self.tintColor, range: match.range)
