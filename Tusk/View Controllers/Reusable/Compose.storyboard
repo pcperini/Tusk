@@ -95,17 +95,17 @@
                                                 <state key="normal" image="CameraButton"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-md-Ekq" customClass="Button" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="71.5" y="0.0" width="72.5" height="44"/>
+                                                <rect key="frame" x="71.5" y="0.0" width="72" height="44"/>
                                                 <state key="normal" image="MentionButton"/>
                                                 <state key="selected" image="UndoReblogButton"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRH-AH-XfL" customClass="Button" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="144" y="0.0" width="71.5" height="44"/>
+                                                <rect key="frame" x="143.5" y="0.0" width="71.5" height="44"/>
                                                 <state key="normal" image="VisibilityButton"/>
                                                 <state key="selected" image="FavouritedButton"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrU-Em-sHQ">
-                                                <rect key="frame" x="215.5" y="0.0" width="72" height="44"/>
+                                                <rect key="frame" x="215" y="0.0" width="72.5" height="44"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-wJ-ZhZ">
                                                 <rect key="frame" x="287.5" y="0.0" width="71.5" height="44"/>

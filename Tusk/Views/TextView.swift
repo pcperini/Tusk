@@ -22,6 +22,9 @@ import DTCoreText
                       height: (self.font?.pointSize ?? UIFont.systemFontSize) * 1.5)
     }
     
+    var highlightDataMatchers: [Regex] = []
+    private var preHighlightTextColor: UIColor? = nil
+    
     private var coreTextAlignment: CTTextAlignment {
         switch self.textAlignment {
         case .left: return .left
@@ -84,6 +87,18 @@ import DTCoreText
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textViewDidChange(notification:)),
+                                               name: .UITextViewTextDidChange,
+                                               object: self)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -96,6 +111,27 @@ import DTCoreText
                                                          height: CGFloat.greatestFiniteMagnitude)).height
             self.bounds = CGRect(origin: .zero, size: CGSize(width: self.bounds.width, height: minimumHeight))
         }
+    }
+    
+    private func updateHighlights() {
+        guard !self.highlightDataMatchers.isEmpty else { return }
+        guard let mutableText = self.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
+        
+        self.preHighlightTextColor = self.preHighlightTextColor ?? self.textColor
+        mutableText.addAttribute(.foregroundColor, value: self.preHighlightTextColor as Any, range: NSRange(location: 0, length: mutableText.length))
+        
+        self.highlightDataMatchers.forEach { (regex) in
+            regex.matches(input: mutableText.string).forEach({ (match: NSTextCheckingResult) in
+                mutableText.addAttribute(.foregroundColor, value: self.tintColor, range: match.range)
+            })
+        }
+        
+        self.attributedText = mutableText
+    }
+    
+    @objc func textViewDidChange(notification: Notification) {
+        guard let view = notification.object as? TextView, view == self else { return }
+        self.updateHighlights()
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

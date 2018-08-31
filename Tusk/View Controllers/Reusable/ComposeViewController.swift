@@ -16,7 +16,7 @@ class ComposeViewController: UIViewController {
     @IBOutlet var postButton: UIBarButtonItem!
     @IBOutlet var avatarView: AvatarView!
     @IBOutlet var remainingCharactersLabel: ValidatedLabel!
-    @IBOutlet var textView: UITextView!
+    @IBOutlet var textView: TextView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
@@ -52,6 +52,10 @@ class ComposeViewController: UIViewController {
         
         self.textView.text = ""
         self.textView.becomeFirstResponder()
+        self.textView.highlightDataMatchers = [
+            Regex("@(\\w+)(@\\w+.\\w+)?"),
+            Regex("[a-z]*(://)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
+        ]
         
         if let reply = self.inReplyTo {
             self.textView.text = (
@@ -111,9 +115,7 @@ class ComposeViewController: UIViewController {
 
 extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        print(textView.frame.height, textView.sizeThatFits(UILayoutFittingExpandedSize).height, textView.frame.height < textView.sizeThatFits(UILayoutFittingExpandedSize).height)
         textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(UILayoutFittingExpandedSize).height
-        print(textView.isScrollEnabled)
         self.updateCharacterCount()
     }
 }

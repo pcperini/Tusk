@@ -26,16 +26,8 @@ public class Regex {
         return NSMakeRange(0, (input.count))
     }
     
-    public func matches(input: String) -> [String] {
-        if let matches = self.regularexpression?.matches(in: input, options: [], range:rangeOfString(input: input)) {
-            
-            return matches.map({ (tcr:NSTextCheckingResult) -> String in
-                (input as NSString).substring(with: tcr.range)
-            })
-            
-        } else {
-            return []
-        }
+    public func matches(input: String) -> [NSTextCheckingResult] {
+        return self.regularexpression?.matches(in: input, options: [], range:rangeOfString(input: input)) ?? []
     }
     
     public func captures(input: String) -> [String] {

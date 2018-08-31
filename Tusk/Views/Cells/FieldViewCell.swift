@@ -61,12 +61,9 @@ extension FieldViewCell {
         }
         
         init(rawValue: String) {
-            self = CustomFieldCellType.allCases.filter({ (cellType) in
-                let regex = try! NSRegularExpression(pattern: cellType.rawValue, options: [.caseInsensitive])
-                let matches = regex.matches(in: rawValue.folding(options: .diacriticInsensitive, locale: .current),
-                                            range: NSRange(rawValue.startIndex..., in: rawValue))
-                return !matches.isEmpty
-            }).first ?? .Default
+            self = CustomFieldCellType.allCases.first(where: { (cellType) in
+                Regex(cellType.rawValue).test(input: rawValue)
+            }) ?? .Default
         }
     }
     
