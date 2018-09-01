@@ -161,7 +161,8 @@ class ComposeViewController: UIViewController {
 
 extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(UILayoutFittingExpandedSize).height
+        let scrollSize = CGSize(width: textView.frame.width, height: UILayoutFittingExpandedSize.height)
+        textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(scrollSize).height
         self.updateCharacterCount()
     }
 }
