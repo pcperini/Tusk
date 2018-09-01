@@ -64,6 +64,7 @@ extension TabViewController: UITabBarControllerDelegate {
             
             if let tableViewController = vc as? UITableViewController, let tableView = tableViewController.tableView {
                 tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                tableView.delegate?.scrollViewDidEndDecelerating?(tableView)
             }
         }
         
