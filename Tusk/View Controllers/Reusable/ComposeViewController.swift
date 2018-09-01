@@ -17,6 +17,9 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     private var updateID: String = StatusUpdateState.updateID()
     
     private static let maxCharacterCount: Int = 500
+    private static let maxImageFileSize: Int = 8388608
+    private static let maxImageSize: CGSize = CGSize(width: 1280, height: 1280)
+    
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
     
     @IBOutlet var postButton: UIBarButtonItem!
@@ -102,7 +105,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
         if let reply = self.inReplyTo {
             self.textView.text = (
                 reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ") +
-                " "
+                (reply.mentionHandlesForReply(activeAccount: activeAccount).isEmpty ? "" : " ")
             )
             
             self.textView.updateHighlights()
@@ -208,7 +211,8 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             
             items.forEach { (item) in
                 switch item {
-                case .photo(let photo): self.mediaAttachments.append((.png(UIImagePNGRepresentation(photo.image)), item))
+                case .photo(let photo): self.mediaAttachments.append((.jpeg(photo.image.jpeg(maxSize: ComposeViewController.maxImageFileSize,
+                                                                                             maxDimensions: ComposeViewController.maxImageSize)), item))
                 case .video(let video): DispatchQueue.global(qos: .background).async {
                     if let data = try? Data(contentsOf: video.url) {
                         DispatchQueue.main.async {
@@ -244,7 +248,11 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             self.isLoading = false
             switch result {
             case .success(_, _): self.dismiss()
-            case .failure(_): break
+            case .failure(let error): do {
+                let alert = UIAlertController(title: "Whoops", message: "\(error)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
