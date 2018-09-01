@@ -12,6 +12,7 @@ target 'Tusk' do
   pod 'Lightbox', '~> 2.1'
   pod 'MGSwipeTableCell', '~> 1.6'
   pod 'SwiftyBeaver', '~> 1.6'
+  pod 'YPImagePicker', '~> 3.4'
 
   target 'TuskTests' do
     inherit! :search_paths

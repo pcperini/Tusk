@@ -8,8 +8,14 @@
 
 import UIKit
 import MastodonKit
+import YPImagePicker
+import ReSwift
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, StoreSubscriber {
+    typealias StoreSubscriberStateType = StatusUpdateState
+    
+    private var updateID: String = StatusUpdateState.updateID()
+    
     private static let maxCharacterCount: Int = 500
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
     
@@ -19,8 +25,29 @@ class ComposeViewController: UIViewController {
     @IBOutlet var visibilityIndicator: UIImageView!
     @IBOutlet var textView: TextView!
     
+    @IBOutlet var attachmentCollectionView: UICollectionView!
+    @IBOutlet var attachmentHeightConstraints: [ToggleLayoutConstraint]!
+    
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
+    
+    private var isLoading: Bool = false {
+        didSet {
+            self.view.isUserInteractionEnabled = !self.isLoading
+        
+            let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+            indicator.startAnimating()
+            self.navigationItem.rightBarButtonItem = self.isLoading ? UIBarButtonItem(customView: indicator) : self.postButton
+        }
+    }
+    
+    var mediaAttachments: [(MediaAttachment, YPMediaItem)] = [] {
+        didSet {
+            if (self.mediaAttachments.count != oldValue.count) {
+                self.updateMediaAttachments()
+            }
+        }
+    }
     
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
@@ -36,6 +63,8 @@ class ComposeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.statusUpdates } }
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillMove(notification:)),
                                                name: .UIKeyboardWillShow,
@@ -48,6 +77,8 @@ class ComposeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        GlobalStore.unsubscribe(self)
+
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
@@ -62,7 +93,6 @@ class ComposeViewController: UIViewController {
         self.updateCharacterCount()
         
         self.textView.text = ""
-        self.textView.becomeFirstResponder()
         self.textView.highlightDataMatchers = [
             Regex("@(\\w+)(@\\w+.\\w+)?"),
             Regex("#(\\w+)"),
@@ -79,7 +109,18 @@ class ComposeViewController: UIViewController {
             self.visibility = reply.visibility
         }
         
+        self.updateMediaAttachments()
         self.bottomConstraintMinConstant = self.bottomConstraint.constant
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.textView.becomeFirstResponder()
+    }
+    
+    private func updateMediaAttachments() {
+        self.attachmentHeightConstraints.forEach { $0.toggle(on: !self.mediaAttachments.isEmpty) }
+        self.attachmentCollectionView.reloadData()
     }
     
     @objc func keyboardWillMove(notification: NSNotification) {
@@ -97,7 +138,35 @@ class ComposeViewController: UIViewController {
                 }
             default: break
             }
+            
+            self.view.layoutIfNeeded()
         }
+    }
+    
+    @IBAction func attachmentButtonWasTapped(sender: UIButton?) {
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 4
+        config.library.mediaType = .photoAndVideo
+
+        config.hidesStatusBar = false
+        config.onlySquareImagesFromCamera = false
+        config.screens = [.library, .photo, .video]
+        config.startOnScreen = .library
+        
+        config.colors.tintColor = sender?.tintColor ?? self.view.tintColor
+        UINavigationBar.appearance().tintColor = config.colors.tintColor
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking(completion: self.pickerDidFinishPicking(picker: picker))
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func mentionButtonWasTapped(sender: UIButton?) {
+        self.textView.text = self.textView.text + "@"
+    }
+    
+    @IBAction func hashtagButtonWasTapped(sender: UIButton?) {
+        self.textView.text = self.textView.text + "#"
     }
     
     @IBAction func visibilityButtonWasTapped(sender: UIButton?) {
@@ -120,26 +189,36 @@ class ComposeViewController: UIViewController {
         self.present(visibilityPicker, animated: true, completion: nil)
     }
     
-    @IBAction func mentionButtonWasTapped(sender: UIButton?) {
-        self.textView.text = self.textView.text + "@"
-    }
-    
-    @IBAction func hashtagButtonWasTapped(sender: UIButton?) {
-        self.textView.text = self.textView.text + "#"
-    }
-    
-    @IBAction func dismiss(sender: UIBarButtonItem? = nil) {
-        self.textView.resignFirstResponder()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(TimelineState.PostStatus(client: client,
-                                                      content: self.textView.text,
-                                                      inReplyTo: self.inReplyTo,
-                                                      visibility: self.visibility))
-        self.dismiss(sender: sender)
+        GlobalStore.dispatch(StatusUpdateState.PostStatus(client: client,
+                                                          id: self.updateID,
+                                                          content: self.textView.text,
+                                                          inReplyTo: self.inReplyTo,
+                                                          visibility: self.visibility,
+                                                          attachments: self.mediaAttachments.map { $0.0 }))
+        
+        self.isLoading = true
+    }
+    
+    func pickerDidFinishPicking(picker: YPImagePicker) -> ([YPMediaItem], Bool) -> Void {
+        return { [unowned picker] (items: [YPMediaItem], cancelled: Bool) in
+            defer { picker.dismiss(animated: true, completion: nil) }
+            guard !cancelled else { return }
+            
+            items.forEach { (item) in
+                switch item {
+                case .photo(let photo): self.mediaAttachments.append((.png(UIImagePNGRepresentation(photo.image)), item))
+                case .video(let video): DispatchQueue.global(qos: .background).async {
+                    if let data = try? Data(contentsOf: video.url) {
+                        DispatchQueue.main.async {
+                            self.mediaAttachments.append((.other(data, fileExtension: "mp4", mimeType: "video/mp4"), item))
+                        }
+                    }
+                    }
+                }
+            }
+        }
     }
     
     func updateCharacterCount() {
@@ -157,6 +236,29 @@ class ComposeViewController: UIViewController {
         default: self.remainingCharactersLabel.validity = .Valid
         }
     }
+    
+    func newState(state: StatusUpdateState) {
+        guard let result = state.updates[self.updateID] else { return }
+        
+        DispatchQueue.main.async {
+            self.isLoading = false
+            switch result {
+            case .success(_, _): self.dismiss()
+            case .failure(_): break
+            }
+        }
+    }
+    
+    // MARK: Navigation
+    @IBAction func dismiss(sender: UIBarButtonItem? = nil) {
+        self.textView.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func presentAttachments(startIndex: Int) {
+        let photoViewer = AttachmentsViewController(mediaItems: self.mediaAttachments.map { $0.1 }, startIndex: startIndex)
+        self.present(photoViewer, animated: true, completion: nil)
+    }
 }
 
 extension ComposeViewController: UITextViewDelegate {
@@ -164,6 +266,44 @@ extension ComposeViewController: UITextViewDelegate {
         let scrollSize = CGSize(width: textView.frame.width, height: UILayoutFittingExpandedSize.height)
         textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(scrollSize).height
         self.updateCharacterCount()
+    }
+}
+
+extension ComposeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.mediaAttachments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ImageAttachmentViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell",
+                                                                               for: indexPath,
+                                                                               usingNibNamed: "ImageAttachmentViewCell")
+        
+        let attachmentInfo = self.mediaAttachments[indexPath.item].1
+        switch attachmentInfo {
+        case .photo(let photo): cell.imageView.image = photo.image
+        case .video(let video): cell.imageView.image = video.thumbnail
+        }
+        
+        cell.cellWasLongPressed = {
+            self.attachmentCellAtIndexPathWasLongPressed(indexPath: indexPath)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presentAttachments(startIndex: indexPath.row)
+    }
+    
+    func attachmentCellAtIndexPathWasLongPressed(indexPath: IndexPath) {
+        let attachmentActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        attachmentActionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        attachmentActionSheet.addAction(UIAlertAction(title: "Remove", style: .destructive) { (_) in
+            self.mediaAttachments.remove(at: indexPath.row)
+        })
+        
+        self.present(attachmentActionSheet, animated: true, completion: nil)
     }
 }
 
