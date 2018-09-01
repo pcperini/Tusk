@@ -49,7 +49,6 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
                 allData = self.mergeData(existingData: allData, newData: self.typeMapper(resp), filters: filters, range: range)
                 log.verbose("success \(request)", context: ["resp": resp, "type": DataType.self])
                 
-                print("allData: \(allData)")
                 guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
                 self.pollData(client: client,
                               range: nextPage,
