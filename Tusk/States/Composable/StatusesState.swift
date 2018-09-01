@@ -18,8 +18,6 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
     var statuses: [Status] { get set }
     var filters: [(Status) -> Bool] { get set }
     
-    static var additionalReducer: ((Action, Self?) -> Self)? { get }
-    
     init()
     func pollStatuses(client: Client, range: RequestRange?)
     mutating func updateStatus(status: Status)
@@ -54,7 +52,6 @@ extension StatusesState {
         default: break
         }
         
-        state = self.additionalReducer?(action, state) ?? state
         return state
     }
     

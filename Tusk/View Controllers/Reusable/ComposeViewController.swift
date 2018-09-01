@@ -9,8 +9,13 @@
 import UIKit
 import MastodonKit
 import YPImagePicker
+import ReSwift
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, StoreSubscriber {
+    typealias StoreSubscriberStateType = StatusUpdateState
+    
+    private var updateID: String = StatusUpdateState.updateID()
+    
     private static let maxCharacterCount: Int = 500
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
     
@@ -25,6 +30,16 @@ class ComposeViewController: UIViewController {
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
+    
+    private var isLoading: Bool = false {
+        didSet {
+            self.view.isUserInteractionEnabled = !self.isLoading
+        
+            let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+            indicator.startAnimating()
+            self.navigationItem.rightBarButtonItem = self.isLoading ? UIBarButtonItem(customView: indicator) : self.postButton
+        }
+    }
     
     var mediaAttachments: [(MediaAttachment, YPMediaItem)] = [] {
         didSet {
@@ -48,6 +63,8 @@ class ComposeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.statusUpdates } }
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillMove(notification:)),
                                                name: .UIKeyboardWillShow,
@@ -60,6 +77,8 @@ class ComposeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        GlobalStore.unsubscribe(self)
+
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
@@ -172,11 +191,14 @@ class ComposeViewController: UIViewController {
     
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
-        GlobalStore.dispatch(TimelineState.PostStatus(client: client,
-                                                      content: self.textView.text,
-                                                      inReplyTo: self.inReplyTo,
-                                                      visibility: self.visibility))
-        self.dismiss(sender: sender)
+        GlobalStore.dispatch(StatusUpdateState.PostStatus(client: client,
+                                                          id: self.updateID,
+                                                          content: self.textView.text,
+                                                          inReplyTo: self.inReplyTo,
+                                                          visibility: self.visibility,
+                                                          attachments: self.mediaAttachments.map { $0.0 }))
+        
+        self.isLoading = true
     }
     
     func pickerDidFinishPicking(picker: YPImagePicker) -> ([YPMediaItem], Bool) -> Void {
@@ -187,9 +209,13 @@ class ComposeViewController: UIViewController {
             items.forEach { (item) in
                 switch item {
                 case .photo(let photo): self.mediaAttachments.append((.png(UIImagePNGRepresentation(photo.image)), item))
-                case .video(let video): video.fetchData(completion: { (data) in
-                    self.mediaAttachments.append((.other(data, fileExtension: "mov", mimeType: "video/quicktime"), item))
-                })
+                case .video(let video): DispatchQueue.global(qos: .background).async {
+                    if let data = try? Data(contentsOf: video.url) {
+                        DispatchQueue.main.async {
+                            self.mediaAttachments.append((.other(data, fileExtension: "mp4", mimeType: "video/mp4"), item))
+                        }
+                    }
+                    }
                 }
             }
         }
@@ -208,6 +234,18 @@ class ComposeViewController: UIViewController {
             self.postButton.isEnabled = false
             }
         default: self.remainingCharactersLabel.validity = .Valid
+        }
+    }
+    
+    func newState(state: StatusUpdateState) {
+        guard let result = state.updates[self.updateID] else { return }
+        
+        DispatchQueue.main.async {
+            self.isLoading = false
+            switch result {
+            case .success(_, _): self.dismiss()
+            case .failure(_): break
+            }
         }
     }
     

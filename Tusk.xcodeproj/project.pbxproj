@@ -207,6 +207,9 @@
 		739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
 		739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
 		739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
+		739E919F213AE922005123AA /* StatusUpdateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E919E213AE922005123AA /* StatusUpdateState.swift */; };
+		739E91A0213AE922005123AA /* StatusUpdateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E919E213AE922005123AA /* StatusUpdateState.swift */; };
+		739E91A1213AE922005123AA /* StatusUpdateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E919E213AE922005123AA /* StatusUpdateState.swift */; };
 		73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
@@ -333,6 +336,7 @@
 		739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentViewCell.swift; sourceTree = "<group>"; };
 		739426E221288375005CBEDA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
 		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
+		739E919E213AE922005123AA /* StatusUpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateState.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
@@ -510,6 +514,7 @@
 			children = (
 				7379C5B4211F3D4B003BEB84 /* AppState.swift */,
 				7379C5B9211F4180003BEB84 /* AuthState.swift */,
+				739E919E213AE922005123AA /* StatusUpdateState.swift */,
 				732BE20C211F4ACE0049ADBD /* TimelineState.swift */,
 				73208E88212B290500529FA3 /* MentionsState.swift */,
 				732BE218211F96600049ADBD /* MessagesState.swift */,
@@ -947,6 +952,7 @@
 				732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				739426DF21272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				73023007212F55BD00BC1E9A /* ContextsState.swift in Sources */,
+				739E919F213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73022FF7212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				732BE252212233A30049ADBD /* TextView.swift in Sources */,
@@ -976,6 +982,7 @@
 				73167BCC2135ECDD00C0F28E /* BarButtonItem.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
+				739E91A0213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73023048213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
@@ -1041,6 +1048,7 @@
 				73167BCD2135ECDD00C0F28E /* BarButtonItem.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
+				739E91A1213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73023049213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,

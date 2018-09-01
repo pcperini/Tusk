@@ -93,14 +93,14 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             cell.favouritedButtonWasTapped = {
                 guard let client = GlobalStore.state.auth.client else { return }
                 cell.favouriteButton.isSelected = !cell.favouriteButton.isSelected
-                GlobalStore.dispatch(TimelineState.ToggleFavourite(client: client, status: displayStatus))
+                GlobalStore.dispatch(StatusUpdateState.ToggleFavourite(client: client, id: StatusUpdateState.updateID(), status: displayStatus))
             }
             
             cell.reblogButton.isSelected = displayStatus.reblogged ?? false
             cell.reblogButtonWasTapped = {
                 guard let client = GlobalStore.state.auth.client else { return }
                 cell.reblogButton.isSelected = !cell.reblogButton.isSelected
-                GlobalStore.dispatch(TimelineState.ToggleReblog(client: client, status: displayStatus))
+                GlobalStore.dispatch(StatusUpdateState.ToggleReblog(client: client, id: StatusUpdateState.updateID(), status: displayStatus))
             }
             
             return cell
