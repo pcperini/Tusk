@@ -8,6 +8,7 @@
 
 import UIKit
 import MastodonKit
+import YPImagePicker
 
 class ComposeViewController: UIViewController {
     private static let maxCharacterCount: Int = 500
@@ -19,11 +20,20 @@ class ComposeViewController: UIViewController {
     @IBOutlet var visibilityIndicator: UIImageView!
     @IBOutlet var textView: TextView!
     
+    @IBOutlet var attachmentCollectionView: UICollectionView!
     @IBOutlet var attachmentHeightConstraints: [ToggleLayoutConstraint]!
+    
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
     
-    var mediaAttachments: [MediaAttachment] = []
+    var mediaAttachments: [(MediaAttachment, YPMediaItem)] = [] {
+        didSet {
+            if (self.mediaAttachments.count != oldValue.count) {
+                self.updateMediaAttachments()
+            }
+        }
+    }
+    
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
         didSet {
@@ -64,7 +74,6 @@ class ComposeViewController: UIViewController {
         self.updateCharacterCount()
         
         self.textView.text = ""
-        self.textView.becomeFirstResponder()
         self.textView.highlightDataMatchers = [
             Regex("@(\\w+)(@\\w+.\\w+)?"),
             Regex("#(\\w+)"),
@@ -85,8 +94,14 @@ class ComposeViewController: UIViewController {
         self.bottomConstraintMinConstant = self.bottomConstraint.constant
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.textView.becomeFirstResponder()
+    }
+    
     private func updateMediaAttachments() {
         self.attachmentHeightConstraints.forEach { $0.toggle(on: !self.mediaAttachments.isEmpty) }
+        self.attachmentCollectionView.reloadData()
     }
     
     @objc func keyboardWillMove(notification: NSNotification) {
@@ -104,11 +119,27 @@ class ComposeViewController: UIViewController {
                 }
             default: break
             }
+            
+            self.view.layoutIfNeeded()
         }
     }
     
     @IBAction func attachmentButtonWasTapped(sender: UIButton?) {
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 4
+        config.library.mediaType = .photoAndVideo
+
+        config.hidesStatusBar = false
+        config.onlySquareImagesFromCamera = false
+        config.screens = [.library, .photo, .video]
+        config.startOnScreen = .library
         
+        config.colors.tintColor = sender?.tintColor ?? self.view.tintColor
+        UINavigationBar.appearance().tintColor = config.colors.tintColor
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking(completion: self.pickerDidFinishPicking(picker: picker))
+        self.present(picker, animated: true, completion: nil)
     }
     
     @IBAction func mentionButtonWasTapped(sender: UIButton?) {
@@ -153,6 +184,22 @@ class ComposeViewController: UIViewController {
         self.dismiss(sender: sender)
     }
     
+    func pickerDidFinishPicking(picker: YPImagePicker) -> ([YPMediaItem], Bool) -> Void {
+        return { [unowned picker] (items: [YPMediaItem], cancelled: Bool) in
+            defer { picker.dismiss(animated: true, completion: nil) }
+            guard !cancelled else { return }
+            
+            items.forEach { (item) in
+                switch item {
+                case .photo(let photo): self.mediaAttachments.append((.png(UIImagePNGRepresentation(photo.image)), item))
+                case .video(let video): video.fetchData(completion: { (data) in
+                    self.mediaAttachments.append((.other(data, fileExtension: "mov", mimeType: "video/quicktime"), item))
+                })
+                }
+            }
+        }
+    }
+    
     func updateCharacterCount() {
         self.remainingCharactersLabel.text = "\(self.remainingCharacters)"
         
@@ -174,6 +221,31 @@ extension ComposeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         textView.isScrollEnabled = textView.frame.height < textView.sizeThatFits(UILayoutFittingExpandedSize).height
         self.updateCharacterCount()
+    }
+}
+
+extension ComposeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.mediaAttachments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ImageAttachmentViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell",
+                                                                               for: indexPath,
+                                                                               usingNibNamed: "ImageAttachmentViewCell")
+        
+        let attachmentInfo = self.mediaAttachments[indexPath.item].1
+        switch attachmentInfo {
+        case .photo(let photo): cell.imageView.image = photo.image
+        case .video(let video): cell.imageView.image = video.thumbnail
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("boop")
+        collectionView.deselectItem(at: indexPath, animated: false)
     }
 }
 

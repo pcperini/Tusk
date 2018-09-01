@@ -163,7 +163,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="z7Q-pd-jGp" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jz3-8r-biW">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="jz3-8r-biW">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -179,6 +179,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="LKe-85-S3J" id="xne-HQ-tQc"/>
+                                    <outlet property="delegate" destination="LKe-85-S3J" id="ehh-sG-ssv"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -219,6 +223,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="attachmentCollectionView" destination="DO8-UP-T4c" id="JGN-0X-IAZ"/>
                         <outlet property="avatarView" destination="g06-Ym-zHN" id="365-PA-I7w"/>
                         <outlet property="bottomConstraint" destination="kQY-yB-Apm" id="bdr-lV-yQw"/>
                         <outlet property="postButton" destination="22m-UI-TP6" id="QrU-TW-CrG"/>

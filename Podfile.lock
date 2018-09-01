@@ -31,8 +31,13 @@ PODS:
     - Imaginary (~> 3.0)
   - MastodonKit (1.0.10)
   - MGSwipeTableCell (1.6.7)
+  - PryntTrimmerView (2.0.1)
   - ReSwift (4.0.1)
+  - SteviaLayout (4.2.0)
   - SwiftyBeaver (1.6.0)
+  - YPImagePicker (3.4.0):
+    - PryntTrimmerView (~> 2.0)
+    - SteviaLayout (~> 4.2.0)
 
 DEPENDENCIES:
   - AFDateHelper (~> 4.2)
@@ -45,6 +50,7 @@ DEPENDENCIES:
   - MGSwipeTableCell (~> 1.6)
   - ReSwift (~> 4.0)
   - SwiftyBeaver (~> 1.6)
+  - YPImagePicker (~> 3.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -60,8 +66,11 @@ SPEC REPOS:
     - KeychainAccess
     - Lightbox
     - MGSwipeTableCell
+    - PryntTrimmerView
     - ReSwift
+    - SteviaLayout
     - SwiftyBeaver
+    - YPImagePicker
 
 EXTERNAL SOURCES:
   MastodonKit:
@@ -87,9 +96,12 @@ SPEC CHECKSUMS:
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
+  PryntTrimmerView: 4260ae497a2f3e1bbfc0b71247eb74ab92bf0490
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
+  SteviaLayout: 0d2112caea45707695e8c718262c8ea3dd37ef17
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
+  YPImagePicker: 049aa31e2858c63730ace6b6358bba946178dfe3
 
-PODFILE CHECKSUM: da396aa4ca257ff9eabb5c7580f0fb62f5c90ecb
+PODFILE CHECKSUM: ea4d6d3cc058327ef6b0a77f8bc145db43e90285
 
 COCOAPODS: 1.5.3
