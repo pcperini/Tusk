@@ -49,6 +49,7 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
                 allData = self.mergeData(existingData: allData, newData: self.typeMapper(resp), filters: filters, range: range)
                 log.verbose("success \(request)", context: ["resp": resp, "type": DataType.self])
                 
+                print("allData: \(allData)")
                 guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
                 self.pollData(client: client,
                               range: nextPage,
@@ -63,25 +64,31 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
     
     private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter], range: RequestRange? = nil) -> [DataType] {
         let dataSet = Set<DataType>(existingData).union(newData)
-        return Array(dataSet).sorted(by: { (lhs, rhs) -> Bool in
-            if DataType.sortedByPageIndex {
-                let topPage: [DataType], bottomPage: [DataType]
-                switch range {
-                case .some(.max): (topPage, bottomPage) = (existingData, newData)
-                default: (topPage, bottomPage) = (newData, existingData)
+        return Array(dataSet)
+            .filter({ (data) in
+                return filters.reduce(true, { (filtered, filter) in
+                    filtered && filter(data)
+                })
+            })
+            .sorted(by: { (lhs, rhs) in
+                if DataType.sortedByPageIndex {
+                    let topPage: [DataType], bottomPage: [DataType]
+                    switch range {
+                    case .some(.max): (topPage, bottomPage) = (existingData, newData)
+                    default: (topPage, bottomPage) = (newData, existingData)
+                    }
+                    
+                    if (topPage.contains(lhs) && topPage.contains(rhs)) {
+                        return topPage.index(of: lhs)! < topPage.index(of: rhs)!
+                    } else if (bottomPage.contains(lhs) && bottomPage.contains(rhs)) {
+                        return bottomPage.index(of: lhs)! < bottomPage.index(of: rhs)!
+                    }
+                    
+                    return topPage.contains(lhs)
+                } else {
+                    return lhs > rhs
                 }
-                
-                if (topPage.contains(lhs) && topPage.contains(rhs)) {
-                    return topPage.index(of: lhs)! < topPage.index(of: rhs)!
-                } else if (bottomPage.contains(lhs) && bottomPage.contains(rhs)) {
-                    return bottomPage.index(of: lhs)! < bottomPage.index(of: rhs)!
-                }
-                
-                return topPage.contains(lhs)
-            } else {
-                return lhs > rhs
-            }
-        })
+            })
     }
     
     func updatedPages(pagination: Pagination?, nextPage: RequestRange?, previousPage: RequestRange?) -> (RequestRange?, RequestRange?) {
