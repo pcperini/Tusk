@@ -170,11 +170,6 @@ class ComposeViewController: UIViewController {
         self.present(visibilityPicker, animated: true, completion: nil)
     }
     
-    @IBAction func dismiss(sender: UIBarButtonItem? = nil) {
-        self.textView.resignFirstResponder()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
         GlobalStore.dispatch(TimelineState.PostStatus(client: client,
@@ -215,6 +210,17 @@ class ComposeViewController: UIViewController {
         default: self.remainingCharactersLabel.validity = .Valid
         }
     }
+    
+    // MARK: Navigation
+    @IBAction func dismiss(sender: UIBarButtonItem? = nil) {
+        self.textView.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func presentAttachments(startIndex: Int) {
+        let photoViewer = AttachmentsViewController(mediaItems: self.mediaAttachments.map { $0.1 }, startIndex: startIndex)
+        self.present(photoViewer, animated: true, completion: nil)
+    }
 }
 
 extension ComposeViewController: UITextViewDelegate {
@@ -241,12 +247,25 @@ extension ComposeViewController: UICollectionViewDelegateFlowLayout, UICollectio
         case .video(let video): cell.imageView.image = video.thumbnail
         }
         
+        cell.cellWasLongPressed = {
+            self.attachmentCellAtIndexPathWasLongPressed(indexPath: indexPath)
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("boop")
-        collectionView.deselectItem(at: indexPath, animated: false)
+        self.presentAttachments(startIndex: indexPath.row)
+    }
+    
+    func attachmentCellAtIndexPathWasLongPressed(indexPath: IndexPath) {
+        let attachmentActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        attachmentActionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        attachmentActionSheet.addAction(UIAlertAction(title: "Remove", style: .destructive) { (_) in
+            self.mediaAttachments.remove(at: indexPath.row)
+        })
+        
+        self.present(attachmentActionSheet, animated: true, completion: nil)
     }
 }
 

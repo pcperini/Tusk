@@ -8,6 +8,7 @@
 
 import Lightbox
 import MastodonKit
+import YPImagePicker
 
 class AttachmentsViewController: LightboxController {
     static func configure() {
@@ -24,6 +25,17 @@ class AttachmentsViewController: LightboxController {
         }
         
         let startIndex = (initialAttachment != nil ? attachments.index(of: initialAttachment!) : 0) ?? 0
+        self.init(images: images, startIndex: startIndex)
+    }
+    
+    convenience init(mediaItems: [YPMediaItem], startIndex: Int = 0) {
+        let images = mediaItems.map { (item) -> LightboxImage in
+            switch item {
+            case .photo(let photo): return LightboxImage(image: photo.image)
+            case .video(let video): return LightboxImage(image: video.thumbnail, text: "", videoURL: video.url)
+            }
+        }
+        
         self.init(images: images, startIndex: startIndex)
     }
     
