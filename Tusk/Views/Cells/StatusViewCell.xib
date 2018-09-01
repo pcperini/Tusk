@@ -259,6 +259,7 @@
                             <constraint firstItem="qWp-mM-0x0" firstAttribute="leading" secondItem="X3Y-z1-s31" secondAttribute="trailing" constant="10" id="fBu-Hd-WNv"/>
                             <constraint firstAttribute="trailing" secondItem="RnT-f8-605" secondAttribute="trailing" id="hXJ-G1-5ds"/>
                             <constraint firstAttribute="trailing" secondItem="llc-aq-Ycl" secondAttribute="trailing" id="jFY-zu-LK2"/>
+                            <constraint firstItem="RnT-f8-605" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qWp-mM-0x0" secondAttribute="bottom" constant="12" id="n6j-lU-WQ2"/>
                             <constraint firstAttribute="bottom" secondItem="llc-aq-Ycl" secondAttribute="bottom" id="sXW-be-PGP"/>
                             <constraint firstItem="RnT-f8-605" firstAttribute="top" secondItem="Gg8-d9-eYv" secondAttribute="bottom" constant="12" id="uUT-wX-4AF" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                         </constraints>
@@ -300,7 +301,6 @@
                 <outletCollection property="reblogWidthConstraints" destination="MSb-iX-Aks" collectionClass="NSMutableArray" id="Esu-Ab-pBD"/>
                 <outletCollection property="reblogWidthConstraints" destination="lQw-lo-dCi" collectionClass="NSMutableArray" id="kdR-vd-tOx"/>
                 <outletCollection property="reblogWidthConstraints" destination="juj-tY-Ozo" collectionClass="NSMutableArray" id="5dw-T3-2pI"/>
-                <outletCollection property="attachmentTopConstraints" destination="5Dg-yu-MM7" collectionClass="NSMutableArray" id="Edg-G6-QM0"/>
                 <outletCollection property="attachmentTopConstraints" destination="uUT-wX-4AF" collectionClass="NSMutableArray" id="s3O-D7-axv"/>
                 <outletCollection property="backgroundColoredViews" destination="X3Y-z1-s31" collectionClass="NSMutableArray" id="qn4-QL-R3M"/>
             </connections>
