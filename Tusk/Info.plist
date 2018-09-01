@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>So that you can attach a picture or video to this post.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>So that you can attach a picture or video to this post.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>So that you can attach a video to this post.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -36,9 +30,15 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>21</string>
+	<string>22</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>So that you can attach a picture or video to this post.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>So that you can attach a video to this post.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>So that you can attach a picture or video to this post.</string>
 	<key>TuskEnvVars</key>
 	<dict>
 		<key>SBLogCredentials</key>
