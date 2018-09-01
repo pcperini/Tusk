@@ -100,7 +100,7 @@
                   moduleName = "Tusk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/StatusUpdateState.swift"
-                  timestampString = "557514797.913094"
+                  timestampString = "557529668.940573"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -115,7 +115,7 @@
                   moduleName = "Tusk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/States/StatusUpdateState.swift"
-                  timestampString = "557514797.9148149"
+                  timestampString = "557529668.944008"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "99"
@@ -234,6 +234,22 @@
                   offsetFromSymbolStart = "37">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/Extensions/MastodonKit+Comparable.swift"
+            timestampString = "557527984.8640029"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "&lt;(_:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

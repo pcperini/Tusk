@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastodonKit
 
 enum PageDirection {
     case NextPage
@@ -23,7 +24,6 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
     var navBar: NavigationBar? {
         return self.navigationController?.navigationBar as? NavigationBar
     }
-    
     
     private enum State {
         case Refreshing
@@ -91,21 +91,23 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
         let indicatorFrame = self.paginationActivityIndicator.convert(self.paginationActivityIndicator.frame, to: scrollView)
         if (indicatorFrame.intersects(scrollView.bounds)) {
             self.pageControlBeganRefreshing()
+            return
         }
-        
-        guard let topIndex = self.tableView.indexPathsForVisibleRows?.first,
-            let topData = dataForRowAtIndexPath(indexPath: topIndex) else { return }
+                
+        guard self.state == .Resting,
+            let topIndex = self.tableView.fullyVisibleIndexPaths().first,
+            let topData = self.dataForRowAtIndexPath(indexPath: topIndex) else { return }
         guard let lastSeen = self.lastSeenData else {
             self.lastSeenData = topData
             return
         }
-        
+    
         self.lastSeenData = max(topData, lastSeen)
         self.updateUnreadIndicator()
     }
     
     func dataForRowAtIndexPath(indexPath: IndexPath) -> DataType? {
-        fatalError("dataForRowAtIndexPath has no valid abstract implementation")
+        fatalError("dataForRowAtIndexPath(indexPath:) has no valid abstract implementation")
     }
     
     func updateUnreadIndicator() {

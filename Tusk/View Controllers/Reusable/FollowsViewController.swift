@@ -84,12 +84,7 @@ class FollowsViewController: PaginatingTableViewController<Account>, StoreSubscr
         let cell: FollowViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Follow", for: indexPath, usingNibNamed: "FollowViewCell")
         
         let follow = self.follows[indexPath.row]
-        cell.avatarView.avatarURL = URL(string: follow.avatar)
-        cell.avatarView.badgeType = AvatarView.BadgeType(account: follow)
-        cell.displayNameLabel.text = follow.name
-        cell.usernameLabel.text = follow.handle
-        cell.detailLabel.text = follow.behaviorTidbit
-        cell.preserveBackgroundColors()
+        cell.account = follow
         
         return cell
     }
