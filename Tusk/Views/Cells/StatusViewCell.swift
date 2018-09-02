@@ -68,6 +68,7 @@ class StatusViewCell: TableViewCell {
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
         
         self.cellLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellWasLongPressed(recognizer:)))
+        self.cellLongPressRecognizer.minimumPressDuration = 0.25
         self.addGestureRecognizer(self.cellLongPressRecognizer)
         
         self.statusTextView.delegate = self
