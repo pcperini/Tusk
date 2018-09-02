@@ -14,6 +14,10 @@ import SafariServices
 class StatusesViewController: PaginatingTableViewController<Status> {
     private var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
+    
+    var readPositionStatusID: String? = nil
+    private var hasScrolledToReadPosition: Bool = false
+    
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               data: nil,
                                                                                               selectedElement: nil,
@@ -22,7 +26,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     var nextPageAction: () -> Action? = { nil }
     var previousPageAction: () -> Action? = { nil }
     var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
-    
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
@@ -66,6 +69,15 @@ class StatusesViewController: PaginatingTableViewController<Status> {
 
         self.statuses = statuses
         self.tableMergeHandler.mergeData(data: statuses)
+        
+        if !self.hasScrolledToReadPosition,
+            let readPositionID = self.readPositionStatusID,
+            let index = self.statuses.enumerated().first(where: { $0.element.id == readPositionID })?.offset {
+            self.hasScrolledToReadPosition = true
+            
+            self.tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: false)
+            self.scrollViewDidEndDecelerating(self.tableView)
+        }
         
         self.updateUnreadIndicator()
     }

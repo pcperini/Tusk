@@ -51,6 +51,7 @@ struct AppState: StateType {
         guard let client = self.auth.client else { return }
         DispatchQueue.main.async {
             GlobalStore.dispatch(StatusesState.LoadUnsuppressedStatusIDs())
+            GlobalStore.dispatch(StatusesState.LoadReadPositionStatusID())
             GlobalStore.dispatch(TimelineState.PollFilters(client: client))
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))

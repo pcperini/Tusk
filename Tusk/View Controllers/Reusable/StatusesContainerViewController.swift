@@ -13,6 +13,7 @@ import ReSwift
 protocol StatusViewableState {
     var statuses: [Status] { get set }
     var unsuppressedStatusIDs: [String] { get set }
+    var readPositionStatusID: String? { get set }
 }
 
 class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableState>: TableContainerViewController, StoreSubscriber {
@@ -47,6 +48,10 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
             guard let client = GlobalStore.state.auth.client else { return nil }
             return self.pollStatusesAction(client: client, pageDirection: .Reload)
         }
+        
+        self.statusesViewController?.readPositionDidUpdate = { (status) in
+            GlobalStore.dispatch(TimelineState.SetReadPositionStatusID(value: status?.id))
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,6 +63,7 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
         DispatchQueue.main.async {
             self.statusesViewController?.updateStatuses(statuses: state.statuses)
             self.statusesViewController?.unsuppressedStatusIDs = state.unsuppressedStatusIDs
+            self.statusesViewController?.readPositionStatusID = state.readPositionStatusID
         }
     }
 }

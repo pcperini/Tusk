@@ -18,6 +18,7 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
     var statuses: [Status] { get set }
     var unsuppressedStatusIDs: [String] { get set }
     var filters: [(Status) -> Bool] { get set }
+    var readPositionStatusID: String? { get set }
     
     init()
     func pollStatuses(client: Client, range: RequestRange?)
@@ -28,9 +29,11 @@ extension StatusesState {
     typealias SetFilters = StatusesStateSetFilters<Self>
     typealias SetStatuses = StatusesStateSetStatuses<Self>
     typealias SetUnsuppressedStatusIDs = StatusesStateSetUnsuppressedStatusIDs<Self>
+    typealias SetReadPositionStatusID = StatusesStateSetReadPositionStatusID<Self>
     typealias SetPage = StatusesStateSetPage<Self>
     
     typealias LoadUnsuppressedStatusIDs = StatusesStateLoadUnsuppressedStatusIDs
+    typealias LoadReadPositionStatusID = StatusesStateLoadReadPositionStatusID
     typealias PollStatuses = StatusesStatePollStatuses<Self>
     typealias PollOlderStatuses = StatusesStatePollOlderStatuses<Self>
     typealias PollNewerStatuses = StatusesStatePollNewerStatuses<Self>
@@ -45,10 +48,12 @@ extension StatusesState {
         case let action as SetFilters: state.updateStatuses(statuses: state.statuses, withFilters: action.value)
         case let action as SetStatuses: state.updateStatuses(statuses: action.value, withFilters: state.filters)
         case let action as SetUnsuppressedStatusIDs: state.saveUnsuppressedStatusIDs(statusIDs: action.value)
+        case let action as SetReadPositionStatusID: state.saveReadPositionStatusID(statusID: action.value)
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
                                                                                                              nextPage: state.nextPage,
                                                                                                              previousPage: state.previousPage)
         case is LoadUnsuppressedStatusIDs: state.loadUnsuppressedStatusIDs()
+        case is LoadReadPositionStatusID: state.loadReadPositionStatusID()
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
@@ -94,9 +99,20 @@ extension StatusesState {
         self.unsuppressedStatusIDs = Array(statusIDs.keys)
     }
     
+    mutating func loadReadPositionStatusID() {
+        let statusID = NSUbiquitousKeyValueStore.default.string(forKey: "ReadPositionStatusID")
+        self.readPositionStatusID = statusID
+    }
+    
     mutating func updateStatuses(statuses: [Status], withFilters filters: [(Status) -> Bool]) {
         self.filters = filters
         self.statuses = filters.reduce(statuses, { (all, next) in all.filter(next) })
+    }
+    
+    mutating func saveReadPositionStatusID(statusID: String?) {
+        self.readPositionStatusID = statusID
+        NSUbiquitousKeyValueStore.default.set(statusID, forKey: "ReadPositionStatusID")
+        NSUbiquitousKeyValueStore.default.synchronize()
     }
     
     mutating func saveUnsuppressedStatusIDs(statusIDs: [String]) {
@@ -137,8 +153,11 @@ extension StatusesState {
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
 struct StatusesStateSetStatuses<State: StateType>: Action { let value: [Status] }
 struct StatusesStateSetUnsuppressedStatusIDs<State: StateType>: Action { let value: [String] }
+struct StatusesStateSetReadPositionStatusID<State: StateType>: Action { let value: String? }
 struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
+
 struct StatusesStateLoadUnsuppressedStatusIDs: Action {}
+struct StatusesStateLoadReadPositionStatusID: Action {}
 struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }

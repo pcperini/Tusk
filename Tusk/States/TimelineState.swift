@@ -13,6 +13,8 @@ import ReSwift
 struct TimelineState: StatusesState {    
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
+    var readPositionStatusID: String? = nil
+    
     var filters: [(Status) -> Bool] = [{ $0.visibility != .direct }]
     
     var nextPage: RequestRange? = nil

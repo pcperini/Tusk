@@ -25,6 +25,8 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
         return self.navigationController?.navigationBar as? NavigationBar
     }
     
+    var readPositionDidUpdate: ((DataType?) -> Void)? = nil
+    
     private enum State {
         case Refreshing
         case Paging
@@ -103,6 +105,7 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
         }
     
         self.lastSeenData = max(topData, lastSeen)
+        self.readPositionDidUpdate?(topData)
         self.updateUnreadIndicator()
     }
     

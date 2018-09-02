@@ -13,6 +13,8 @@ import ReSwift
 struct FavouritesState: StatusesState {
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
+    var readPositionStatusID: String? = nil
+    
     var filters: [(Status) -> Bool] = []
     
     var nextPage: RequestRange? = nil

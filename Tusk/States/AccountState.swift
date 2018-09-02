@@ -48,6 +48,7 @@ struct AccountState: StateType, StatusViewableState {
     
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
+    var readPositionStatusID: String? = nil
     
     private var statusesNextPage: RequestRange? = nil
     private var statusesPreviousPage: RequestRange? = nil
