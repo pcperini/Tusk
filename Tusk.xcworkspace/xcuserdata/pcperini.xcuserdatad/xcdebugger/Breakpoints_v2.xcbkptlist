@@ -20,124 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557515827.7333241"
+            timestampString = "557595872.8789181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557515827.733996"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "updateStatus()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
-            timestampString = "557535109.795357"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "pickerDidFinishPicking(picker:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
-            timestampString = "557535109.796283"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "pickerDidFinishPicking(picker:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
-            timestampString = "557535109.796713"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "pickerDidFinishPicking(picker:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (YPImagePicker.YPMediaItem) -&gt; () in closure #1 (Swift.Array&lt;YPImagePicker.YPMediaItem&gt;, Swift.Bool) -&gt; () in Tusk.ComposeViewController.pickerDidFinishPicking(picker: YPImagePicker.YPImagePicker) -&gt; (Swift.Array&lt;YPImagePicker.YPMediaItem&gt;, Swift.Bool) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/View%20Controllers/Reusable/ComposeViewController.swift"
-                  timestampString = "557514881.684702"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "212"
-                  endingLineNumber = "212"
-                  offsetFromSymbolStart = "673">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (YPImagePicker.YPMediaItem) -&gt; () in closure #1 (Swift.Array&lt;YPImagePicker.YPMediaItem&gt;, Swift.Bool) -&gt; () in Tusk.ComposeViewController.pickerDidFinishPicking(picker: YPImagePicker.YPImagePicker) -&gt; (Swift.Array&lt;YPImagePicker.YPMediaItem&gt;, Swift.Bool) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/View%20Controllers/Reusable/ComposeViewController.swift"
-                  timestampString = "557514881.687693"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "212"
-                  endingLineNumber = "212"
-                  offsetFromSymbolStart = "684">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (YPImagePicker.YPMediaItem) -&gt; () in closure #1 (Swift.Array&lt;YPImagePicker.YPMediaItem&gt;, Swift.Bool) -&gt; () in Tusk.ComposeViewController.pickerDidFinishPicking(picker: YPImagePicker.YPImagePicker) -&gt; (Swift.Array&lt;YPImagePicker.YPMediaItem&gt;, Swift.Bool) -&gt; ()"
-                  moduleName = "Tusk"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Tusk/View%20Controllers/Reusable/ComposeViewController.swift"
-                  timestampString = "557514881.690914"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

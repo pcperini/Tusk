@@ -62,6 +62,11 @@ extension Status {
         return self.mediaAttachments.reduce([]) { $0 + $1.allURLs }
     }
     
+    var warning: String? {
+        if self.spoilerText.isEmpty { return nil }
+        return self.spoilerText
+    }
+    
     func cloned(changes: [String: Any] = [:]) throws -> Status {
         guard var mutableJSONValue = self.jsonValue else {
             throw CloneError(description: "Could not serialize \(self)")

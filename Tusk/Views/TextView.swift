@@ -34,9 +34,10 @@ import DTCoreText
         case .natural: return .natural
         }
     }
-    
+        
     var htmlText: String? {
         didSet {
+            self.text = ""
             guard let text = self.htmlText else { return }
             guard text.contains("<") else { self.text = text; return }
             

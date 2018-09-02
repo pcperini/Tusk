@@ -16,6 +16,10 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var timestampLabel: TimestampLabel!
     
+    @IBOutlet var warningTextView: TextView!
+    @IBOutlet var warningHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var warningBottomConstraints: [ToggleLayoutConstraint]!
+    
     @IBOutlet var statusTextView: TextView!
     @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
@@ -101,6 +105,11 @@ class StatusViewCell: TableViewCell {
             self.visibilityWidthConstraints.forEach { $0.toggle(on: false) }
             }
         }
+        
+        self.warningHeightConstraint.priority = status.warning == nil ? .defaultHigh : .init(rawValue: 1)
+        self.warningBottomConstraints.forEach { $0.toggle(on: !status.spoilerText.isEmpty) }
+        self.warningTextView.htmlText = status.warning
+        self.warningTextView.setNeedsLayout()
         
         self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
         self.statusTextView.htmlText = status.content
