@@ -13,6 +13,7 @@ import YPImagePicker
 class AttachmentsViewController: LightboxController {
     static func configure() {
         LightboxConfig.CloseButton.enabled = false
+        LightboxConfig.PageIndicator.separatorColor = .clear
     }
     
     convenience init(attachments: [Attachment], initialAttachment: Attachment?) {
