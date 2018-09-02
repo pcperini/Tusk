@@ -12,6 +12,7 @@ import ReSwift
 
 protocol StatusViewableState {
     var statuses: [Status] { get set }
+    var unsuppressedStatusIDs: [String] { get set }
 }
 
 class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableState>: TableContainerViewController, StoreSubscriber {
@@ -56,6 +57,7 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
     func newState(state: StoreSubscriberStateType) {
         DispatchQueue.main.async {
             self.statusesViewController?.updateStatuses(statuses: state.statuses)
+            self.statusesViewController?.unsuppressedStatusIDs = state.unsuppressedStatusIDs
         }
     }
 }

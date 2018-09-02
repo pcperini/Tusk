@@ -13,6 +13,7 @@ import SafariServices
 
 class StatusesViewController: PaginatingTableViewController<Status> {
     private var statuses: [Status] = []
+    var unsuppressedStatusIDs: [String] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               data: nil,
                                                                                               selectedElement: nil,
@@ -22,7 +23,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     var previousPageAction: () -> Action? = { nil }
     var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
     
-    var unsurpressedStatuses: [Status] = []
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
@@ -114,16 +114,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         let status = self.statuses[statusIndex]
         let displayStatus = status.reblog ?? status
         
-        if (cell.status == status) {
-            return cell
-        }
-        
         cell.originalStatus = nil
         if (status != displayStatus) {
             cell.originalStatus = status
         }
         
-        cell.isSupressingContent = status.warning != nil && !self.unsurpressedStatuses.contains(status)
+        cell.isSupressingContent = status.warning != nil && !self.unsuppressedStatusIDs.contains(status.id)
         
         cell.attachmentWasTapped = { (attachment) in
             self.presentAttachment(attachment: attachment, forStatus: displayStatus)
@@ -146,8 +142,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.pushToContext(status: status)
         }
         cell.contentShouldReveal = {
-            if (self.unsurpressedStatuses.contains(status)) { return }
-            self.unsurpressedStatuses.append(status)
+            if (self.unsuppressedStatusIDs.contains(status.id)) { return }
+            GlobalStore.dispatch(TimelineState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 tableView.performBatchUpdates({
                     tableView.reloadRows(at: [indexPath], with: .automatic)

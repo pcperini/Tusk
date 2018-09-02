@@ -46,6 +46,7 @@ struct AppState: StateType {
     func pollData() {
         guard let client = self.auth.client else { return }
         DispatchQueue.main.async {
+            GlobalStore.dispatch(StatusesState.LoadUnsuppressedStatusIDs())
             GlobalStore.dispatch(TimelineState.PollFilters(client: client))
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
             GlobalStore.dispatch(MentionsState.PollStatuses(client: client))

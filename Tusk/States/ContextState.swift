@@ -15,6 +15,7 @@ struct ContextState: StateType, StatusViewableState {
     
     var status: Status
     var statuses: [Status] = []
+    var unsuppressedStatusIDs: [String] = []
     var context: Context? {
         didSet {
             self.statuses = []
@@ -30,7 +31,7 @@ struct ContextState: StateType, StatusViewableState {
         switch action {
         case let action as SetContext: state?.context = action.value
         case let action as PollContext: do {
-            state = ContextState(status: action.status, statuses: [], context: nil)
+            state = ContextState(status: action.status, statuses: [], unsuppressedStatusIDs: [], context: nil)
             state?.pollContext(client: action.client)
             }
         case let action as StatusesState.UpdateStatus: do {

@@ -349,7 +349,7 @@
     </objects>
     <resources>
         <image name="FavouriteBadge" width="20" height="20"/>
-        <image name="FlagBadge" width="20" height="20"/>
+        <image name="FlagBadge" width="17" height="20"/>
         <image name="LockedBadge" width="14" height="20"/>
         <image name="ReblogBadge" width="20" height="23"/>
         <namedColor name="ContextBackgroundColor">
