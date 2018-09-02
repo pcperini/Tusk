@@ -341,6 +341,7 @@
 		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
 		739E919E213AE922005123AA /* StatusUpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateState.swift; sourceTree = "<group>"; };
 		739E91A2213B3F68005123AA /* UITableView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Visibility.swift"; sourceTree = "<group>"; };
+		739E91A6213C51B7005123AA /* Tusk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tusk.entitlements; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
@@ -559,6 +560,7 @@
 		73EAEC55211E41A900C2620F /* Tusk */ = {
 			isa = PBXGroup;
 			children = (
+				739E91A6213C51B7005123AA /* Tusk.entitlements */,
 				73EAEC56211E41A900C2620F /* AppDelegate.swift */,
 				7379C5AA211E6D89003BEB84 /* View Controllers */,
 				732BE2322120CC2F0049ADBD /* Views */,
@@ -684,6 +686,11 @@
 				TargetAttributes = {
 					73EAEC52211E41A900C2620F = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					73EAEC68211E41AA00C2620F = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1260,6 +1267,7 @@
 			baseConfigurationReference = 297B24945DF67AFFA7087485 /* Pods-Tusk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tusk/Tusk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D9G4X7TP5Q;
 				INFOPLIST_FILE = Tusk/Info.plist;
@@ -1282,6 +1290,7 @@
 			baseConfigurationReference = 7EDDF3DADBD7E280D5589EB3 /* Pods-Tusk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tusk/Tusk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D9G4X7TP5Q;
 				INFOPLIST_FILE = Tusk/Info.plist;

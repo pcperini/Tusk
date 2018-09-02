@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ToggleLayoutConstraint: NSLayoutConstraint {
+@IBDesignable class ToggleLayoutConstraint: NSLayoutConstraint {
     var targetConstant: CGFloat = 0.0
-    var isToggledOn: Bool = true
+    @IBInspectable var isToggledOn: Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()

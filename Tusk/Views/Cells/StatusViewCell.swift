@@ -16,14 +16,19 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var timestampLabel: TimestampLabel!
     
+    @IBOutlet var warningTextView: TextView!
+    @IBOutlet var warningHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var warningBottomConstraints: [ToggleLayoutConstraint]!
+    
     @IBOutlet var statusTextView: TextView!
+    @IBOutlet var statusBottomConstraint: ToggleLayoutConstraint!
     @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var visibilityBadge: UIImageView!
     @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
-    @IBOutlet var attachmentTopConstraints: [ToggleLayoutConstraint]!
+    @IBOutlet var attachmentBottomConstraint: ToggleLayoutConstraint!
     @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var reblogView: UIView!
@@ -40,12 +45,16 @@ class StatusViewCell: TableViewCell {
     var linkWasTapped: ((URL?, String) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
     var contextPushWasTriggered: ((Status?) -> Void)?
+    var contentShouldReveal: (() -> Void)?
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
     private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
+    private var cellLongPressRecognizer: UILongPressGestureRecognizer!
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
+    
+    var isSupressingContent: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,6 +66,9 @@ class StatusViewCell: TableViewCell {
         
         self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
+        
+        self.cellLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellWasLongPressed(recognizer:)))
+        self.addGestureRecognizer(self.cellLongPressRecognizer)
         
         self.statusTextView.delegate = self
         self.statusTextView.hideLinkCriteria = { (link) in
@@ -77,7 +89,7 @@ class StatusViewCell: TableViewCell {
         self.rightSwipeSettings.transition = .drag
     }
     
-    private func updateStatus() {
+    private func updateStatus(oldValue: Status? = nil) {
         guard let status = self.status else { return }
         
         self.avatarView.avatarURL = URL(string: status.account.avatar)
@@ -102,13 +114,20 @@ class StatusViewCell: TableViewCell {
             }
         }
         
+        self.warningHeightConstraint.priority = status.warning == nil ? .defaultHigh : .init(rawValue: 1)
+        self.warningBottomConstraints.forEach { $0.toggle(on: !status.spoilerText.isEmpty) }
+        self.warningTextView.htmlText = status.warning
+        self.warningTextView.setNeedsLayout()
+        
+        let hideTextView = status.content.isEmpty || self.isSupressingContent
         self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
-        self.statusTextView.htmlText = status.content
-        self.statusHeightConstraint.priority = self.statusTextView.text.isEmpty ? .defaultHigh : .init(rawValue: 1)
+        self.statusTextView.htmlText = hideTextView ? nil : status.content
+        self.statusHeightConstraint.priority = hideTextView ? .defaultHigh : .init(rawValue: 1)
+        self.statusBottomConstraint.toggle(on: !hideTextView)
         self.statusTextView.setNeedsLayout()
     
         self.attachmentCollectionView.reloadData()
-        self.attachmentTopConstraints.forEach { $0.toggle(on: !status.mediaAttachments.isEmpty && !status.content.isEmpty) }
+        self.attachmentBottomConstraint.toggle(on: !status.mediaAttachments.isEmpty && !hideTextView)
         self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         self.attachmentCollectionView.layoutIfNeeded()
@@ -143,6 +162,11 @@ class StatusViewCell: TableViewCell {
         case self.reblogAvatarTapRecognizer: self.accountElementWasTapped?(self.originalStatus?.account)
         default: return
         }
+    }
+    
+    @objc func cellWasLongPressed(recognizer: UIGestureRecognizer!) {
+        guard self.isSupressingContent else { return }
+        self.contentShouldReveal?()
     }
 }
 

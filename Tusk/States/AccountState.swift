@@ -45,7 +45,9 @@ struct AccountState: StateType, StatusViewableState {
     var pinnedStatuses: [Status] = []
     var following: [Account] = []
     var followers: [Account] = []
+    
     var statuses: [Status] = []
+    var unsuppressedStatusIDs: [String] = []
     
     private var statusesNextPage: RequestRange? = nil
     private var statusesPreviousPage: RequestRange? = nil

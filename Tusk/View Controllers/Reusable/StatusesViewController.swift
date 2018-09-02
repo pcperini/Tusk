@@ -13,6 +13,7 @@ import SafariServices
 
 class StatusesViewController: PaginatingTableViewController<Status> {
     private var statuses: [Status] = []
+    var unsuppressedStatusIDs: [String] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               data: nil,
                                                                                               selectedElement: nil,
@@ -21,6 +22,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     var nextPageAction: () -> Action? = { nil }
     var previousPageAction: () -> Action? = { nil }
     var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
+    
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
@@ -117,6 +119,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             cell.originalStatus = status
         }
         
+        cell.isSupressingContent = status.warning != nil && !self.unsuppressedStatusIDs.contains(status.id)
+        
         cell.attachmentWasTapped = { (attachment) in
             self.presentAttachment(attachment: attachment, forStatus: displayStatus)
         }
@@ -136,6 +140,15 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         cell.contextPushWasTriggered = { (status) in
             guard let status = status else { return }
             self.pushToContext(status: status)
+        }
+        cell.contentShouldReveal = {
+            if (self.unsuppressedStatusIDs.contains(status.id)) { return }
+            GlobalStore.dispatch(TimelineState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                tableView.performBatchUpdates({
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                }, completion: nil)
+            }
         }
         
         cell.status = displayStatus
