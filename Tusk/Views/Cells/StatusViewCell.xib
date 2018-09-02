@@ -312,6 +312,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="attachmentBottomConstraint" destination="5Dg-yu-MM7" id="EeW-zh-ftZ"/>
                 <outlet property="attachmentCollectionView" destination="RnT-f8-605" id="y4t-w0-0mH"/>
                 <outlet property="attachmentHeightConstraint" destination="CcT-Dn-F4o" id="8ue-l0-Jrv"/>
                 <outlet property="avatarView" destination="X3Y-z1-s31" id="dFl-JB-OWu"/>
@@ -323,6 +324,7 @@
                 <outlet property="reblogStatBadge" destination="9ou-WB-QPT" id="NVi-sX-W7u"/>
                 <outlet property="reblogStatLabel" destination="Njr-zp-nPG" id="5BR-QB-zzz"/>
                 <outlet property="reblogView" destination="3wi-h1-ZDU" id="oY5-Db-w0B"/>
+                <outlet property="statusBottomConstraint" destination="uUT-wX-4AF" id="3HS-Bc-VzI"/>
                 <outlet property="statusHeightConstraint" destination="Iiq-Ks-gCd" id="gpL-Ck-ufY"/>
                 <outlet property="statusTextView" destination="Gg8-d9-eYv" id="Q2B-ep-dCQ"/>
                 <outlet property="timestampLabel" destination="NDo-Ow-OmZ" id="Wdm-11-vpi"/>
@@ -337,7 +339,6 @@
                 <outletCollection property="reblogWidthConstraints" destination="MSb-iX-Aks" collectionClass="NSMutableArray" id="Esu-Ab-pBD"/>
                 <outletCollection property="reblogWidthConstraints" destination="lQw-lo-dCi" collectionClass="NSMutableArray" id="kdR-vd-tOx"/>
                 <outletCollection property="reblogWidthConstraints" destination="juj-tY-Ozo" collectionClass="NSMutableArray" id="5dw-T3-2pI"/>
-                <outletCollection property="attachmentTopConstraints" destination="uUT-wX-4AF" collectionClass="NSMutableArray" id="s3O-D7-axv"/>
                 <outletCollection property="backgroundColoredViews" destination="X3Y-z1-s31" collectionClass="NSMutableArray" id="qn4-QL-R3M"/>
                 <outletCollection property="warningBottomConstraints" destination="LW7-Nk-zFF" collectionClass="NSMutableArray" id="t9g-Ho-Ils"/>
                 <outletCollection property="warningBottomConstraints" destination="bmx-z9-cnh" collectionClass="NSMutableArray" id="318-cl-Ykq"/>

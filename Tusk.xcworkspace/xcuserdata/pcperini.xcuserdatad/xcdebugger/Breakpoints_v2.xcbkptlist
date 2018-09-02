@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557595872.8789181"
+            timestampString = "557596369.553458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "updateStatus()"
             landmarkType = "7">
          </BreakpointContent>

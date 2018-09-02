@@ -21,13 +21,14 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var warningBottomConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var statusTextView: TextView!
+    @IBOutlet var statusBottomConstraint: ToggleLayoutConstraint!
     @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var visibilityBadge: UIImageView!
     @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
-    @IBOutlet var attachmentTopConstraints: [ToggleLayoutConstraint]!
+    @IBOutlet var attachmentBottomConstraint: ToggleLayoutConstraint!
     @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var reblogView: UIView!
@@ -50,6 +51,11 @@ class StatusViewCell: TableViewCell {
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
+    
+    private var shouldSuppressContent: Bool = false
+    var isSupressingContent: Bool {
+        return self.shouldSuppressContent || self.status?.warning != nil
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -111,13 +117,15 @@ class StatusViewCell: TableViewCell {
         self.warningTextView.htmlText = status.warning
         self.warningTextView.setNeedsLayout()
         
+        let hideTextView = status.content.isEmpty || self.isSupressingContent
         self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
-        self.statusTextView.htmlText = status.content
-        self.statusHeightConstraint.priority = self.statusTextView.text.isEmpty ? .defaultHigh : .init(rawValue: 1)
+        self.statusTextView.htmlText = hideTextView ? nil : status.content
+        self.statusHeightConstraint.priority = hideTextView ? .defaultHigh : .init(rawValue: 1)
+        self.statusBottomConstraint.toggle(on: !hideTextView)
         self.statusTextView.setNeedsLayout()
     
         self.attachmentCollectionView.reloadData()
-        self.attachmentTopConstraints.forEach { $0.toggle(on: !status.mediaAttachments.isEmpty && !status.content.isEmpty) }
+        self.attachmentBottomConstraint.toggle(on: !status.mediaAttachments.isEmpty && !hideTextView)
         self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         self.attachmentCollectionView.layoutIfNeeded()
