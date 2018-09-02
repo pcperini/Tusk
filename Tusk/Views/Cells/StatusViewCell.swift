@@ -114,9 +114,11 @@ class StatusViewCell: TableViewCell {
             }
         }
         
-        self.warningHeightConstraint.priority = status.warning == nil ? .defaultHigh : .init(rawValue: 1)
-        self.warningBottomConstraints.forEach { $0.toggle(on: !status.spoilerText.isEmpty) }
+        let hideWarning = status.warning == nil
+        self.warningHeightConstraint.priority = hideWarning ? .defaultHigh : .init(rawValue: 1)
+        self.warningBottomConstraints.forEach { $0.toggle(on: !hideWarning) }
         self.warningTextView.htmlText = status.warning
+        self.warningTextView.superview?.isHidden = hideWarning
         self.warningTextView.setNeedsLayout()
         
         let hideTextView = status.content.isEmpty || self.isSupressingContent
@@ -124,14 +126,16 @@ class StatusViewCell: TableViewCell {
         self.statusTextView.htmlText = hideTextView ? nil : status.content
         self.statusHeightConstraint.priority = hideTextView ? .defaultHigh : .init(rawValue: 1)
         self.statusBottomConstraint.toggle(on: !hideTextView)
+        self.statusTextView.isHidden = hideTextView
         self.statusTextView.setNeedsLayout()
     
+        let hideAttachmentView = status.mediaAttachments.isEmpty
         self.attachmentCollectionView.reloadData()
-        self.attachmentBottomConstraint.toggle(on: !status.mediaAttachments.isEmpty && !hideTextView)
+        self.attachmentBottomConstraint.toggle(on: !hideAttachmentView)
         self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
+        self.attachmentCollectionView.isHidden = hideAttachmentView
         self.attachmentCollectionView.setNeedsLayout()
-        self.attachmentCollectionView.layoutIfNeeded()
-                
+        
         var hasReblogInfo = false
         self.reblogLabel.text = ""
         
