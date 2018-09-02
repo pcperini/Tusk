@@ -93,7 +93,7 @@
                                 <rect key="frame" x="60" y="29" width="291" height="37"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-r2-4ky" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                        <rect key="frame" x="23" y="0.0" width="268" height="37"/>
+                                        <rect key="frame" x="21" y="0.0" width="270" height="37"/>
                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         <color key="textColor" name="VisibilityBadgeColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -116,7 +116,7 @@
                                     <constraint firstAttribute="trailing" secondItem="DaO-r2-4ky" secondAttribute="trailing" id="Vb1-zf-qOE"/>
                                     <constraint firstItem="Mui-X4-lEZ" firstAttribute="leading" secondItem="OZl-pT-ru1" secondAttribute="leading" id="gDW-0X-zCF"/>
                                     <constraint firstItem="Mui-X4-lEZ" firstAttribute="top" secondItem="OZl-pT-ru1" secondAttribute="top" constant="3" id="tS9-2D-cS6"/>
-                                    <constraint firstItem="DaO-r2-4ky" firstAttribute="leading" secondItem="Mui-X4-lEZ" secondAttribute="trailing" constant="8" id="yDf-Zo-zh0"/>
+                                    <constraint firstItem="DaO-r2-4ky" firstAttribute="leading" secondItem="Mui-X4-lEZ" secondAttribute="trailing" constant="6" id="yDf-Zo-zh0"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="RnT-f8-605">
