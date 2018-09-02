@@ -137,7 +137,7 @@ struct AccountState: StateType, StatusViewableState {
                                         range: .limit(40))
         client.run(request) { (result) in
             switch result {
-            case .success(let resp, _): do {
+            case .success(let resp, _): DispatchQueue.main.async {
                 GlobalStore.dispatch(SetPinnedStatuses(value: resp, account: account))
                 log.verbose("success \(request)")
                 }
