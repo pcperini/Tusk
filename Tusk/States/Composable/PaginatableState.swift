@@ -56,7 +56,10 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
                               filters: filters,
                               completion: completion)
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                    log.error("error \(request) 🚨 Error: \(error)\n")
+                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                    }
             }
         }
     }

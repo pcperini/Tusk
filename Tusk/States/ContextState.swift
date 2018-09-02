@@ -57,7 +57,10 @@ struct ContextState: StateType, StatusViewableState {
                 GlobalStore.dispatch(SetContext(value: resp))
                 log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                    log.error("error \(request) 🚨 Error: \(error)\n")
+                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                    }
             }
         }
     }

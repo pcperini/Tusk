@@ -100,6 +100,7 @@ struct AuthState: StateType {
                 }
             case .failure(let error): do {
                 log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
                 AuthState.clearAll()
                 GlobalStore.dispatch(SetInstance(value: nil))
                 }
@@ -117,6 +118,7 @@ struct AuthState: StateType {
                                                redirectURI: AuthState.redirectURL)?.asURL()
         } catch {
             log.error("error Login.oauthURL(\(self.baseURL!), \(id)) 🚨 Error: \(error)\n")
+            GlobalStore.dispatch(ErrorsState.AddError(value: error))
             AuthState.clearAll()
             
             self.clientID = nil
@@ -147,6 +149,7 @@ struct AuthState: StateType {
                 }
             case .failure(let error): do {
                 log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
                 AuthState.clearAll()
                 GlobalStore.dispatch(SetAccessToken(value: nil))
                 }
@@ -179,6 +182,7 @@ extension AuthState {
             try AuthState.keychain.removeAll()
         } catch {
             log.error("error AuthState.keychain.removeAll() 🚨 Error: \(error)\n")
+            GlobalStore.dispatch(ErrorsState.AddError(value: error))
         }
     }
 }
