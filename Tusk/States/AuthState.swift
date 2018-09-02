@@ -56,6 +56,7 @@ struct AuthState: StateType {
             state.code = action.code
             state.pollAccessToken(client: state.client, code: action.code)
             }
+        case let action as ErrorsState.AddError: state.handleError(error: action.value)
         default: break
         }
         
@@ -153,6 +154,20 @@ struct AuthState: StateType {
                 AuthState.clearAll()
                 GlobalStore.dispatch(SetAccessToken(value: nil))
                 }
+            }
+        }
+    }
+    
+    func handleError(error: Error) {
+        if let error = error as? ClientError {
+            switch error {
+            case .mastodonError(let description): DispatchQueue.main.async {
+                if (description.lowercased().contains("access token was revoked")) {
+                    AuthState.clearAll()
+                    GlobalStore.dispatch(SetAccessToken(value: nil))
+                }
+                }
+            default: break
             }
         }
     }
