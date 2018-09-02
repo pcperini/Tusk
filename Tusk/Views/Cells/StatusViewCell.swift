@@ -45,17 +45,16 @@ class StatusViewCell: TableViewCell {
     var linkWasTapped: ((URL?, String) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
     var contextPushWasTriggered: ((Status?) -> Void)?
+    var contentShouldReveal: (() -> Void)?
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
     private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
+    private var cellLongPressRecognizer: UILongPressGestureRecognizer!
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
     
-    private var shouldSuppressContent: Bool = false
-    var isSupressingContent: Bool {
-        return self.shouldSuppressContent || self.status?.warning != nil
-    }
+    var isSupressingContent: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -67,6 +66,9 @@ class StatusViewCell: TableViewCell {
         
         self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
+        
+        self.cellLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellWasLongPressed(recognizer:)))
+        self.addGestureRecognizer(self.cellLongPressRecognizer)
         
         self.statusTextView.delegate = self
         self.statusTextView.hideLinkCriteria = { (link) in
@@ -87,7 +89,7 @@ class StatusViewCell: TableViewCell {
         self.rightSwipeSettings.transition = .drag
     }
     
-    private func updateStatus() {
+    private func updateStatus(oldValue: Status? = nil) {
         guard let status = self.status else { return }
         
         self.avatarView.avatarURL = URL(string: status.account.avatar)
@@ -160,6 +162,11 @@ class StatusViewCell: TableViewCell {
         case self.reblogAvatarTapRecognizer: self.accountElementWasTapped?(self.originalStatus?.account)
         default: return
         }
+    }
+    
+    @objc func cellWasLongPressed(recognizer: UIGestureRecognizer!) {
+        guard self.isSupressingContent else { return }
+        self.contentShouldReveal?()
     }
 }
 

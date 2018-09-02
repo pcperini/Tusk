@@ -22,6 +22,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     var previousPageAction: () -> Action? = { nil }
     var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
     
+    var unsurpressedStatuses: [Status] = []
+    
     private var selectedStatusIndex: Int? = nil {
         didSet {
             if let selectedIndex = self.selectedStatusIndex {
@@ -112,10 +114,16 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         let status = self.statuses[statusIndex]
         let displayStatus = status.reblog ?? status
         
+        if (cell.status == status) {
+            return cell
+        }
+        
         cell.originalStatus = nil
         if (status != displayStatus) {
             cell.originalStatus = status
         }
+        
+        cell.isSupressingContent = status.warning != nil && !self.unsurpressedStatuses.contains(status)
         
         cell.attachmentWasTapped = { (attachment) in
             self.presentAttachment(attachment: attachment, forStatus: displayStatus)
@@ -136,6 +144,15 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         cell.contextPushWasTriggered = { (status) in
             guard let status = status else { return }
             self.pushToContext(status: status)
+        }
+        cell.contentShouldReveal = {
+            if (self.unsurpressedStatuses.contains(status)) { return }
+            self.unsurpressedStatuses.append(status)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                tableView.performBatchUpdates({
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                }, completion: nil)
+            }
         }
         
         cell.status = displayStatus
