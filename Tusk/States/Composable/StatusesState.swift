@@ -81,7 +81,10 @@ extension StatusesState {
                 log.verbose("success \(request)", context: ["resp": resp])
                 GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                    log.error("error \(request) 🚨 Error: \(error)\n")
+                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                    }
             }
         }
     }

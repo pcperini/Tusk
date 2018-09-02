@@ -56,6 +56,7 @@ struct AuthState: StateType {
             state.code = action.code
             state.pollAccessToken(client: state.client, code: action.code)
             }
+        case let action as ErrorsState.AddError: state.handleError(error: action.value)
         default: break
         }
         
@@ -100,6 +101,7 @@ struct AuthState: StateType {
                 }
             case .failure(let error): do {
                 log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
                 AuthState.clearAll()
                 GlobalStore.dispatch(SetInstance(value: nil))
                 }
@@ -117,6 +119,7 @@ struct AuthState: StateType {
                                                redirectURI: AuthState.redirectURL)?.asURL()
         } catch {
             log.error("error Login.oauthURL(\(self.baseURL!), \(id)) 🚨 Error: \(error)\n")
+            GlobalStore.dispatch(ErrorsState.AddError(value: error))
             AuthState.clearAll()
             
             self.clientID = nil
@@ -147,9 +150,24 @@ struct AuthState: StateType {
                 }
             case .failure(let error): do {
                 log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
                 AuthState.clearAll()
                 GlobalStore.dispatch(SetAccessToken(value: nil))
                 }
+            }
+        }
+    }
+    
+    func handleError(error: Error) {
+        if let error = error as? ClientError {
+            switch error {
+            case .mastodonError(let description): DispatchQueue.main.async {
+                if (description.lowercased().contains("access token was revoked")) {
+                    AuthState.clearAll()
+                    GlobalStore.dispatch(SetAccessToken(value: nil))
+                }
+                }
+            default: break
             }
         }
     }
@@ -179,6 +197,7 @@ extension AuthState {
             try AuthState.keychain.removeAll()
         } catch {
             log.error("error AuthState.keychain.removeAll() 🚨 Error: \(error)\n")
+            GlobalStore.dispatch(ErrorsState.AddError(value: error))
         }
     }
 }

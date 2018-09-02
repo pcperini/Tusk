@@ -248,11 +248,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             self.isLoading = false
             switch result {
             case .success(_, _): self.dismiss()
-            case .failure(let error): do {
-                let alert = UIAlertController(title: "Whoops", message: "\(error)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                }
+            case .failure(_): break
             }
         }
     }

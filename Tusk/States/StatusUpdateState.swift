@@ -70,7 +70,10 @@ struct StatusUpdateState: StateType {
                 GlobalStore.dispatch(StatusesState.UpdateStatus(value: newStatus))
                 log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                    log.error("error \(request) 🚨 Error: \(error)\n")
+                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                    }
             }
         }
     }
@@ -90,7 +93,10 @@ struct StatusUpdateState: StateType {
                 GlobalStore.dispatch(StatusesState.UpdateStatus(value: newStatus))
                 log.verbose("success \(request)")
                 }
-            case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+            case .failure(let error): do {
+                    log.error("error \(request) 🚨 Error: \(error)\n")
+                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                    }
             }
         }
     }
@@ -113,7 +119,10 @@ struct StatusUpdateState: StateType {
                     GlobalStore.dispatch(TimelineState.InsertStatus(value: resp))
                     log.verbose("success \(request)")
                     }
-                case .failure(let error): log.error("error \(request) 🚨 Error: \(error)\n")
+                case .failure(let error): do {
+                    log.error("error \(request) 🚨 Error: \(error)\n")
+                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                    }
                 }
             }
         }

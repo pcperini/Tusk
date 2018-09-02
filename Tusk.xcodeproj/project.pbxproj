@@ -213,6 +213,9 @@
 		739E91A3213B3F68005123AA /* UITableView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A2213B3F68005123AA /* UITableView+Visibility.swift */; };
 		739E91A4213B3F68005123AA /* UITableView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A2213B3F68005123AA /* UITableView+Visibility.swift */; };
 		739E91A5213B3F68005123AA /* UITableView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A2213B3F68005123AA /* UITableView+Visibility.swift */; };
+		739E91A8213C967D005123AA /* ErrorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A7213C967D005123AA /* ErrorsState.swift */; };
+		739E91A9213C967D005123AA /* ErrorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A7213C967D005123AA /* ErrorsState.swift */; };
+		739E91AA213C967D005123AA /* ErrorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A7213C967D005123AA /* ErrorsState.swift */; };
 		73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
@@ -342,6 +345,7 @@
 		739E919E213AE922005123AA /* StatusUpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateState.swift; sourceTree = "<group>"; };
 		739E91A2213B3F68005123AA /* UITableView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Visibility.swift"; sourceTree = "<group>"; };
 		739E91A6213C51B7005123AA /* Tusk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tusk.entitlements; sourceTree = "<group>"; };
+		739E91A7213C967D005123AA /* ErrorsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsState.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
@@ -530,6 +534,7 @@
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
 				73023006212F55BD00BC1E9A /* ContextsState.swift */,
 				73023002212F535000BC1E9A /* ContextState.swift */,
+				739E91A7213C967D005123AA /* ErrorsState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 			);
 			path = States;
@@ -952,6 +957,7 @@
 				73022FFF212F2CF500BC1E9A /* EnvVars.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
+				739E91A8213C967D005123AA /* ErrorsState.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				73208E8E212B2A9C00529FA3 /* StatusesState.swift in Sources */,
@@ -1020,6 +1026,7 @@
 				73D6CF4A21337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73FBF8B8212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E421288375005CBEDA /* AttachmentsViewController.swift in Sources */,
+				739E91A9213C967D005123AA /* ErrorsState.swift in Sources */,
 				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
@@ -1087,6 +1094,7 @@
 				73D6CF4B21337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
 				73FBF8B9212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				739426E521288375005CBEDA /* AttachmentsViewController.swift in Sources */,
+				739E91AA213C967D005123AA /* ErrorsState.swift in Sources */,
 				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,

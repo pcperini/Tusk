@@ -16,7 +16,9 @@ class TabViewController: UITabBarController, StoreSubscriber {
     var authFlowHandler: AuthFlowUIHandler!
     
     var notificationTab: UITabBarItem! { return self.tabBar.items!.first { (item) in item.tag == 10 } }
-    var tabSubsequentTapCounts: [UIViewController: Int] = [:]
+    private var tabSubsequentTapCounts: [UIViewController: Int] = [:]
+    
+    private var lastErrorDate: Date = Date()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,6 +46,13 @@ class TabViewController: UITabBarController, StoreSubscriber {
     func reloadData() {
         self.authFlowHandler.state = self.state.auth
         self.notificationTab.badgeValue = self.state.notifications.unreadCount > 0 ? " " : nil
+        
+        guard let latestError = self.state.errors.errors.last, latestError.1 > self.lastErrorDate else { return }
+        self.lastErrorDate = latestError.1
+        
+        let alert = UIAlertController(title: "Whoops", message: "\(latestError.0)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func newState(state: AppState) {

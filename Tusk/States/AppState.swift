@@ -22,7 +22,9 @@ struct AppState: StateType {
     var favourites: FavouritesState
     var accounts: AccountsState
     var contexts: ContextsState
+    
     var statusUpdates: StatusUpdateState
+    var errors: ErrorsState
     
     static func reducer(action: Action, state: AppState?) -> AppState {
         switch action {
@@ -39,7 +41,9 @@ struct AppState: StateType {
             favourites: FavouritesState.reducer(action: action, state: state?.favourites),
             accounts: AccountsState.reducer(action: action, state: state?.accounts),
             contexts: ContextsState.reducer(action: action, state: state?.contexts),
-            statusUpdates: StatusUpdateState.reducer(action: action, state: state?.statusUpdates)
+            
+            statusUpdates: StatusUpdateState.reducer(action: action, state: state?.statusUpdates),
+            errors: ErrorsState.reducer(action: action, state: state?.errors)
         )
     }
     
