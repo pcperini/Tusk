@@ -88,7 +88,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             
             cell.replyButtonWasTapped = {
                 self.selectedStatusIndex = nil
-                self.performSegue(withIdentifier: "PresentComposeViewController", sender: displayStatus)
+                self.performSegue(withIdentifier: "PresentComposeViewController", sender: ("reply", displayStatus))
             }
             
             cell.favouriteButton.isSelected = displayStatus.favourited ?? false
@@ -105,7 +105,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                 GlobalStore.dispatch(StatusUpdateState.ToggleReblog(client: client, id: StatusUpdateState.updateID(), status: displayStatus))
             }
             
-            cell.settingsButtonWasTapped = { self.presentSettings(status: status) }
+            cell.settingsButtonWasTapped = { self.presentSettings(status: displayStatus) }
             
             return cell
         }
@@ -238,8 +238,18 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }))
         
         if (status.account == GlobalStore.state.accounts.activeAccount?.account as? Account) {
-            optionsPicker.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil))
-            optionsPicker.addAction(UIAlertAction(title: "Redraft", style: .destructive, handler: nil))
+            let deleteHandler = {
+                self.selectedStatusIndex = nil
+                GlobalStore.dispatch(StatusUpdateState.DeleteStatus(client: client,
+                                                                    id: StatusUpdateState.updateID(),
+                                                                    status: status))
+            }
+            
+            optionsPicker.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in deleteHandler() }))
+            optionsPicker.addAction(UIAlertAction(title: "Redraft", style: .destructive, handler: { (_) in
+                deleteHandler()
+                self.performSegue(withIdentifier: "PresentComposeViewController", sender: ("redraft", status))
+            }))
         } else {
             optionsPicker.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (_) in
                 let confirmAlert = UIAlertController(title: "Report this user and post as offensive?",
@@ -301,8 +311,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         case "PresentComposeViewController": do {
             guard let container = segue.destination as? ComposeContainerViewController,
                 let composeVC = container.composeViewController,
-                let status = sender as? Status else { return }
-            composeVC.inReplyTo = status
+                let action = sender as? (String, Status) else { return }
+            if (action.0 == "reply") {
+                composeVC.inReplyTo = action.1
+            } else if (action.0 == "redraft") {
+                composeVC.redraft = action.1
+            }
             }
         default: return
         }

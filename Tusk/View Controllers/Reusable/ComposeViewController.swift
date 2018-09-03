@@ -52,6 +52,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
         }
     }
     
+    var redraft: Status? = nil
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
         didSet {
@@ -110,6 +111,11 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             
             self.textView.updateHighlights()
             self.visibility = reply.visibility
+        } else if let redraft = self.redraft {
+            self.textView.htmlText = redraft.content
+            
+            self.textView.updateHighlights()
+            self.visibility = redraft.visibility
         }
         
         self.updateMediaAttachments()
