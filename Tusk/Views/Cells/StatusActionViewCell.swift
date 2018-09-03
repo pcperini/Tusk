@@ -10,12 +10,11 @@ import UIKit
 
 class StatusActionViewCell: UITableViewCell {
     var replyButtonWasTapped: (() -> Void)? = nil
-    
     @IBOutlet var favouriteButton: UIButton!
     var favouritedButtonWasTapped: (() -> Void)? = nil
-    
     @IBOutlet var reblogButton: UIButton!
     var reblogButtonWasTapped: (() -> Void)? = nil
+    var settingsButtonWasTapped: (() -> Void)? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,5 +31,9 @@ class StatusActionViewCell: UITableViewCell {
     
     @IBAction func reblogButtonWasTouchedUpInside(sender: UIButton?) {
         self.reblogButtonWasTapped?()
+    }
+    
+    @IBAction func settingsButtonWasTouchedUpInside(sender: UIButton?) {
+        self.settingsButtonWasTapped?()
     }
 }

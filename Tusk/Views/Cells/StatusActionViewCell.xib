@@ -42,9 +42,12 @@
                                 <action selector="favouriteButtonWasTouchedUpInsideSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="AxK-j5-wZd"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muG-tL-Tha">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muG-tL-Tha">
                             <rect key="frame" x="281.5" y="0.0" width="93.5" height="40"/>
-                            <state key="normal" image="AccountActionsButton"/>
+                            <state key="normal" image="SettingsButton"/>
+                            <connections>
+                                <action selector="settingsButtonWasTouchedUpInsideSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="SkJ-pl-VYV"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -75,11 +78,11 @@
         </view>
     </objects>
     <resources>
-        <image name="AccountActionsButton" width="20" height="21"/>
         <image name="FavouriteButton" width="20" height="20"/>
         <image name="FavouritedButton" width="20" height="20"/>
         <image name="ReblogButton" width="20" height="23"/>
         <image name="ReplyButton" width="20" height="16"/>
+        <image name="SettingsButton" width="20" height="20"/>
         <image name="UndoReblogButton" width="20" height="23"/>
         <namedColor name="ActionsBackgroundColor">
             <color red="0.19599999487400055" green="0.19599999487400055" blue="0.19599999487400055" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

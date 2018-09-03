@@ -105,6 +105,25 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                 GlobalStore.dispatch(StatusUpdateState.ToggleReblog(client: client, id: StatusUpdateState.updateID(), status: displayStatus))
             }
             
+            cell.settingsButtonWasTapped = {
+                guard let client = GlobalStore.state.auth.client else { return }
+                
+                let optionsPicker = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                optionsPicker.addAction(UIAlertAction(title: "Share", style: .default, handler: { (_) in
+                    self.presentShareSheet(status: status)
+                }))
+                
+                if (status.account == GlobalStore.state.accounts.activeAccount?.account as? Account) {
+                    optionsPicker.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil))
+                    optionsPicker.addAction(UIAlertAction(title: "Redraft", style: .destructive, handler: nil))
+                } else {
+                    optionsPicker.addAction(UIAlertAction(title: "Report", style: .destructive, handler: nil))
+                }
+                
+                optionsPicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(optionsPicker, animated: true, completion: nil)
+            }
+            
             return cell
         }
         
@@ -225,6 +244,17 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         
         guard let client = GlobalStore.state.auth.client else { return }
         GlobalStore.dispatch(ContextState.PollContext(client: client, status: status))
+    }
+    
+    func presentShareSheet(status: Status) {
+        let shareSheet = UIActivityViewController(activityItems: [
+            status.sharableString,
+            status.url as Any
+        ], applicationActivities: [
+            CopyLinkActivity()
+        ])
+        
+        self.present(shareSheet, animated: true, completion: nil)
     }
     
     func presentAttachment(attachment: Attachment, forStatus status: Status) {

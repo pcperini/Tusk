@@ -67,6 +67,13 @@ extension Status {
         return self.spoilerText
     }
     
+    var sharableString: String {
+        return (
+            [NSAttributedString(htmlString: self.content)?.string ?? nil] +
+            self.mediaAttachments.map { $0.textURL ?? $0.url }
+        ).compactMap({ $0 }).joined(separator: " ")
+    }
+    
     func cloned(changes: [String: Any] = [:]) throws -> Status {
         guard var mutableJSONValue = self.jsonValue else {
             throw CloneError(description: "Could not serialize \(self)")
