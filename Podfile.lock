@@ -79,7 +79,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MastodonKit:
-    :commit: 494fdb3284c37752d55e5057984f51ce44b862bc
+    :commit: 82e646f401f03fa764318f25f6ab3485769c63ab
     :git: https://github.com/pcperini/MastodonKit.git
 
 SPEC CHECKSUMS:

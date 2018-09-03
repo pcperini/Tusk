@@ -26,6 +26,7 @@ struct StatusUpdateState: StateType {
         let visibility: Visibility
         let attachments: [MediaAttachment]
     }
+    struct ReportStatus: StatusUpdateAction { let client: Client; let id: String; let status: Status }
     
     struct AddResult: Action { let id: String; let result: Result<Status> }
     
@@ -47,6 +48,7 @@ struct StatusUpdateState: StateType {
                                                         inReplyTo: action.inReplyTo,
                                                         visibility: action.visibility,
                                                         attachments: action.attachments)
+        case let action as ReportStatus: state.reportStatus(client: action.client, id: action.id, status: action.status)
         case let action as AddResult: state.updates[action.id] = action.result
         default: break
         }
@@ -146,6 +148,24 @@ struct StatusUpdateState: StateType {
                         GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    func reportStatus(client: Client, id: String, status: Status) {
+        let request = Reports.report(accountID: status.account.id, statusIDs: [status.id], reason: "This post was offensive.")
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): do {
+                GlobalStore.dispatch(StatusesState.RemoveStatus(value: status))
+                GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.success(status, nil)))
+                log.verbose("success \(request), \(resp)")
+                }
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
                 }
             }
         }

@@ -37,6 +37,7 @@ extension StatusesState {
     typealias PollFilters = StatusesStatePollFilters
     typealias UpdateStatus = StatusesStateUpdateStatus
     typealias InsertStatus = StatusesStateInsertStatus<Self>
+    typealias RemoveStatus = StatusesStateRemoveStatus
         
     static func reducer(action: Action, state: Self?) -> Self {
         var state = state ?? Self.init()
@@ -55,6 +56,7 @@ extension StatusesState {
         case let action as PollFilters: state.pollFilters(client: action.client)
         case let action as UpdateStatus: state.updateStatus(status: action.value)
         case let action as InsertStatus: state.statuses.insert(action.value, at: 0)
+        case let action as RemoveStatus: state.removeStatus(status: action.value)
         default: break
         }
         
@@ -132,6 +134,10 @@ extension StatusesState {
             self.statuses[index] = try! self.statuses[index].cloned(changes: ["reblog": status.jsonValue!])
         }
     }
+    
+    mutating func removeStatus(status: Status) {
+        self.statuses = self.statuses.filter { $0.id != status.id && $0.reblog?.id != status.id }
+    }
 }
 
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
@@ -145,3 +151,5 @@ struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client
 struct StatusesStatePollFilters: PollAction { let client: Client }
 struct StatusesStateUpdateStatus: Action { let value: Status }
 struct StatusesStateInsertStatus<State: StateType>: Action { let value: Status }
+struct StatusesStateRemoveStatus: Action { let value: Status }
+

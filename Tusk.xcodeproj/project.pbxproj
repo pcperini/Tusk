@@ -219,6 +219,9 @@
 		73AD8C2D213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
 		73AD8C2E213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
 		73AD8C2F213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
+		73AD8C37213D9E2B00180F4F /* MastodonKit+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C36213D9E2B00180F4F /* MastodonKit+Requests.swift */; };
+		73AD8C38213D9E2B00180F4F /* MastodonKit+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C36213D9E2B00180F4F /* MastodonKit+Requests.swift */; };
+		73AD8C39213D9E2B00180F4F /* MastodonKit+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C36213D9E2B00180F4F /* MastodonKit+Requests.swift */; };
 		73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
@@ -350,6 +353,7 @@
 		739E91A6213C51B7005123AA /* Tusk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tusk.entitlements; sourceTree = "<group>"; };
 		739E91A7213C967D005123AA /* ErrorsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsState.swift; sourceTree = "<group>"; };
 		73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyLinkActivity.swift; sourceTree = "<group>"; };
+		73AD8C36213D9E2B00180F4F /* MastodonKit+Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Requests.swift"; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 				732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */,
 				732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */,
 				73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */,
+				73AD8C36213D9E2B00180F4F /* MastodonKit+Requests.swift */,
 				732BE288212485890049ADBD /* CaseIterable.swift */,
 				73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */,
 				732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */,
@@ -981,6 +986,7 @@
 				73D6CF3D2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73208EBA212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
+				73AD8C37213D9E2B00180F4F /* MastodonKit+Requests.swift in Sources */,
 				7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */,
 				73208E89212B290500529FA3 /* MentionsState.swift in Sources */,
 				732BE22721208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
@@ -1060,6 +1066,7 @@
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
 				73022FF0212E245800BC1E9A /* FollowsViewController.swift in Sources */,
+				73AD8C38213D9E2B00180F4F /* MastodonKit+Requests.swift in Sources */,
 				73022FF8212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				73023008212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
@@ -1129,6 +1136,7 @@
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
 				73022FF1212E245800BC1E9A /* FollowsViewController.swift in Sources */,
+				73AD8C39213D9E2B00180F4F /* MastodonKit+Requests.swift in Sources */,
 				73022FF9212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				73023009212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
