@@ -130,10 +130,13 @@ class StatusViewCell: TableViewCell {
         self.statusTextView.isHidden = hideTextView
         self.statusTextView.setNeedsLayout()
     
-        let hideAttachmentView = status.mediaAttachments.isEmpty
+        let hideAttachmentView = status.mediaAttachments.isEmpty || self.isSupressingContent
         self.attachmentCollectionView.reloadData()
         self.attachmentBottomConstraint.toggle(on: !hideAttachmentView)
-        self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
+        self.attachmentHeightConstraint.constant = (
+            hideAttachmentView ? 0 :
+            self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
+        )
         self.attachmentCollectionView.isHidden = hideAttachmentView
         self.attachmentCollectionView.setNeedsLayout()
         
