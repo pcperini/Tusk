@@ -117,7 +117,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gO-tB-bhd" customClass="Button" customModule="Tusk" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gO-tB-bhd" customClass="Button" customModule="Tusk" customModuleProvider="target">
                                                     <rect key="frame" x="141.5" y="4" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="1gO-tB-bhd" secondAttribute="height" id="Pki-5l-50T"/>
