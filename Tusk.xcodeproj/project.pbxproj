@@ -189,6 +189,9 @@
 		732BE289212485890049ADBD /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE288212485890049ADBD /* CaseIterable.swift */; };
 		732BE28A212485890049ADBD /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE288212485890049ADBD /* CaseIterable.swift */; };
 		732BE28B212485890049ADBD /* CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE288212485890049ADBD /* CaseIterable.swift */; };
+		73629292213F2FD300C6AC6F /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629291213F2FD300C6AC6F /* Clonable.swift */; };
+		73629293213F2FD300C6AC6F /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629291213F2FD300C6AC6F /* Clonable.swift */; };
+		73629294213F2FD300C6AC6F /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73629291213F2FD300C6AC6F /* Clonable.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -339,6 +342,7 @@
 		732BE2782123972F0049ADBD /* MastodonKit+Accessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MastodonKit+Accessors.swift"; path = "Tusk/Extensions/MastodonKit+Accessors.swift"; sourceTree = SOURCE_ROOT; };
 		732BE2792123972F0049ADBD /* MastodonKit+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MastodonKit+Comparable.swift"; path = "Tusk/Extensions/MastodonKit+Comparable.swift"; sourceTree = SOURCE_ROOT; };
 		732BE288212485890049ADBD /* CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaseIterable.swift; path = Tusk/Extensions/CaseIterable.swift; sourceTree = SOURCE_ROOT; };
+		73629291213F2FD300C6AC6F /* Clonable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageAttachmentViewCell.xib; sourceTree = "<group>"; };
@@ -477,6 +481,7 @@
 				730230122130682A00BC1E9A /* UIView+CellNib.swift */,
 				730230522131AD2400BC1E9A /* SwiftyRegex.swift */,
 				739E91A2213B3F68005123AA /* UITableView+Visibility.swift */,
+				73629291213F2FD300C6AC6F /* Clonable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				73023047213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				73EAEC59211E41A900C2620F /* StatusesViewController.swift in Sources */,
 				73D6CF4921337C3F00990AA6 /* TableContainerViewController.swift in Sources */,
+				73629292213F2FD300C6AC6F /* Clonable.swift in Sources */,
 				73208E85212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
@@ -1033,6 +1039,7 @@
 				732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2422121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				73208E9B212B753C00529FA3 /* MessagesViewController.swift in Sources */,
+				73629293213F2FD300C6AC6F /* Clonable.swift in Sources */,
 				73208EBB212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				73167BC42135E7B700C0F28E /* ComposeViewController.swift in Sources */,
@@ -1102,6 +1109,7 @@
 				732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */,
 				732BE2432121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				73208E9C212B753C00529FA3 /* MessagesViewController.swift in Sources */,
+				73629294213F2FD300C6AC6F /* Clonable.swift in Sources */,
 				73208EBC212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				73167BC52135E7B700C0F28E /* ComposeViewController.swift in Sources */,

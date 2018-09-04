@@ -33,8 +33,13 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     var account: AccountType? { didSet { self.updateAccount() } }
     var pinnedStatuses: [Status]? = nil
     
-    var relationship: Relationship? = nil
     private var hasPolledRelationship: Bool = false
+    var relationship: Relationship? = nil {
+        didSet {
+            guard self.relationship != oldValue else { return }
+            self.updateAccount()
+        }
+    }
     
     @IBOutlet var headerImageView: UIImageView!
     @IBOutlet var avatarView: AvatarView!
@@ -119,7 +124,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.updateNavigationButtons()
 
         if let relationship = self.relationship {
-            self.followingLabel.text = relationship.following ? "Follows you" : "Does not follow you"
+            self.followingLabel.text = relationship.followedBy ? "Follows you" : "Does not follow you"
         } else if (!self.hasPolledRelationship) {
             self.followingLabel.text = "..."
             self.pollRelationship()
@@ -137,15 +142,20 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         rightButton.isEnabled = false
         leftButton.isEnabled = false
         
+        rightButton.target = self
+        leftButton.target = self
+        
         if (account.id == activeAccount.id) {
             rightButton.image = UIImage(named: "SettingsButton")
             
             leftButton.image = UIImage(named: "FavouriteButton")
             leftButton.isEnabled = true
-            leftButton.target = self
             leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else if let relationship = self.relationship {
             rightButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
+            rightButton.isEnabled = true
+            rightButton.action = #selector(toggleFollowButtonWasPressed(sender:))
+            
             leftButton.image = nil
         }
         
@@ -179,6 +189,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func toggleFollowButtonWasPressed(sender: UIBarButtonItem?) {
+        guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
+        GlobalStore.dispatch(AccountState.ToggleFollowing(client: client, account: account))
     }
     
     @IBAction func favouritesButtonWasPressed(sender: UIBarButtonItem?) {

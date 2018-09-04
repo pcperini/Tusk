@@ -54,14 +54,7 @@ extension Attachment {
     }
 }
 
-extension Status {
-    struct CloneError: Error { let description: String }
-    var jsonValue: [String: Any]? {
-        guard let jsonValue = try? JSONEncoder().encode(self),
-            let jsonAttempt = try? JSONSerialization.jsonObject(with: jsonValue,options: .mutableContainers) else { return nil }
-        return jsonAttempt as? [String: Any]
-    }
-    
+extension Status: Clonable {
     var allMediaAttachmentURLs: [String] {
         return self.mediaAttachments.reduce([]) { $0 + $1.allURLs }
     }
@@ -77,18 +70,7 @@ extension Status {
             self.mediaAttachments.map { $0.textURL ?? $0.url }
         ).compactMap({ $0 }).joined(separator: " ")
     }
-    
-    func cloned(changes: [String: Any] = [:]) throws -> Status {
-        guard var mutableJSONValue = self.jsonValue else {
-            throw CloneError(description: "Could not serialize \(self)")
-        }
-        
-        changes.forEach { (change) in mutableJSONValue[change.key] = change.value }
-        let jsonData = try JSONSerialization.data(withJSONObject: mutableJSONValue, options: .init(rawValue: 0))
-        
-        return try JSONDecoder().decode(Status.self, from: jsonData)
-    }
-    
+
     func mentionHandlesForReply(activeAccount: AccountType? = nil) -> [String] {
         var handles = (
             [self.account.handle] +

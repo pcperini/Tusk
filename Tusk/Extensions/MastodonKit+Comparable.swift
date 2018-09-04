@@ -72,3 +72,18 @@ extension Attachment: Hashable {
         return lhs.id == rhs.id
     }
 }
+
+extension Relationship: Equatable {
+    public static func == (lhs: Relationship, rhs: Relationship) -> Bool {
+        return (
+            lhs.id == rhs.id &&
+            lhs.blocking == rhs.blocking &&
+            lhs.domainBlocking == rhs.domainBlocking &&
+            lhs.followedBy == rhs.followedBy &&
+            lhs.following == rhs.following &&
+            lhs.muting == rhs.muting &&
+            lhs.mutingNotifications == rhs.mutingNotifications &&
+            lhs.requested == rhs.requested
+        )
+    }
+}

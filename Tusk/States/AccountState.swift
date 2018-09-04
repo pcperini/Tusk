@@ -42,6 +42,8 @@ struct AccountState: StateType, StatusViewableState {
     struct PollOlderStatuses: AccountPollingAction { let client: Client; let account: AccountType }
     struct PollNewerStatuses: AccountPollingAction { let client: Client; let account: AccountType }
     
+    struct ToggleFollowing: AccountAction { let client: Client; let account: AccountType }
+    
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
     var pinnedStatuses: [Status] = []
@@ -113,6 +115,8 @@ struct AccountState: StateType, StatusViewableState {
         case let action as PollFollowers: state.pollFollowers(client: action.client, account: action.account)
         case let action as PollOlderFollowers: state.pollFollowers(client: action.client, account: action.account, range: state.followersNextPage)
         case let action as PollNewerFollowers: state.pollFollowers(client: action.client, account: action.account, range: state.followersPreviousPage)
+            
+        case let action as ToggleFollowing: state.toggleFollowing(client: action.client, account: action.account)
         default: break
         }
         
@@ -239,5 +243,24 @@ struct AccountState: StateType, StatusViewableState {
         return self.followingPaginatableData.updatedPages(pagination: pagination,
                                                           nextPage: self.followingNextPage,
                                                           previousPage: self.followingPreviousPage)
+    }
+    
+    func toggleFollowing(client: Client, account: AccountType) {
+        guard let relationship = self.relationship else { return }
+        let startFollowing = !relationship.following
+        
+        let request = startFollowing ? Accounts.follow(id: account.id) : Accounts.unfollow(id: account.id)
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): DispatchQueue.main.async {
+                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+                log.verbose("success \(request)")
+                }
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
+            }
+        }
     }
 }
