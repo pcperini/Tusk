@@ -30,13 +30,17 @@ extension AccountType {
     }
     
     var displayFields: [[String: String]] {
-        let prepareForDisplay = { (value: String?) in
-            (value ?? "").replacingOccurrences(of: "https://", with: "")
+        let prepareForDisplay = { (value: String?) -> String? in
+            guard let value = value else { return nil }
+            return value.replacingOccurrences(of: "https://", with: "")
                 .replacingOccurrences(of: "http://", with: "")
                 .replacingOccurrences(of: "&amp;", with: "&")
         }
         
-        return self.fields.map { (field) in [ "name": field["name"]!, "value": prepareForDisplay(field["value"]) ] }
+        return self.fields.compactMap { (field) in
+            guard let name = field["name"], let value = prepareForDisplay(field["value"]) else { return nil }
+            return [ "name": name, "value": value ]
+        }
     }
     
     var behaviorTidbit: String {
