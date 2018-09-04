@@ -32,12 +32,17 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     var account: AccountType? { didSet { self.updateAccount() } }
     var pinnedStatuses: [Status]? = nil
+    
     var relationship: Relationship? = nil
+    private var hasPolledRelationship: Bool = false
     
     @IBOutlet var headerImageView: UIImageView!
     @IBOutlet var avatarView: AvatarView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
+    
+    @IBOutlet var followingLabel: UILabel!
+    @IBOutlet var relationshipSettingsButton: UIButton!
     
     @IBOutlet var bioTextView: TextView!
     @IBOutlet var bioTopConstraint: ToggleLayoutConstraint!
@@ -112,8 +117,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         guard self.navigationController != nil else { return }
         self.updateNavigationButtons()
-        
-        if (self.relationship == nil) {
+
+        if let relationship = self.relationship {
+            self.followingLabel.text = relationship.following ? "Follows you" : "Does not follow you"
+        } else if (!self.hasPolledRelationship) {
+            self.followingLabel.text = "..."
             self.pollRelationship()
         }
     }
@@ -155,6 +163,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func pollRelationship() {
         guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
+        self.hasPolledRelationship = true
         GlobalStore.dispatch(AccountState.PollRelationship(client: client, account: account))
     }
     
