@@ -122,7 +122,10 @@ class StatusViewCell: TableViewCell {
         self.warningTextView.superview?.isHidden = hideWarning
         self.warningTextView.setNeedsLayout()
         
-        let hideTextView = status.content.isEmpty || self.isSupressingContent
+        let hideTextView = (
+            NSAttributedString(htmlString: status.content)?.string.isEmpty ?? true
+            || self.isSupressingContent
+        )
         self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
         self.statusTextView.htmlText = hideTextView ? nil : status.content
         self.statusHeightConstraint.priority = hideTextView ? .defaultHigh : .init(rawValue: 1)
