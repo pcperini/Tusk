@@ -20,13 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557705255.929451"
+            timestampString = "557773362.208571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "updateStatus(oldValue:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -52,13 +52,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557705255.9298"
+            timestampString = "557773362.208701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "cellWasLongPressed(recognizer:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -68,13 +68,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557705255.930003"
+            timestampString = "557773362.208761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "cellWasLongPressed(recognizer:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,13 +84,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557705255.930197"
+            timestampString = "557773362.208801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "updateStatus(oldValue:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -100,13 +100,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "557705255.93039"
+            timestampString = "557773362.208837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "updateStatus(oldValue:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -170,6 +170,22 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "reloadData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tusk/View Controllers/Reusable/AccountViewController.swift"
+            timestampString = "557773362.2089109"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -32,6 +32,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     var account: AccountType? { didSet { self.updateAccount() } }
     var pinnedStatuses: [Status]? = nil
+    var relationship: Relationship? = nil
     
     @IBOutlet var headerImageView: UIImageView!
     @IBOutlet var avatarView: AvatarView!
@@ -111,6 +112,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         guard self.navigationController != nil else { return }
         self.updateNavigationButtons()
+        
+        if (self.relationship == nil) {
+            self.pollRelationship()
+        }
     }
     
     func updateNavigationButtons() {
@@ -131,9 +136,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             leftButton.isEnabled = true
             leftButton.target = self
             leftButton.action = #selector(favouritesButtonWasPressed(sender:))
-        } else {
-            let following = activeAccountState.following.map({ $0.id }).contains(account.id)
-            rightButton.image = UIImage(named: following ? "StopFollowingButton" : "FollowButton")
+        } else if let relationship = self.relationship {
+            rightButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
             leftButton.image = nil
         }
         
@@ -149,12 +153,18 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         GlobalStore.dispatch(AccountState.PollPinnedStatuses(client: client, account: account))
     }
     
+    func pollRelationship() {
+        guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
+        GlobalStore.dispatch(AccountState.PollRelationship(client: client, account: account))
+    }
+    
     func newState(state: AccountsState) {
         guard let accountID = self.account?.id, let state = state.accountWithID(id: accountID) else { return }
         let newStatuses = state.pinnedStatuses
 
         DispatchQueue.main.async {
             self.account = state.account
+            self.relationship = state.relationship
             if (self.pinnedStatuses != newStatuses) {
                 self.pinnedStatuses = newStatuses
                 self.tableView.reloadData()

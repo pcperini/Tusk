@@ -15,6 +15,7 @@ protocol AccountPollingAction: AccountAction, PollAction {}
 struct AccountState: StateType, StatusViewableState {
     private struct SetAccount: AccountAction { let account: AccountType; let active: Bool }
     struct SetPinnedStatuses: AccountAction { let value: [Status]; let account: AccountType }
+    struct SetRelationship: AccountAction { let value: Relationship?; let account: AccountType }
     
     struct SetFollowing: AccountAction { let value: [Account]; let account: AccountType }
     struct SetFollowingPage: AccountAction { let value: Pagination?; let account: AccountType }
@@ -27,6 +28,7 @@ struct AccountState: StateType, StatusViewableState {
     
     struct PollAccount: Action { let client: Client; let account: AccountType? }
     struct PollPinnedStatuses: AccountAction { let client: Client; let account: AccountType }
+    struct PollRelationship: AccountAction { let client: Client; let account: AccountType }
     
     struct PollFollowing: AccountAction { let client: Client; let account: AccountType }
     struct PollOlderFollowing: AccountPollingAction { let client: Client; let account: AccountType }
@@ -45,6 +47,7 @@ struct AccountState: StateType, StatusViewableState {
     var pinnedStatuses: [Status] = []
     var following: [Account] = []
     var followers: [Account] = []
+    var relationship: Relationship? = nil
     
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
@@ -85,6 +88,7 @@ struct AccountState: StateType, StatusViewableState {
             state.isActiveAccount = action.active || state.isActiveAccount
             }
         case let action as SetPinnedStatuses: state.pinnedStatuses = action.value
+        case let action as SetRelationship: state.relationship = action.value
             
         case let action as SetFollowing: state.following = action.value
         case let action as SetFollowingPage: (state.followingNextPage, state.followingPreviousPage) = state.followingUpdatedPages(pagination: action.value)
@@ -94,7 +98,9 @@ struct AccountState: StateType, StatusViewableState {
             
         case let action as SetStatuses: state.statuses = action.value
         case let action as SetStatusesPage: (state.statusesNextPage, state.statusesPreviousPage) = state.statusesUpdatedPages(pagination: action.value)
+            
         case let action as PollPinnedStatuses: state.pollPinnedStatuses(client: action.client)
+        case let action as PollRelationship: state.pollRelationship(client: action.client)
             
         case let action as PollFollowing: state.pollFollowing(client: action.client, account: action.account)
         case let action as PollOlderFollowing: state.pollFollowing(client: action.client, account: action.account, range: state.followingNextPage)
@@ -117,16 +123,16 @@ struct AccountState: StateType, StatusViewableState {
         let request = accountID == nil ? Accounts.currentUser() : Accounts.account(id: accountID!)
         client.run(request) { (result) in
             switch result {
-            case .success(let resp, _): do {
+            case .success(let resp, _): DispatchQueue.main.async {
                 GlobalStore.dispatch(SetAccount(account: resp, active: accountID == nil))
                 GlobalStore.dispatch(PollPinnedStatuses(client: client, account: resp))
-                GlobalStore.dispatch(PollFollowing(client: client, account: resp))
+                GlobalStore.dispatch(PollRelationship(client: client, account: resp))
                 log.verbose("success \(request)")
                 }
             case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
             }
         }
     }
@@ -145,9 +151,26 @@ struct AccountState: StateType, StatusViewableState {
                 log.verbose("success \(request)")
                 }
             case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
+            }
+        }
+    }
+    
+    func pollRelationship(client: Client) {
+        guard let account = self.account else { return }
+        let request = Accounts.relationships(ids: [account.id])
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): DispatchQueue.main.async {
+                GlobalStore.dispatch(SetRelationship(value: resp.first, account: account))
+                log.verbose("success \(request)")
+                }
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
             }
         }
     }

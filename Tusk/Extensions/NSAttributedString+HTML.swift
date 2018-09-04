@@ -25,6 +25,7 @@ extension NSAttributedString {
     }
     
     convenience init?(htmlString: String) {
+        guard !htmlString.isEmpty else { self.init(); return }
         let stringBuilder = DTHTMLAttributedStringBuilder(html: htmlString.data(using: .utf8),
                                                           options: [DTUseiOS6Attributes: NSNumber(booleanLiteral: true)],
                                                           documentAttributes: nil)
