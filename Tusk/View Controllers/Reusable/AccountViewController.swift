@@ -48,6 +48,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     @IBOutlet var followingLabel: UILabel!
     @IBOutlet var relationshipSettingsButton: UIButton!
+    @IBOutlet var relationshipHeightConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var bioTextView: TextView!
     @IBOutlet var bioTopConstraint: ToggleLayoutConstraint!
@@ -129,6 +130,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             self.followingLabel.text = "..."
             self.pollRelationship()
         }
+        
+        guard let activeAccountState = GlobalStore.state.accounts.activeAccount,
+            let activeAccount = activeAccountState.account else { return }
+        
+        self.relationshipHeightConstraints.forEach { $0.toggle(on: account.id != activeAccount.id) }
     }
     
     func updateNavigationButtons() {

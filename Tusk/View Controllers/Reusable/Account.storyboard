@@ -128,7 +128,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="1gO-tB-bhd" secondAttribute="trailing" constant="4" id="ERI-3J-1b6"/>
-                                                <constraint firstAttribute="height" constant="24" id="Iwl-sT-VNu"/>
+                                                <constraint firstAttribute="height" constant="24" id="Iwl-sT-VNu" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                                 <constraint firstAttribute="bottom" secondItem="1gO-tB-bhd" secondAttribute="bottom" constant="4" id="P7M-CY-g9O"/>
                                                 <constraint firstItem="nud-xb-Y4e" firstAttribute="top" secondItem="T9H-ie-Ues" secondAttribute="top" id="QeK-7K-761"/>
                                                 <constraint firstItem="1gO-tB-bhd" firstAttribute="top" secondItem="T9H-ie-Ues" secondAttribute="top" constant="4" id="eDY-Ss-cmj"/>
@@ -156,7 +156,7 @@
                                         <constraint firstAttribute="bottom" secondItem="6vT-6Y-gR5" secondAttribute="bottom" constant="15" id="DUk-lw-mwz"/>
                                         <constraint firstItem="6vT-6Y-gR5" firstAttribute="top" secondItem="T9H-ie-Ues" secondAttribute="bottom" constant="15" id="F5f-bc-Njh" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                         <constraint firstItem="6xN-Ig-oFi" firstAttribute="top" secondItem="zBG-sA-Kp9" secondAttribute="bottom" constant="4" id="HRl-gL-WAK"/>
-                                        <constraint firstItem="T9H-ie-Ues" firstAttribute="top" secondItem="6xN-Ig-oFi" secondAttribute="bottom" constant="15" id="QJ6-Um-0EH"/>
+                                        <constraint firstItem="T9H-ie-Ues" firstAttribute="top" secondItem="6xN-Ig-oFi" secondAttribute="bottom" constant="15" id="QJ6-Um-0EH" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                         <constraint firstItem="4Lz-XG-k9X" firstAttribute="top" secondItem="YeX-OM-5R3" secondAttribute="top" constant="15" id="R0P-gP-1rK"/>
                                         <constraint firstItem="6xN-Ig-oFi" firstAttribute="centerX" secondItem="YeX-OM-5R3" secondAttribute="centerX" id="aHF-I9-4IP"/>
                                         <constraint firstItem="zBG-sA-Kp9" firstAttribute="top" secondItem="4Lz-XG-k9X" secondAttribute="bottom" constant="8" id="hVr-YO-9bH"/>
@@ -208,6 +208,8 @@
                         <outlet property="headerImageView" destination="jCb-h6-fG0" id="bLj-7t-wBO"/>
                         <outlet property="relationshipSettingsButton" destination="1gO-tB-bhd" id="Daw-R0-qnc"/>
                         <outlet property="usernameLabel" destination="6xN-Ig-oFi" id="664-TF-vHC"/>
+                        <outletCollection property="relationshipHeightConstraints" destination="Iwl-sT-VNu" collectionClass="NSMutableArray" id="gJF-bB-4c2"/>
+                        <outletCollection property="relationshipHeightConstraints" destination="QJ6-Um-0EH" collectionClass="NSMutableArray" id="JEv-us-4qK"/>
                         <segue destination="rxF-CT-eSl" kind="show" identifier="PushAccountStatusesViewController" id="Ulu-R3-0Fl"/>
                         <segue destination="JlJ-Wd-fSE" kind="show" identifier="PushFollowsViewController" id="3lX-GD-Y0y"/>
                         <segue destination="i5e-3P-cBF" kind="show" identifier="PushFavouritesViewController" id="u0O-k7-dQZ"/>
