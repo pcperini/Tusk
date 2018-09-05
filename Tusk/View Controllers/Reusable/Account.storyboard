@@ -216,11 +216,20 @@
                         <segue destination="rxF-CT-eSl" kind="show" identifier="PushAccountStatusesViewController" id="Ulu-R3-0Fl"/>
                         <segue destination="JlJ-Wd-fSE" kind="show" identifier="PushFollowsViewController" id="3lX-GD-Y0y"/>
                         <segue destination="i5e-3P-cBF" kind="show" identifier="PushFavouritesViewController" id="u0O-k7-dQZ"/>
+                        <segue destination="shc-Bg-z9L" kind="presentation" identifier="PresentSettingsViewController" id="TFU-Gy-iqM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aaf-a4-E52" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4240.8000000000002" y="298.2008995502249"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="wfQ-4g-jRj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="shc-Bg-z9L" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZlE-Vx-vQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4862" y="159"/>
         </scene>
         <!--AccountStatuses-->
         <scene sceneID="O4J-cU-6EO">

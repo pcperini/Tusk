@@ -1,5 +1,5 @@
 //
-//  EnvVars.swift
+//  Bundle+Info.swift
 //  Tusk
 //
 //  Created by Patrick Perini on 8/23/18.
@@ -23,5 +23,14 @@ extension Bundle {
         return LogCredentials(id: credentials["ID"]!,
                               secret: credentials["Secret"]!,
                               encryption: credentials["Encryption"]!)
+    }
+}
+
+extension Bundle {
+    var version: String {
+        return self.infoDictionary!["CFBundleShortVersionString"] as! String
+    }
+    var build: String {
+        return self.infoDictionary!["CFBundleVersion"] as! String
     }
 }

@@ -144,22 +144,21 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         guard let activeAccountState = GlobalStore.state.accounts.activeAccount,
             let activeAccount = activeAccountState.account else { return }
-        
-        rightButton.isEnabled = false
-        leftButton.isEnabled = false
+
+        leftButton.isEnabled = true
+        rightButton.isEnabled = true
         
         rightButton.target = self
         leftButton.target = self
         
         if (account.id == activeAccount.id) {
             rightButton.image = UIImage(named: "SettingsButton")
+            rightButton.action = #selector(presentSettings(sender:))
             
             leftButton.image = UIImage(named: "FavouriteButton")
-            leftButton.isEnabled = true
             leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else if let relationship = self.relationship {
             rightButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
-            rightButton.isEnabled = true
             rightButton.action = #selector(toggleFollowButtonWasPressed(sender:))
             
             leftButton.image = nil
@@ -167,6 +166,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         
         self.navigationItem.rightBarButtonItem = rightButton
         if (self.navigationController?.viewControllers.first == self.parent) {
+            self.parent?.navigationItem.rightBarButtonItem = rightButton
             self.parent?.navigationItem.leftBarButtonItem = leftButton
         }
     }
@@ -354,6 +354,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func pushToFavourites() {
         self.performSegue(withIdentifier: "PushFavouritesViewController", sender: nil)
+    }
+    
+    @IBAction func presentSettings(sender: UIBarButtonItem?) {
+        self.performSegue(withIdentifier: "PresentSettingsViewController", sender: nil)
     }
     
     @IBAction func presentRelationshipSettings(sender: UIButton?) {

@@ -21,6 +21,7 @@ struct AuthState: StateType {
     }
     struct SetAccessToken: Action { let value: String? }
     struct PollAccessToken: Action { let code: String }
+    struct ClearAuth: Action {}
     
     static let defaultInstance: String = "mastodon.social"
     static let redirectURL: String = "tusk://oauth"
@@ -55,6 +56,10 @@ struct AuthState: StateType {
         case let action as PollAccessToken: do {
             state.code = action.code
             state.pollAccessToken(client: state.client, code: action.code)
+            }
+        case let action as ClearAuth: do{
+            state = AuthState()
+            AuthState.clearAll()
             }
         case let action as ErrorsState.AddError: state.handleError(error: action.value)
         default: break
