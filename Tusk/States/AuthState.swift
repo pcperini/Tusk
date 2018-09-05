@@ -57,7 +57,7 @@ struct AuthState: StateType {
             state.code = action.code
             state.pollAccessToken(client: state.client, code: action.code)
             }
-        case let action as ClearAuth: do{
+        case is ClearAuth: do {
             state = AuthState()
             AuthState.clearAll()
             }
