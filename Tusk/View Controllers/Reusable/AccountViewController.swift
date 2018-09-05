@@ -356,6 +356,44 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.performSegue(withIdentifier: "PushFavouritesViewController", sender: nil)
     }
     
+    @IBAction func presentRelationshipSettings(sender: UIButton?) {
+        guard let account = self.account,
+            let relationship = self.relationship,
+            let client = GlobalStore.state.auth.client else { return }
+        
+        let settingsPicker = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let handle = { (action: Action) in
+            return { (_: UIAlertAction) in
+                GlobalStore.dispatch(action)
+            }
+        }
+        
+        let followAction = UIAlertAction(title: relationship.following ? "Unfollow" : (relationship.requested ? "Requested" : "Follow"),
+                                         style: .default,
+                                         handler: handle(AccountState.ToggleFollowing(client: client, account: account)))
+        followAction.isEnabled = !relationship.requested
+        settingsPicker.addAction(followAction)
+
+        if (relationship.following) {
+            let muteNotificationsAction = UIAlertAction(title: relationship.showingReblogs ? "Hide Reposts" : "Show Reposts",
+                                                        style: .default,
+                                                        handler: handle(AccountState.ToggleReposts(client: client, account: account)))
+            settingsPicker.addAction(muteNotificationsAction)
+            let muteAction = UIAlertAction(title: relationship.muting ? "Unmute" : "Mute",
+                                           style: .default,
+                                           handler: handle(AccountState.ToggleMuting(client: client, account: account)))
+            settingsPicker.addAction(muteAction)
+        }
+        
+        let blockAction = UIAlertAction(title: relationship.blocking ? "Unblock" : "Block",
+                                        style: relationship.blocking ? .default : .destructive,
+                                        handler: handle(AccountState.ToggleBlocking(client: client, account: account)))
+        settingsPicker.addAction(blockAction)
+        settingsPicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(settingsPicker, animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         

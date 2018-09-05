@@ -101,7 +101,7 @@ public struct Accounts {
     /// Follows an account.
     ///
     /// - Parameter id: The account id.
-    /// - Returns: Request for `Account`.
+    /// - Returns: Request for `Relationship`.
     public static func follow(id: String) -> Request<Relationship> {
         return Request<Relationship>(path: "/api/v1/accounts/\(id)/follow", method: .post(.empty))
     }
@@ -109,7 +109,7 @@ public struct Accounts {
     /// Unfollow an account.
     ///
     /// - Parameter id: The account id.
-    /// - Returns: Request for `Account`.
+    /// - Returns: Request for `Relationship`.
     public static func unfollow(id: String) -> Request<Relationship> {
         return Request<Relationship>(path: "/api/v1/accounts/\(id)/unfollow", method: .post(.empty))
     }
@@ -155,6 +155,26 @@ public struct Accounts {
     /// - Returns: Request for `Relationship`.
     public static func unmute(id: String) -> Request<Relationship> {
         return Request<Relationship>(path: "/api/v1/accounts/\(id)/unmute", method: .post(.empty))
+    }
+    
+    /// Hides reblogs
+    ///
+    /// - Parameter id: The account id.
+    /// - Returns: Request for `Relationship`.
+    public static func hideReblogs(id: String) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/follow", method: .post(.parameters(
+            [Parameter(name: "reblogs", value: "false")]
+        )))
+    }
+    
+    /// Shows reblogs.
+    ///
+    /// - Parameter id: The account id.
+    /// - Returns: Request for `Relationship`.
+    public static func showReblogs(id: String) -> Request<Relationship> {
+        return Request<Relationship>(path: "/api/v1/accounts/\(id)/follow", method: .post(.parameters(
+            [Parameter(name: "reblogs", value: "true")]
+        )))
     }
 
     /// Gets an account's relationships.

@@ -117,13 +117,16 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gO-tB-bhd" customClass="Button" customModule="Tusk" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gO-tB-bhd" customClass="Button" customModule="Tusk" customModuleProvider="target">
                                                     <rect key="frame" x="141.5" y="4" width="16" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="1gO-tB-bhd" secondAttribute="height" id="Pki-5l-50T"/>
                                                     </constraints>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="SettingsButton"/>
+                                                    <connections>
+                                                        <action selector="presentRelationshipSettingsWithSender:" destination="pLS-IO-mNn" eventType="touchUpInside" id="PNk-gs-V6U"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

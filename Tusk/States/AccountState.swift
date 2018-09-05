@@ -43,6 +43,9 @@ struct AccountState: StateType, StatusViewableState {
     struct PollNewerStatuses: AccountPollingAction { let client: Client; let account: AccountType }
     
     struct ToggleFollowing: AccountAction { let client: Client; let account: AccountType }
+    struct ToggleMuting: AccountAction { let client: Client; let account: AccountType }
+    struct ToggleReposts: AccountAction { let client: Client; let account: AccountType }
+    struct ToggleBlocking: AccountAction { let client: Client; let account: AccountType }
     
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
@@ -117,6 +120,9 @@ struct AccountState: StateType, StatusViewableState {
         case let action as PollNewerFollowers: state.pollFollowers(client: action.client, account: action.account, range: state.followersPreviousPage)
             
         case let action as ToggleFollowing: state.toggleFollowing(client: action.client, account: action.account)
+        case let action as ToggleMuting: state.toggleMuting(client: action.client, account: action.account)
+        case let action as ToggleReposts: state.toggleReposts(client: action.client, account: action.account)
+        case let action as ToggleBlocking: state.toggleBlocking(client: action.client, account: action.account)
         default: break
         }
         
@@ -247,9 +253,66 @@ struct AccountState: StateType, StatusViewableState {
     
     func toggleFollowing(client: Client, account: AccountType) {
         guard let relationship = self.relationship else { return }
-        let startFollowing = !relationship.following
+        let start = !relationship.following
         
-        let request = startFollowing ? Accounts.follow(id: account.id) : Accounts.unfollow(id: account.id)
+        let request = start ? Accounts.follow(id: account.id) : Accounts.unfollow(id: account.id)
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): DispatchQueue.main.async {
+                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+                log.verbose("success \(request)")
+                }
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
+            }
+        }
+    }
+    
+    func toggleMuting(client: Client, account: AccountType) {
+        guard let relationship = self.relationship else { return }
+        let start = !relationship.muting
+        
+        let request = start ? Accounts.mute(id: account.id) : Accounts.unmute(id: account.id)
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): DispatchQueue.main.async {
+                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+                log.verbose("success \(request)")
+                }
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
+            }
+        }
+    }
+    
+    func toggleReposts(client: Client, account: AccountType) {
+        guard let relationship = self.relationship else { return }
+        let start = !relationship.showingReblogs
+
+        let request = start ? Accounts.showReblogs(id: account.id) : Accounts.hideReblogs(id: account.id)
+        client.run(request) { (result) in
+            switch result {
+            case .success(let resp, _): DispatchQueue.main.async {
+                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+                log.verbose("success \(request)")
+                }
+            case .failure(let error): do {
+                log.error("error \(request) 🚨 Error: \(error)\n")
+                GlobalStore.dispatch(ErrorsState.AddError(value: error))
+                }
+            }
+        }
+    }
+    
+    func toggleBlocking(client: Client, account: AccountType) {
+        guard let relationship = self.relationship else { return }
+        let start = !relationship.blocking
+        
+        let request = start ? Accounts.block(id: account.id) : Accounts.unblock(id: account.id)
         client.run(request) { (result) in
             switch result {
             case .success(let resp, _): DispatchQueue.main.async {
