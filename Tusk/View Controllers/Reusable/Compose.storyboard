@@ -203,7 +203,7 @@
                                 <action selector="dismissWithSender:" destination="LKe-85-S3J" id="3av-qO-zXc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="22m-UI-TP6" customClass="BarButtonItem" customModule="Tusk" customModuleProvider="target">
+                        <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="22m-UI-TP6">
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="bold" value="YES"/>
                             </userDefinedRuntimeAttributes>
