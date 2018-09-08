@@ -29,8 +29,15 @@ struct MentionsState: StatusesState {
     static var additionalReducer: ((Action, MentionsState?) -> MentionsState)? = nil
     
     static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
-        guard let range = range else { return Notifications.all(range: .limit(30)) }
-        return Notifications.all(range: range)
+        let range = range ?? .limit(30)
+        var req = Notifications.all(range: range)
+        
+        switch range {
+        case .since(_, _): req.cachePolicy = .reloadIgnoringCacheData
+        default: req.cachePolicy = .returnCacheDataElseLoad
+        }
+        
+        return req
     }
     
     static func typeMapper(notifications: [MKNotification]) -> [Status] {

@@ -27,8 +27,10 @@ public struct Client: ClientType {
                 completion(.failure(ClientError.malformedURL))
                 return
         }
-
-        let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
+        
+        var urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
+        urlRequest.cachePolicy = request.cachePolicy
+        
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))

@@ -46,7 +46,7 @@ DEPENDENCIES:
   - DTCoreText (~> 1.6)
   - KeychainAccess (~> 3.1)
   - Lightbox (~> 2.1)
-  - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, branch `master`)
+  - MastodonKit (from `https://github.com/pcperini/MastodonKit.git`, commit `head`, branch `master`)
   - MGSwipeTableCell (~> 1.6)
   - ReSwift (~> 4.0)
   - SwiftyBeaver (~> 1.6)
@@ -75,11 +75,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   MastodonKit:
     :branch: master
+    :commit: head
     :git: https://github.com/pcperini/MastodonKit.git
 
 CHECKOUT OPTIONS:
   MastodonKit:
-    :commit: 817c7039b69ccad1c806af5ea5c7a0f3d2ce5a14
+    :commit: bdc9fabc419ed0848baa4489a9072ac7b1ddebde
     :git: https://github.com/pcperini/MastodonKit.git
 
 SPEC CHECKSUMS:
@@ -102,6 +103,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   YPImagePicker: 049aa31e2858c63730ace6b6358bba946178dfe3
 
-PODFILE CHECKSUM: 6b2aae00bd402386601e53d6802478cfee4ad0a8
+PODFILE CHECKSUM: fb15a52062fc80447268a302544c9dc22c894b19
 
 COCOAPODS: 1.5.3

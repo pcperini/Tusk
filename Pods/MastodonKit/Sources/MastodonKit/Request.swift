@@ -11,6 +11,7 @@ import Foundation
 public struct Request<Model: Codable> {
     let path: String
     let method: HTTPMethod
+    public var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringCacheData
 
     init(path: String, method: HTTPMethod = .get(.empty)) {
         self.path = path
