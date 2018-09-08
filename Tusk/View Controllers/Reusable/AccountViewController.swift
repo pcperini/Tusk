@@ -159,6 +159,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else if let relationship = self.relationship {
             rightButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
+            rightButton.tintColor = UIColor(named: relationship.following ? "DestructiveButtonColor" : "DefaultButtonColor")
             rightButton.action = #selector(toggleFollowButtonWasPressed(sender:))
             
             leftButton.image = nil
@@ -371,12 +372,6 @@ class AccountViewController: UITableViewController, StoreSubscriber {
                 GlobalStore.dispatch(action)
             }
         }
-        
-        let followAction = UIAlertAction(title: relationship.following ? "Unfollow" : (relationship.requested ? "Requested" : "Follow"),
-                                         style: .default,
-                                         handler: handle(AccountState.ToggleFollowing(client: client, account: account)))
-        followAction.isEnabled = !relationship.requested
-        settingsPicker.addAction(followAction)
 
         if (relationship.following) {
             let muteNotificationsAction = UIAlertAction(title: relationship.showingReblogs ? "Hide Reposts" : "Show Reposts",
@@ -388,6 +383,12 @@ class AccountViewController: UITableViewController, StoreSubscriber {
                                            handler: handle(AccountState.ToggleMuting(client: client, account: account)))
             settingsPicker.addAction(muteAction)
         }
+        
+        let followAction = UIAlertAction(title: relationship.following ? "Unfollow" : (relationship.requested ? "Requested" : "Follow"),
+                                         style: relationship.following ? .destructive : .default,
+                                         handler: handle(AccountState.ToggleFollowing(client: client, account: account)))
+        followAction.isEnabled = !relationship.requested
+        settingsPicker.addAction(followAction)
         
         let blockAction = UIAlertAction(title: relationship.blocking ? "Unblock" : "Block",
                                         style: relationship.blocking ? .default : .destructive,
