@@ -77,18 +77,9 @@ extension StatusesState {
     
     func pollFilters(client: Client) {
         let request = Filters.all()
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                log.verbose("success \(request)", context: ["resp": resp])
-                GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
+        })
     }
     
     mutating func loadUnsuppressedStatusIDs() {

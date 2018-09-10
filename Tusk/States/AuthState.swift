@@ -97,21 +97,13 @@ struct AuthState: StateType {
             website: "https://pcperini.com"
         )
         
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): do {
-                GlobalStore.dispatch(SetInstance(value: instance))
-                GlobalStore.dispatch(SetClientInfo(id: resp.clientID, secret: resp.clientSecret))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                AuthState.clearAll()
-                GlobalStore.dispatch(SetInstance(value: nil))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetInstance(value: instance))
+            GlobalStore.dispatch(SetClientInfo(id: resp.clientID, secret: resp.clientSecret))
+        }, failure: { (_) in
+            AuthState.clearAll()
+            GlobalStore.dispatch(SetInstance(value: nil))
+        })
     }
     
     private mutating func setClientInfo(id: String, secret: String) {
@@ -146,28 +138,20 @@ struct AuthState: StateType {
                                   code: code,
                                   redirectURI: AuthState.redirectURL)
         
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): do {
-                GlobalStore.dispatch(SetAccessToken(value: resp.accessToken))
-                GlobalStore.dispatch(AppState.PollData())
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                AuthState.clearAll()
-                GlobalStore.dispatch(SetAccessToken(value: nil))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccessToken(value: resp.accessToken))
+            GlobalStore.dispatch(AppState.PollData())
+        }, failure: { (_) in
+            AuthState.clearAll()
+            GlobalStore.dispatch(SetAccessToken(value: nil))
+        })
     }
     
     func handleError(error: Error) {
         if let error = error as? ClientError {
             switch error {
             case .mastodonError(let description): DispatchQueue.main.async {
-                if (description.lowercased().contains("access token was revoked")) {
+                if (description.lowercased().contains("access token")) {
                     AuthState.clearAll()
                     GlobalStore.dispatch(SetAccessToken(value: nil))
                 }

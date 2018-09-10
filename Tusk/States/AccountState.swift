@@ -131,20 +131,11 @@ struct AccountState: StateType, StatusViewableState {
     
     static func pollAccount(client: Client, accountID: String? = nil) {
         let request = accountID == nil ? Accounts.currentUser() : Accounts.account(id: accountID!)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetAccount(account: resp, active: accountID == nil))
-                GlobalStore.dispatch(PollPinnedStatuses(client: client, account: resp))
-                GlobalStore.dispatch(PollRelationship(client: client, account: resp))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: accountID == nil))
+            GlobalStore.dispatch(PollPinnedStatuses(client: client, account: resp))
+            GlobalStore.dispatch(PollRelationship(client: client, account: resp))
+        })
     }
     
     func pollPinnedStatuses(client: Client) {
@@ -154,35 +145,17 @@ struct AccountState: StateType, StatusViewableState {
                                         pinnedOnly: true,
                                         excludeReplies: true,
                                         range: .limit(40))
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetPinnedStatuses(value: resp, account: account))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetPinnedStatuses(value: resp, account: account))
+        })
     }
     
     func pollRelationship(client: Client) {
         guard let account = self.account else { return }
         let request = Accounts.relationships(ids: [account.id])
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetRelationship(value: resp.first, account: account))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetRelationship(value: resp.first, account: account))
+        })
     }
     
     mutating func pollStatuses(client: Client, account: AccountType, range: RequestRange? = nil) {
@@ -256,18 +229,9 @@ struct AccountState: StateType, StatusViewableState {
         let start = !relationship.following
         
         let request = start ? Accounts.follow(id: account.id) : Accounts.unfollow(id: account.id)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+        })
     }
     
     func toggleMuting(client: Client, account: AccountType) {
@@ -275,18 +239,9 @@ struct AccountState: StateType, StatusViewableState {
         let start = !relationship.muting
         
         let request = start ? Accounts.mute(id: account.id) : Accounts.unmute(id: account.id)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+        })
     }
     
     func toggleReposts(client: Client, account: AccountType) {
@@ -294,18 +249,9 @@ struct AccountState: StateType, StatusViewableState {
         let start = !relationship.showingReblogs
 
         let request = start ? Accounts.showReblogs(id: account.id) : Accounts.hideReblogs(id: account.id)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+        })
     }
     
     func toggleBlocking(client: Client, account: AccountType) {
@@ -313,17 +259,8 @@ struct AccountState: StateType, StatusViewableState {
         let start = !relationship.blocking
         
         let request = start ? Accounts.block(id: account.id) : Accounts.unblock(id: account.id)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                GlobalStore.dispatch(SetRelationship(value: resp, account: account))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetRelationship(value: resp, account: account))
+        })
     }
 }

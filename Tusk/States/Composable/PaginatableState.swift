@@ -42,26 +42,18 @@ struct PaginatingData<DataType, RequestType> where DataType: Paginatable, Reques
     func pollData(client: Client, range: RequestRange? = nil, existingData: [DataType], filters: [DataFilter] = [], completion: @escaping ([DataType], Pagination?) -> Void) {
         let request: Request<[RequestType]> = self.provider(range)
         var allData = existingData
-
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, let pagination): do {
-                allData = self.mergeData(existingData: allData, newData: self.typeMapper(resp), filters: filters, range: range)
-                log.verbose("success \(request)", context: ["resp": resp, "type": DataType.self])
-                
-                guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
-                self.pollData(client: client,
-                              range: nextPage,
-                              existingData: allData,
-                              filters: filters,
-                              completion: completion)
-                }
-            case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
-            }
-        }
+        
+        client.run(request: request, success: { (resp, pagination) in
+            allData = self.mergeData(existingData: allData, newData: self.typeMapper(resp), filters: filters, range: range)
+            log.verbose("success \(request)", context: ["resp": resp, "type": DataType.self])
+            
+            guard let nextPage = pagination?.next, allData.count < self.minimumPageSize else { completion(allData, pagination); return }
+            self.pollData(client: client,
+                          range: nextPage,
+                          existingData: allData,
+                          filters: filters,
+                          completion: completion)
+        })
     }
     
     private func mergeData(existingData: [DataType], newData: [DataType], filters: [DataFilter], range: RequestRange? = nil) -> [DataType] {
