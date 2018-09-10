@@ -195,6 +195,9 @@
 		7362929A2140220100C6AC6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736292992140220100C6AC6F /* SettingsViewController.swift */; };
 		7362929B2140220100C6AC6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736292992140220100C6AC6F /* SettingsViewController.swift */; };
 		7362929C2140220100C6AC6F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736292992140220100C6AC6F /* SettingsViewController.swift */; };
+		7377EB882146F6BA0097EA73 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB872146F6BA0097EA73 /* FiltersViewController.swift */; };
+		7377EB892146F6BA0097EA73 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB872146F6BA0097EA73 /* FiltersViewController.swift */; };
+		7377EB8A2146F6BA0097EA73 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB872146F6BA0097EA73 /* FiltersViewController.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -347,6 +350,7 @@
 		73629291213F2FD300C6AC6F /* Clonable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
 		73629295214021E200C6AC6F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		736292992140220100C6AC6F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7377EB872146F6BA0097EA73 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageAttachmentViewCell.xib; sourceTree = "<group>"; };
@@ -509,6 +513,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7377EB862146F6A90097EA73 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				736292992140220100C6AC6F /* SettingsViewController.swift */,
+				7377EB872146F6BA0097EA73 /* FiltersViewController.swift */,
+				73629295214021E200C6AC6F /* Settings.storyboard */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,9 +540,8 @@
 				7302302A2130782300BC1E9A /* ActiveAccount.storyboard */,
 				73023042213089B800BC1E9A /* FavouritesViewController.swift */,
 				7302303E2130887D00BC1E9A /* Favourites.storyboard */,
-				736292992140220100C6AC6F /* SettingsViewController.swift */,
-				73629295214021E200C6AC6F /* Settings.storyboard */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
+				7377EB862146F6A90097EA73 /* Settings */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1010,6 +1023,7 @@
 				73208E92212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
+				7377EB882146F6BA0097EA73 /* FiltersViewController.swift in Sources */,
 				73D6CF412133530700990AA6 /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1032,6 +1046,7 @@
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A0213AE922005123AA /* StatusUpdateState.swift in Sources */,
+				7377EB892146F6BA0097EA73 /* FiltersViewController.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73023048213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
@@ -1102,6 +1117,7 @@
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A1213AE922005123AA /* StatusUpdateState.swift in Sources */,
+				7377EB8A2146F6BA0097EA73 /* FiltersViewController.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73023049213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
