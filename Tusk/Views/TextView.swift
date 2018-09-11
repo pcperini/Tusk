@@ -56,7 +56,7 @@ import DTCoreText
             let builder = DTHTMLAttributedStringBuilder(html: text.data(using: .utf8),
                                                         options: options,
                                                         documentAttributes: nil)
-            let linkRegex = Regex("([a-z]+:\\/\\/.{\(self.maxLinkLength),})\\s?")
+            let linkRegex = Regex("[a-z]*(://)?[-a-zA-Z0-9@:%._\\+~#=]{\(self.maxLinkLength),256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
             
             var attributedText = builder?.generatedAttributedString()
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
