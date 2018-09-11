@@ -26,15 +26,19 @@ class ContextViewController: StatusesContainerViewController<ContextState> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.statusesViewController?.paginationActivityIndicator.stopAnimating()
+        
+        self.statusesViewController?.refreshingEnabled = false
+        self.statusesViewController?.pagingEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let row = self.contextState.context?.ancestors.count ?? 0
-        self.statusesViewController?.tableView.scrollToRow(at: IndexPath(row: row, section: 0),
-                                                           at: .top,
-                                                           animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            guard let row = self.contextState.context?.ancestors.count else { return }
+            self.statusesViewController?.tableView.scrollToRow(at: IndexPath(row: row, section: 0),
+                                                               at: .top,
+                                                               animated: true)
+        }
     }
 }
