@@ -60,48 +60,27 @@ struct StatusUpdateState: StateType {
     func toggleFavourite(client: Client, id: String, status: Status) {
         let on = !(status.favourited ?? false)
         let request = on ? Statuses.favourite(id: status.id) : Statuses.unfavourite(id: status.id)
-        client.run(request) { (result) in
+        client.run(request: request, success: { (resp, _) in
+            let newStatus = try! resp.cloned(changes: [
+                "favourites_count": resp.favouritesCount + (on ? 0 : -1)
+            ])
+            GlobalStore.dispatch(StatusesState.UpdateStatus(value: newStatus))
+        }, finally: { (result) in
             GlobalStore.dispatch(AddResult(id: id, result: result))
-            
-            switch result {
-            case .success(let resp, _): do {
-                let newStatus = try! resp.cloned(changes: [
-                    "favourites_count": resp.favouritesCount + (on ? 0 : -1)
-                    ])
-                
-                
-                GlobalStore.dispatch(StatusesState.UpdateStatus(value: newStatus))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
-            }
-        }
+        })
     }
     
     func toggleReblog(client: Client, id: String, status: Status) {
         let on = !(status.reblogged ?? false)
         let request = on ? Statuses.reblog(id: status.id) : Statuses.unreblog(id: status.id)
-        client.run(request) { (result) in
+        client.run(request: request, success: { (resp, _) in
+            let newStatus = try! resp.cloned(changes: [
+                "reblogs_count": resp.reblogsCount + (on ? 0 : -1)
+            ])
+            GlobalStore.dispatch(StatusesState.UpdateStatus(value: newStatus))
+        }, finally: { (result) in
             GlobalStore.dispatch(AddResult(id: id, result: result))
-            
-            switch result {
-            case .success(let resp, _): do {
-                let newStatus = try! resp.cloned(changes: [
-                    "reblogs_count": resp.reblogsCount + (on ? 0 : -1)
-                    ])
-                
-                GlobalStore.dispatch(StatusesState.UpdateStatus(value: newStatus))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
-            }
-        }
+        })
     }
     
     func postStatus(client: Client, id: String, content: String, inReplyTo: Status?, visibility: Visibility, attachments: [MediaAttachment]) {
@@ -114,20 +93,11 @@ struct StatusUpdateState: StateType {
                                           spoilerText: nil,
                                           visibility: visibility)
             
-            client.run(request) { (result) in
+            client.run(request: request, success: { (resp, _) in
+                GlobalStore.dispatch(TimelineState.InsertStatus(value: resp))
+            }, finally: { (result) in
                 GlobalStore.dispatch(AddResult(id: id, result: result))
-                
-                switch result {
-                case .success(let resp, _): do {
-                    GlobalStore.dispatch(TimelineState.InsertStatus(value: resp))
-                    log.verbose("success \(request)")
-                    }
-                case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
-                }
-            }
+            })
         }
         
         if attachments.isEmpty {
@@ -136,57 +106,33 @@ struct StatusUpdateState: StateType {
         else {
             attachments.forEach { (attachment) in
                 let request = Media.upload(media: attachment)
-                client.run(request) { (result) in
-                    switch result {
-                    case .success(let resp, _): do {
-                        uploads.append(resp)
-                        log.verbose("success \(request)")
-                        
-                        if (uploads.count == attachments.count) { statusPost() }
-                        }
-                    case .failure(let error): do {
-                        log.error("error \(request) 🚨 Error: \(error)\n")
-                        GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
-                        }
-                    }
-                }
+                client.run(request: request, success: { (resp, _) in
+                    uploads.append(resp)
+                    if (uploads.count == attachments.count) { statusPost() }
+                }, failure: { (error) in
+                    GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
+                })
             }
         }
     }
     
     func reportStatus(client: Client, id: String, status: Status) {
         let request = Reports.report(accountID: status.account.id, statusIDs: [status.id], reason: "This post was offensive.")
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): do {
-                GlobalStore.dispatch(StatusesState.RemoveStatus(value: status))
-                GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.success(status, nil)))
-                log.verbose("success \(request), \(resp)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(StatusesState.RemoveStatus(value: status))
+            GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.success(status, nil)))
+        }, failure: { (error) in
+            GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
+        })
     }
     
     func deleteStatus(client: Client, id: String, status: Status) {
         let request = Statuses.delete(id: status.id)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): do {
-                GlobalStore.dispatch(StatusesState.RemoveStatus(value: status))
-                GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.success(status, nil)))
-                log.verbose("success \(request), \(resp)")
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(StatusesState.RemoveStatus(value: status))
+            GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.success(status, nil)))
+        }, failure: { (error) in
+            GlobalStore.dispatch(AddResult(id: id, result: Result<Status>.failure(error)))
+        })
     }
 }

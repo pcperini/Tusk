@@ -51,17 +51,8 @@ struct ContextState: StateType, StatusViewableState {
     
     func pollContext(client: Client) {
         let request = Statuses.context(id: self.status.id)
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): do {
-                GlobalStore.dispatch(SetContext(value: resp))
-                log.verbose("success \(request)")
-                }
-            case .failure(let error): do {
-                    log.error("error \(request) 🚨 Error: \(error)\n")
-                    GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                    }
-            }
-        }
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetContext(value: resp))
+        })
     }
 }
