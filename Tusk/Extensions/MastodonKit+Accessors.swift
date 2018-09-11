@@ -86,15 +86,20 @@ extension Status: Clonable {
 }
 
 extension Filter {
+    private static let RegexPrefix = "TuskRegex::"
+    
+    var isRegex: Bool {
+        return self.phrase.starts(with: Filter.RegexPrefix)
+    }
+    
     var filterFunction: (Status) -> Bool {
         return { (status) in
-            switch self.phrase {
-            case _ where self.phrase.starts(with: "TuskRegex::"): do {
-                let regex = Regex(self.phrase.replacingOccurrences(of: "TuskRegex::", with: ""))
+            if self.isRegex {
+                let regex = Regex(self.phrase.replacingOccurrences(of: Filter.RegexPrefix, with: ""))
                 return !regex.test(input: status.content)
-                }
-            default: return !status.content.contains(self.phrase)
             }
+            
+            return !status.content.contains(self.phrase)
         }
     }
 }
