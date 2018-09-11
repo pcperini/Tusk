@@ -16,6 +16,7 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
 
     var notifications: [MKNotification] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<MKNotification> = TableViewMergeHandler(tableView: self.tableView,
+                                                                                                      section: 0,
                                                                                                       data: nil,
                                                                                                       selectedElement: nil,
                                                                                                       dataComparator: ==)

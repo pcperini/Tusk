@@ -37,7 +37,7 @@ import DTCoreText
         
     var htmlText: String? {
         didSet {
-            self.text = ""
+            self.attributedText = NSAttributedString()
             guard let text = self.htmlText else { return }
             guard text.contains("<") else { self.text = text; return }
             
