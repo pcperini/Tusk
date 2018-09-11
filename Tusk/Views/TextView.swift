@@ -61,7 +61,6 @@ import DTCoreText
             var attributedText = builder?.generatedAttributedString()
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
                 .replacingMatches(to: linkRegex, with: { (match) -> String in
-                    print(match)
                     if (self.hideLinkCriteria(match)) { return "" }
                     switch self.linkLineBreakMode {
                     case .byCharWrapping, .byWordWrapping: return match
