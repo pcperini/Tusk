@@ -34,6 +34,12 @@ extension NSAttributedString {
         self.init(attributedString: attributedString)
     }
     
+    func replacingRange(range: NSRange, with: TextReplaceable) -> NSAttributedString {
+        guard let replacement = self.mutableCopy() as? NSMutableAttributedString else { return self }
+        replacement.replaceRange(range: range, with: with)
+        return replacement
+    }
+    
     func replacingOccurrences(of: String, with: TextReplaceable, options: NSString.CompareOptions, range: NSRange) -> NSAttributedString {
         guard let mutable = self.mutableCopy() as? NSMutableAttributedString else { return self }
         
@@ -42,36 +48,20 @@ extension NSAttributedString {
         
         while (searchRange.location < mutable.length) {
             searchRange.length = mutable.length - searchRange.location
-            foundRange = mutable.mutableString.range(of: of, options: [], range: searchRange)
+            foundRange = mutable.mutableString.range(of: of, options: options, range: searchRange)
             guard foundRange.location != NSNotFound else { break }
             
-            let attributes = mutable.attributes(at: foundRange.location,
-                                                longestEffectiveRange: nil,
-                                                in: NSRange(location: 0, length: foundRange.length))
-
-            let replacement: NSAttributedString
-            switch with {
-            case let with as String: do {
-                let mut = NSMutableAttributedString(string: with)
-                mut.setAttributes(attributes, range: NSRange(location: 0, length: mut.length))
-                replacement = mut
-                }
-            case let with as NSAttributedString: replacement = with
-            default: replacement = NSAttributedString()
-            }
-
-            mutable.replaceCharacters(in: foundRange, with: replacement)
+            mutable.replaceRange(range: foundRange,
+                                 with: with)
         }
 
         return mutable
     }
     
     func replacingMatches(to regex: Regex, with: (String) -> TextReplaceable) -> NSAttributedString {
-        return regex.captures(input: self.string).reduce(self) { (latest, nextCapture) in
-            latest.replacingOccurrences(of: nextCapture,
-                                        with: with(nextCapture),
-                                        options: .regularExpression,
-                                        range: regex.rangeOfString(input: latest.string))
+        return regex.matches(input: self.string).reduce(self) { (latest, match) in
+            guard let substring = self.string[match.range] else { return latest }
+            return latest.replacingRange(range: match.range, with: with(substring))
         }
     }
 }
@@ -93,31 +83,23 @@ extension NSMutableAttributedString {
             range = (string as NSString).rangeOfCharacter(from: charSet, options: .backwards)
         }
     }
+    
+    func replaceRange(range: NSRange, with: TextReplaceable) {
+        let attributes = self.attributes(at: range.location,
+                                         longestEffectiveRange: nil,
+                                         in: NSRange(location: 0, length: range.length))
+        
+        let replacement: NSAttributedString
+        switch with {
+        case let with as String: do {
+            let mut = NSMutableAttributedString(string: with)
+            mut.setAttributes(attributes, range: NSRange(location: 0, length: mut.length))
+            replacement = mut
+            }
+        case let with as NSAttributedString: replacement = with
+        default: replacement = NSAttributedString()
+        }
+        
+        self.replaceCharacters(in: range, with: replacement)
+    }
 }
-
-//extension NSString {
-//    func ranges(of: String, range: NSRange? = nil, results: [NSRange] = []) -> [NSRange] {
-//        let range = range ?? NSRange(location: 0, length: self.length)
-//        if (range.location + range.length > self.length) {
-//            return results
-//        }
-//
-//        let nextString = self.substring(with: range)
-//        print("searching for \(of) in \(nextString), \(range)")
-//        var match = NSString(string: nextString).range(of: of)
-//        if (match.location == NSNotFound) {
-//            return results
-//        }
-//
-//        let nextStart = match.location + match.length
-//        if let lastMatch = results.last {
-//            match.location += lastMatch.location + lastMatch.length
-//        }
-//
-//        print("found in \(match). starting in \(nextStart)")
-//        return nextString.ranges(of: of,
-//                                 range: NSRange(location: nextStart,
-//                                                length: self.length - nextStart),
-//                                 results: results + [match])
-//    }
-//}

@@ -50,3 +50,12 @@ infix operator =~
 public func =~ (input: String, pattern: String) -> Bool {
     return Regex(pattern).test(input: input)
 }
+
+extension String {
+    subscript(range: NSRange) -> String? {
+        get {
+            guard let range = Range(range, in: self) else { return nil }
+            return String(self[range])
+        }
+    }
+}

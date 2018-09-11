@@ -56,18 +56,19 @@ import DTCoreText
             let builder = DTHTMLAttributedStringBuilder(html: text.data(using: .utf8),
                                                         options: options,
                                                         documentAttributes: nil)
-            let linkRegex = Regex("[a-z]*(://)?[-a-zA-Z0-9@:%._\\+~#=]{\(self.maxLinkLength),256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
+            let linkRegex = Regex("(?=.{\(self.maxLinkLength),}$)(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
             
             var attributedText = builder?.generatedAttributedString()
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
                 .replacingMatches(to: linkRegex, with: { (match) -> String in
+                    print(match)
                     if (self.hideLinkCriteria(match)) { return "" }
                     switch self.linkLineBreakMode {
                     case .byCharWrapping, .byWordWrapping: return match
                     case .byClipping: return "\(match.prefix(self.maxLinkLength))) "
-                    case .byTruncatingHead: return "...\(match.suffix(self.maxLinkLength - 3)) "
-                    case .byTruncatingMiddle: return "\(match.prefix((self.maxLinkLength / 2) - 3))...\(match.suffix(self.maxLinkLength / 2)) "
-                    case .byTruncatingTail: return "\(match.prefix(self.maxLinkLength - 3))... "
+                    case .byTruncatingHead: return "...\(match.suffix(self.maxLinkLength - 3))"
+                    case .byTruncatingMiddle: return "\(match.prefix((self.maxLinkLength / 2) - 3))...\(match.suffix(self.maxLinkLength / 2))"
+                    case .byTruncatingTail: return "\(match.prefix(self.maxLinkLength - 3))..."
                     }
                 })
                 .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
