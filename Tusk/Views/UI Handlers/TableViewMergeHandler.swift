@@ -88,6 +88,10 @@ struct TableViewMergeHandler<DataType: Comparable> {
         if (old.isEmpty) { return DiffState(removed: [], inserted: Array(new.enumerated()), common: []) }
         if (new.isEmpty) { return DiffState(removed: Array(new.enumerated()), inserted: [], common: []) }
         
+        if (old == new) {
+            return DiffState(removed: [], inserted: [], common: [])
+        }
+        
         var removed: [(Int, DataType)] = []
         var inserted: [(Int, DataType)] = []
         var common: [(Int, DataType)] = []

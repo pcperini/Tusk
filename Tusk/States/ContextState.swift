@@ -9,38 +9,47 @@
 import MastodonKit
 import ReSwift
 
+protocol ContextAction: Action { var status: Status { get } }
+
 struct ContextState: StateType, StatusViewableState {
-    struct SetContext: Action { let value: Context? }
-    struct PollContext: PollAction { let client: Client; let status: Status }
+    struct SetContext: ContextAction { let value: Context?; let status: Status }
+    struct PollContext: ContextAction, PollAction { let client: Client; let status: Status }
     
-    var status: Status
+    var status: Status? = nil
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
     var context: Context? {
         didSet {
             self.statuses = []
             if let context = self.context {
-                self.statuses = context.ancestors + [self.status] + context.descendants
+                self.statuses = context.ancestors + [self.status].compactMap({ $0 }) + context.descendants
             }
         }
     }
     
     static func reducer(action: Action, state: ContextState?) -> ContextState {
-        var state = state
+        var state = state ?? ContextState()
+        guard let action = action as? ContextAction else { return state }
         
         switch action {
-        case let action as SetContext: state?.context = action.value
         case let action as PollContext: do {
             state = ContextState(status: action.status, statuses: [], unsuppressedStatusIDs: [], context: nil)
-            state?.pollContext(client: action.client)
-            }
-        case let action as StatusesState.UpdateStatus: do {
-            state?.updateStatus(status: action.value)
+            state.pollContext(client: action.client)
             }
         default: break
         }
         
-        return state!
+        guard action.status == state.status else { return state }
+        
+        switch action {
+        case let action as SetContext: state.context = action.value
+        case let action as StatusesState.UpdateStatus: do {
+            state.updateStatus(status: action.value)
+            }
+        default: break
+        }
+        
+        return state
     }
     
     mutating func updateStatus(status: Status) {
@@ -50,9 +59,10 @@ struct ContextState: StateType, StatusViewableState {
     }
     
     func pollContext(client: Client) {
-        let request = Statuses.context(id: self.status.id)
+        guard let status = self.status else { return }
+        let request = Statuses.context(id: status.id)
         client.run(request: request, success: { (resp, _) in
-            GlobalStore.dispatch(SetContext(value: resp))
+            GlobalStore.dispatch(SetContext(value: resp, status: status))
         })
     }
 }

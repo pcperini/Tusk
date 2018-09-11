@@ -14,11 +14,7 @@ import SafariServices
 class StatusesViewController: PaginatingTableViewController<Status> {
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
-    lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
-                                                                                              section: self.statusesSection,
-                                                                                              data: nil,
-                                                                                              selectedElement: nil,
-                                                                                              dataComparator: self.statusesAreEqual)
+    private var tableMergeHandler: TableViewMergeHandler<Status>!
     
     var nextPageAction: () -> Action? = { nil }
     var previousPageAction: () -> Action? = { nil }
@@ -49,6 +45,17 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.statuses = []
+        self.tableMergeHandler = TableViewMergeHandler(tableView: self.tableView,
+                                                       section: self.statusesSection,
+                                                       data: nil,
+                                                       selectedElement: nil,
+                                                       dataComparator: self.statusesAreEqual)
+    }
+    
     func pollStatuses(pageDirection: PageDirection = .Reload) {
         let possibleAction: Action?
         switch pageDirection {
@@ -64,7 +71,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     func updateStatuses(statuses: [Status]) {
         self.endRefreshing()
         self.endPaginating()
-
+        
         self.statuses = statuses
         self.tableMergeHandler.mergeData(data: statuses)
         
