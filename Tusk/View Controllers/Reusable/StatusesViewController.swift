@@ -14,7 +14,11 @@ import SafariServices
 class StatusesViewController: PaginatingTableViewController<Status> {
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
-    private var tableMergeHandler: TableViewMergeHandler<Status>!
+    lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
+                                                                                              section: self.statusesSection,
+                                                                                              data: nil,
+                                                                                              selectedElement: nil,
+                                                                                              dataComparator: self.statusesAreEqual)
     
     var nextPageAction: () -> Action? = { nil }
     var previousPageAction: () -> Action? = { nil }
@@ -43,17 +47,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         self.tableView.visibleCells.forEach { (cell) in
             (cell as? StatusViewCell)?.hideSwipe(animated: true)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.statuses = []
-        self.tableMergeHandler = TableViewMergeHandler(tableView: self.tableView,
-                                                       section: self.statusesSection,
-                                                       data: nil,
-                                                       selectedElement: nil,
-                                                       dataComparator: self.statusesAreEqual)
     }
     
     func pollStatuses(pageDirection: PageDirection = .Reload) {
