@@ -201,6 +201,12 @@
 		7377EB9021498CF20097EA73 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7377EB8F21498CF20097EA73 /* Auth.storyboard */; };
 		7377EB9121498CF20097EA73 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7377EB8F21498CF20097EA73 /* Auth.storyboard */; };
 		7377EB9221498CF20097EA73 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7377EB8F21498CF20097EA73 /* Auth.storyboard */; };
+		7377EB982149CB5D0097EA73 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB972149CB5C0097EA73 /* AuthViewController.swift */; };
+		7377EB992149CB5D0097EA73 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB972149CB5C0097EA73 /* AuthViewController.swift */; };
+		7377EB9A2149CB5D0097EA73 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB972149CB5C0097EA73 /* AuthViewController.swift */; };
+		7377EB9C2149D5D50097EA73 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB9B2149D5D50097EA73 /* View.swift */; };
+		7377EB9D2149D5D50097EA73 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB9B2149D5D50097EA73 /* View.swift */; };
+		7377EB9E2149D5D50097EA73 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB9B2149D5D50097EA73 /* View.swift */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -355,6 +361,8 @@
 		736292992140220100C6AC6F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7377EB8B2146F79B0097EA73 /* MastodonKit+Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Requests.swift"; sourceTree = "<group>"; };
 		7377EB8F21498CF20097EA73 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		7377EB972149CB5C0097EA73 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		7377EB9B2149D5D50097EA73 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageAttachmentViewCell.xib; sourceTree = "<group>"; };
@@ -473,6 +481,7 @@
 				7302304A213109E300BC1E9A /* Button.swift */,
 				73D6CF402133530700990AA6 /* NavigationBar.swift */,
 				73167BCE2136023600C0F28E /* ValidatedLabel.swift */,
+				7377EB9B2149D5D50097EA73 /* View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -538,6 +547,7 @@
 				736292992140220100C6AC6F /* SettingsViewController.swift */,
 				73629295214021E200C6AC6F /* Settings.storyboard */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
+				7377EB972149CB5C0097EA73 /* AuthViewController.swift */,
 				7377EB8F21498CF20097EA73 /* Auth.storyboard */,
 			);
 			path = "View Controllers";
@@ -968,6 +978,7 @@
 				73EAEC5B211E41A900C2620F /* NotificationsViewController.swift in Sources */,
 				730230532131AD2400BC1E9A /* SwiftyRegex.swift in Sources */,
 				73023003212F535000BC1E9A /* ContextState.swift in Sources */,
+				7377EB9C2149D5D50097EA73 /* View.swift in Sources */,
 				732BE289212485890049ADBD /* CaseIterable.swift in Sources */,
 				732BE25E212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				7302300B212F594000BC1E9A /* ContextViewController.swift in Sources */,
@@ -981,6 +992,7 @@
 				732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				732BE24E2122240D0049ADBD /* ImageView.swift in Sources */,
 				73208E96212B319B00529FA3 /* MentionsViewController.swift in Sources */,
+				7377EB982149CB5D0097EA73 /* AuthViewController.swift in Sources */,
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
@@ -1057,6 +1069,7 @@
 				73AD8C2E213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
 				73D6CF3E2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
+				7377EB9D2149D5D50097EA73 /* View.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				7302304C213109E300BC1E9A /* Button.swift in Sources */,
@@ -1084,6 +1097,7 @@
 				73023000212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
+				7377EB992149CB5D0097EA73 /* AuthViewController.swift in Sources */,
 				732557FE2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				732BE24F2122240D0049ADBD /* ImageView.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
@@ -1128,6 +1142,7 @@
 				73AD8C2F213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
 				73D6CF3F2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
+				7377EB9E2149D5D50097EA73 /* View.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
 				7302304D213109E300BC1E9A /* Button.swift in Sources */,
@@ -1155,6 +1170,7 @@
 				73023001212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
+				7377EB9A2149CB5D0097EA73 /* AuthViewController.swift in Sources */,
 				732557FF2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				732BE2502122240D0049ADBD /* ImageView.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
