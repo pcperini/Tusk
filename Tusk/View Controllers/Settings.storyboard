@@ -153,10 +153,10 @@
             </objects>
             <point key="canvasLocation" x="12" y="148.87556221889056"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings Container View Controller-->
         <scene sceneID="01s-6e-K9R">
             <objects>
-                <navigationController id="Ipg-sK-rKr" sceneMemberID="viewController">
+                <navigationController id="Ipg-sK-rKr" customClass="SettingsContainerViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ca9-gn-2L3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

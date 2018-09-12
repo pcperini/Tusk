@@ -5,6 +5,7 @@ PODS:
     - Alamofire (~> 4.5)
   - AnimatedGIFImageSerialization (0.2.0)
   - Cache (4.2.0)
+  - DeckTransition (2.0.0)
   - DTCoreText (1.6.21):
     - DTCoreText/Core (= 1.6.21)
     - DTFoundation/Core (~> 1.7.5)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - AFDateHelper (~> 4.2)
   - AlamofireImage (~> 3.3)
   - AnimatedGIFImageSerialization (~> 0.2)
+  - DeckTransition (~> 2.0)
   - DTCoreText (~> 1.6)
   - KeychainAccess (~> 3.1)
   - Lightbox (~> 2.1)
@@ -59,6 +61,7 @@ SPEC REPOS:
     - AlamofireImage
     - AnimatedGIFImageSerialization
     - Cache
+    - DeckTransition
     - DTCoreText
     - DTFoundation
     - Hue
@@ -89,6 +92,7 @@ SPEC CHECKSUMS:
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   AnimatedGIFImageSerialization: b0f0cfe71eac1ee45a3d57ae533c23b8e6f29501
   Cache: f28f8dd64b632155aabf9b3906b036a659048251
+  DeckTransition: 2300694f94fbeca2c103f365dc9dc09ffae14a4f
   DTCoreText: e5d688cffc9f6a61eddd1a4f94e2046851230de3
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
@@ -103,6 +107,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   YPImagePicker: 049aa31e2858c63730ace6b6358bba946178dfe3
 
-PODFILE CHECKSUM: fb15a52062fc80447268a302544c9dc22c894b19
+PODFILE CHECKSUM: 8ec266dfb1a4ab74e47c71237c373c908f77a4ab
 
 COCOAPODS: 1.5.3

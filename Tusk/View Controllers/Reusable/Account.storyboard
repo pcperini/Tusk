@@ -215,7 +215,7 @@
                         <segue destination="rxF-CT-eSl" kind="show" identifier="PushAccountStatusesViewController" id="Ulu-R3-0Fl"/>
                         <segue destination="JlJ-Wd-fSE" kind="show" identifier="PushFollowsViewController" id="3lX-GD-Y0y"/>
                         <segue destination="i5e-3P-cBF" kind="show" identifier="PushFavouritesViewController" id="u0O-k7-dQZ"/>
-                        <segue destination="shc-Bg-z9L" kind="presentation" identifier="PresentSettingsViewController" id="TFU-Gy-iqM"/>
+                        <segue destination="shc-Bg-z9L" kind="presentation" identifier="PresentSettingsViewController" customClass="DeckSegue" customModule="DeckTransition" id="TFU-Gy-iqM"/>
                         <segue destination="nH7-hx-mwg" kind="show" identifier="PushAccountViewController" id="Xw3-DL-ndm"/>
                         <segue destination="vc5-8t-KJr" kind="show" identifier="PushContextViewController" id="QA4-8B-EAD"/>
                     </connections>

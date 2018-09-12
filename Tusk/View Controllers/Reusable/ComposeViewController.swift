@@ -318,7 +318,14 @@ extension ComposeViewController: UICollectionViewDelegateFlowLayout, UICollectio
 }
 
 class ComposeContainerViewController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+
     var composeViewController: ComposeViewController? {
         return self.viewControllers.first as? ComposeViewController
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.modalPresentationCapturesStatusBarAppearance = true
     }
 }
