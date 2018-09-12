@@ -198,6 +198,9 @@
 		7377EB8C2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB8B2146F79B0097EA73 /* MastodonKit+Requests.swift */; };
 		7377EB8D2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB8B2146F79B0097EA73 /* MastodonKit+Requests.swift */; };
 		7377EB8E2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377EB8B2146F79B0097EA73 /* MastodonKit+Requests.swift */; };
+		7377EB9021498CF20097EA73 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7377EB8F21498CF20097EA73 /* Auth.storyboard */; };
+		7377EB9121498CF20097EA73 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7377EB8F21498CF20097EA73 /* Auth.storyboard */; };
+		7377EB9221498CF20097EA73 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7377EB8F21498CF20097EA73 /* Auth.storyboard */; };
 		7379C5B5211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
 		7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379C5B4211F3D4B003BEB84 /* AppState.swift */; };
@@ -351,6 +354,7 @@
 		73629295214021E200C6AC6F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		736292992140220100C6AC6F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7377EB8B2146F79B0097EA73 /* MastodonKit+Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Requests.swift"; sourceTree = "<group>"; };
+		7377EB8F21498CF20097EA73 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		7379C5B4211F3D4B003BEB84 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7379C5B9211F4180003BEB84 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageAttachmentViewCell.xib; sourceTree = "<group>"; };
@@ -534,6 +538,7 @@
 				736292992140220100C6AC6F /* SettingsViewController.swift */,
 				73629295214021E200C6AC6F /* Settings.storyboard */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
+				7377EB8F21498CF20097EA73 /* Auth.storyboard */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -784,6 +789,7 @@
 				7302301B2130766000BC1E9A /* Timeline.storyboard in Resources */,
 				73EAEC5E211E41A900C2620F /* Main.storyboard in Resources */,
 				73208E7C212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
+				7377EB9021498CF20097EA73 /* Auth.storyboard in Resources */,
 				73023027213077B200BC1E9A /* Notifications.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,6 +798,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7377EB9121498CF20097EA73 /* Auth.storyboard in Resources */,
 				732BE246212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73023028213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DC21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
@@ -817,6 +824,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7377EB9221498CF20097EA73 /* Auth.storyboard in Resources */,
 				732BE247212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73023029213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DD21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
@@ -873,6 +881,7 @@
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/DTCoreText/DTCoreText.framework",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/DeckTransition/DeckTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/Hue/Hue.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
@@ -894,6 +903,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTCoreText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeckTransition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hue.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",

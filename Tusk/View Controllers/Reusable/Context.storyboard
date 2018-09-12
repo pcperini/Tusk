@@ -26,7 +26,7 @@
                     <connections>
                         <segue destination="38m-yr-1z0" kind="show" identifier="PushAccountViewController" id="Swz-CJ-1mB"/>
                         <segue destination="tnr-is-lDU" kind="show" identifier="PushContextViewController" id="z33-ws-gBy"/>
-                        <segue destination="iic-q1-8yH" kind="presentation" identifier="PresentComposeViewController" id="y1d-eq-5gI"/>
+                        <segue destination="iic-q1-8yH" kind="presentation" identifier="PresentComposeViewController" customClass="DeckSegue" customModule="DeckTransition" id="y1d-eq-5gI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWY-cN-soJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

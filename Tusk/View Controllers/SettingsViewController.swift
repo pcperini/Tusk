@@ -57,3 +57,12 @@ class SettingsViewController: UITableViewController {
         self.present(confirmAlert, animated: true, completion: nil)
     }
 }
+
+class SettingsContainerViewController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.modalPresentationCapturesStatusBarAppearance = true
+    }
+}
