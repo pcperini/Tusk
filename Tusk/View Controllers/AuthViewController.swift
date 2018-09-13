@@ -10,6 +10,7 @@
 
 import UIKit
 import ReSwift
+import SafariServices
 
 class AuthViewController: UIViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AuthState
@@ -59,8 +60,6 @@ class AuthViewController: UIViewController, StoreSubscriber {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-        
-        GlobalStore.unsubscribe(self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -94,7 +93,10 @@ class AuthViewController: UIViewController, StoreSubscriber {
         } else if (state.code == nil &&
             state.accessToken == nil &&
             state.oauthURL != nil) {
-            UIApplication.shared.open(state.oauthURL!, options: [:], completionHandler: nil)
+            let safariVC = SFSafariViewController(url: state.oauthURL!)
+            safariVC.delegate = self
+            self.present(safariVC, animated: true, completion: nil)
+            
         } else if (state.accessToken != nil) {
             self.dismiss(animated: true, completion: nil)
         }
@@ -106,5 +108,11 @@ extension AuthViewController: UITextFieldDelegate {
         guard let instance = textField.text, !instance.isEmpty else { return false }
         GlobalStore.dispatch(AuthState.CreateAppForInstance(value: instance))
         return true
+    }
+}
+
+extension AuthViewController: SFSafariViewControllerDelegate {
+    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
+        print(URL)
     }
 }
