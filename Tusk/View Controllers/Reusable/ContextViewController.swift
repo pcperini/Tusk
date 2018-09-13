@@ -28,7 +28,6 @@ class ContextViewController: StatusesContainerViewController<ContextState> {
         super.viewDidLoad()
         
         self.statusesViewController?.refreshingEnabled = false
-        self.statusesViewController?.pagingEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
