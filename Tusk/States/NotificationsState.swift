@@ -74,13 +74,6 @@ struct NotificationsState: PaginatableState {
     
     static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
         let range = range ?? .limit(30)
-        var req = Notifications.all(range: range)
-        
-        switch range {
-        case .since(_, _): req.cachePolicy = .reloadIgnoringCacheData
-        default: req.cachePolicy = .returnCacheDataElseLoad
-        }
-        
-        return req
+        return Notifications.all(range: range)
     }
 }

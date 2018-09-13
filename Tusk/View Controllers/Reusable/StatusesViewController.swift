@@ -178,7 +178,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
         let index = self.statusIndexForIndexPath(indexPath: indexPath)
-        guard index != NSNotFound, !self.statuses.isEmpty else { return nil }
+        guard index != NSNotFound, !self.statuses.isEmpty, index < self.statuses.count else { return nil }
         return self.statuses[index]
     }
     

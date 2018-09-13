@@ -233,7 +233,11 @@ class AccountViewController: StatusesViewController, StoreSubscriber {
         switch section {
         case .About: return self.tableView(tableView, cellForAboutSectionRow: indexPath.row)
         case .Stats: return self.tableView(tableView, cellForStatsSectionRow: indexPath.row)
-        case .Statuses: return super.tableView(tableView, cellForRowAt: indexPath)
+        case .Statuses: do {
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.selectionStyle = .none
+            return cell
+            }
         }
     }
     
@@ -317,7 +321,7 @@ class AccountViewController: StatusesViewController, StoreSubscriber {
             case .Follows: self.pushToFollows()
             }
             }
-        case .Statuses: tableView.deselectRow(at: indexPath, animated: true)
+        case .Statuses: return
         }
     }
     
