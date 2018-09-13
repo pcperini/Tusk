@@ -93,6 +93,9 @@
 		73167BCF2136023600C0F28E /* ValidatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCE2136023600C0F28E /* ValidatedLabel.swift */; };
 		73167BD02136023600C0F28E /* ValidatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCE2136023600C0F28E /* ValidatedLabel.swift */; };
 		73167BD12136023600C0F28E /* ValidatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73167BCE2136023600C0F28E /* ValidatedLabel.swift */; };
+		7317B2A8214AB04700512CE9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2A7214AB04700512CE9 /* TableView.swift */; };
+		7317B2A9214AB04700512CE9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2A7214AB04700512CE9 /* TableView.swift */; };
+		7317B2AA214AB04700512CE9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2A7214AB04700512CE9 /* TableView.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -325,6 +328,7 @@
 		73167BC22135E7B700C0F28E /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		73167BC62135E80700C0F28E /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		73167BCE2136023600C0F28E /* ValidatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedLabel.swift; sourceTree = "<group>"; };
+		7317B2A7214AB04700512CE9 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 				73D6CF402133530700990AA6 /* NavigationBar.swift */,
 				73167BCE2136023600C0F28E /* ValidatedLabel.swift */,
 				7377EB9B2149D5D50097EA73 /* View.swift */,
+				7317B2A7214AB04700512CE9 /* TableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1032,6 +1037,7 @@
 				7377EB8C2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */,
 				73023007212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				739E919F213AE922005123AA /* StatusUpdateState.swift in Sources */,
+				7317B2A8214AB04700512CE9 /* TableView.swift in Sources */,
 				732BE2342120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
 				73022FF7212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				732BE252212233A30049ADBD /* TextView.swift in Sources */,
@@ -1053,6 +1059,7 @@
 				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73022FF4212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */,
+				7317B2A9214AB04700512CE9 /* TableView.swift in Sources */,
 				73208E97212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				73D6CF422133530700990AA6 /* NavigationBar.swift in Sources */,
 				73023004212F535000BC1E9A /* ContextState.swift in Sources */,
@@ -1126,6 +1133,7 @@
 				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73022FF5212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */,
+				7317B2AA214AB04700512CE9 /* TableView.swift in Sources */,
 				73208E98212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				73D6CF432133530700990AA6 /* NavigationBar.swift in Sources */,
 				73023005212F535000BC1E9A /* ContextState.swift in Sources */,
