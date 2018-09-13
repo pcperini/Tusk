@@ -28,10 +28,6 @@ class TabViewController: UITabBarController, StoreSubscriber {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.reloadData()
-        
-        // TESTING
-        self.performSegue(withIdentifier: "PresentAuthViewController", sender: nil)
-        //
     }
     
     override func viewDidLoad() {
@@ -48,6 +44,8 @@ class TabViewController: UITabBarController, StoreSubscriber {
     }
     
     func reloadData() {
+        AuthViewController.displayIfNeeded(fromViewController: self, sender: nil)
+        
         self.authFlowHandler.state = self.state.auth
         self.notificationTab.badgeValue = self.state.notifications.unreadCount > 0 ? " " : nil
         
