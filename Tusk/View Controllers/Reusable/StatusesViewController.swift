@@ -146,7 +146,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }
         cell.contentShouldReveal = {
             if (self.unsuppressedStatusIDs.contains(status.id)) { return }
-            GlobalStore.dispatch(TimelineState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
+            GlobalStore.dispatch(StatusesState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 tableView.performBatchUpdates({
                     tableView.reloadRows(at: [indexPath], with: .automatic)

@@ -17,7 +17,12 @@ struct ContextState: StateType, StatusViewableState {
     
     var status: Status? = nil
     var statuses: [Status] = []
-    var unsuppressedStatusIDs: [String] = []
+
+    var unsuppressedStatusIDs: [String] {
+        get { return GlobalStore.state.timeline.unsuppressedStatusIDs }
+        set { return }
+    }
+
     var context: Context? {
         didSet {
             self.statuses = []
@@ -33,7 +38,7 @@ struct ContextState: StateType, StatusViewableState {
         
         switch action {
         case let action as PollContext: do {
-            state = ContextState(status: action.status, statuses: [], unsuppressedStatusIDs: [], context: nil)
+            state = ContextState(status: action.status, statuses: [], context: nil)
             state.pollContext(client: action.client)
             }
         default: break
