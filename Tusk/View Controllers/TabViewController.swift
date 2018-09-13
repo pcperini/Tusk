@@ -28,6 +28,10 @@ class TabViewController: UITabBarController, StoreSubscriber {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.reloadData()
+        
+        // TESTING
+        self.performSegue(withIdentifier: "PresentAuthViewController", sender: nil)
+        //
     }
     
     override func viewDidLoad() {
