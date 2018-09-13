@@ -49,7 +49,7 @@ extension StatusesState {
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
                                                                                                              nextPage: state.nextPage,
                                                                                                              previousPage: state.previousPage)
-        case is LoadUnsuppressedStatusIDs: state.loadUnsuppressedStatusIDs()
+        case is LoadUnsuppressedStatusIDs: state.unsuppressedStatusIDs = self.cloudLoadUnsuppressedStatusIDs()
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
@@ -80,10 +80,6 @@ extension StatusesState {
         client.run(request: request, success: { (resp, _) in
             GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
         })
-    }
-    
-    mutating func loadUnsuppressedStatusIDs() {
-        self.unsuppressedStatusIDs = Self.cloudLoadUnsuppressedStatusIDs()
     }
     
     mutating func updateStatuses(statuses: [Status], withFilters filters: [(Status) -> Bool]) {
