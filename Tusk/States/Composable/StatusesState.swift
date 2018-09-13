@@ -27,7 +27,7 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
 extension StatusesState {
     typealias SetFilters = StatusesStateSetFilters<Self>
     typealias SetStatuses = StatusesStateSetStatuses<Self>
-    typealias SetUnsuppressedStatusIDs = StatusesStateSetUnsuppressedStatusIDs<Self>
+    typealias SetUnsuppressedStatusIDs = StatusesStateSetUnsuppressedStatusIDs
     typealias SetPage = StatusesStateSetPage<Self>
     
     typealias LoadUnsuppressedStatusIDs = StatusesStateLoadUnsuppressedStatusIDs
@@ -83,8 +83,7 @@ extension StatusesState {
     }
     
     mutating func loadUnsuppressedStatusIDs() {
-        let statusIDs = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
-        self.unsuppressedStatusIDs = Array(statusIDs.keys)
+        self.unsuppressedStatusIDs = Self.cloudLoadUnsuppressedStatusIDs()
     }
     
     mutating func updateStatuses(statuses: [Status], withFilters filters: [(Status) -> Bool]) {
@@ -94,7 +93,15 @@ extension StatusesState {
     
     mutating func saveUnsuppressedStatusIDs(statusIDs: [String]) {
         self.unsuppressedStatusIDs = statusIDs
-        
+        Self.cloudSyncUnsuppressedStatusIDs(statusIDs: statusIDs)
+    }
+    
+    static func cloudLoadUnsuppressedStatusIDs() -> [String] {
+        let statusIDs = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
+        return Array(statusIDs.keys)
+    }
+    
+    static func cloudSyncUnsuppressedStatusIDs(statusIDs: [String]) {
         let stored = statusIDs.reduce([:]) { (all, next) in
             all.merging([next: Date()], uniquingKeysWith: { (lhs, rhs) in lhs })
         }
@@ -133,7 +140,7 @@ extension StatusesState {
 
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
 struct StatusesStateSetStatuses<State: StateType>: Action { let value: [Status] }
-struct StatusesStateSetUnsuppressedStatusIDs<State: StateType>: Action { let value: [String] }
+struct StatusesStateSetUnsuppressedStatusIDs: Action { let value: [String] }
 struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
 struct StatusesStateLoadUnsuppressedStatusIDs: Action {}
 struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
