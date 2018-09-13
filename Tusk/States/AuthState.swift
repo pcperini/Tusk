@@ -101,8 +101,7 @@ struct AuthState: StateType {
             GlobalStore.dispatch(SetInstance(value: instance))
             GlobalStore.dispatch(SetClientInfo(id: resp.clientID, secret: resp.clientSecret))
         }, failure: { (_) in
-            AuthState.clearAll()
-            GlobalStore.dispatch(SetInstance(value: nil))
+            GlobalStore.dispatch(ClearAuth())
         })
     }
     
@@ -117,7 +116,7 @@ struct AuthState: StateType {
         } catch {
             log.error("error Login.oauthURL(\(self.baseURL!), \(id)) 🚨 Error: \(error)\n")
             GlobalStore.dispatch(ErrorsState.AddError(value: error))
-            AuthState.clearAll()
+            GlobalStore.dispatch(ClearAuth())
             
             self.clientID = nil
             self.clientSecret = nil
@@ -142,7 +141,7 @@ struct AuthState: StateType {
             GlobalStore.dispatch(SetAccessToken(value: resp.accessToken))
             GlobalStore.dispatch(AppState.PollData())
         }, failure: { (_) in
-            AuthState.clearAll()
+            GlobalStore.dispatch(ClearAuth())
             GlobalStore.dispatch(SetAccessToken(value: nil))
         })
     }
@@ -152,8 +151,7 @@ struct AuthState: StateType {
             switch error {
             case .mastodonError(let description): DispatchQueue.main.async {
                 if (description.lowercased().contains("access token")) {
-                    AuthState.clearAll()
-                    GlobalStore.dispatch(SetAccessToken(value: nil))
+                    GlobalStore.dispatch(ClearAuth())
                 }
                 }
             default: break
