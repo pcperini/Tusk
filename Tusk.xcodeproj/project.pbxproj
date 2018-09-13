@@ -126,12 +126,9 @@
 		73208EBA212CC2AF00529FA3 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EB9212CC2AF00529FA3 /* AccountState.swift */; };
 		73208EBB212CC2AF00529FA3 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EB9212CC2AF00529FA3 /* AccountState.swift */; };
 		73208EBC212CC2AF00529FA3 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208EB9212CC2AF00529FA3 /* AccountState.swift */; };
-		732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */; };
 		732557FB2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
 		732557FC2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
 		732557FD2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
-		732557FE2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */; };
-		732557FF2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */; };
 		732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
@@ -339,7 +336,6 @@
 		73208E95212B319B00529FA3 /* MentionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
 		73208E99212B753C00529FA3 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		73208EB9212CC2AF00529FA3 /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
-		732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowUIHandler.swift; sourceTree = "<group>"; };
 		732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Sizing.swift"; sourceTree = "<group>"; };
 		732BE20C211F4ACE0049ADBD /* TimelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineState.swift; sourceTree = "<group>"; };
 		732BE210211F93860049ADBD /* NotificationsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsState.swift; sourceTree = "<group>"; };
@@ -466,7 +462,6 @@
 		732558002125D49C00ED1AF3 /* UI Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				732557F52125C63000ED1AF3 /* AuthFlowUIHandler.swift */,
 				73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */,
 			);
 			path = "UI Handlers";
@@ -999,7 +994,6 @@
 				73208E96212B319B00529FA3 /* MentionsViewController.swift in Sources */,
 				7377EB982149CB5D0097EA73 /* AuthViewController.swift in Sources */,
 				732BE27E2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
-				732557F62125C63100ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				7302304B213109E300BC1E9A /* Button.swift in Sources */,
 				73167BCF2136023600C0F28E /* ValidatedLabel.swift in Sources */,
@@ -1105,7 +1099,6 @@
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				7377EB992149CB5D0097EA73 /* AuthViewController.swift in Sources */,
-				732557FE2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				732BE24F2122240D0049ADBD /* ImageView.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
@@ -1179,7 +1172,6 @@
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				7377EB9A2149CB5D0097EA73 /* AuthViewController.swift in Sources */,
-				732557FF2125D48700ED1AF3 /* AuthFlowUIHandler.swift in Sources */,
 				732BE2502122240D0049ADBD /* ImageView.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,

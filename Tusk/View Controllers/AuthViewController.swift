@@ -9,21 +9,27 @@
 // TODO: Incorporate selection wizard using: https://instances.social/api/doc/
 
 import UIKit
-import DeckTransition
+import ReSwift
 
-class AuthViewController: UIViewController {
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+class AuthViewController: UIViewController, StoreSubscriber {
+    typealias StoreSubscriberStateType = AuthState
+    
+    private static var state: AuthState { return GlobalStore.state.auth }
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
     
-    private var globalParent: UIViewController? = nil
-    
-    static let PresentationSegueName: String = "PresentAuthViewController"
-    
-    static func displayIfNeeded(fromViewController parent: UIViewController, sender: Any?) {
-        guard parent.childViewControllers.first(where: { $0 is AuthViewController }) == nil else { return }
-        parent.performSegue(withIdentifier: AuthViewController.PresentationSegueName, sender: sender)
+    private var oldPresentingViewController: UIViewController? = nil
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+        
+    static func displayIfNeeded(fromViewController presenting: UIViewController, usingSegueNamed segueName: String, sender: Any?) {
+        let shouldPresent = (
+            self.state.instance == nil ||
+            self.state.accessToken == nil
+        )
+        
+        guard shouldPresent, !(presenting.presentedViewController is AuthViewController) else { return }
+        presenting.performSegue(withIdentifier: segueName, sender: sender)
     }
     
     override func viewDidLoad() {
@@ -35,7 +41,7 @@ class AuthViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.globalParent = self.presentingViewController
+        self.oldPresentingViewController = self.presentingViewController
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillMove(notification:)),
                                                name: .UIKeyboardWillShow,
@@ -44,6 +50,8 @@ class AuthViewController: UIViewController {
                                                selector: #selector(keyboardWillMove(notification:)),
                                                name: .UIKeyboardWillHide,
                                                object: nil)
+        
+        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.auth } }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,13 +59,13 @@ class AuthViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        
+        GlobalStore.unsubscribe(self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        guard let parent = self.globalParent else { return }
-        AuthViewController.displayIfNeeded(fromViewController: parent, sender: nil)
-        
         super.viewDidDisappear(animated)
+        self.oldPresentingViewController?.viewDidAppear(true)
     }
     
     @objc func keyboardWillMove(notification: NSNotification) {
@@ -79,13 +87,24 @@ class AuthViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
+    func newState(state: AuthState) {
+        if (state.instance == nil) {
+            return
+        } else if (state.code == nil &&
+            state.accessToken == nil &&
+            state.oauthURL != nil) {
+            UIApplication.shared.open(state.oauthURL!, options: [:], completionHandler: nil)
+        } else if (state.accessToken != nil) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 extension AuthViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let instance = textField.text, !instance.isEmpty else { return false }
-        
-        
+        GlobalStore.dispatch(AuthState.CreateAppForInstance(value: instance))
         return true
     }
 }

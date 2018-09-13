@@ -13,16 +13,19 @@ import MastodonKit
 class TabViewController: UITabBarController, StoreSubscriber {
     typealias StoreSubscriberStateType = AppState
     var state: AppState { return GlobalStore.state }
-    var authFlowHandler: AuthFlowUIHandler!
     
     var notificationTab: UITabBarItem! { return self.tabBar.items!.first { (item) in item.tag == 10 } }
     private var tabSubsequentTapCounts: [UIViewController: Int] = [:]
     
     private var lastErrorDate: Date = Date()
     
+    private var hasViewAppeared: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GlobalStore.subscribe(self)
+        
+        self.hasViewAppeared = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,19 +37,23 @@ class TabViewController: UITabBarController, StoreSubscriber {
         super.viewDidLoad()
         self.delegate = self
         
-        self.authFlowHandler = AuthFlowUIHandler(viewController: self, state: self.state.auth)
         self.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GlobalStore.unsubscribe(self)
+        
+        self.hasViewAppeared = false
     }
     
     func reloadData() {
-        AuthViewController.displayIfNeeded(fromViewController: self, sender: nil)
+        if self.hasViewAppeared {
+            AuthViewController.displayIfNeeded(fromViewController: self,
+                                               usingSegueNamed: "PresentAuthViewController",
+                                               sender: nil)
+        }
         
-        self.authFlowHandler.state = self.state.auth
         self.notificationTab.badgeValue = self.state.notifications.unreadCount > 0 ? " " : nil
         
         guard let latestError = self.state.errors.errors.last, latestError.1 > self.lastErrorDate else { return }
