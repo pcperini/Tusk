@@ -31,12 +31,13 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     private var selectedStatusIndex: Int? = nil {
         didSet {
             self.tableView.performBatchUpdates({
-                if let selectedIndex = self.selectedStatusIndex {
-                    self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: self.statusesSection)], with: .automatic)
-                } else {
-                    guard let oldValue = oldValue else { return }
+                if let oldValue = oldValue {
                     self.tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
                     self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .automatic)
+                }
+                
+                if let selectedIndex = self.selectedStatusIndex {
+                    self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: self.statusesSection)], with: .automatic)
                 }
             })
         }
@@ -172,7 +173,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
         }
         
-        self.selectedStatusIndex = nil
         self.selectedStatusIndex = statusIndex
     }
     
