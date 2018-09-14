@@ -98,18 +98,18 @@ extension StatusesState {
     }
     
     static func cloudSyncUnsuppressedStatusIDs(statusIDs: [String]) {
-        let stored = statusIDs.reduce([:]) { (all, next) in
+        let new = statusIDs.reduce([:]) { (all, next) in
             all.merging([next: Date()], uniquingKeysWith: { (lhs, rhs) in lhs })
         }
         
-        let storage = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
-            .filter({
-                Date().timeIntervalSince($0.value) <= 24 * 60 * 60
-            })
-            .merging(stored, uniquingKeysWith: { (lhs, rhs) in max(lhs, rhs) })
+        let stored = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
+        let merged = stored.filter({ Date().timeIntervalSince($0.value) <= 24 * 60 * 60 })
+            .merging(new, uniquingKeysWith: { (lhs, rhs) in max(lhs, rhs) })
         
-        NSUbiquitousKeyValueStore.default.set(storage, forKey: "UnsuppressedStatusIDs")
-        NSUbiquitousKeyValueStore.default.synchronize()
+        if merged != stored {
+            NSUbiquitousKeyValueStore.default.set(merged, forKey: "UnsuppressedStatusIDs")
+            NSUbiquitousKeyValueStore.default.synchronize()
+        }
     }
     
     mutating func updateStatus(status: Status) {

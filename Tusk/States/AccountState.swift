@@ -55,7 +55,10 @@ struct AccountState: StateType, StatusViewableState {
     var relationship: Relationship? = nil
     
     var statuses: [Status] = []
-    var unsuppressedStatusIDs: [String] = []
+    var unsuppressedStatusIDs: [String] {
+        get { return GlobalStore.state.timeline.unsuppressedStatusIDs }
+        set {}
+    }
     
     private var statusesNextPage: RequestRange? = nil
     private var statusesPreviousPage: RequestRange? = nil
