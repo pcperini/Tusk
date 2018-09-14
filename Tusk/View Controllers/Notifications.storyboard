@@ -24,6 +24,7 @@
                     <navigationItem key="navigationItem" title="Notifications" id="VrP-EW-9dZ"/>
                     <connections>
                         <segue destination="QLv-s8-gpg" kind="show" identifier="PushAccountViewController" id="l05-Qf-NVa"/>
+                        <segue destination="ikY-vj-iiy" kind="show" identifier="PushContextViewController" id="RsY-BQ-glf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CG5-ex-IdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,6 +38,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dyo-KV-yJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2156" y="1027"/>
+        </scene>
+        <!--Context-->
+        <scene sceneID="awE-6G-wbk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Context" id="ikY-vj-iiy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d9p-aV-SHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2154" y="1081"/>
         </scene>
     </scenes>
 </document>
