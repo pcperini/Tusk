@@ -34,6 +34,13 @@ struct ContextState: StateType, StatusViewableState {
     
     static func reducer(action: Action, state: ContextState?) -> ContextState {
         var state = state ?? ContextState()
+        switch action {
+        case let action as StatusesState.UpdateStatus: do {
+            state.updateStatus(status: action.value)
+            }
+        default: break
+        }
+        
         guard let action = action as? ContextAction else { return state }
         
         switch action {
@@ -48,9 +55,6 @@ struct ContextState: StateType, StatusViewableState {
         
         switch action {
         case let action as SetContext: state.context = action.value
-        case let action as StatusesState.UpdateStatus: do {
-            state.updateStatus(status: action.value)
-            }
         default: break
         }
         
