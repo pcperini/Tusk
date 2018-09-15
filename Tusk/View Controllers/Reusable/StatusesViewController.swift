@@ -133,13 +133,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.pushToAccount(account: account)
         }
         cell.linkWasTapped = { (url, text) in
-            if let mentionMatch = status.mentions.first(where: { text.hasSuffix($0.acct) }) {
+            if let mentionMatch = displayStatus.mentions.first(where: { text.contains($0.username) }) {
                 self.pushToAccount(account: AccountPlaceholder(id: mentionMatch.id))
                 return
             }
-            
-            guard let url = url else { return }
-            self.openURL(url: url)
         }
         cell.contextPushWasTriggered = { (status) in
             guard let status = status else { return }
