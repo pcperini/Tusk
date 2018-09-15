@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2018 Ⓒ Patrick Perini" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NtO-bM-SjN">
-                            <rect key="frame" x="0.0" y="981.5" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="1025.5" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -78,7 +78,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ffE-tA-QXe" kind="show" id="DcH-hb-fdF"/>
+                                            <segue destination="ffE-tA-QXe" kind="presentation" identifier="" customClass="DeckSegue" customModule="DeckTransition" id="DcH-hb-fdF"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ImageInputCellView" id="VgK-bX-cpj">
@@ -98,7 +98,7 @@
                                                     <rect key="frame" x="329" y="7" width="30" height="30"/>
                                                     <color key="backgroundColor" red="1" green="0.13725490200000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Daq-U0-W6Y"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="30" id="Daq-U0-W6Y"/>
                                                         <constraint firstAttribute="width" constant="30" id="KFt-xW-KLD"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -132,7 +132,7 @@
                                                     <rect key="frame" x="299" y="7" width="60" height="30"/>
                                                     <color key="backgroundColor" red="1" green="0.13725490200000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="sDL-VK-kij"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="30" id="sDL-VK-kij"/>
                                                         <constraint firstAttribute="width" constant="60" id="u8O-9U-iuy"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -440,8 +440,25 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Tusk" id="MsW-Nc-JqP">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="VersionLabel" textLabel="U1y-Xs-N15" detailTextLabel="6jc-ol-20s" style="IBUITableViewCellStyleValue1" id="d6N-EJ-caz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NavigationCellView" textLabel="pB9-yb-QUQ" style="IBUITableViewCellStyleDefault" id="gGv-8C-jg0">
                                         <rect key="frame" x="0.0" y="795.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gGv-8C-jg0" id="cK0-SN-WkV">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pB9-yb-QUQ">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="VersionLabel" textLabel="U1y-Xs-N15" detailTextLabel="6jc-ol-20s" style="IBUITableViewCellStyleValue1" id="d6N-EJ-caz">
+                                        <rect key="frame" x="0.0" y="839.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d6N-EJ-caz" id="3ta-Dt-car">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -465,7 +482,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmitBugButton" id="WOa-B7-sgI" customClass="TableViewCell" customModule="Tusk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="839.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="883.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WOa-B7-sgI" id="Gnc-Uh-RkO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -519,7 +536,7 @@
                             <tableViewSection id="J2y-zV-V4b">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogOutButton" id="UUR-wQ-wwy" customClass="TableViewCell" customModule="Tusk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="919.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="963.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UUR-wQ-wwy" id="QlO-dI-GtG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -560,7 +577,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="avatarView" destination="tRn-EJ-r94" id="1Mk-DR-Fg6"/>
                         <outlet property="bugIcon" destination="TOm-28-FOK" id="3I4-Vv-fij"/>
+                        <outlet property="displayNameField" destination="e1I-mc-3vu" id="boQ-bB-6rY"/>
+                        <outlet property="headerView" destination="48j-cX-LdV" id="eAy-AS-cye"/>
+                        <outlet property="isBotToggle" destination="OBM-RF-J8M" id="b4J-XH-2pN"/>
+                        <outlet property="isLockedToggle" destination="Opj-R1-T4b" id="6Bg-3G-Tfa"/>
                         <outlet property="versionLabel" destination="6jc-ol-20s" id="RL3-vk-8vR"/>
                     </connections>
                 </tableViewController>

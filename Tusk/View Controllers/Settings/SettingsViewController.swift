@@ -10,6 +10,13 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     static let bugURL: URL = URL(string: "https://github.com/pcperini/Tusk---Issues/issues")!
+    var state: AccountState? { return GlobalStore.state.accounts.activeAccount }
+    
+    @IBOutlet var displayNameField: UITextField!
+    @IBOutlet var avatarView: UIImageView!
+    @IBOutlet var headerView: UIImageView!
+    @IBOutlet var isBotToggle: UISwitch!
+    @IBOutlet var isLockedToggle: UISwitch!
     
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var bugIcon: UIImageView!
@@ -17,12 +24,24 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.updateAccount()
+        
         self.versionLabel.text = "\(Bundle.main.version) b\(Bundle.main.build)"
         self.bugIcon.tintColor = .white
     }
     
     @IBAction func dismiss(sender: UIBarButtonItem?) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func updateAccount() {
+        guard let account = self.state?.account else { return }
+        
+        self.displayNameField.text = account.displayName
+        self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
+        self.headerView.af_setImage(withURL: URL(string: account.header)!)
+        self.isBotToggle.isOn = account.bot ?? false
+        self.isLockedToggle.isOn = account.locked
     }
     
     // MARK: Table View
