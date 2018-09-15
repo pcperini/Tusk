@@ -204,9 +204,6 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="22m-UI-TP6">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="bold" value="YES"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="postWithSender:" destination="LKe-85-S3J" id="MR0-yf-wMg"/>
                             </connections>

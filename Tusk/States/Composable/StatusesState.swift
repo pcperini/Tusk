@@ -27,7 +27,7 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
 extension StatusesState {
     typealias SetFilters = StatusesStateSetFilters<Self>
     typealias SetStatuses = StatusesStateSetStatuses<Self>
-    typealias SetUnsuppressedStatusIDs = StatusesStateSetUnsuppressedStatusIDs<Self>
+    typealias SetUnsuppressedStatusIDs = StatusesStateSetUnsuppressedStatusIDs
     typealias SetPage = StatusesStateSetPage<Self>
     
     typealias LoadUnsuppressedStatusIDs = StatusesStateLoadUnsuppressedStatusIDs
@@ -49,7 +49,7 @@ extension StatusesState {
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
                                                                                                              nextPage: state.nextPage,
                                                                                                              previousPage: state.previousPage)
-        case is LoadUnsuppressedStatusIDs: state.loadUnsuppressedStatusIDs()
+        case is LoadUnsuppressedStatusIDs: state.unsuppressedStatusIDs = self.cloudLoadUnsuppressedStatusIDs()
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
@@ -77,23 +77,9 @@ extension StatusesState {
     
     func pollFilters(client: Client) {
         let request = Filters.all()
-        client.run(request) { (result) in
-            switch result {
-            case .success(let resp, _): DispatchQueue.main.async {
-                log.verbose("success \(request)", context: ["resp": resp])
-                GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
-                }
-            case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
-                GlobalStore.dispatch(ErrorsState.AddError(value: error))
-                }
-            }
-        }
-    }
-    
-    mutating func loadUnsuppressedStatusIDs() {
-        let statusIDs = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
-        self.unsuppressedStatusIDs = Array(statusIDs.keys)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetFilters(value: self.filters + resp.map { $0.filterFunction }))
+        })
     }
     
     mutating func updateStatuses(statuses: [Status], withFilters filters: [(Status) -> Bool]) {
@@ -103,19 +89,27 @@ extension StatusesState {
     
     mutating func saveUnsuppressedStatusIDs(statusIDs: [String]) {
         self.unsuppressedStatusIDs = statusIDs
-        
-        let stored = statusIDs.reduce([:]) { (all, next) in
+        Self.cloudSyncUnsuppressedStatusIDs(statusIDs: statusIDs)
+    }
+    
+    static func cloudLoadUnsuppressedStatusIDs() -> [String] {
+        let statusIDs = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
+        return Array(statusIDs.keys)
+    }
+    
+    static func cloudSyncUnsuppressedStatusIDs(statusIDs: [String]) {
+        let new = statusIDs.reduce([:]) { (all, next) in
             all.merging([next: Date()], uniquingKeysWith: { (lhs, rhs) in lhs })
         }
         
-        let storage = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
-            .filter({
-                Date().timeIntervalSince($0.value) <= 24 * 60 * 60
-            })
-            .merging(stored, uniquingKeysWith: { (lhs, rhs) in max(lhs, rhs) })
+        let stored = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
+        let merged = stored.filter({ Date().timeIntervalSince($0.value) <= 24 * 60 * 60 })
+            .merging(new, uniquingKeysWith: { (lhs, rhs) in max(lhs, rhs) })
         
-        NSUbiquitousKeyValueStore.default.set(storage, forKey: "UnsuppressedStatusIDs")
-        NSUbiquitousKeyValueStore.default.synchronize()
+        if merged != stored {
+            NSUbiquitousKeyValueStore.default.set(merged, forKey: "UnsuppressedStatusIDs")
+            NSUbiquitousKeyValueStore.default.synchronize()
+        }
     }
     
     mutating func updateStatus(status: Status) {
@@ -142,7 +136,7 @@ extension StatusesState {
 
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
 struct StatusesStateSetStatuses<State: StateType>: Action { let value: [Status] }
-struct StatusesStateSetUnsuppressedStatusIDs<State: StateType>: Action { let value: [String] }
+struct StatusesStateSetUnsuppressedStatusIDs: Action { let value: [String] }
 struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
 struct StatusesStateLoadUnsuppressedStatusIDs: Action {}
 struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }

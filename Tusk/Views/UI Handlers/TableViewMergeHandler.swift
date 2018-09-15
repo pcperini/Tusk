@@ -14,6 +14,7 @@ struct TableViewMergeHandler<DataType: Comparable> {
         let inserted: [(Int, DataType)]
         let common: [(Int, DataType)]
         
+        var section: Int = 0
         var removedIndexPaths: [IndexPath] { return self.indexPathsForDiffSet(diffSet: self.removed) }
         var insertedIndexPaths: [IndexPath] { return self.indexPathsForDiffSet(diffSet: self.inserted) }
         var commonIndexPaths: [IndexPath] { return self.indexPathsForDiffSet(diffSet: self.common) }
@@ -21,11 +22,18 @@ struct TableViewMergeHandler<DataType: Comparable> {
         var isEmpty: Bool { return self.removed.isEmpty && self.inserted.isEmpty && self.common.isEmpty }
         
         func indexPathsForDiffSet(diffSet: [(Int, DataType)]) -> [IndexPath] {
-            return diffSet.map { IndexPath(row: $0.0, section: 0) }
+            return diffSet.map { IndexPath(row: $0.0, section: self.section) }
+        }
+        
+        init(removed: [(Int, DataType)], inserted: [(Int, DataType)], common: [(Int, DataType)]) {
+            self.removed = removed
+            self.inserted = inserted
+            self.common = common
         }
     }
     
     let tableView: UITableView
+    var section: Int = 0
     
     var data: [DataType]? = nil
     var selectedElement: DataType? = nil
@@ -41,11 +49,12 @@ struct TableViewMergeHandler<DataType: Comparable> {
             return
         }
 
-        let diffState = TableViewMergeHandler.diff(old: oldData, new: newData, compare: self.dataComparator)
+        var diffState = TableViewMergeHandler.diff(old: oldData, new: newData, compare: self.dataComparator)
         if (diffState.isEmpty) {
             return
         }
         
+        diffState.section = self.section
         var reloadRows = diffState.commonIndexPaths
         if let selectedIndexPaths = tableView.indexPathsForSelectedRows,
             let reloadSelectedPath = selectedIndexPaths.first(where: { reloadRows.contains($0) }) {
@@ -61,10 +70,10 @@ struct TableViewMergeHandler<DataType: Comparable> {
                 if (!diffState.removed.isEmpty) { tableView.deleteRows(at: diffState.removedIndexPaths, with: .none) }
                 if (!diffState.inserted.isEmpty) { tableView.insertRows(at: diffState.insertedIndexPaths, with: .none) }
                 if (!diffState.common.isEmpty) { tableView.reloadRows(at: reloadRows, with: .none) }
-            }, completion: nil)
+            })
             
             if (!diffState.inserted.isEmpty) {
-                tableView.scrollToRow(at: IndexPath(row: firstVisibleNewIndex, section: 0),
+                tableView.scrollToRow(at: IndexPath(row: firstVisibleNewIndex, section: self.section),
                                       at: .top,
                                       animated: false)
             }

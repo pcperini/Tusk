@@ -16,6 +16,7 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
 
     var notifications: [MKNotification] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<MKNotification> = TableViewMergeHandler(tableView: self.tableView,
+                                                                                                      section: 0,
                                                                                                       data: nil,
                                                                                                       selectedElement: nil,
                                                                                                       dataComparator: ==)
@@ -82,9 +83,10 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let notification = self.notifications[indexPath.row]
-        let url = notification.status?.url ?? URL(string: notification.account.url)!
-        
-        self.pushToURL(url: url)
+        switch notification.type {
+        case .follow: self.pushToAccount(account: notification.account)
+        default: self.pushToContext(status: notification.status)
+        }
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> MKNotification? {
@@ -104,12 +106,12 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
     }
     
     // MARK: Navigation
-    func pushToURL(url: URL) {
-        let safariViewController = SFSafariViewController(url: url)
-        safariViewController.navigationItem.title = "Mastodon"
-        safariViewController.hidesBottomBarWhenPushed = true
+    func pushToContext(status: Status?) {
+        guard let status = status else { return }
+        self.performSegue(withIdentifier: "PushContextViewController", sender: status)
         
-        self.navigationController?.pushViewController(safariViewController, animated: true)
+        guard let client = GlobalStore.state.auth.client else { return }
+        GlobalStore.dispatch(ContextState.PollContext(client: client, status: status))
     }
     
     func pushToAccount(account: Account) {
@@ -130,6 +132,14 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
             }
             
             accountVC.account = account
+            }
+        case "PushContextViewController": do {
+            guard let contextVC = segue.destination as? ContextViewController, let status = sender as? Status else {
+                segue.destination.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            contextVC.status = status
             }
         default: return
         }

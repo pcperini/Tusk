@@ -26,10 +26,10 @@ struct ContextsState: StateType {
     
     private static func passThroughReducer(action: Action, state: ContextsState) -> [ContextState] {
         return state.allContexts.map({ (context) in ContextState.reducer(action: action, state: context) })
-            .dedupe(on: { (context) in context.status.id })
+            .dedupe(on: { (context) in context.status?.id ?? "" })
     }
     
     func contextForStatusWithID(id: String) -> ContextState? {
-        return self.allContexts.first(where: { (context) in context.status.id == id })
+        return self.allContexts.first(where: { (context) in context.status?.id == id })
     }
 }

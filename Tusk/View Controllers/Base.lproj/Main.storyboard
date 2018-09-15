@@ -144,6 +144,14 @@
             </objects>
             <point key="canvasLocation" x="750" y="1701"/>
         </scene>
+        <!--Auth-->
+        <scene sceneID="iZq-5P-JPf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Auth" id="vGr-7r-wNw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nLq-ZW-v4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="498" y="2125"/>
+        </scene>
         <!--ActiveAccount-->
         <scene sceneID="vjW-Kv-9Rf">
             <objects>
@@ -169,6 +177,7 @@
                         <segue destination="OIJ-A4-znk" kind="relationship" relationship="viewControllers" id="OSJ-25-OtG"/>
                         <segue destination="69B-FA-TRd" kind="relationship" relationship="viewControllers" id="mIG-jV-dr2"/>
                         <segue destination="i9X-bR-Wh3" kind="relationship" relationship="viewControllers" id="9BH-MZ-BYX"/>
+                        <segue destination="vGr-7r-wNw" kind="presentation" identifier="PresentAuthViewController" customClass="DeckSegue" customModule="DeckTransition" id="R9w-5O-l6K"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

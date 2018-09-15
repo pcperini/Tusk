@@ -18,9 +18,14 @@ enum PageDirection {
 class PaginatingTableViewController<DataType: Comparable>: UITableViewController {
     private let paginationActivityIndicatorSize: CGFloat = 44.0
     var paginationActivityIndicator: UIActivityIndicatorView!
+    
+    var pagingEnabled: Bool = true { didSet { self.reloadActivityIndicators() } }
+    var refreshingEnabled: Bool = true { didSet { self.reloadActivityIndicators() } }
+    
+    var topIndexPath: IndexPath { return IndexPath(row: 0, section: 0) }
 
     private var state: State = .Resting
-    private lazy var lastSeenData: DataType? = self.dataForRowAtIndexPath(indexPath: IndexPath(row: 0, section: 0))
+    private lazy var lastSeenData: DataType? = self.dataForRowAtIndexPath(indexPath: self.topIndexPath)
     var navBar: NavigationBar? {
         return self.navigationController?.navigationBar as? NavigationBar
     }
@@ -33,26 +38,36 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.reloadActivityIndicators()
+    }
+    
+    private func reloadActivityIndicators() {
+        self.refreshControl = nil
+        if self.refreshingEnabled {
+            self.refreshControl = UIRefreshControl()
+            self.refreshControl?.addTarget(self, action: #selector(_refreshControlBeganRefreshing), for: .allEvents)
+        }
+    
+        self.paginationActivityIndicator?.removeFromSuperview()
         
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(_refreshControlBeganRefreshing), for: .allEvents)
+        if self.pagingEnabled {
+            let size = self.paginationActivityIndicatorSize
+            let paginateView = UIView(frame: CGRect(x: 0.0, y: 0.0,
+                                                    width: self.tableView.frame.width,
+                                                    height: size))
         
-        let size = self.paginationActivityIndicatorSize
-        let paginateView = UIView(frame: CGRect(x: 0.0, y: 0.0,
-                                                width: self.tableView.frame.width,
-                                                height: size))
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            activityIndicator.frame = CGRect(x: (self.tableView.frame.width - size) / 2,
+                                             y: 0,
+                                             width: size,
+                                             height: size)
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+            paginateView.addSubview(activityIndicator)
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityIndicator.frame = CGRect(x: (self.tableView.frame.width - size) / 2,
-                                         y: 0,
-                                         width: size,
-                                         height: size)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        paginateView.addSubview(activityIndicator)
-        
-        self.paginationActivityIndicator = activityIndicator
-        self.tableView.tableFooterView = paginateView
+            self.paginationActivityIndicator = activityIndicator
+            self.tableView.tableFooterView = paginateView
+        }
     }
 
     @objc private func _refreshControlBeganRefreshing() {
@@ -111,7 +126,7 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
     }
     
     func updateUnreadIndicator() {
-        guard let data = self.dataForRowAtIndexPath(indexPath: IndexPath(row: 0, section: 0)),
+        guard let data = self.dataForRowAtIndexPath(indexPath: self.topIndexPath),
             let lastSeen = self.lastSeenData else { return }
         self.navBar?.setShadowHidden(hidden: data <= lastSeen,
                                      animated: true)

@@ -11,7 +11,7 @@ import MastodonKit
 import ReSwift
 import SafariServices
 
-class AccountViewController: UITableViewController, StoreSubscriber {
+class AccountViewController: StatusesViewController, StoreSubscriber {
     typealias StoreSubscriberStateType = AccountsState
     private var state: AccountState? {
         guard let accountID = self.account?.id else { return nil }
@@ -31,7 +31,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     }
     
     var account: AccountType? { didSet { self.updateAccount() } }
-    var pinnedStatuses: [Status]? = nil
+    var hasPolledPinnedStatuses: Bool = false
     
     private var hasPolledRelationship: Bool = false
     var relationship: Relationship? = nil {
@@ -54,6 +54,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     @IBOutlet var bioTopConstraint: ToggleLayoutConstraint!
     @IBOutlet var bioHeightConstraint: NSLayoutConstraint!
     
+    override var statusesSection: Int { return Section.Statuses.rawValue }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts }}
@@ -73,7 +75,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         super.viewDidLoad()
         self.navigationItem.leftItemsSupplementBackButton = true
         
-        self.updateAccount()
+        self.refreshingEnabled = false
+        self.pagingEnabled = false
     }
     
     func reloadHeaderView() {
@@ -112,8 +115,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         self.bioTopConstraint.toggle(on: !(self.bioTextView.text?.isEmpty ?? true))
         self.bioHeightConstraint.isActive = self.bioTextView.text?.isEmpty ?? true
 
-        self.pinnedStatuses = self.state?.pinnedStatuses
-        if (self.pinnedStatuses == nil) {
+        self.statuses = self.state?.pinnedStatuses ?? []
+        if (!self.hasPolledPinnedStatuses) {
             self.pollPinnedStatuses()
         }
         
@@ -174,7 +177,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     
     func pollPinnedStatuses() {
         guard let client = GlobalStore.state.auth.client, let account = self.account else { return }
-        self.pinnedStatuses = []
+        self.hasPolledPinnedStatuses = true
+        self.statuses = []
         GlobalStore.dispatch(AccountState.PollPinnedStatuses(client: client, account: account))
     }
     
@@ -191,8 +195,8 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         DispatchQueue.main.async {
             self.account = state.account
             self.relationship = state.relationship
-            if (self.pinnedStatuses != newStatuses) {
-                self.pinnedStatuses = newStatuses
+            if (self.statuses != newStatuses) {
+                self.statuses = newStatuses
                 self.tableView.reloadData()
             }
         }
@@ -219,7 +223,7 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         switch section {
         case .About: return account.displayFields.count
         case .Stats: return Stat.allCases.count
-        case .Statuses: return self.pinnedStatuses?.count ?? 0
+        case .Statuses: return self.numberOfStatusRows
         }
     }
     
@@ -229,7 +233,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         switch section {
         case .About: return self.tableView(tableView, cellForAboutSectionRow: indexPath.row)
         case .Stats: return self.tableView(tableView, cellForStatsSectionRow: indexPath.row)
-        case .Statuses: return self.tableView(tableView, cellForStatusesSectionRow: indexPath.row)
+        case .Statuses: do {
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.selectionStyle = .none
+            return cell
+            }
         }
     }
     
@@ -263,9 +271,9 @@ class AccountViewController: UITableViewController, StoreSubscriber {
     func tableView(_ tableView: UITableView, cellForStatsSectionRow row: Int) -> FieldViewCell {
         guard let account = self.account else { return FieldViewCell() }
         guard let stat = Stat(rawValue: row) else { return FieldViewCell() }
-        let cell: FieldViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FieldCell",
-                                                                     for: IndexPath(row: row, section: Section.About.rawValue),
-                                                                     usingNibNamed: "FieldViewCell")
+        let cell: FieldViewCell = tableView.dequeueReusableCell(withIdentifier: "FieldCell",
+                                                                for: IndexPath(row: row, section: Section.Stats.rawValue),
+                                                                usingNibNamed: "FieldViewCell")
         
         let format = { (n: Int) in NumberFormatter.localizedString(from: NSNumber(value: n), number: .decimal) }
 
@@ -288,22 +296,12 @@ class AccountViewController: UITableViewController, StoreSubscriber {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, cellForStatusesSectionRow row: Int) -> StatusViewCell {
-        guard let pinnedStatuses = self.pinnedStatuses else { return StatusViewCell() }
-        let cell: StatusViewCell = self.tableView.dequeueReusableCell(withIdentifier: "Status",
-                                                                      for: IndexPath(row: row, section: Section.Statuses.rawValue),
-                                                                      usingNibNamed: "StatusViewCell")
-        
-        cell.status = pinnedStatuses[row]
-        return cell
-    }
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
         case .About: return self.account?.displayFields.count ?? 0 > 0 ? "About" : nil
         case .Stats: return nil
-        case .Statuses: return self.pinnedStatuses?.count ?? 0 > 0 ? "Pinned" : nil
+        case .Statuses: return self.statuses.count > 0 ? "Pinned" : nil
         }
     }
     
@@ -323,18 +321,11 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             case .Follows: self.pushToFollows()
             }
             }
-        default: break
+        case .Statuses: return
         }
     }
     
     // MARK: Navigation
-    func openURL(url: URL) {
-        UIApplication.shared.open(url, options: [:]) { (success) in
-            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
-            self.tableView.deselectRow(at: indexPath, animated: !success)
-        }
-    }
-    
     func pushToStatuses() {
         guard let account = self.account, let client = GlobalStore.state.auth.client else { return }
         GlobalStore.dispatch(AccountState.PollStatuses(client: client, account: account))
@@ -422,7 +413,10 @@ class AccountViewController: UITableViewController, StoreSubscriber {
             accountStatusesVC.account = account
             accountStatusesVC.relationshipDirection = sender.1
             }
-        default: return
+        default: do {
+            super.prepare(for: segue, sender: sender)
+            return
+            }
         }
     }
 }

@@ -12,9 +12,10 @@ import MastodonKit
 import SafariServices
 
 class StatusesViewController: PaginatingTableViewController<Status> {
-    private var statuses: [Status] = []
+    var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
+                                                                                              section: self.statusesSection,
                                                                                               data: nil,
                                                                                               selectedElement: nil,
                                                                                               dataComparator: self.statusesAreEqual)
@@ -23,16 +24,22 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     var previousPageAction: () -> Action? = { nil }
     var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
     
+    var statusesSection: Int { return 0 }
+    var numberOfStatusRows: Int { return self.statuses.count + (self.selectedStatusIndex == nil ? 0 : 1) }
+    override var topIndexPath: IndexPath { return IndexPath(row: 0, section: self.statusesSection) }
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
-            if let selectedIndex = self.selectedStatusIndex {
-                self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: 0)], with: .automatic)
-            } else {
-                guard let oldValue = oldValue else { return }
-                self.tableView.deselectRow(at: IndexPath(row: oldValue, section: 0), animated: true)
-                self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: 0)], with: .automatic)
-            }
+            self.tableView.performBatchUpdates({
+                if let oldValue = oldValue {
+                    self.tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
+                    self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .automatic)
+                }
+                
+                if let selectedIndex = self.selectedStatusIndex {
+                    self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: self.statusesSection)], with: .automatic)
+                }
+            })
         }
     }
     
@@ -41,11 +48,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         self.tableView.visibleCells.forEach { (cell) in
             (cell as? StatusViewCell)?.hideSwipe(animated: true)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.contentInsetAdjustmentBehavior = .never
     }
     
     func pollStatuses(pageDirection: PageDirection = .Reload) {
@@ -63,7 +65,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     func updateStatuses(statuses: [Status]) {
         self.endRefreshing()
         self.endPaginating()
-
+        
         self.statuses = statuses
         self.tableMergeHandler.mergeData(data: statuses)
         
@@ -72,7 +74,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     // MARK: Table View
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.statuses.count + (self.selectedStatusIndex == nil ? 0 : 1)
+        return self.numberOfStatusRows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,7 +133,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.pushToAccount(account: account)
         }
         cell.linkWasTapped = { (url, text) in
-            if let mentionMatch = status.mentions.first(where: { text.hasSuffix($0.acct) }) {
+            if let mentionMatch = displayStatus.mentions.first(where: { text.contains($0.username) }) {
                 self.pushToAccount(account: AccountPlaceholder(id: mentionMatch.id))
                 return
             }
@@ -145,11 +147,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }
         cell.contentShouldReveal = {
             if (self.unsuppressedStatusIDs.contains(status.id)) { return }
-            GlobalStore.dispatch(TimelineState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
+            GlobalStore.dispatch(StatusesState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 tableView.performBatchUpdates({
                     tableView.reloadRows(at: [indexPath], with: .automatic)
-                }, completion: nil)
+                })
             }
         }
         
@@ -171,15 +173,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
         }
         
-        self.tableView.performBatchUpdates({
-            self.selectedStatusIndex = nil
-            self.selectedStatusIndex = statusIndex
-        }, completion: nil)
+        self.selectedStatusIndex = statusIndex
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
         let index = self.statusIndexForIndexPath(indexPath: indexPath)
-        guard index != NSNotFound, !self.statuses.isEmpty else { return nil }
+        guard index != NSNotFound, !self.statuses.isEmpty, index < self.statuses.count else { return nil }
         return self.statuses[index]
     }
     
@@ -201,18 +200,21 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     // MARK: Paging
     override func refreshControlBeganRefreshing() {
+        guard self.refreshingEnabled else { return }
         super.refreshControlBeganRefreshing()
         self.pollStatuses(pageDirection: .PreviousPage)
     }
     
     override func pageControlBeganRefreshing() {
+        guard self.pagingEnabled else { return }
         super.pageControlBeganRefreshing()
         self.pollStatuses(pageDirection: .NextPage)
     }
     
     // MARK: Navigation
     func openURL(url: URL) {
-        UIApplication.shared.open(url,options: [:], completionHandler: nil)
+        let safari = SFSafariViewController(url: url)
+        self.present(safari, animated: true, completion: nil)
     }
     
     func pushToAccount(account: AccountType) {

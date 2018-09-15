@@ -56,8 +56,8 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
     
     func newState(state: StoreSubscriberStateType) {
         DispatchQueue.main.async {
-            self.statusesViewController?.updateStatuses(statuses: state.statuses)
             self.statusesViewController?.unsuppressedStatusIDs = state.unsuppressedStatusIDs
+            self.statusesViewController?.updateStatuses(statuses: state.statuses)
         }
     }
 }

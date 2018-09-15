@@ -100,7 +100,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
         self.textView.highlightDataMatchers = [
             Regex("@(\\w+)(@\\w+.\\w+)?"),
             Regex("#(\\w+)"),
-            Regex("[a-z]*(://)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
+            Regex("(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
         ]
         
         if let reply = self.inReplyTo {
@@ -318,7 +318,14 @@ extension ComposeViewController: UICollectionViewDelegateFlowLayout, UICollectio
 }
 
 class ComposeContainerViewController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+
     var composeViewController: ComposeViewController? {
         return self.viewControllers.first as? ComposeViewController
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.modalPresentationCapturesStatusBarAppearance = true
     }
 }
