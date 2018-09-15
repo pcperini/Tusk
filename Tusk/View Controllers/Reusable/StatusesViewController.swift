@@ -137,6 +137,9 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                 self.pushToAccount(account: AccountPlaceholder(id: mentionMatch.id))
                 return
             }
+            
+            guard let url = url else { return }
+            self.openURL(url: url)
         }
         cell.contextPushWasTriggered = { (status) in
             guard let status = status else { return }
@@ -210,7 +213,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     // MARK: Navigation
     func openURL(url: URL) {
-        UIApplication.shared.open(url,options: [:], completionHandler: nil)
+        let safari = SFSafariViewController(url: url)
+        self.present(safari, animated: true, completion: nil)
     }
     
     func pushToAccount(account: AccountType) {
