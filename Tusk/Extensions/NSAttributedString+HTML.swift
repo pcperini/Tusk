@@ -59,10 +59,10 @@ extension NSAttributedString {
     }
     
     func replacingMatches(to regex: Regex, with: (String) -> TextReplaceable) -> NSAttributedString {
-        return regex.matches(input: self.string).reduce(self) { (latest, match) in
-            guard let substring = self.string[match.range] else { return latest }
-            return latest.replacingRange(range: match.range, with: with(substring))
-        }
+        guard let match = regex.matches(input: self.string).first, let substring = self.string[match.range] else { return self }
+        let replaced = self.replacingRange(range: match.range, with: with(substring))
+        guard replaced != self else { return self }
+        return replaced.replacingMatches(to: regex, with: with)
     }
 }
 
