@@ -24,13 +24,48 @@ extension NSAttributedString {
         return NSAttributedString(attributedString: modifiedString)
     }
     
-    convenience init?(htmlString: String) {
+    convenience init?(htmlString: String,
+                      font: UIFont? = nil,
+                      baseTextColor: UIColor = .darkText,
+                      alignment: CTTextAlignment = .left,
+                      linkMaxLength: Int = 10000,
+                      linkHideCriteria: ((String) -> Bool)? = nil,
+                      linkLineBreakMode: NSLineBreakMode = .byClipping) {
         guard !htmlString.isEmpty else { self.init(); return }
-        let stringBuilder = DTHTMLAttributedStringBuilder(html: htmlString.data(using: .utf8),
-                                                          options: [DTUseiOS6Attributes: NSNumber(booleanLiteral: true)],
-                                                          documentAttributes: nil)
-        guard let builder = stringBuilder else { return nil }
-        guard let attributedString = builder.generatedAttributedString()?.attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines) else { return nil }
+        guard htmlString.contains("<") else { self.init(string: htmlString); return }
+        
+        var options: [String: NSObject] = [
+            DTUseiOS6Attributes: NSNumber(booleanLiteral: true),
+            DTDefaultLinkColor: baseTextColor,
+            DTDefaultLinkDecoration: NSNumber(booleanLiteral: false),
+            DTDefaultTextColor: baseTextColor,
+            DTDefaultTextAlignment: NSNumber(value: alignment.rawValue),
+            DTDocumentPreserveTrailingSpaces: NSNumber(booleanLiteral: false)
+        ]
+        
+        if let font = font {
+            options[DTDefaultFontSize] = NSNumber(value: Float(font.pointSize))
+            options[DTDefaultFontName] = NSString(string: font.fontName)
+        }
+        
+        let builder = DTHTMLAttributedStringBuilder(html: htmlString.data(using: .utf8),
+                                                    options: options,
+                                                    documentAttributes: nil)
+        let linkRegex = Regex("(?=.{\(linkMaxLength),}$)(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
+        
+        guard let attributedString = builder?.generatedAttributedString()
+            .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
+            .replacingMatches(to: linkRegex, with: { (match) -> String in
+                if (linkHideCriteria?(match) ?? false) { return "" }
+                switch linkLineBreakMode {
+                case .byCharWrapping, .byWordWrapping: return match
+                case .byClipping: return "\(match.prefix(linkMaxLength))) "
+                case .byTruncatingHead: return "...\(match.suffix(linkMaxLength - 3))"
+                case .byTruncatingMiddle: return "\(match.prefix((linkMaxLength / 2) - 3))...\(match.suffix(linkMaxLength / 2))"
+                case .byTruncatingTail: return "\(match.prefix(linkMaxLength - 3))..."
+                }
+            })
+            .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines) else { return nil }
         self.init(attributedString: attributedString)
     }
     
@@ -101,5 +136,12 @@ extension NSMutableAttributedString {
         }
         
         self.replaceCharacters(in: range, with: replacement)
+    }
+}
+
+extension String {
+    init?(htmlString: String) {
+        guard let attributedString = NSAttributedString(htmlString: htmlString) else { return nil }
+        self.init(attributedString.string)
     }
 }

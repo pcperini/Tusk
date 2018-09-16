@@ -18,6 +18,9 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var isBotToggle: UISwitch!
     @IBOutlet var isLockedToggle: UISwitch!
     
+    @IBOutlet var metaLabelFields: [UITextField]!
+    @IBOutlet var metaValueFields: [UITextField]!
+    
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var bugIcon: UIImageView!
     
@@ -42,6 +45,11 @@ class SettingsViewController: UITableViewController {
         self.headerView.af_setImage(withURL: URL(string: account.header)!)
         self.isBotToggle.isOn = account.bot ?? false
         self.isLockedToggle.isOn = account.locked
+        
+        account.fields.enumerated().forEach {
+            self.metaLabelFields[$0.offset].text = $0.element["name"]
+            self.metaValueFields[$0.offset].text = String(htmlString: $0.element["value"] ?? "")
+        }
     }
     
     // MARK: Table View

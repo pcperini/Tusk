@@ -584,6 +584,14 @@
                         <outlet property="isBotToggle" destination="OBM-RF-J8M" id="b4J-XH-2pN"/>
                         <outlet property="isLockedToggle" destination="Opj-R1-T4b" id="6Bg-3G-Tfa"/>
                         <outlet property="versionLabel" destination="6jc-ol-20s" id="RL3-vk-8vR"/>
+                        <outletCollection property="metaLabelFields" destination="SDq-5o-GOe" collectionClass="NSMutableArray" id="3Tx-Zo-4uL"/>
+                        <outletCollection property="metaLabelFields" destination="FmE-oA-snI" collectionClass="NSMutableArray" id="Up3-xc-dIS"/>
+                        <outletCollection property="metaLabelFields" destination="hxs-3F-vCi" collectionClass="NSMutableArray" id="bgq-7A-8wK"/>
+                        <outletCollection property="metaLabelFields" destination="2fx-hS-rzk" collectionClass="NSMutableArray" id="xJs-Fm-hBz"/>
+                        <outletCollection property="metaValueFields" destination="FOt-C8-8oT" collectionClass="NSMutableArray" id="dr7-Ai-7Pq"/>
+                        <outletCollection property="metaValueFields" destination="YWL-gF-RqV" collectionClass="NSMutableArray" id="9kL-dJ-41j"/>
+                        <outletCollection property="metaValueFields" destination="bxL-wq-VP5" collectionClass="NSMutableArray" id="GmY-OB-4Th"/>
+                        <outletCollection property="metaValueFields" destination="mDO-NB-sEM" collectionClass="NSMutableArray" id="a5e-cq-xKr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePZ-OS-X0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
