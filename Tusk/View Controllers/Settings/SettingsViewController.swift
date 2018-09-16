@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UITableViewController {
     static let bugURL: URL = URL(string: "https://github.com/pcperini/Tusk---Issues/issues")!
@@ -20,6 +21,8 @@ class SettingsViewController: UITableViewController {
     
     @IBOutlet var metaLabelFields: [UITextField]!
     @IBOutlet var metaValueFields: [UITextField]!
+    
+    @IBOutlet var hideContentWarningsSwitch: UISwitch!
     
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var bugIcon: UIImageView!
@@ -56,6 +59,7 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath), let id = cell.reuseIdentifier else { return }
         switch id {
+        case "ToggleDefaultStatusVisibility": self.toggleDefaultStatusVisibility()
         case "SubmitBugButton": self.openBugReports()
         case "LogOutButton": self.logout()
         default: break
@@ -65,10 +69,13 @@ class SettingsViewController: UITableViewController {
     }
     
     // MARK: Navigation
+    func toggleDefaultStatusVisibility() {
+        
+    }
+    
     func openBugReports() {
-        UIApplication.shared.open(SettingsViewController.bugURL,
-                                  options: [:],
-                                  completionHandler: nil)
+        let safariVC = SFSafariViewController(url: SettingsViewController.bugURL)
+        self.present(safariVC, animated: true, completion: nil)
     }
     
     func logout() {
