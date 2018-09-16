@@ -99,6 +99,9 @@
 		7317B2B0214D8FE100512CE9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */; };
 		7317B2B1214D8FE100512CE9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */; };
 		7317B2B2214D8FE100512CE9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */; };
+		7317B2B4214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
+		7317B2B5214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
+		7317B2B6214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -330,6 +333,7 @@
 		73167BCE2136023600C0F28E /* ValidatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedLabel.swift; sourceTree = "<group>"; };
 		7317B2A7214AB04700512CE9 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDefaultsState.swift; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -581,6 +585,7 @@
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
 				73023006212F55BD00BC1E9A /* ContextsState.swift */,
 				73023002212F535000BC1E9A /* ContextState.swift */,
+				7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */,
 				739E91A7213C967D005123AA /* ErrorsState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 			);
@@ -1029,6 +1034,7 @@
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				739E91A8213C967D005123AA /* ErrorsState.swift in Sources */,
 				73AD8C2D213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
+				7317B2B4214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				7317B2B0214D8FE100512CE9 /* FiltersViewController.swift in Sources */,
 				73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */,
@@ -1077,6 +1083,7 @@
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				7317B2B5214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A0213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -1151,6 +1158,7 @@
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				7317B2B6214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A1213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,

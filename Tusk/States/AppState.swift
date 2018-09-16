@@ -25,6 +25,7 @@ struct AppState: StateType {
     
     var statusUpdates: StatusUpdateState
     var errors: ErrorsState
+    var storedDefaults: StoredDefaultsState
     
     static func reducer(action: Action, state: AppState?) -> AppState {
         switch action {
@@ -43,20 +44,21 @@ struct AppState: StateType {
             contexts: ContextsState.reducer(action: action, state: state?.contexts),
             
             statusUpdates: StatusUpdateState.reducer(action: action, state: state?.statusUpdates),
-            errors: ErrorsState.reducer(action: action, state: state?.errors)
+            errors: ErrorsState.reducer(action: action, state: state?.errors),
+            storedDefaults: StoredDefaultsState.reducer(action: action, state: state?.storedDefaults)
         )
     }
     
     func pollData() {
         guard let client = self.auth.client else { return }
         DispatchQueue.main.async {
-            GlobalStore.dispatch(StatusesState.LoadUnsuppressedStatusIDs())
             GlobalStore.dispatch(TimelineState.PollFilters(client: client))
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
             GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
             GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollAccount(client: client, account: nil))
+            GlobalStore.dispatch(StoredDefaultsState.LoadDefaults())
         }
     }
     

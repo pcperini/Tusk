@@ -18,11 +18,6 @@ struct ContextState: StateType, StatusViewableState {
     var status: Status? = nil
     var statuses: [Status] = []
 
-    var unsuppressedStatusIDs: [String] {
-        get { return GlobalStore.state.timeline.unsuppressedStatusIDs }
-        set { return }
-    }
-
     var context: Context? {
         didSet {
             self.statuses = []

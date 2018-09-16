@@ -12,7 +12,6 @@ import ReSwift
 
 struct MentionsState: StatusesState {
     var statuses: [Status] = []
-    var unsuppressedStatusIDs: [String] = []
     var filters: [(Status) -> Bool] = [
         { $0.visibility != .direct },
         { (status: Status) in
