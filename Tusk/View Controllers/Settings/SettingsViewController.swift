@@ -11,8 +11,10 @@ import SafariServices
 
 class SettingsViewController: UITableViewController {
     static let bugURL: URL = URL(string: "https://github.com/pcperini/Tusk---Issues/issues")!
+    
     var accountState: AccountState? { return GlobalStore.state.accounts.activeAccount }
     var defaultsState: StoredDefaultsState { return GlobalStore.state.storedDefaults }
+    var subscriber: Subscriber!
     
     @IBOutlet var displayNameField: UITextField!
     @IBOutlet var avatarView: UIImageView!
@@ -24,12 +26,15 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var metaValueFields: [UITextField]!
     
     @IBOutlet var hideContentWarningsToggle: UISwitch!
+    @IBOutlet var defaultStatusVisibilityIcon: UIImageView!
     
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var bugIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.subscriber = Subscriber(state: { $0.accounts }, newState: { (_) in self.updateAccount() })
+        self.subscriber.add(state: { $0.storedDefaults }, newState: { (_) in self.updateAccount() })
         
         self.updateAccount()
         
@@ -56,6 +61,12 @@ class SettingsViewController: UITableViewController {
         }
         
         self.hideContentWarningsToggle.isOn = self.defaultsState.hideContentWarnings
+        switch self.defaultsState.defaultStatusVisibility {
+        case .public: self.defaultStatusVisibilityIcon.image = UIImage(named: "PublicButton")
+        case .private: self.defaultStatusVisibilityIcon.image = UIImage(named: "PrivateButton")
+        case .direct: self.defaultStatusVisibilityIcon.image = UIImage(named: "MessageButton")
+        default: break
+        }
     }
     
     // MARK: Table View
@@ -77,7 +88,11 @@ class SettingsViewController: UITableViewController {
     }
     
     func toggleDefaultStatusVisibility() {
+        let visibilityPicker = VisibilityPicker { (visibility) in
+            GlobalStore.dispatch(StoredDefaultsState.SetDefaultPostVisibility(value: visibility))
+        }
         
+        self.present(visibilityPicker, animated: true, completion: nil)
     }
     
     // MARK: Navigation

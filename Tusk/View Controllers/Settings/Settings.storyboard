@@ -405,7 +405,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ToggleDefaultStatusVisibilityButton" id="KBg-vB-Ywv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ToggleDefaultStatusVisibilityButton" id="KBg-vB-Ywv">
                                         <rect key="frame" x="0.0" y="695.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KBg-vB-Ywv" id="Ghp-t1-dDa">
@@ -418,9 +418,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-uU-vX1" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-uU-vX1">
                                                     <rect key="frame" x="339" y="12" width="20" height="20"/>
-                                                    <color key="backgroundColor" red="1" green="0.13725490200000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="IxA-U4-MsA"/>
                                                         <constraint firstAttribute="height" constant="20" id="u97-x5-TpR"/>
@@ -582,6 +581,7 @@
                     <connections>
                         <outlet property="avatarView" destination="tRn-EJ-r94" id="1Mk-DR-Fg6"/>
                         <outlet property="bugIcon" destination="TOm-28-FOK" id="3I4-Vv-fij"/>
+                        <outlet property="defaultStatusVisibilityIcon" destination="8c5-uU-vX1" id="CNZ-F7-yIu"/>
                         <outlet property="displayNameField" destination="e1I-mc-3vu" id="boQ-bB-6rY"/>
                         <outlet property="headerView" destination="48j-cX-LdV" id="eAy-AS-cye"/>
                         <outlet property="hideContentWarningsToggle" destination="5Zo-xk-X9b" id="m9t-q9-ybk"/>

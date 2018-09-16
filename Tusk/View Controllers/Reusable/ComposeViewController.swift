@@ -103,6 +103,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             Regex("(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
         ]
         
+        self.visibility = GlobalStore.state.storedDefaults.defaultStatusVisibility
         if let reply = self.inReplyTo {
             self.textView.text = (
                 reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ") +
@@ -179,22 +180,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     }
     
     @IBAction func visibilityButtonWasTapped(sender: UIButton?) {
-        let handler = { (visibility: Visibility) in { (_: UIAlertAction) in self.visibility = visibility }}
-        
-        let visibilityPicker = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let publicAction = UIAlertAction(title: "Everyone", style: .default, handler: handler(.public))
-        publicAction.setValue(UIImage(named: "PublicButton"), forKey: "image")
-        visibilityPicker.addAction(publicAction)
-        
-        let privateAction = UIAlertAction(title: "Followers", style: .default, handler: handler(.private))
-        privateAction.setValue(UIImage(named: "PrivateButton"), forKey: "image")
-        visibilityPicker.addAction(privateAction)
-        
-        let dmAction = UIAlertAction(title: "Direct Message", style: .default, handler: handler(.direct))
-        dmAction.setValue(UIImage(named: "MessageButton"), forKey: "image")
-        visibilityPicker.addAction(dmAction)
-        
+        let visibilityPicker = VisibilityPicker { (visibility) in self.visibility = visibility }
         self.present(visibilityPicker, animated: true, completion: nil)
     }
     

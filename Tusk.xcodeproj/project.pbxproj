@@ -102,6 +102,12 @@
 		7317B2B4214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
 		7317B2B5214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
 		7317B2B6214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
+		7317B2B8214F12D300512CE9 /* VisbilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */; };
+		7317B2B9214F12D300512CE9 /* VisbilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */; };
+		7317B2BA214F12D300512CE9 /* VisbilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */; };
+		7317B2BD214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */; };
+		7317B2BE214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */; };
+		7317B2BF214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -334,6 +340,8 @@
 		7317B2A7214AB04700512CE9 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDefaultsState.swift; sourceTree = "<group>"; };
+		7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisbilityPicker.swift; sourceTree = "<group>"; };
+		7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReSwift+Subscribers.swift"; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +444,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7317B2BB214F12D600512CE9 /* Alerts and Actions */ = {
+			isa = PBXGroup;
+			children = (
+				7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */,
+			);
+			path = "Alerts and Actions";
+			sourceTree = "<group>";
+		};
 		73208E7F212A3B2100529FA3 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +470,7 @@
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
 				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
 				73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */,
+				7317B2BB214F12D600512CE9 /* Alerts and Actions */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -511,6 +528,7 @@
 				730230522131AD2400BC1E9A /* SwiftyRegex.swift */,
 				739E91A2213B3F68005123AA /* UITableView+Visibility.swift */,
 				73629291213F2FD300C6AC6F /* Clonable.swift */,
+				7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1026,6 +1044,7 @@
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				73167BC32135E7B700C0F28E /* ComposeViewController.swift in Sources */,
+				7317B2BD214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				7362929A2140220100C6AC6F /* SettingsViewController.swift in Sources */,
 				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
@@ -1062,6 +1081,7 @@
 				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73D6CF412133530700990AA6 /* NavigationBar.swift in Sources */,
+				7317B2B8214F12D300512CE9 /* VisbilityPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,6 +1090,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
+				7317B2B9214F12D300512CE9 /* VisbilityPicker.swift in Sources */,
 				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73022FF4212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */,
@@ -1084,6 +1105,7 @@
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				7317B2B5214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
+				7317B2BE214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A0213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -1145,6 +1167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
+				7317B2BA214F12D300512CE9 /* VisbilityPicker.swift in Sources */,
 				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73022FF5212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */,
@@ -1159,6 +1182,7 @@
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				7317B2B6214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
+				7317B2BF214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A1213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
