@@ -42,15 +42,23 @@ struct StoredDefaultsState: StateType {
     
     mutating func load() {
         self.unsuppressedStatusIDs = Array(
-            (NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:])
+            (self.load(type: [String: Date].self, key: "UnsuppressedStatusIDs") ?? [:])
                 .filter({ Date().timeIntervalSince($0.value) <= 24 * 60 * 60 })
                 .keys
         )
         
-        self.hideContentWarnings = NSUbiquitousKeyValueStore.default.bool(forKey: "HideContentWarnings")
-        if let vis = Visibility(rawValue: NSUbiquitousKeyValueStore.default.string(forKey: "DefaultStatusVisibility") ?? "") {
+        if let hideCW = self.load(type: Bool.self, key: "HideContentWarnings") {
+            self.hideContentWarnings = hideCW
+        }
+        if let rawVis = self.load(type: String.self, key: "DefaultStatusVisibility"),
+            let vis = Visibility(rawValue: rawVis) {
             self.defaultStatusVisibility = vis
         }
+    }
+    
+    func load<T>(type: T.Type, key: String) -> T? {
+        guard let value = NSUbiquitousKeyValueStore.default.object(forKey: key) as? T else { return nil }
+        return value
     }
     
     func save(value: Any, forKey key: String) {
@@ -61,7 +69,7 @@ struct StoredDefaultsState: StateType {
     mutating func addUnsuppressedStatusID(id: String) {
         guard self.unsuppressedStatusIDs.index(of: id) == nil else { return }
         
-        var stored = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
+        var stored = self.load(type: [String: Date].self, key: "UnsuppressedStatusIDs") ?? [:]
             .filter({ Date().timeIntervalSince($0.value) <= 24 * 60 * 60 })
         
         guard stored.keys.index(of: id) == nil else { return }

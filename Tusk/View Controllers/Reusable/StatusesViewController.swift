@@ -123,7 +123,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             cell.originalStatus = status
         }
         
-        cell.isSupressingContent = displayStatus.warning != nil && !self.unsuppressedStatusIDs.contains(status.id)
+        cell.isSupressingContent = (
+            displayStatus.warning != nil &&
+            !self.unsuppressedStatusIDs.contains(status.id) &&
+            GlobalStore.state.storedDefaults.hideContentWarnings
+        )
         
         cell.attachmentWasTapped = { (attachment) in
             self.presentAttachment(attachment: attachment, forStatus: displayStatus)

@@ -11,7 +11,8 @@ import SafariServices
 
 class SettingsViewController: UITableViewController {
     static let bugURL: URL = URL(string: "https://github.com/pcperini/Tusk---Issues/issues")!
-    var state: AccountState? { return GlobalStore.state.accounts.activeAccount }
+    var accountState: AccountState? { return GlobalStore.state.accounts.activeAccount }
+    var defaultsState: StoredDefaultsState { return GlobalStore.state.storedDefaults }
     
     @IBOutlet var displayNameField: UITextField!
     @IBOutlet var avatarView: UIImageView!
@@ -22,7 +23,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var metaLabelFields: [UITextField]!
     @IBOutlet var metaValueFields: [UITextField]!
     
-    @IBOutlet var hideContentWarningsSwitch: UISwitch!
+    @IBOutlet var hideContentWarningsToggle: UISwitch!
     
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var bugIcon: UIImageView!
@@ -41,7 +42,7 @@ class SettingsViewController: UITableViewController {
     }
     
     func updateAccount() {
-        guard let account = self.state?.account else { return }
+        guard let account = self.accountState?.account else { return }
         
         self.displayNameField.text = account.displayName
         self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
@@ -53,13 +54,15 @@ class SettingsViewController: UITableViewController {
             self.metaLabelFields[$0.offset].text = $0.element["name"]
             self.metaValueFields[$0.offset].text = String(htmlString: $0.element["value"] ?? "")
         }
+        
+        self.hideContentWarningsToggle.isOn = self.defaultsState.hideContentWarnings
     }
     
     // MARK: Table View
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath), let id = cell.reuseIdentifier else { return }
         switch id {
-        case "ToggleDefaultStatusVisibility": self.toggleDefaultStatusVisibility()
+        case "ToggleDefaultStatusVisibilityButton": self.toggleDefaultStatusVisibility()
         case "SubmitBugButton": self.openBugReports()
         case "LogOutButton": self.logout()
         default: break
@@ -68,11 +71,16 @@ class SettingsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK: Navigation
+    // MARK: Actions
+    @IBAction func hideContentWarningsWasToggled(sender: UISwitch?) {
+        GlobalStore.dispatch(StoredDefaultsState.SetHideContentWarnings(value: self.hideContentWarningsToggle.isOn))
+    }
+    
     func toggleDefaultStatusVisibility() {
         
     }
     
+    // MARK: Navigation
     func openBugReports() {
         let safariVC = SFSafariViewController(url: SettingsViewController.bugURL)
         self.present(safariVC, animated: true, completion: nil)

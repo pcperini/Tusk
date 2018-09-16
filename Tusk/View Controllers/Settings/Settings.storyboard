@@ -388,8 +388,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zo-xk-X9b">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zo-xk-X9b">
                                                     <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="hideContentWarningsWasToggledWithSender:" destination="xae-97-HKf" eventType="valueChanged" id="rpR-aw-2wb"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -402,7 +405,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ImageInputCellView" id="KBg-vB-Ywv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ToggleDefaultStatusVisibilityButton" id="KBg-vB-Ywv">
                                         <rect key="frame" x="0.0" y="695.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KBg-vB-Ywv" id="Ghp-t1-dDa">
@@ -581,6 +584,7 @@
                         <outlet property="bugIcon" destination="TOm-28-FOK" id="3I4-Vv-fij"/>
                         <outlet property="displayNameField" destination="e1I-mc-3vu" id="boQ-bB-6rY"/>
                         <outlet property="headerView" destination="48j-cX-LdV" id="eAy-AS-cye"/>
+                        <outlet property="hideContentWarningsToggle" destination="5Zo-xk-X9b" id="m9t-q9-ybk"/>
                         <outlet property="isBotToggle" destination="OBM-RF-J8M" id="b4J-XH-2pN"/>
                         <outlet property="isLockedToggle" destination="Opj-R1-T4b" id="6Bg-3G-Tfa"/>
                         <outlet property="versionLabel" destination="6jc-ol-20s" id="RL3-vk-8vR"/>
