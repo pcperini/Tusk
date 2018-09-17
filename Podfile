@@ -1,5 +1,6 @@
 platform :ios, '11.0'
 use_frameworks!
+inhibit_all_warnings!
 
 target 'Tusk' do
   pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git', :branch => 'master', :commit => 'head'

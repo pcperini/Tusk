@@ -11,10 +11,6 @@ import MastodonKit
 import ReSwift
 
 protocol StatusesState: StatusViewableState, PaginatableState where DataType == Status {
-    associatedtype SetFilters: Action
-    associatedtype SetStatuses: Action
-    associatedtype SetPage: Action
-    
     var statuses: [Status] { get set }
     var filters: [(Status) -> Bool] { get set }
     
