@@ -30,7 +30,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
-            self.tableView.performBatchUpdates({
+            guard let tableView = self.tableView as? TableView else { return }
+            tableView.appendBatchUpdates({
                 if let oldValue = oldValue {
                     self.tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
                     self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .automatic)
@@ -152,8 +153,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         cell.contentShouldReveal = {
             if (self.unsuppressedStatusIDs.contains(status.id)) { return }
             GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+            
+            guard let tableView = tableView as? TableView else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                tableView.performBatchUpdates({
+                tableView.appendBatchUpdates({
                     tableView.reloadRows(at: [indexPath], with: .automatic)
                 })
             }
