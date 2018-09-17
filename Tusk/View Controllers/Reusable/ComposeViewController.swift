@@ -31,6 +31,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     @IBOutlet var attachmentCollectionView: UICollectionView!
     @IBOutlet var attachmentHeightConstraints: [ToggleLayoutConstraint]!
     
+    @IBOutlet var buttonsContainer: UIView!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
     
@@ -52,7 +53,8 @@ class ComposeViewController: UIViewController, StoreSubscriber {
         }
     }
     
-    var redraft: Status? = nil
+    var isBio: Bool = false { didSet { self.updateBio() } }
+    var redraft: (content: String, visibility: Visibility)? = nil
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
         didSet {
@@ -82,7 +84,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GlobalStore.unsubscribe(self)
-
+        
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
@@ -119,6 +121,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             self.visibility = redraft.visibility
         }
         
+        self.updateBio()
         self.updateMediaAttachments()
         self.bottomConstraintMinConstant = self.bottomConstraint.constant
     }
@@ -126,6 +129,12 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.textView.becomeFirstResponder()
+    }
+    
+    private func updateBio() {
+        guard self.isViewLoaded else { return }
+        self.buttonsContainer.isHidden = self.isBio
+        self.postButton.title = self.isBio ? "Save" : "Post"
     }
     
     private func updateMediaAttachments() {
@@ -186,6 +195,13 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
+        
+        if self.isBio, let account = GlobalStore.state.accounts.activeAccount?.account {
+            GlobalStore.dispatch(AccountState.UpdateBio(client: client, account: account, value: self.textView.text))
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         GlobalStore.dispatch(StatusUpdateState.PostStatus(client: client,
                                                           id: self.updateID,
                                                           content: self.textView.text,

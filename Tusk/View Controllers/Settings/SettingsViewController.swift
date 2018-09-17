@@ -113,6 +113,20 @@ class SettingsViewController: UITableViewController {
         
         self.present(confirmAlert, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "PresentComposeViewController": do {
+            guard let composeVC = segue.destination as? ComposeContainerViewController else { break }
+            composeVC.composeViewController?.isBio = true
+            composeVC.composeViewController?.redraft = (
+                self.accountState?.account?.note ?? "",
+                (self.accountState?.account?.locked ?? false) ? .private : .public
+            )
+            }
+        default: break
+        }
+    }
 }
 
 class SettingsContainerViewController: UINavigationController {

@@ -43,9 +43,6 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Your display name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1I-mc-3vu">
                                                     <rect key="frame" x="215" y="0.0" width="144" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="7zV-E0-FyM"/>
-                                                    </constraints>
                                                     <color key="textColor" name="VisibilityBadgeColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -78,7 +75,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ffE-tA-QXe" kind="presentation" identifier="" customClass="DeckSegue" customModule="DeckTransition" id="DcH-hb-fdF"/>
+                                            <segue destination="ffE-tA-QXe" kind="presentation" identifier="PresentComposeViewController" customClass="DeckSegue" customModule="DeckTransition" id="DcH-hb-fdF"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ImageInputCellView" id="VgK-bX-cpj">
@@ -216,18 +213,12 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Content 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOt-C8-8oT">
                                                     <rect key="frame" x="281" y="0.0" width="78" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="oGl-kf-PVj"/>
-                                                    </constraints>
                                                     <color key="textColor" name="VisibilityBadgeColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Label 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SDq-5o-GOe">
                                                     <rect key="frame" x="16" y="0.0" width="58" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="j9l-zN-Dk7"/>
-                                                    </constraints>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -252,18 +243,12 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Content 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YWL-gF-RqV">
                                                     <rect key="frame" x="279" y="0.0" width="80" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="jmJ-CR-len"/>
-                                                    </constraints>
                                                     <color key="textColor" name="VisibilityBadgeColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Label 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FmE-oA-snI">
                                                     <rect key="frame" x="16" y="0.0" width="60" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="vf6-Rs-t5D"/>
-                                                    </constraints>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -288,18 +273,12 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Content 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bxL-wq-VP5">
                                                     <rect key="frame" x="279" y="0.0" width="80" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="Nvu-vX-GcR"/>
-                                                    </constraints>
                                                     <color key="textColor" name="VisibilityBadgeColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Label 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hxs-3F-vCi">
                                                     <rect key="frame" x="16" y="0.0" width="61" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="rdU-Zh-XPe"/>
-                                                    </constraints>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -324,18 +303,12 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Content 4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mDO-NB-sEM">
                                                     <rect key="frame" x="278" y="0.0" width="81" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="aIf-de-niM"/>
-                                                    </constraints>
                                                     <color key="textColor" name="VisibilityBadgeColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Label 4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fx-hS-rzk">
                                                     <rect key="frame" x="16" y="0.0" width="61" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="cWY-Y0-9RQ"/>
-                                                    </constraints>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -422,11 +395,8 @@
                                                     <rect key="frame" x="339" y="12" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="IxA-U4-MsA"/>
-                                                        <constraint firstAttribute="height" constant="20" id="u97-x5-TpR"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="20" id="u97-x5-TpR"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
                                             <constraints>

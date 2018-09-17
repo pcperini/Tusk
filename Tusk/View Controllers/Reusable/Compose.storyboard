@@ -214,6 +214,7 @@
                         <outlet property="attachmentCollectionView" destination="DO8-UP-T4c" id="JGN-0X-IAZ"/>
                         <outlet property="avatarView" destination="g06-Ym-zHN" id="365-PA-I7w"/>
                         <outlet property="bottomConstraint" destination="kQY-yB-Apm" id="bdr-lV-yQw"/>
+                        <outlet property="buttonsContainer" destination="5V2-mA-eja" id="a1N-Mo-cp7"/>
                         <outlet property="postButton" destination="22m-UI-TP6" id="QrU-TW-CrG"/>
                         <outlet property="remainingCharactersLabel" destination="4oL-wr-yKJ" id="wVW-4R-Ndx"/>
                         <outlet property="textView" destination="Y0I-Fx-BV2" id="MAz-DG-j1G"/>

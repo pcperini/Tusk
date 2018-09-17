@@ -321,7 +321,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             if (action.0 == "reply") {
                 composeVC.inReplyTo = action.1
             } else if (action.0 == "redraft") {
-                composeVC.redraft = action.1
+                composeVC.redraft = (action.1.content, action.1.visibility)
             }
             }
         default: return

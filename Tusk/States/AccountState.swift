@@ -47,6 +47,8 @@ struct AccountState: StateType, StatusViewableState {
     struct ToggleReposts: AccountAction { let client: Client; let account: AccountType }
     struct ToggleBlocking: AccountAction { let client: Client; let account: AccountType }
     
+    struct UpdateBio: AccountAction { let client: Client; let account: AccountType; let value: String }
+    
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
     var pinnedStatuses: [Status] = []
@@ -122,6 +124,9 @@ struct AccountState: StateType, StatusViewableState {
         case let action as ToggleMuting: state.toggleMuting(client: action.client, account: action.account)
         case let action as ToggleReposts: state.toggleReposts(client: action.client, account: action.account)
         case let action as ToggleBlocking: state.toggleBlocking(client: action.client, account: action.account)
+            
+        case let action as UpdateBio: state.update(client: action.client, note: action.value)
+            
         default: break
         }
         
@@ -165,6 +170,13 @@ struct AccountState: StateType, StatusViewableState {
             GlobalStore.dispatch(SetStatuses(value: statuses, account: account))
             GlobalStore.dispatch(SetStatusesPage(value: pagination, account: account))
         }
+    }
+    
+    func update(client: Client, displayName: String? = nil, note: String? = nil, avatar: MediaAttachment? = nil, header: MediaAttachment? = nil) {
+        let request = Accounts.updateCurrentUser(displayName: displayName, note: note, avatar: avatar, header: header)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
+        })
     }
     
     func statusesProvider(range: RequestRange?) -> Request<[Status]> {
