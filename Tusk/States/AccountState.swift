@@ -48,6 +48,7 @@ struct AccountState: StateType, StatusViewableState {
     struct ToggleBlocking: AccountAction { let client: Client; let account: AccountType }
     
     struct UpdateBio: AccountAction { let client: Client; let account: AccountType; let value: String }
+    struct UpdateLocked: AccountAction { let client: Client; let account: AccountType; let value: Bool }
     
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
@@ -126,6 +127,7 @@ struct AccountState: StateType, StatusViewableState {
         case let action as ToggleBlocking: state.toggleBlocking(client: action.client, account: action.account)
             
         case let action as UpdateBio: state.update(client: action.client, note: action.value)
+        case let action as UpdateLocked: state.update(client: action.client, locked: action.value)
             
         default: break
         }
@@ -172,8 +174,13 @@ struct AccountState: StateType, StatusViewableState {
         }
     }
     
-    func update(client: Client, displayName: String? = nil, note: String? = nil, avatar: MediaAttachment? = nil, header: MediaAttachment? = nil) {
-        let request = Accounts.updateCurrentUser(displayName: displayName, note: note, avatar: avatar, header: header)
+    func update(client: Client,
+                displayName: String? = nil,
+                note: String? = nil,
+                avatar: MediaAttachment? = nil,
+                header: MediaAttachment? = nil,
+                locked: Bool? = nil) {
+        let request = Accounts.updateCurrentUser(displayName: displayName, note: note, avatar: avatar, header: header, locked: locked)
         client.run(request: request, success: { (resp, _) in
             GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
         })

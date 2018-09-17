@@ -38,6 +38,10 @@ class SettingsViewController: UITableViewController {
         
         self.updateAccount()
         
+        self.isBotToggle.isOn = self.accountState?.account?.bot ?? false
+        self.isLockedToggle.isOn = self.accountState?.account?.locked ?? false
+        self.hideContentWarningsToggle.isOn = self.defaultsState.hideContentWarnings
+        
         self.versionLabel.text = "\(Bundle.main.version) b\(Bundle.main.build)"
         self.bugIcon.tintColor = .white
     }
@@ -52,15 +56,12 @@ class SettingsViewController: UITableViewController {
         self.displayNameField.text = account.displayName
         self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
         self.headerView.af_setImage(withURL: URL(string: account.header)!)
-        self.isBotToggle.isOn = account.bot ?? false
-        self.isLockedToggle.isOn = account.locked
         
         account.fields.enumerated().forEach {
             self.metaLabelFields[$0.offset].text = $0.element["name"]
             self.metaValueFields[$0.offset].text = String(htmlString: $0.element["value"] ?? "")
         }
         
-        self.hideContentWarningsToggle.isOn = self.defaultsState.hideContentWarnings
         switch self.defaultsState.defaultStatusVisibility {
         case .public: self.defaultStatusVisibilityIcon.image = UIImage(named: "PublicButton")
         case .private: self.defaultStatusVisibilityIcon.image = UIImage(named: "PrivateButton")
@@ -85,6 +86,11 @@ class SettingsViewController: UITableViewController {
     // MARK: Actions
     @IBAction func hideContentWarningsWasToggled(sender: UISwitch?) {
         GlobalStore.dispatch(StoredDefaultsState.SetHideContentWarnings(value: self.hideContentWarningsToggle.isOn))
+    }
+    
+    @IBAction func lockedToggled(sender: UISwitch?) {
+        guard let client = GlobalStore.state.auth.client, let account = self.accountState?.account else { return }
+        GlobalStore.dispatch(AccountState.UpdateLocked(client: client, account: account, value: self.isLockedToggle.isOn))
     }
     
     func toggleDefaultStatusVisibility() {

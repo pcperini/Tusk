@@ -35,12 +35,14 @@ public struct Accounts {
     public static func updateCurrentUser(displayName: String? = nil,
                                          note: String? = nil,
                                          avatar: MediaAttachment? = nil,
-                                         header: MediaAttachment? = nil) -> Request<Account> {
+                                         header: MediaAttachment? = nil,
+                                         locked: Bool? = nil) -> Request<Account> {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note),
             Parameter(name: "avatar", value: avatar?.base64EncondedString),
-            Parameter(name: "header", value: header?.base64EncondedString)
+            Parameter(name: "header", value: header?.base64EncondedString),
+            Parameter(name: "locked", value: toBool(locked))
         ]
 
         let method = HTTPMethod.patch(.parameters(parameters))
