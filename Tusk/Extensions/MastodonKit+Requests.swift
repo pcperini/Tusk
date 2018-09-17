@@ -20,10 +20,10 @@ extension Client {
             switch result {
             case .success(let resp, let page): do {
                 DispatchQueue.main.async { success(resp, page) }
-                log.verbose("success \(request)")
+                Log.verbose("success \(request)")
                 }
             case .failure(let error): do {
-                log.error("error \(request) 🚨 Error: \(error)\n")
+                Log.error("error \(request) 🚨 Error: \(error)\n")
                 
                 let errorObj = error as NSError
                 let retry = (

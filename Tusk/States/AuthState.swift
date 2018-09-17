@@ -114,7 +114,7 @@ struct AuthState: StateType {
                                                scopes: [.follow, .read, .write],
                                                redirectURI: AuthState.redirectURL)?.asURL()
         } catch {
-            log.error("error Login.oauthURL(\(self.baseURL!), \(id)) 🚨 Error: \(error)\n")
+            Log.error("error Login.oauthURL(\(self.baseURL!), \(id)) 🚨 Error: \(error)\n")
             GlobalStore.dispatch(ErrorsState.AddError(value: error))
             GlobalStore.dispatch(ClearAuth())
             
@@ -183,7 +183,7 @@ extension AuthState {
         do {
             try AuthState.keychain.removeAll()
         } catch {
-            log.error("error AuthState.keychain.removeAll() 🚨 Error: \(error)\n")
+            Log.error("error AuthState.keychain.removeAll() 🚨 Error: \(error)\n")
             GlobalStore.dispatch(ErrorsState.AddError(value: error))
         }
     }

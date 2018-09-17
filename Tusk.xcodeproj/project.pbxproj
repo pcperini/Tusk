@@ -141,6 +141,10 @@
 		732557FB2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
 		732557FC2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
 		732557FD2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
+		732B35E1215046340097A0CC /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
+		732B35E2215046340097A0CC /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
+		732B35E3215046400097A0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
+		732B35E4215046410097A0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
@@ -1137,6 +1141,7 @@
 				739E91A9213C967D005123AA /* ErrorsState.swift in Sources */,
 				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				7377EB8D2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */,
+				732B35E3215046400097A0CC /* AppDelegate.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023000212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
@@ -1149,6 +1154,7 @@
 				73208E93212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27321238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				732B35E1215046340097A0CC /* StatusesViewController.swift in Sources */,
 				73FBF8BC212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
@@ -1214,6 +1220,7 @@
 				739E91AA213C967D005123AA /* ErrorsState.swift in Sources */,
 				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				7377EB8E2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */,
+				732B35E4215046410097A0CC /* AppDelegate.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023001212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
@@ -1226,6 +1233,7 @@
 				73208E94212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27421238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				732B35E2215046340097A0CC /* StatusesViewController.swift in Sources */,
 				73FBF8BD212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
