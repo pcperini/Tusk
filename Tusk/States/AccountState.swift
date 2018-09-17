@@ -49,6 +49,8 @@ struct AccountState: StateType, StatusViewableState {
     
     struct UpdateBio: AccountAction { let client: Client; let account: AccountType; let value: String }
     struct UpdateLocked: AccountAction { let client: Client; let account: AccountType; let value: Bool }
+    struct UpdateDisplayName: AccountAction { let client: Client; let account: AccountType; let value: String }
+    struct UpdateFields: AccountAction { let client: Client; let account: AccountType; let value: [[String: String]] }
     
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
@@ -128,6 +130,8 @@ struct AccountState: StateType, StatusViewableState {
             
         case let action as UpdateBio: state.update(client: action.client, note: action.value)
         case let action as UpdateLocked: state.update(client: action.client, locked: action.value)
+        case let action as UpdateDisplayName: state.update(client: action.client, displayName: action.value)
+        case let action as UpdateFields: state.update(client: action.client, fields: action.value)
             
         default: break
         }
@@ -179,8 +183,14 @@ struct AccountState: StateType, StatusViewableState {
                 note: String? = nil,
                 avatar: MediaAttachment? = nil,
                 header: MediaAttachment? = nil,
-                locked: Bool? = nil) {
-        let request = Accounts.updateCurrentUser(displayName: displayName, note: note, avatar: avatar, header: header, locked: locked)
+                locked: Bool? = nil,
+                fields: [[String: String]]? = nil) {
+        let request = Accounts.updateCurrentUser(displayName: displayName,
+                                                 note: note,
+                                                 avatar: avatar,
+                                                 header: header,
+                                                 locked: locked,
+                                                 fields: fields)
         client.run(request: request, success: { (resp, _) in
             GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
         })

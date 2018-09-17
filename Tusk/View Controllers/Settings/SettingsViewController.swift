@@ -84,6 +84,21 @@ class SettingsViewController: UITableViewController {
     }
     
     // MARK: Actions
+    @IBAction func displayNameFieldDidChange(sender: UITextField?) {
+        guard let client = GlobalStore.state.auth.client, let account = self.accountState?.account else { return }
+        GlobalStore.dispatch(AccountState.UpdateDisplayName(client: client, account: account, value: self.displayNameField.text ?? ""))
+    }
+    
+    @IBAction func metaFieldDidChange(sender: UITextField?) {
+        guard let client = GlobalStore.state.auth.client, let account = self.accountState?.account else { return }
+        let fields: [[String: String]] = self.metaLabelFields.enumerated().map {[
+            "name": $0.element.text ?? "",
+            "value": self.metaValueFields[$0.offset].text ?? ""
+        ]}
+        
+        GlobalStore.dispatch(AccountState.UpdateFields(client: client, account: account, value: fields))
+    }
+    
     @IBAction func hideContentWarningsWasToggled(sender: UISwitch?) {
         GlobalStore.dispatch(StoredDefaultsState.SetHideContentWarnings(value: self.hideContentWarningsToggle.isOn))
     }
@@ -132,6 +147,13 @@ class SettingsViewController: UITableViewController {
             }
         default: break
         }
+    }
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
