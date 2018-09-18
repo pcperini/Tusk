@@ -17,8 +17,8 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     private var updateID: String = StatusUpdateState.updateID()
     
     private static let maxCharacterCount: Int = 500
-    private static let maxImageFileSize: Int = 8388608
-    private static let maxImageSize: CGSize = CGSize(width: 1280, height: 1280)
+    static let maxImageFileSize: Int = 8388608
+    static let maxImageSize: CGSize = CGSize(width: 1280, height: 1280)
     
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
     
@@ -31,6 +31,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     @IBOutlet var attachmentCollectionView: UICollectionView!
     @IBOutlet var attachmentHeightConstraints: [ToggleLayoutConstraint]!
     
+    @IBOutlet var buttonsContainer: UIView!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
     
@@ -52,7 +53,8 @@ class ComposeViewController: UIViewController, StoreSubscriber {
         }
     }
     
-    var redraft: Status? = nil
+    var isBio: Bool = false { didSet { self.updateBio() } }
+    var redraft: (content: String, visibility: Visibility)? = nil
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
         didSet {
@@ -82,7 +84,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GlobalStore.unsubscribe(self)
-
+        
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
@@ -103,6 +105,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             Regex("(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
         ]
         
+        self.visibility = GlobalStore.state.storedDefaults.defaultStatusVisibility
         if let reply = self.inReplyTo {
             self.textView.text = (
                 reply.mentionHandlesForReply(activeAccount: activeAccount).joined(separator: " ") +
@@ -118,6 +121,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
             self.visibility = redraft.visibility
         }
         
+        self.updateBio()
         self.updateMediaAttachments()
         self.bottomConstraintMinConstant = self.bottomConstraint.constant
     }
@@ -125,6 +129,12 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.textView.becomeFirstResponder()
+    }
+    
+    private func updateBio() {
+        guard self.isViewLoaded else { return }
+        self.buttonsContainer.isHidden = self.isBio
+        self.postButton.title = self.isBio ? "Save" : "Post"
     }
     
     private func updateMediaAttachments() {
@@ -179,27 +189,19 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     }
     
     @IBAction func visibilityButtonWasTapped(sender: UIButton?) {
-        let handler = { (visibility: Visibility) in { (_: UIAlertAction) in self.visibility = visibility }}
-        
-        let visibilityPicker = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let publicAction = UIAlertAction(title: "Everyone", style: .default, handler: handler(.public))
-        publicAction.setValue(UIImage(named: "PublicButton"), forKey: "image")
-        visibilityPicker.addAction(publicAction)
-        
-        let privateAction = UIAlertAction(title: "Followers", style: .default, handler: handler(.private))
-        privateAction.setValue(UIImage(named: "PrivateButton"), forKey: "image")
-        visibilityPicker.addAction(privateAction)
-        
-        let dmAction = UIAlertAction(title: "Direct Message", style: .default, handler: handler(.direct))
-        dmAction.setValue(UIImage(named: "MessageButton"), forKey: "image")
-        visibilityPicker.addAction(dmAction)
-        
+        let visibilityPicker = VisibilityPicker { (visibility) in self.visibility = visibility }
         self.present(visibilityPicker, animated: true, completion: nil)
     }
     
     @IBAction func post(sender: UIBarButtonItem? = nil) {
         guard let client = GlobalStore.state.auth.client else { return }
+        
+        if self.isBio, let account = GlobalStore.state.accounts.activeAccount?.account {
+            GlobalStore.dispatch(AccountState.UpdateBio(client: client, account: account, value: self.textView.text))
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         GlobalStore.dispatch(StatusUpdateState.PostStatus(client: client,
                                                           id: self.updateID,
                                                           content: self.textView.text,

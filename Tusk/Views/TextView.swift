@@ -34,7 +34,7 @@ import DTCoreText
         case .natural: return .natural
         }
     }
-        
+    
     var htmlText: String? {
         didSet {
             self.attributedText = NSAttributedString()
@@ -42,35 +42,13 @@ import DTCoreText
             guard text.contains("<") else { self.text = text; return }
             
             let originalFont = self.font
-            let options: [String: NSObject] = [
-                DTUseiOS6Attributes: NSNumber(booleanLiteral: true),
-                DTDefaultFontName: NSString(string: self.font!.fontName),
-                DTDefaultFontSize: NSNumber(value: Float(self.font!.pointSize)),
-                DTDefaultLinkColor: self.preHighlightTextColor,
-                DTDefaultLinkDecoration: NSNumber(booleanLiteral: false),
-                DTDefaultTextColor: self.preHighlightTextColor,
-                DTDefaultTextAlignment: NSNumber(value: self.coreTextAlignment.rawValue),
-                DTDocumentPreserveTrailingSpaces: NSNumber(booleanLiteral: false)
-            ]
-
-            let builder = DTHTMLAttributedStringBuilder(html: text.data(using: .utf8),
-                                                        options: options,
-                                                        documentAttributes: nil)
-            let linkRegex = Regex("(?=.{\(self.maxLinkLength),}$)(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
-            
-            var attributedText = builder?.generatedAttributedString()
-                .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
-                .replacingMatches(to: linkRegex, with: { (match) -> String in
-                    if (self.hideLinkCriteria(match)) { return "" }
-                    switch self.linkLineBreakMode {
-                    case .byCharWrapping, .byWordWrapping: return match
-                    case .byClipping: return "\(match.prefix(self.maxLinkLength))) "
-                    case .byTruncatingHead: return "...\(match.suffix(self.maxLinkLength - 3))"
-                    case .byTruncatingMiddle: return "\(match.prefix((self.maxLinkLength / 2) - 3))...\(match.suffix(self.maxLinkLength / 2))"
-                    case .byTruncatingTail: return "\(match.prefix(self.maxLinkLength - 3))..."
-                    }
-                })
-                .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
+            var attributedText = NSAttributedString(htmlString: text,
+                                                    font: originalFont,
+                                                    baseTextColor: self.preHighlightTextColor,
+                                                    alignment: self.coreTextAlignment,
+                                                    linkMaxLength: self.maxLinkLength,
+                                                    linkHideCriteria: self.hideLinkCriteria,
+                                                    linkLineBreakMode: self.linkLineBreakMode)
             
             attributedText = self.emojis.reduce(attributedText, { (all, emoji) in
                 let attachment = NSTextAttachment()

@@ -16,16 +16,16 @@ class TableView: UITableView {
             }
         }
     }
-    
-    override func performBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
-        self.updateQueue.append(({ updates?() }, completion))
+
+    func appendBatchUpdates(_ updates: @escaping () -> Void, completion: ((Bool) -> Void)? = nil) {
+        self.updateQueue.append((updates, completion))
     }
  
     private func performNextBatchUpdates() {
         guard !self.updateQueue.isEmpty else { return }
         
         let next = self.updateQueue.removeFirst()
-        super.performBatchUpdates(next.0) { (completed) in
+        self.performBatchUpdates(next.0) { (completed) in
             next.1?(completed)
             self.performNextBatchUpdates()
         }

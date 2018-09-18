@@ -47,6 +47,13 @@ struct AccountState: StateType, StatusViewableState {
     struct ToggleReposts: AccountAction { let client: Client; let account: AccountType }
     struct ToggleBlocking: AccountAction { let client: Client; let account: AccountType }
     
+    struct UpdateBio: AccountAction { let client: Client; let account: AccountType; let value: String }
+    struct UpdateLocked: AccountAction { let client: Client; let account: AccountType; let value: Bool }
+    struct UpdateDisplayName: AccountAction { let client: Client; let account: AccountType; let value: String }
+    struct UpdateFields: AccountAction { let client: Client; let account: AccountType; let value: [[String: String]] }
+    struct UpdateAvatar: AccountAction { let client: Client; let account: AccountType; let value: MediaAttachment }
+    struct UpdateHeader: AccountAction { let client: Client; let account: AccountType; let value: MediaAttachment }
+    
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
     var pinnedStatuses: [Status] = []
@@ -55,10 +62,6 @@ struct AccountState: StateType, StatusViewableState {
     var relationship: Relationship? = nil
     
     var statuses: [Status] = []
-    var unsuppressedStatusIDs: [String] {
-        get { return GlobalStore.state.timeline.unsuppressedStatusIDs }
-        set {}
-    }
     
     private var statusesNextPage: RequestRange? = nil
     private var statusesPreviousPage: RequestRange? = nil
@@ -126,6 +129,14 @@ struct AccountState: StateType, StatusViewableState {
         case let action as ToggleMuting: state.toggleMuting(client: action.client, account: action.account)
         case let action as ToggleReposts: state.toggleReposts(client: action.client, account: action.account)
         case let action as ToggleBlocking: state.toggleBlocking(client: action.client, account: action.account)
+            
+        case let action as UpdateBio: state.update(client: action.client, note: action.value)
+        case let action as UpdateLocked: state.update(client: action.client, locked: action.value)
+        case let action as UpdateDisplayName: state.update(client: action.client, displayName: action.value)
+        case let action as UpdateFields: state.update(client: action.client, fields: action.value)
+        case let action as UpdateAvatar: state.update(client: action.client, avatar: action.value)
+        case let action as UpdateHeader: state.update(client: action.client, header: action.value)
+            
         default: break
         }
         
@@ -169,6 +180,34 @@ struct AccountState: StateType, StatusViewableState {
             GlobalStore.dispatch(SetStatuses(value: statuses, account: account))
             GlobalStore.dispatch(SetStatusesPage(value: pagination, account: account))
         }
+    }
+    
+    func update(client: Client,
+                displayName: String? = nil,
+                note: String? = nil,
+                locked: Bool? = nil,
+                fields: [[String: String]]? = nil) {
+        let request = Accounts.updateCurrentUser(displayName: displayName,
+                                                 note: note,
+                                                 locked: locked,
+                                                 fields: fields)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
+        })
+    }
+    
+    func update(client: Client, avatar: MediaAttachment?) {
+        let request = Accounts.updateCurrentUser(avatar: avatar)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
+        })
+    }
+    
+    func update(client: Client, header: MediaAttachment?) {
+        let request = Accounts.updateCurrentUser(header: header)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
+        })
     }
     
     func statusesProvider(range: RequestRange?) -> Request<[Status]> {

@@ -12,7 +12,7 @@ import AlamofireImage
 import AnimatedGIFImageSerialization
 import SwiftyBeaver
 
-let log = SwiftyBeaver.self
+let Log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         destinations.forEach {
-            log.addDestination($0)
+            Log.addDestination($0)
         }
         
         AttachmentsViewController.configure()

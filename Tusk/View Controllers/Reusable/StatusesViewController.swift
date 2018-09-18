@@ -30,7 +30,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
-            self.tableView.performBatchUpdates({
+            guard let tableView = self.tableView as? TableView else { return }
+            tableView.appendBatchUpdates({
                 if let oldValue = oldValue {
                     self.tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
                     self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .automatic)
@@ -123,7 +124,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             cell.originalStatus = status
         }
         
-        cell.isSupressingContent = displayStatus.warning != nil && !self.unsuppressedStatusIDs.contains(status.id)
+        cell.isSupressingContent = (
+            displayStatus.warning != nil &&
+            !self.unsuppressedStatusIDs.contains(status.id) &&
+            GlobalStore.state.storedDefaults.hideContentWarnings
+        )
         
         cell.attachmentWasTapped = { (attachment) in
             self.presentAttachment(attachment: attachment, forStatus: displayStatus)
@@ -147,9 +152,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }
         cell.contentShouldReveal = {
             if (self.unsuppressedStatusIDs.contains(status.id)) { return }
-            GlobalStore.dispatch(StatusesState.SetUnsuppressedStatusIDs(value: self.unsuppressedStatusIDs + [status.id]))
+            GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+            
+            guard let tableView = tableView as? TableView else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                tableView.performBatchUpdates({
+                tableView.appendBatchUpdates({
                     tableView.reloadRows(at: [indexPath], with: .automatic)
                 })
             }
@@ -317,7 +324,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             if (action.0 == "reply") {
                 composeVC.inReplyTo = action.1
             } else if (action.0 == "redraft") {
-                composeVC.redraft = action.1
+                composeVC.redraft = (action.1.content, action.1.visibility)
             }
             }
         default: return

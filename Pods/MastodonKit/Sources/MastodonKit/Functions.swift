@@ -22,6 +22,11 @@ func between(_ min: Int, and max: Int, default: Int) -> (Int) -> Int {
     return { limit in (limit >= min && limit <= max) ? limit : `default` }
 }
 
+func toBool(_ flag: Bool?) -> String? {
+    guard let flag = flag else { return nil }
+    return flag ? "true" : "false"
+}
+
 // MARK: - Flat-map
 
 func toOptionalString<A>(optional: A?) -> String? {

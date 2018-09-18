@@ -96,6 +96,18 @@
 		7317B2A8214AB04700512CE9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2A7214AB04700512CE9 /* TableView.swift */; };
 		7317B2A9214AB04700512CE9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2A7214AB04700512CE9 /* TableView.swift */; };
 		7317B2AA214AB04700512CE9 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2A7214AB04700512CE9 /* TableView.swift */; };
+		7317B2B0214D8FE100512CE9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */; };
+		7317B2B1214D8FE100512CE9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */; };
+		7317B2B2214D8FE100512CE9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */; };
+		7317B2B4214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
+		7317B2B5214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
+		7317B2B6214ED21400512CE9 /* StoredDefaultsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */; };
+		7317B2B8214F12D300512CE9 /* VisbilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */; };
+		7317B2B9214F12D300512CE9 /* VisbilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */; };
+		7317B2BA214F12D300512CE9 /* VisbilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */; };
+		7317B2BD214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */; };
+		7317B2BE214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */; };
+		7317B2BF214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */; };
 		73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
 		73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73208E77212A252000529FA3 /* StatusActionViewCell.swift */; };
@@ -129,6 +141,10 @@
 		732557FB2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
 		732557FC2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
 		732557FD2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732557FA2125D0EB00ED1AF3 /* UIImage+Sizing.swift */; };
+		732B35E1215046340097A0CC /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
+		732B35E2215046340097A0CC /* StatusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC58211E41A900C2620F /* StatusesViewController.swift */; };
+		732B35E3215046400097A0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
+		732B35E4215046410097A0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EAEC56211E41A900C2620F /* AppDelegate.swift */; };
 		732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20E211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
 		732BE20F211F4ACE0049ADBD /* TimelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BE20C211F4ACE0049ADBD /* TimelineState.swift */; };
@@ -326,6 +342,10 @@
 		73167BC62135E80700C0F28E /* Compose.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Compose.storyboard; sourceTree = "<group>"; };
 		73167BCE2136023600C0F28E /* ValidatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedLabel.swift; sourceTree = "<group>"; };
 		7317B2A7214AB04700512CE9 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDefaultsState.swift; sourceTree = "<group>"; };
+		7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisbilityPicker.swift; sourceTree = "<group>"; };
+		7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReSwift+Subscribers.swift"; sourceTree = "<group>"; };
 		73208E77212A252000529FA3 /* StatusActionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusActionViewCell.swift; sourceTree = "<group>"; };
 		73208E7B212A252900529FA3 /* StatusActionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusActionViewCell.xib; sourceTree = "<group>"; };
 		73208E80212A3B3100529FA3 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -428,6 +448,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7317B2BB214F12D600512CE9 /* Alerts and Actions */ = {
+			isa = PBXGroup;
+			children = (
+				7317B2B7214F12D300512CE9 /* VisbilityPicker.swift */,
+			);
+			path = "Alerts and Actions";
+			sourceTree = "<group>";
+		};
 		73208E7F212A3B2100529FA3 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +474,7 @@
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
 				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
 				73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */,
+				7317B2BB214F12D600512CE9 /* Alerts and Actions */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -503,6 +532,7 @@
 				730230522131AD2400BC1E9A /* SwiftyRegex.swift */,
 				739E91A2213B3F68005123AA /* UITableView+Visibility.swift */,
 				73629291213F2FD300C6AC6F /* Clonable.swift */,
+				7317B2BC214F150E00512CE9 /* ReSwift+Subscribers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -527,6 +557,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7377EB862146F6A90097EA73 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				736292992140220100C6AC6F /* SettingsViewController.swift */,
+				7317B2AF214D8FE100512CE9 /* FiltersViewController.swift */,
+				73629295214021E200C6AC6F /* Settings.storyboard */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		7379C5AA211E6D89003BEB84 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,9 +584,8 @@
 				7302302A2130782300BC1E9A /* ActiveAccount.storyboard */,
 				73023042213089B800BC1E9A /* FavouritesViewController.swift */,
 				7302303E2130887D00BC1E9A /* Favourites.storyboard */,
-				736292992140220100C6AC6F /* SettingsViewController.swift */,
-				73629295214021E200C6AC6F /* Settings.storyboard */,
 				73208E7F212A3B2100529FA3 /* Reusable */,
+				7377EB862146F6A90097EA73 /* Settings */,
 				7377EB972149CB5C0097EA73 /* AuthViewController.swift */,
 				7377EB8F21498CF20097EA73 /* Auth.storyboard */,
 			);
@@ -568,6 +607,7 @@
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
 				73023006212F55BD00BC1E9A /* ContextsState.swift */,
 				73023002212F535000BC1E9A /* ContextState.swift */,
+				7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */,
 				739E91A7213C967D005123AA /* ErrorsState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 			);
@@ -1008,6 +1048,7 @@
 				732BE27221238FA50049ADBD /* FieldViewCell.swift in Sources */,
 				730230132130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				73167BC32135E7B700C0F28E /* ComposeViewController.swift in Sources */,
+				7317B2BD214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */,
 				732BE2412121F0BA0049ADBD /* PaginatableState.swift in Sources */,
 				7362929A2140220100C6AC6F /* SettingsViewController.swift in Sources */,
 				73FBF8BB212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
@@ -1016,7 +1057,9 @@
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
 				739E91A8213C967D005123AA /* ErrorsState.swift in Sources */,
 				73AD8C2D213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
+				7317B2B4214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
 				732BE27B2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
+				7317B2B0214D8FE100512CE9 /* FiltersViewController.swift in Sources */,
 				73208E9A212B753C00529FA3 /* MessagesViewController.swift in Sources */,
 				73208E8E212B2A9C00529FA3 /* StatusesState.swift in Sources */,
 				73022FF3212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
@@ -1042,6 +1085,7 @@
 				73022FEF212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73D6CF412133530700990AA6 /* NavigationBar.swift in Sources */,
+				7317B2B8214F12D300512CE9 /* VisbilityPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,6 +1094,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC6E211E41AA00C2620F /* TuskTests.swift in Sources */,
+				7317B2B9214F12D300512CE9 /* VisbilityPicker.swift in Sources */,
 				732BE24A212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73022FF4212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FC2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */,
@@ -1058,10 +1103,13 @@
 				73D6CF422133530700990AA6 /* NavigationBar.swift in Sources */,
 				73023004212F535000BC1E9A /* ContextState.swift in Sources */,
 				7362929B2140220100C6AC6F /* SettingsViewController.swift in Sources */,
+				7317B2B1214D8FE100512CE9 /* FiltersViewController.swift in Sources */,
 				739E91A4213B3F68005123AA /* UITableView+Visibility.swift in Sources */,
 				732BE28A212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BB211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFC212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				7317B2B5214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
+				7317B2BE214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */,
 				730230142130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A0213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2352120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -1093,6 +1141,7 @@
 				739E91A9213C967D005123AA /* ErrorsState.swift in Sources */,
 				7302300C212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				7377EB8D2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */,
+				732B35E3215046400097A0CC /* AppDelegate.swift in Sources */,
 				732BE253212233A30049ADBD /* TextView.swift in Sources */,
 				73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023000212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
@@ -1105,6 +1154,7 @@
 				73208E93212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				732BE21A211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27321238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				732B35E1215046340097A0CC /* StatusesViewController.swift in Sources */,
 				73FBF8BC212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
@@ -1123,6 +1173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EAEC79211E41AA00C2620F /* TuskUITests.swift in Sources */,
+				7317B2BA214F12D300512CE9 /* VisbilityPicker.swift in Sources */,
 				732BE24B212222500049ADBD /* StatusViewCell.swift in Sources */,
 				73022FF5212E2AD600BC1E9A /* FollowViewCell.swift in Sources */,
 				732557FD2125D0EB00ED1AF3 /* UIImage+Sizing.swift in Sources */,
@@ -1131,10 +1182,13 @@
 				73D6CF432133530700990AA6 /* NavigationBar.swift in Sources */,
 				73023005212F535000BC1E9A /* ContextState.swift in Sources */,
 				7362929C2140220100C6AC6F /* SettingsViewController.swift in Sources */,
+				7317B2B2214D8FE100512CE9 /* FiltersViewController.swift in Sources */,
 				739E91A5213B3F68005123AA /* UITableView+Visibility.swift in Sources */,
 				732BE28B212485890049ADBD /* CaseIterable.swift in Sources */,
 				7379C5BC211F4180003BEB84 /* AuthState.swift in Sources */,
 				73022FFD212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
+				7317B2B6214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
+				7317B2BF214F150E00512CE9 /* ReSwift+Subscribers.swift in Sources */,
 				730230152130682A00BC1E9A /* UIView+CellNib.swift in Sources */,
 				739E91A1213AE922005123AA /* StatusUpdateState.swift in Sources */,
 				732BE2362120CC610049ADBD /* PaginatingTableViewController.swift in Sources */,
@@ -1166,6 +1220,7 @@
 				739E91AA213C967D005123AA /* ErrorsState.swift in Sources */,
 				7302300D212F594000BC1E9A /* ContextViewController.swift in Sources */,
 				7377EB8E2146F79B0097EA73 /* MastodonKit+Requests.swift in Sources */,
+				732B35E4215046410097A0CC /* AppDelegate.swift in Sources */,
 				732BE254212233A30049ADBD /* TextView.swift in Sources */,
 				73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */,
 				73023001212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
@@ -1178,6 +1233,7 @@
 				73208E94212B316900529FA3 /* StatusesContainerViewController.swift in Sources */,
 				732BE21B211F96600049ADBD /* MessagesState.swift in Sources */,
 				732BE27421238FA50049ADBD /* FieldViewCell.swift in Sources */,
+				732B35E2215046340097A0CC /* StatusesViewController.swift in Sources */,
 				73FBF8BD212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,

@@ -11,12 +11,7 @@ import MastodonKit
 import ReSwift
 
 protocol StatusesState: StatusViewableState, PaginatableState where DataType == Status {
-    associatedtype SetFilters: Action
-    associatedtype SetStatuses: Action
-    associatedtype SetPage: Action
-    
     var statuses: [Status] { get set }
-    var unsuppressedStatusIDs: [String] { get set }
     var filters: [(Status) -> Bool] { get set }
     
     init()
@@ -27,10 +22,8 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
 extension StatusesState {
     typealias SetFilters = StatusesStateSetFilters<Self>
     typealias SetStatuses = StatusesStateSetStatuses<Self>
-    typealias SetUnsuppressedStatusIDs = StatusesStateSetUnsuppressedStatusIDs
     typealias SetPage = StatusesStateSetPage<Self>
     
-    typealias LoadUnsuppressedStatusIDs = StatusesStateLoadUnsuppressedStatusIDs
     typealias PollStatuses = StatusesStatePollStatuses<Self>
     typealias PollOlderStatuses = StatusesStatePollOlderStatuses<Self>
     typealias PollNewerStatuses = StatusesStatePollNewerStatuses<Self>
@@ -45,11 +38,9 @@ extension StatusesState {
         switch action {
         case let action as SetFilters: state.updateStatuses(statuses: state.statuses, withFilters: action.value)
         case let action as SetStatuses: state.updateStatuses(statuses: action.value, withFilters: state.filters)
-        case let action as SetUnsuppressedStatusIDs: state.saveUnsuppressedStatusIDs(statusIDs: action.value)
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
                                                                                                              nextPage: state.nextPage,
                                                                                                              previousPage: state.previousPage)
-        case is LoadUnsuppressedStatusIDs: state.unsuppressedStatusIDs = self.cloudLoadUnsuppressedStatusIDs()
         case let action as PollStatuses: state.pollStatuses(client: action.client)
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
@@ -87,31 +78,6 @@ extension StatusesState {
         self.statuses = filters.reduce(statuses, { (all, next) in all.filter(next) })
     }
     
-    mutating func saveUnsuppressedStatusIDs(statusIDs: [String]) {
-        self.unsuppressedStatusIDs = statusIDs
-        Self.cloudSyncUnsuppressedStatusIDs(statusIDs: statusIDs)
-    }
-    
-    static func cloudLoadUnsuppressedStatusIDs() -> [String] {
-        let statusIDs = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
-        return Array(statusIDs.keys)
-    }
-    
-    static func cloudSyncUnsuppressedStatusIDs(statusIDs: [String]) {
-        let new = statusIDs.reduce([:]) { (all, next) in
-            all.merging([next: Date()], uniquingKeysWith: { (lhs, rhs) in lhs })
-        }
-        
-        let stored = NSUbiquitousKeyValueStore.default.dictionary(forKey: "UnsuppressedStatusIDs") as? [String: Date] ?? [:]
-        let merged = stored.filter({ Date().timeIntervalSince($0.value) <= 24 * 60 * 60 })
-            .merging(new, uniquingKeysWith: { (lhs, rhs) in max(lhs, rhs) })
-        
-        if merged != stored {
-            NSUbiquitousKeyValueStore.default.set(merged, forKey: "UnsuppressedStatusIDs")
-            NSUbiquitousKeyValueStore.default.synchronize()
-        }
-    }
-    
     mutating func updateStatus(status: Status) {
         // Author's note: reblogs are handled as wrappers around the origin status
         // When the active user reblogs a post, the API returns a NEW status, a wrapper post, to replace the original
@@ -136,9 +102,7 @@ extension StatusesState {
 
 struct StatusesStateSetFilters<State: StateType>: Action { let value: [(Status) -> Bool] }
 struct StatusesStateSetStatuses<State: StateType>: Action { let value: [Status] }
-struct StatusesStateSetUnsuppressedStatusIDs: Action { let value: [String] }
 struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
-struct StatusesStateLoadUnsuppressedStatusIDs: Action {}
 struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }

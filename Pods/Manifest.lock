@@ -83,7 +83,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MastodonKit:
-    :commit: bdc9fabc419ed0848baa4489a9072ac7b1ddebde
+    :commit: ffe5f7616b54c07e38aefd07e69666ba8527f2d6
     :git: https://github.com/pcperini/MastodonKit.git
 
 SPEC CHECKSUMS:
@@ -107,6 +107,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   YPImagePicker: 049aa31e2858c63730ace6b6358bba946178dfe3
 
-PODFILE CHECKSUM: 8ec266dfb1a4ab74e47c71237c373c908f77a4ab
+PODFILE CHECKSUM: e06f61f945fcafd9b34ef43f28b037339fd54206
 
 COCOAPODS: 1.5.3
