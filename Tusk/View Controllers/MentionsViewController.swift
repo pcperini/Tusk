@@ -11,15 +11,15 @@ import ReSwift
 import MastodonKit
 
 class MentionsViewController: StatusesContainerViewController<MentionsState> {
-    override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.mentions } }
+    override func state(appState: AppState) -> MentionsState {
+        return appState.mentions
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
         switch pageDirection {
-        case .NextPage: return StoreSubscriberStateType.PollOlderStatuses(client: client)
-        case .PreviousPage: return StoreSubscriberStateType.PollNewerStatuses(client: client)
-        case .Reload: return StoreSubscriberStateType.PollStatuses(client: client)
+        case .NextPage: return MentionsState.PollOlderStatuses(client: client)
+        case .PreviousPage: return MentionsState.PollNewerStatuses(client: client)
+        case .Reload: return MentionsState.PollStatuses(client: client)
         }
     }
 }

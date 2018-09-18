@@ -25,7 +25,7 @@ protocol AccountType {
     var followersCount: Int { get }
     var followingCount: Int { get }
     var statusesCount: Int { get }
-    var fields: [[String: String]] { get }
+    var fields: [[String: String?]] { get }
     var bot: Bool? { get }
     
     static var sortedByPageIndex: Bool { get }
@@ -55,6 +55,6 @@ struct AccountPlaceholder: AccountType {
     var followersCount: Int { return 0 }
     var followingCount: Int { return 0 }
     var statusesCount: Int { return 0 }
-    var fields: [[String: String]] { return [] }
+    var fields: [[String: String?]] { return [] }
     var bot: Bool? { return nil }
 }

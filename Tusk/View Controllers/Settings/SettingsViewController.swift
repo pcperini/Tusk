@@ -59,7 +59,7 @@ class SettingsViewController: UITableViewController {
         self.avatarView.af_setImage(withURL: URL(string: account.avatar)!)
         self.headerView.af_setImage(withURL: URL(string: account.header)!)
         
-        account.fields.enumerated().forEach {
+        account.compactFields.enumerated().forEach {
             self.metaLabelFields[$0.offset].text = $0.element["name"]
             self.metaValueFields[$0.offset].text = String(htmlString: $0.element["value"] ?? "")
         }

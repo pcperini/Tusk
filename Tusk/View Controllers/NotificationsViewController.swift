@@ -11,9 +11,9 @@ import ReSwift
 import MastodonKit
 import SafariServices
 
-class NotificationsViewController: PaginatingTableViewController<MKNotification>, StoreSubscriber {
-    typealias StoreSubscriberStateType = NotificationsState
-
+class NotificationsViewController: PaginatingTableViewController<MKNotification>, SubscriptionResponder {
+    lazy var subscriber: Subscriber = Subscriber(state: { $0.notifications }, newState: self.newState)
+    
     var notifications: [MKNotification] = []
     lazy private var tableMergeHandler: TableViewMergeHandler<MKNotification> = TableViewMergeHandler(tableView: self.tableView,
                                                                                                       section: 0,
@@ -23,7 +23,7 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.notifications } }
+        self.subscriber.start()
     }
     
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
+        self.subscriber.stop()
     }
     
     func pollNotifications(pageDirection: PageDirection = .Reload) {
@@ -53,15 +53,13 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
             GlobalStore.dispatch(NotificationsState.SetLastReadDate(value: state.notifications[0].createdAt))
         }
         
-        DispatchQueue.main.async {
-            self.notifications = state.notifications
-            self.tableMergeHandler.mergeData(data: self.notifications)
-            
-            self.updateUnreadIndicator()
-            
-            self.endRefreshing()
-            self.endPaginating()
-        }
+        self.notifications = state.notifications
+        self.tableMergeHandler.mergeData(data: self.notifications)
+        
+        self.updateUnreadIndicator()
+        
+        self.endRefreshing()
+        self.endPaginating()
     }
     
     // MARK: Table View

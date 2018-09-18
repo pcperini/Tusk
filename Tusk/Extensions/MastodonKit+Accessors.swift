@@ -29,6 +29,10 @@ extension AccountType {
         return "@\(self.acct)"
     }
     
+    var compactFields: [[String: String]] {
+        return self.fields.compactMap({ $0 as? [String: String] })
+    }
+    
     var displayFields: [[String: String]] {
         let prepareForDisplay = { (value: String?) -> String? in
             guard let value = value else { return nil }
@@ -37,7 +41,7 @@ extension AccountType {
                 .replacingOccurrences(of: "&amp;", with: "&")
         }
         
-        return self.fields.compactMap { (field) in
+        return self.compactFields.compactMap { (field) in
             guard let name = field["name"], let value = prepareForDisplay(field["value"]) else { return nil }
             return [ "name": name, "value": value ]
         }

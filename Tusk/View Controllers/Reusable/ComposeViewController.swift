@@ -11,9 +11,7 @@ import MastodonKit
 import YPImagePicker
 import ReSwift
 
-class ComposeViewController: UIViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = StatusUpdateState
-    
+class ComposeViewController: UIViewController, SubscriptionResponder {
     private var updateID: String = StatusUpdateState.updateID()
     
     private static let maxCharacterCount: Int = 500
@@ -21,6 +19,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     static let maxImageSize: CGSize = CGSize(width: 1280, height: 1280)
     
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
+    lazy var subscriber: Subscriber = Subscriber(state: { $0.statusUpdates }, newState: self.newState)
     
     @IBOutlet var postButton: UIBarButtonItem!
     @IBOutlet var avatarView: AvatarView!
@@ -69,7 +68,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.statusUpdates } }
+        self.subscriber.start()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillMove(notification:)),
@@ -83,7 +82,7 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
+        self.subscriber.stop()
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
@@ -252,12 +251,10 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     func newState(state: StatusUpdateState) {
         guard let result = state.updates[self.updateID] else { return }
         
-        DispatchQueue.main.async {
-            self.isLoading = false
-            switch result {
-            case .success(_, _): self.dismiss()
-            case .failure(_): break
-            }
+        self.isLoading = false
+        switch result {
+        case .success(_, _): self.dismiss()
+        case .failure(_): break
         }
     }
     

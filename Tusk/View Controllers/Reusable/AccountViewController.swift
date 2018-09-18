@@ -11,12 +11,13 @@ import MastodonKit
 import ReSwift
 import SafariServices
 
-class AccountViewController: StatusesViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = AccountsState
+class AccountViewController: StatusesViewController, SubscriptionResponder {
     private var state: AccountState? {
         guard let accountID = self.account?.id else { return nil }
         return GlobalStore.state.accounts.accountWithID(id: accountID)
     }
+    
+    lazy var subscriber: Subscriber = Subscriber(state: { $0.accounts.accountWithID(id: self.account!.id)! }, newState: self.newState)
     
     enum Section: Int, CaseIterable {
         case About = 0
@@ -58,12 +59,12 @@ class AccountViewController: StatusesViewController, StoreSubscriber {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts }}
+        self.subscriber.start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
+        self.subscriber.stop()
     }
     
     override func willMove(toParentViewController parent: UIViewController?) {
@@ -188,17 +189,14 @@ class AccountViewController: StatusesViewController, StoreSubscriber {
         GlobalStore.dispatch(AccountState.PollRelationship(client: client, account: account))
     }
     
-    func newState(state: AccountsState) {
-        guard let accountID = self.account?.id, let state = state.accountWithID(id: accountID) else { return }
+    func newState(state: AccountState) {
         let newStatuses = state.pinnedStatuses
 
-        DispatchQueue.main.async {
-            self.account = state.account
-            self.relationship = state.relationship
-            if (self.statuses != newStatuses) {
-                self.statuses = newStatuses
-                self.tableView.reloadData()
-            }
+        self.account = state.account
+        self.relationship = state.relationship
+        if (self.statuses != newStatuses) {
+            self.statuses = newStatuses
+            self.tableView.reloadData()
         }
     }
     
@@ -247,7 +245,7 @@ class AccountViewController: StatusesViewController, StoreSubscriber {
                                                                      for: IndexPath(row: row, section: Section.About.rawValue),
                                                                      usingNibNamed: "FieldViewCell")
         
-        let field = account.fields[row]
+        let field = account.compactFields[row]
         let displayField = account.displayFields[row]
 
         guard let name = displayField["name"],

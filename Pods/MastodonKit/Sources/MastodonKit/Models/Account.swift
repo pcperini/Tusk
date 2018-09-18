@@ -40,7 +40,7 @@ public class Account: Codable {
     /// The number of statuses the account has made.
     public let statusesCount: Int
     /// Array of profile metadata field, each element has 'name' and 'value'
-    public let fields: [[String: String]]
+    public var fields: [[String: String?]]
     /// Boolean to indicate that the account performs automated actions
     public let bot: Bool?
 

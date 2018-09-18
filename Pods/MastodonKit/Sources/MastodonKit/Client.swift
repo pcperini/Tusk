@@ -52,12 +52,18 @@ public struct Client: ClientType {
                     return
             }
 
-            guard let model = try? Model.decode(data: data) else {
-                completion(.failure(ClientError.invalidModel))
-                return
-            }
+//            guard let model = try? Model.decode(data: data) else {
+//                completion(.failure(ClientError.invalidModel))
+//                return
+//            }
 
-            completion(.success(model, httpResponse.pagination))
+            do {
+                let model = try Model.decode(data: data)
+                completion(.success(model, httpResponse.pagination))
+            } catch {
+                print(error)
+                completion(.failure(ClientError.invalidModel))
+            }
         }
 
         task.resume()

@@ -13,15 +13,15 @@ import MastodonKit
 // TODO: Think about how "threading" works here
 
 class MessagesViewController: StatusesContainerViewController<MessagesState> {
-    override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.messages } }
+    override func state(appState: AppState) -> MessagesState {
+        return appState.messages
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
         switch pageDirection {
-        case .NextPage: return StoreSubscriberStateType.PollOlderStatuses(client: client)
-        case .PreviousPage: return StoreSubscriberStateType.PollNewerStatuses(client: client)
-        case .Reload: return StoreSubscriberStateType.PollStatuses(client: client)
+        case .NextPage: return MessagesState.PollOlderStatuses(client: client)
+        case .PreviousPage: return MessagesState.PollNewerStatuses(client: client)
+        case .Reload: return MessagesState.PollStatuses(client: client)
         }
     }
 }

@@ -10,20 +10,20 @@ import UIKit
 import ReSwift
 import MastodonKit
 
-class TabViewController: UITabBarController, StoreSubscriber {
-    typealias StoreSubscriberStateType = AppState
+class TabViewController: UITabBarController, SubscriptionResponder {
     var state: AppState { return GlobalStore.state }
     
     var notificationTab: UITabBarItem! { return self.tabBar.items!.first { (item) in item.tag == 10 } }
     private var tabSubsequentTapCounts: [UIViewController: Int] = [:]
     
     private var lastErrorDate: Date = Date()
-    
     private var hasViewAppeared: Bool = false
+    
+    lazy var subscriber: Subscriber = Subscriber(state: { $0 }, newState: { (_) in self.reloadData() })
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self)
+        self.subscriber.start()
         
         self.hasViewAppeared = true
     }
@@ -42,7 +42,7 @@ class TabViewController: UITabBarController, StoreSubscriber {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
+        self.subscriber.stop()
         
         self.hasViewAppeared = false
     }
@@ -62,12 +62,6 @@ class TabViewController: UITabBarController, StoreSubscriber {
         let alert = UIAlertController(title: "Whoops", message: "\(latestError.0)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func newState(state: AppState) {
-        DispatchQueue.main.async {
-            self.reloadData()
-        }
     }
 }
 

@@ -12,10 +12,11 @@ import UIKit
 import ReSwift
 import SafariServices
 
-class AuthViewController: UIViewController, StoreSubscriber {
+class AuthViewController: UIViewController, SubscriptionResponder {
     typealias StoreSubscriberStateType = AuthState
     
     private static var state: AuthState { return GlobalStore.state.auth }
+    lazy var subscriber: Subscriber = Subscriber(state: { $0.auth }, newState: self.newState)
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     private var bottomConstraintMinConstant: CGFloat = 0.0
@@ -52,7 +53,7 @@ class AuthViewController: UIViewController, StoreSubscriber {
                                                name: .UIKeyboardWillHide,
                                                object: nil)
         
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.auth } }
+        self.subscriber.start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

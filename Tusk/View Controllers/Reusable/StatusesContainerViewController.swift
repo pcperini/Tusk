@@ -10,20 +10,27 @@ import UIKit
 import MastodonKit
 import ReSwift
 
-protocol StatusViewableState {
+protocol StatusViewableState: StateType {
     var statuses: [Status] { get set }
 }
 
-class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableState>: TableContainerViewController, StoreSubscriber {
+class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableState>: TableContainerViewController, SubscriptionResponder {
     var statusesViewController: StatusesViewController? {
         return self.tableViewController as? StatusesViewController
     }
     
-    func setUpSubscriptions() {}
+    lazy var subscriber: Subscriber = Subscriber(state: { self.state(appState: $0) }, newState: { (state) in
+        self.statusesViewController?.unsuppressedStatusIDs = GlobalStore.state.storedDefaults.unsuppressedStatusIDs
+        self.statusesViewController?.updateStatuses(statuses: state.statuses)
+    })
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setUpSubscriptions()
+        self.subscriber.start()
+    }
+    
+    func state(appState: AppState) -> StoreSubscriberStateType {
+        fatalError("state has no valid abstract implementation")
     }
     
     func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
@@ -50,13 +57,6 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
-    }
-    
-    func newState(state: StoreSubscriberStateType) {
-        DispatchQueue.main.async {
-            self.statusesViewController?.unsuppressedStatusIDs = GlobalStore.state.storedDefaults.unsuppressedStatusIDs
-            self.statusesViewController?.updateStatuses(statuses: state.statuses)
-        }
+        self.subscriber.stop()
     }
 }

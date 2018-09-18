@@ -20,15 +20,15 @@ class TimelineViewController: StatusesContainerViewController<TimelineState> {
         }
     }
     
-    override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.timeline } }
+    override func state(appState: AppState) -> TimelineState {
+        return appState.timeline
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
         switch pageDirection {
-        case .NextPage: return StoreSubscriberStateType.PollOlderStatuses(client: client)
-        case .PreviousPage: return StoreSubscriberStateType.PollNewerStatuses(client: client)
-        case .Reload: return StoreSubscriberStateType.PollStatuses(client: client)
+        case .NextPage: return TimelineState.PollOlderStatuses(client: client)
+        case .PreviousPage: return TimelineState.PollNewerStatuses(client: client)
+        case .Reload: return TimelineState.PollStatuses(client: client)
         }
     }
 }

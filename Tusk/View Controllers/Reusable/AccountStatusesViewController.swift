@@ -12,20 +12,16 @@ import MastodonKit
 
 class AccountStatusesViewController: StatusesContainerViewController<AccountState> {
     var account: Account!
-    
-    override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.accountWithID(id: self.account.id)! } }
+
+    override func state(appState: AppState) -> AccountState {
+        return appState.accounts.accountWithID(id: self.account.id)!
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
         switch pageDirection {
-        case .NextPage: return StoreSubscriberStateType.PollOlderStatuses(client: client, account: self.account)
-        case .PreviousPage: return StoreSubscriberStateType.PollNewerStatuses(client: client, account: self.account)
-        case .Reload: return StoreSubscriberStateType.PollStatuses(client: client, account: self.account)
+        case .NextPage: return AccountState.PollOlderStatuses(client: client, account: self.account)
+        case .PreviousPage: return AccountState.PollNewerStatuses(client: client, account: self.account)
+        case .Reload: return AccountState.PollStatuses(client: client, account: self.account)
         }
-    }
-    
-    override func newState(state: AccountState) {
-        super.newState(state: state)
     }
 }

@@ -11,15 +11,15 @@ import ReSwift
 import MastodonKit
 
 class FavouritesViewController: StatusesContainerViewController<FavouritesState> {
-    override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.favourites } }
+    override func state(appState: AppState) -> FavouritesState {
+        return appState.favourites
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
         switch pageDirection {
-        case .NextPage: return StoreSubscriberStateType.PollOlderStatuses(client: client)
-        case .PreviousPage: return StoreSubscriberStateType.PollNewerStatuses(client: client)
-        case .Reload: return StoreSubscriberStateType.PollStatuses(client: client)
+        case .NextPage: return FavouritesState.PollOlderStatuses(client: client)
+        case .PreviousPage: return FavouritesState.PollNewerStatuses(client: client)
+        case .Reload: return FavouritesState.PollStatuses(client: client)
         }
     }
 }

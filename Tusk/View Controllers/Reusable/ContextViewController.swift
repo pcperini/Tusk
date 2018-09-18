@@ -15,13 +15,13 @@ class ContextViewController: StatusesContainerViewController<ContextState> {
     var contextState: ContextState! {
         return GlobalStore.state.contexts.contextForStatusWithID(id: self.status.id)
     }
-    
-    override func setUpSubscriptions() {
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.contexts.contextForStatusWithID(id: self.status.id)! } }
+
+    override func state(appState: AppState) -> ContextState {
+        return appState.contexts.contextForStatusWithID(id: self.status.id)!
     }
     
     override func pollStatusesAction(client: Client, pageDirection: PageDirection) -> PollAction {
-        return StoreSubscriberStateType.PollContext(client: client, status: self.status)
+        return ContextState.PollContext(client: client, status: self.status)
     }
     
     override func viewDidLoad() {

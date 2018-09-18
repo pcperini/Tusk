@@ -15,31 +15,29 @@ enum RelationshipDirection: String {
     case Following = "Following"
 }
 
-class FollowsViewController: PaginatingTableViewController<Account>, StoreSubscriber {
-    typealias StoreSubscriberStateType = AccountState
-    
+class FollowsViewController: PaginatingTableViewController<Account>, SubscriptionResponder {
     var relationshipDirection: RelationshipDirection = .Follower
     var account: Account!
     var follows: [Account] = []
     
+    lazy var subscriber: Subscriber = Subscriber(state: { $0.accounts.accountWithID(id: self.account.id)! }, newState: self.newState)
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.accountWithID(id: self.account.id)! } }
+        self.subscriber.start()
         
         self.navigationItem.title = self.relationshipDirection.rawValue
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
+        self.subscriber.stop()
     }
     
-    func newState(state: StoreSubscriberStateType) {
-        DispatchQueue.main.async {
-            switch self.relationshipDirection {
-            case .Follower: self.updateFollows(follows: state.followers)
-            case .Following: self.updateFollows(follows: state.following)
-            }
+    func newState(state: AccountState) {
+        switch self.relationshipDirection {
+        case .Follower: self.updateFollows(follows: state.followers)
+        case .Following: self.updateFollows(follows: state.following)
         }
     }
     

@@ -9,39 +9,20 @@
 import UIKit
 import ReSwift
 
-class ActiveAccountViewController: UIViewController, StoreSubscriber {
-    typealias StoreSubscriberStateType = AccountState
+class ActiveAccountViewController: UIViewController {
     var accountViewController: AccountViewController? {
         return self.childViewControllers.filter({ (child) in
             child is AccountViewController
         }).first as? AccountViewController
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        GlobalStore.subscribe(self) { (subscription) in subscription.select { (state) in state.accounts.activeAccount! } }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.accountViewController?.account = GlobalStore.state.accounts.activeAccount?.account
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        GlobalStore.unsubscribe(self)
-    }
-    
     func pollAccount() {
         guard let client = GlobalStore.state.auth.client else { return }
         GlobalStore.dispatch(AccountState.PollAccount(client: client, account: nil))
-    }
-    
-    func newState(state: AccountState) {
-        DispatchQueue.main.async {
-            if (self.accountViewController?.account?.id != state.account?.id) {
-                self.accountViewController?.account = state.account
-            }
-        }
     }
 }
