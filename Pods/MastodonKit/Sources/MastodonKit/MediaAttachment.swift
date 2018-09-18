@@ -30,11 +30,12 @@ extension MediaAttachment {
     }
 
     var fileName: String {
+        let timestamp = "\(Date().timeIntervalSince1970)"
         switch self {
-        case .jpeg: return "file.jpg"
-        case .gif: return "file.gif"
-        case .png: return "file.png"
-        case .other(_, let fileExtension, _): return "file.\(fileExtension)"
+        case .jpeg: return "\(timestamp).jpg"
+        case .gif: return "\(timestamp).gif"
+        case .png: return "\(timestamp).png"
+        case .other(_, let fileExtension, _): return "\(timestamp).\(fileExtension)"
         }
     }
 

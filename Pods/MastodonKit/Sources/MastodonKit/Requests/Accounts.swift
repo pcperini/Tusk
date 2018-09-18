@@ -34,8 +34,6 @@ public struct Accounts {
     /// - Returns: Request for `Account`.
     public static func updateCurrentUser(displayName: String? = nil,
                                          note: String? = nil,
-                                         avatar: MediaAttachment? = nil,
-                                         header: MediaAttachment? = nil,
                                          locked: Bool? = nil,
                                          fields: [[String: String]]? = nil) -> Request<Account> {
         var fieldParams: [Parameter] = []
@@ -49,12 +47,20 @@ public struct Accounts {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note),
-            Parameter(name: "avatar", value: avatar?.base64EncondedString),
-            Parameter(name: "header", value: header?.base64EncondedString),
             Parameter(name: "locked", value: toBool(locked))
         ] + fieldParams
 
         let method = HTTPMethod.patch(.parameters(parameters))
+        return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method)
+    }
+    
+    public static func updateCurrentUser(avatar: MediaAttachment? = nil) -> Request<Account> {
+        let method = HTTPMethod.patch(.namedMedia(avatar, "avatar"))
+        return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method)
+    }
+    
+    public static func updateCurrentUser(header: MediaAttachment? = nil) -> Request<Account> {
+        let method = HTTPMethod.patch(.namedMedia(header, "header"))
         return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method)
     }
 

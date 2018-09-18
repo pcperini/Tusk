@@ -20,61 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Settings/SettingsViewController.swift"
-            timestampString = "558925184.015372"
+            timestampString = "558925853.093052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
             landmarkName = "displayNameFieldDidChange(sender:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/MastodonKit/Sources/MastodonKit/Client.swift"
-            timestampString = "558924331.794937"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "run(_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MastodonKit.Client.run&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(_: MastodonKit.Request&lt;A&gt;, completion: (MastodonKit.Result&lt;A&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MastodonKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Pods/MastodonKit/Sources/MastodonKit/Client.swift"
-                  timestampString = "558925184.643503"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "2313">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (MastodonKit.MastodonError) -&gt; Swift.Optional&lt;MastodonKit.ClientError&gt; in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MastodonKit.Client.run&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(_: MastodonKit.Request&lt;A&gt;, completion: (MastodonKit.Result&lt;A&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "MastodonKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pcperini/Documents/Projects/Experiments/Tusk/Pods/MastodonKit/Sources/MastodonKit/Client.swift"
-                  timestampString = "558925184.6458499"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

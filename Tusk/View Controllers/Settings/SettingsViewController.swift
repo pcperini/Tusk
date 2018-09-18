@@ -130,9 +130,9 @@ class SettingsViewController: UITableViewController {
         
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking(completion: { (items, _) in
-            guard let item = items.first else { return }
             picker.dismiss(animated: true, completion: nil)
             
+            guard let item = items.first else { return }
             switch item {
             case .photo(p: let photo): completion(.jpeg(photo.image.jpeg(maxSize: ComposeViewController.maxImageFileSize,
                                                                          maxDimensions: ComposeViewController.maxImageSize)))
