@@ -245,12 +245,13 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
                                                                      for: IndexPath(row: row, section: Section.About.rawValue),
                                                                      usingNibNamed: "FieldViewCell")
         
-        let field = account.compactFields[row]
+        let field = account.fields[row]
         let displayField = account.displayFields[row]
 
-        guard let name = displayField["name"],
-            let displayValue = displayField["value"],
-            let rawValue = NSAttributedString(htmlString: field["value"]!) else { return cell }
+        let name = displayField.name
+        let displayValue = displayField.value
+        guard let rawValue = NSAttributedString(htmlString: field.value) else { return cell }
+        
         let plainValue = rawValue.string
         
         cell.fieldNameLabel.text = name

@@ -29,11 +29,7 @@ extension AccountType {
         return "@\(self.acct)"
     }
     
-    var compactFields: [[String: String]] {
-        return self.fields.compactMap({ $0 as? [String: String] })
-    }
-    
-    var displayFields: [[String: String]] {
+    var displayFields: [Account.Field] {
         let prepareForDisplay = { (value: String?) -> String? in
             guard let value = value else { return nil }
             return value.replacingOccurrences(of: "https://", with: "")
@@ -41,9 +37,13 @@ extension AccountType {
                 .replacingOccurrences(of: "&amp;", with: "&")
         }
         
-        return self.compactFields.compactMap { (field) in
-            guard let name = field["name"], let value = prepareForDisplay(field["value"]) else { return nil }
-            return [ "name": name, "value": value ]
+        return self.fields.compactMap { (field) in
+            let name = field.name
+            guard let value = prepareForDisplay(field.value) else { return nil }
+            let values = ["name": name, "value": value]
+            
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: values, options: .init(rawValue: 0)) else { return nil }
+            return try? JSONDecoder().decode(Account.Field.self, from: jsonData)
         }
     }
     

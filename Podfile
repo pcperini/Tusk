@@ -3,7 +3,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'Tusk' do
-    pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git', :branch => 'master', :commit => 'head'
+    pod 'MastodonKit', :git => 'https://github.com/pcperini/MastodonKit.git', :branch => 'master'#, :commit => 'head'
     pod 'ReSwift', '~> 4.0'
     pod 'AlamofireImage', '~> 3.3'
     pod 'AFDateHelper', '~> 4.2'

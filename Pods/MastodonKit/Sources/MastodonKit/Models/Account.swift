@@ -9,6 +9,21 @@
 import Foundation
 
 public class Account: Codable {
+    public class Field: Codable {
+        public let name: String
+        public let value: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case name
+            case value
+        }
+        
+        @available(*, deprecated, message: "Do not use.")
+        init() {
+            fatalError("Swift 4.1")
+        }
+    }
+    
     /// The ID of the account.
     public let id: String
     /// The username of the account.
@@ -40,7 +55,7 @@ public class Account: Codable {
     /// The number of statuses the account has made.
     public let statusesCount: Int
     /// Array of profile metadata field, each element has 'name' and 'value'
-    public var fields: [[String: String?]]
+    public let fields: [Field]
     /// Boolean to indicate that the account performs automated actions
     public let bot: Bool?
 
