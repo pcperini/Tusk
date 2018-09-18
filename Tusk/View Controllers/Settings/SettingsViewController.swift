@@ -8,6 +8,8 @@
 
 import UIKit
 import SafariServices
+import YPImagePicker
+import MastodonKit
 
 class SettingsViewController: UITableViewController {
     static let bugURL: URL = URL(string: "https://github.com/pcperini/Tusk---Issues/issues")!
@@ -74,6 +76,8 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath), let id = cell.reuseIdentifier else { return }
         switch id {
+        case "AvatarButton": self.avatarButtonWasPressed()
+        case "HeaderButton": self.headerButtonWasPressed()
         case "ToggleDefaultStatusVisibilityButton": self.toggleDefaultStatusVisibility()
         case "SubmitBugButton": self.openBugReports()
         case "LogOutButton": self.logout()
@@ -97,6 +101,46 @@ class SettingsViewController: UITableViewController {
         ]}
         
         GlobalStore.dispatch(AccountState.UpdateFields(client: client, account: account, value: fields))
+    }
+    
+    func avatarButtonWasPressed() {
+        guard let client = GlobalStore.state.auth.client, let account = self.accountState?.account else { return }
+        self.mediaButtonWasPressed {
+            GlobalStore.dispatch(AccountState.UpdateAvatar(client: client,
+                                                           account: account,
+                                                           value: $0))
+        }
+    }
+    
+    func headerButtonWasPressed() {
+        
+    }
+    
+    private func mediaButtonWasPressed(completion: @escaping (MediaAttachment) -> Void) {
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photo
+        
+        config.hidesStatusBar = false
+        config.onlySquareImagesFromCamera = false
+        config.screens = [.library, .photo]
+        config.startOnScreen = .library
+        
+        config.colors.tintColor = self.view.tintColor
+        UINavigationBar.appearance().tintColor = config.colors.tintColor
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking(completion: { (items, _) in
+            guard let item = items.first else { return }
+            picker.dismiss(animated: true, completion: nil)
+            
+            switch item {
+            case .photo(p: let photo): completion(.jpeg(photo.image.jpeg(maxSize: ComposeViewController.maxImageFileSize,
+                                                                         maxDimensions: ComposeViewController.maxImageSize)))
+            default: break
+                
+            }
+        })
+        self.present(picker, animated: true, completion: nil)
     }
     
     @IBAction func hideContentWarningsWasToggled(sender: UISwitch?) {

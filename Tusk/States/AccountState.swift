@@ -51,6 +51,8 @@ struct AccountState: StateType, StatusViewableState {
     struct UpdateLocked: AccountAction { let client: Client; let account: AccountType; let value: Bool }
     struct UpdateDisplayName: AccountAction { let client: Client; let account: AccountType; let value: String }
     struct UpdateFields: AccountAction { let client: Client; let account: AccountType; let value: [[String: String]] }
+    struct UpdateAvatar: AccountAction { let client: Client; let account: AccountType; let value: MediaAttachment }
+    struct UpdateHeader: AccountAction { let client: Client; let account: AccountType; let value: MediaAttachment }
     
     var isActiveAccount: Bool = false
     var account: AccountType? = nil
@@ -132,6 +134,8 @@ struct AccountState: StateType, StatusViewableState {
         case let action as UpdateLocked: state.update(client: action.client, locked: action.value)
         case let action as UpdateDisplayName: state.update(client: action.client, displayName: action.value)
         case let action as UpdateFields: state.update(client: action.client, fields: action.value)
+        case let action as UpdateAvatar: state.update(client: action.client, avatar: action.value)
+        case let action as UpdateHeader: state.update(client: action.client, header: action.value)
             
         default: break
         }
@@ -181,16 +185,26 @@ struct AccountState: StateType, StatusViewableState {
     func update(client: Client,
                 displayName: String? = nil,
                 note: String? = nil,
-                avatar: MediaAttachment? = nil,
-                header: MediaAttachment? = nil,
                 locked: Bool? = nil,
                 fields: [[String: String]]? = nil) {
         let request = Accounts.updateCurrentUser(displayName: displayName,
                                                  note: note,
-                                                 avatar: avatar,
-                                                 header: header,
                                                  locked: locked,
                                                  fields: fields)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
+        })
+    }
+    
+    func update(client: Client, avatar: MediaAttachment?) {
+        let request = Accounts.updateCurrentUser(avatar: avatar)
+        client.run(request: request, success: { (resp, _) in
+            GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
+        })
+    }
+    
+    func update(client: Client, header: MediaAttachment?) {
+        let request = Accounts.updateCurrentUser(header: header)
         client.run(request: request, success: { (resp, _) in
             GlobalStore.dispatch(SetAccount(account: resp, active: self.isActiveAccount))
         })

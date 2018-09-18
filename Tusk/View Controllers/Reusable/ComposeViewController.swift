@@ -17,8 +17,8 @@ class ComposeViewController: UIViewController, StoreSubscriber {
     private var updateID: String = StatusUpdateState.updateID()
     
     private static let maxCharacterCount: Int = 500
-    private static let maxImageFileSize: Int = 8388608
-    private static let maxImageSize: CGSize = CGSize(width: 1280, height: 1280)
+    static let maxImageFileSize: Int = 8388608
+    static let maxImageSize: CGSize = CGSize(width: 1280, height: 1280)
     
     var remainingCharacters: Int { return ComposeViewController.maxCharacterCount - self.textView.text.count }
     
