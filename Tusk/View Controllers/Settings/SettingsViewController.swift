@@ -184,10 +184,12 @@ class SettingsViewController: UITableViewController {
         case "PresentComposeViewController": do {
             guard let composeVC = segue.destination as? ComposeContainerViewController else { break }
             composeVC.composeViewController?.isBio = true
-            composeVC.composeViewController?.redraft = (
-                self.accountState?.account?.note ?? "",
-                (self.accountState?.account?.locked ?? false) ? .private : .public
-            )
+            
+            let account = self.accountState?.account
+            composeVC.composeViewController?.redraft = StatusPlaceholder(content: account?.note ?? "",
+                                                                         visibility: account?.locked ?? false ? .private : .public,
+                                                                         inReplyToID: nil,
+                                                                         mentions: [])
             }
         default: break
         }

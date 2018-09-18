@@ -53,7 +53,7 @@ class ComposeViewController: UIViewController, SubscriptionResponder {
     }
     
     var isBio: Bool = false { didSet { self.updateBio() } }
-    var redraft: (content: String, visibility: Visibility)? = nil
+    var redraft: StatusType? = nil
     var inReplyTo: Status? = nil
     var visibility: Visibility = .public {
         didSet {
@@ -204,7 +204,7 @@ class ComposeViewController: UIViewController, SubscriptionResponder {
         GlobalStore.dispatch(StatusUpdateState.PostStatus(client: client,
                                                           id: self.updateID,
                                                           content: self.textView.text,
-                                                          inReplyTo: self.inReplyTo,
+                                                          inReplyToID: self.inReplyTo?.id ?? self.redraft?.inReplyToID,
                                                           visibility: self.visibility,
                                                           attachments: self.mediaAttachments.map { $0.0 }))
         

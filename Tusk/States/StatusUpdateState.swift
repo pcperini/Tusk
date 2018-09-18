@@ -22,7 +22,7 @@ struct StatusUpdateState: StateType {
         let client: Client
         let id: String
         let content: String
-        let inReplyTo: Status?
+        let inReplyToID: String?
         let visibility: Visibility
         let attachments: [MediaAttachment]
     }
@@ -45,7 +45,7 @@ struct StatusUpdateState: StateType {
         case let action as PostStatus: state.postStatus(client: action.client,
                                                         id: action.id,
                                                         content: action.content,
-                                                        inReplyTo: action.inReplyTo,
+                                                        inReplyToID: action.inReplyToID,
                                                         visibility: action.visibility,
                                                         attachments: action.attachments)
         case let action as ReportStatus: state.reportStatus(client: action.client, id: action.id, status: action.status)
@@ -83,11 +83,11 @@ struct StatusUpdateState: StateType {
         })
     }
     
-    func postStatus(client: Client, id: String, content: String, inReplyTo: Status?, visibility: Visibility, attachments: [MediaAttachment]) {
+    func postStatus(client: Client, id: String, content: String, inReplyToID: String?, visibility: Visibility, attachments: [MediaAttachment]) {
         var uploads: [Attachment] = []
         let statusPost = {
             let request = Statuses.create(status: content,
-                                          replyToID: inReplyTo?.id,
+                                          replyToID: inReplyToID,
                                           mediaIDs: uploads.map { $0.id },
                                           sensitive: false,
                                           spoilerText: nil,

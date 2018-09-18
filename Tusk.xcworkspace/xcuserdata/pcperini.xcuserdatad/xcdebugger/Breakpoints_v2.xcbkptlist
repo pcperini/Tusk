@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Settings/SettingsViewController.swift"
-            timestampString = "559001242.826883"
+            timestampString = "559003192.903257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -83,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tusk/View Controllers/Reusable/ContextViewController.swift"
-            timestampString = "559001242.827282"
+            filePath = "Tusk/View Controllers/Reusable/ComposeViewController.swift"
+            timestampString = "559003192.903686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "post(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

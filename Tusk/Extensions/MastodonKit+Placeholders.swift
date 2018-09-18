@@ -58,3 +58,18 @@ struct AccountPlaceholder: AccountType {
     var fields: [Account.Field] { return [] }
     var bot: Bool? { return nil }
 }
+
+extension Status: StatusType {}
+protocol StatusType {
+    var content: String { get }
+    var visibility: Visibility { get }
+    var inReplyToID: String? { get }
+    var mentions: [Mention] { get }
+}
+
+struct StatusPlaceholder: StatusType {
+    let content: String
+    let visibility: Visibility
+    let inReplyToID: String?
+    let mentions: [Mention]
+}
