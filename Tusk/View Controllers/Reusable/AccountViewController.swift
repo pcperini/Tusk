@@ -143,35 +143,44 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
     
     func updateNavigationButtons() {
         guard let account = self.account as? Account else { return }
-        let rightButton: UIBarButtonItem = UIBarButtonItem()
+        var rightButtons: [UIBarButtonItem] = []
         let leftButton: UIBarButtonItem = UIBarButtonItem()
         
         guard let activeAccountState = GlobalStore.state.accounts.activeAccount,
             let activeAccount = activeAccountState.account else { return }
-
-        leftButton.isEnabled = true
-        rightButton.isEnabled = true
-        
-        rightButton.target = self
-        leftButton.target = self
         
         if (account.id == activeAccount.id) {
+            let rightButton = UIBarButtonItem()
             rightButton.image = UIImage(named: "SettingsButton")
             rightButton.action = #selector(presentSettings(sender:))
+            rightButtons.append(rightButton)
             
             leftButton.image = UIImage(named: "FavouriteButton")
             leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else if let relationship = self.relationship {
-            rightButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
-            rightButton.tintColor = UIColor(named: relationship.following ? "DestructiveButtonColor" : "DefaultButtonColor")
-            rightButton.action = #selector(toggleFollowButtonWasPressed(sender:))
+            let followButton = UIBarButtonItem()
+            followButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
+            followButton.tintColor = UIColor(named: relationship.following ? "DestructiveButtonColor" : "DefaultButtonColor")
+            followButton.action = #selector(toggleFollowButtonWasPressed(sender:))
+            rightButtons.append(followButton)
+            
+            let mentionButton = UIBarButtonItem()
+            mentionButton.image = UIImage(named: "MentionButton")
+            mentionButton.action = #selector(presentMentionComposeViewController(sender:))
+            rightButtons.append(mentionButton)
             
             leftButton.image = nil
         }
         
-        self.navigationItem.rightBarButtonItem = rightButton
+        leftButton.isEnabled = true
+        rightButtons.forEach { $0.isEnabled = true }
+        
+        rightButtons.forEach { $0.target = self }
+        leftButton.target = self
+        
+        self.navigationItem.rightBarButtonItems = rightButtons
         if (self.navigationController?.viewControllers.first == self.parent) {
-            self.parent?.navigationItem.rightBarButtonItem = rightButton
+            self.parent?.navigationItem.rightBarButtonItems = rightButtons
             self.parent?.navigationItem.leftBarButtonItem = leftButton
         }
     }
@@ -347,6 +356,10 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
         self.performSegue(withIdentifier: "PushFavouritesViewController", sender: nil)
     }
     
+    @IBAction func presentMentionComposeViewController(sender: UIBarButtonItem?) {
+        self.performSegue(withIdentifier: "PresentComposeViewController", sender: self.account)
+    }
+    
     @IBAction func presentSettings(sender: UIBarButtonItem?) {
         self.performSegue(withIdentifier: "PresentSettingsViewController", sender: nil)
     }
@@ -405,12 +418,25 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
             guard let accountStatusesVC = segue.destination as? FollowsViewController,
                 let sender = sender as? (Account?, RelationshipDirection),
                 let account = sender.0 else {
-                segue.destination.dismiss(animated: true, completion: nil)
-                return
-            }
+                    segue.destination.dismiss(animated: true, completion: nil)
+                    return
+                }
             
             accountStatusesVC.account = account
             accountStatusesVC.relationshipDirection = sender.1
+            }
+        case "PresentComposeViewController": do {
+            guard let composeContainerVC = segue.destination as? ComposeContainerViewController,
+                let composeVC = composeContainerVC.composeViewController,
+                let sender = sender as? Account else {
+                    segue.destination.dismiss(animated: true, completion: nil)
+                    return
+                }
+            
+            composeVC.redraft = StatusPlaceholder(content: "\(sender.handle) ",
+                                                  visibility: .private,
+                                                  inReplyToID: nil,
+                                                  mentions: [])
             }
         default: do {
             super.prepare(for: segue, sender: sender)
