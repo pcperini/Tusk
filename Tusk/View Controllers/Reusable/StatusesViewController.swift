@@ -33,12 +33,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             guard let tableView = self.tableView as? TableView else { return }
             tableView.appendBatchUpdates({
                 if let oldValue = oldValue {
-                    self.tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
-                    self.tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .automatic)
+                    tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
+                    tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .none)
                 }
                 
                 if let selectedIndex = self.selectedStatusIndex {
-                    self.tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: self.statusesSection)], with: .automatic)
+                    tableView.insertRows(at: [IndexPath(row: selectedIndex + 1, section: self.statusesSection)], with: .none)
                 }
             })
         }
@@ -157,7 +157,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             guard let tableView = tableView as? TableView else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 tableView.appendBatchUpdates({
-                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                    tableView.reloadRows(at: [indexPath], with: .none)
                 })
             }
         }
@@ -181,6 +181,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }
         
         self.selectedStatusIndex = statusIndex
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let selectedIndex = self.selectedStatusIndex,
+            indexPath.row == selectedIndex + 1 else { return UITableViewAutomaticDimension }
+        return StatusActionViewCell.height
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
