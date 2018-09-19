@@ -51,12 +51,14 @@ extension NSAttributedString {
         let builder = DTHTMLAttributedStringBuilder(html: htmlString.data(using: .utf8),
                                                     options: options,
                                                     documentAttributes: nil)
-        let linkRegex = Regex("(?=.{\(linkMaxLength),}$)(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
+        let linkRegex = Regex("(([a-z]+:\\/\\/)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*))")
         
         guard let attributedString = builder?.generatedAttributedString()
             .attributedStringByTrimmingCharacterSet(charSet: .whitespacesAndNewlines)
             .replacingMatches(to: linkRegex, with: { (match) -> String in
                 if (linkHideCriteria?(match) ?? false) { return "" }
+                if (match.lengthOfBytes(using: .utf8) < linkMaxLength) { return match }
+                
                 switch linkLineBreakMode {
                 case .byCharWrapping, .byWordWrapping: return match
                 case .byClipping: return "\(match.prefix(linkMaxLength))) "

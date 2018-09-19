@@ -8,47 +8,42 @@
 import Foundation
 
 public class Regex {
-    let regularexpression: NSRegularExpression?
+    public typealias Bounds = (min: Int?, max: Int?)
     
-    public init(_ pattern: String, options: NSRegularExpression.Options = .caseInsensitive) {
+    let regularexpression: NSRegularExpression?
+    let bounds: Bounds?
+    
+    public init(_ pattern: String, options: NSRegularExpression.Options = .caseInsensitive, bounds: Bounds? = nil) {
         self.regularexpression = try! NSRegularExpression(pattern: pattern, options: options)
+        self.bounds = bounds
     }
     
     public func test(input: String) -> Bool {
-        if let matchCount = self.regularexpression?.numberOfMatches(in: input, options: [], range: rangeOfString(input: input)) {
-            return matchCount > 0
-        } else {
-            return false
-        }
+        guard let _ = self.matches(input: input, count: 1).first else { return false }
+        return true
     }
     
     func rangeOfString(input:String) -> NSRange {
         return NSMakeRange(0, (input.count))
     }
     
-    public func matches(input: String) -> [NSTextCheckingResult] {
-        return self.regularexpression?.matches(in: input, options: [], range:rangeOfString(input: input)) ?? []
-    }
-    
-    public func captures(input: String) -> [String] {
-        if let match = self.regularexpression?.firstMatch(in: input, options: [], range: rangeOfString(input: input)) {
-            var i = 0
-            var ret:[String] = []
-            while (i < match.numberOfRanges) {
-                ret.append((input as NSString).substring(with: match.range(at: i)))
-                i += 1
-            }
-            return ret
-        } else {
-            return []
+    public func matches(input: String, count: Int? = nil) -> [NSTextCheckingResult] {
+        if let count = count,
+            count == 1,
+            let firstMatch = self.regularexpression?.firstMatch(in: input, options: [], range: self.rangeOfString(input: input)) {
+            return [firstMatch]
         }
         
+        guard let matches = self.regularexpression?.matches(in: input, options: [], range: self.rangeOfString(input: input)),
+            !matches.isEmpty else { return [] }
+        
+        let filteredMatches = matches.filter({
+            ($0.range.length >= self.bounds?.min ?? Int.min) && ($0.range.length <= self.bounds?.max ?? Int.max)
+        })
+        
+        let count = max(min(count ?? filteredMatches.count, filteredMatches.count), 0)
+        return Array(filteredMatches[0 ..< count])
     }
-}
-
-infix operator =~
-public func =~ (input: String, pattern: String) -> Bool {
-    return Regex(pattern).test(input: input)
 }
 
 extension String {
