@@ -183,12 +183,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         self.selectedStatusIndex = statusIndex
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let selectedIndex = self.selectedStatusIndex,
-            indexPath.row == selectedIndex + 1 else { return UITableViewAutomaticDimension }
-        return StatusActionViewCell.height
-    }
-    
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
         let index = self.statusIndexForIndexPath(indexPath: indexPath)
         guard index != NSNotFound, !self.statuses.isEmpty, index < self.statuses.count else { return nil }
