@@ -20,6 +20,7 @@ class FieldViewCell: TableViewCell {
         case .Statuses: return UIImage(named: "StatusesField")
         case .Followers: return UIImage(named: "FollowersField")
         case .Follows: return UIImage(named: "FollowsField")
+        case .Favourites: return UIImage(named: "FavouritesField")
         }
     }
 }

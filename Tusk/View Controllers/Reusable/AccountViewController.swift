@@ -29,6 +29,12 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
         case Statuses = 0
         case Followers = 1
         case Follows = 2
+        case Favourites = 3
+        
+        static func allCases(givenState: AccountState?) -> AllCases {
+            guard let state = givenState, state.isActiveAccount else { return Array(self.allCases[0 ..< self.allCases.count - 1]) }
+            return self.allCases
+        }
     }
     
     var account: AccountType? { didSet { self.updateAccount() } }
@@ -144,7 +150,6 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
     func updateNavigationButtons() {
         guard let account = self.account as? Account else { return }
         var rightButtons: [UIBarButtonItem] = []
-        let leftButton: UIBarButtonItem = UIBarButtonItem()
         
         guard let activeAccountState = GlobalStore.state.accounts.activeAccount,
             let activeAccount = activeAccountState.account else { return }
@@ -154,9 +159,6 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
             rightButton.image = UIImage(named: "SettingsButton")
             rightButton.action = #selector(presentSettings(sender:))
             rightButtons.append(rightButton)
-            
-            leftButton.image = UIImage(named: "FavouriteButton")
-            leftButton.action = #selector(favouritesButtonWasPressed(sender:))
         } else if let relationship = self.relationship {
             let followButton = UIBarButtonItem()
             followButton.image = UIImage(named: relationship.following ? "StopFollowingButton" : "FollowButton")
@@ -168,20 +170,14 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
             mentionButton.image = UIImage(named: "MentionButton")
             mentionButton.action = #selector(presentMentionComposeViewController(sender:))
             rightButtons.append(mentionButton)
-            
-            leftButton.image = nil
         }
         
-        leftButton.isEnabled = true
         rightButtons.forEach { $0.isEnabled = true }
-        
         rightButtons.forEach { $0.target = self }
-        leftButton.target = self
         
         self.navigationItem.rightBarButtonItems = rightButtons
         if (self.navigationController?.viewControllers.first == self.parent) {
             self.parent?.navigationItem.rightBarButtonItems = rightButtons
-            self.parent?.navigationItem.leftBarButtonItem = leftButton
         }
     }
     
@@ -229,7 +225,7 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
         
         switch section {
         case .About: return account.displayFields.count
-        case .Stats: return Stat.allCases.count
+        case .Stats: return Stat.allCases(givenState: self.state).count
         case .Statuses: return self.numberOfStatusRows
         }
     }
@@ -298,6 +294,10 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
             cell.fieldNameLabel.text = "Followers"
             cell.fieldValueTextView.htmlText = format(account.followersCount)
             }
+        case .Favourites: do {
+            cell.fieldNameLabel.text = "Favs"
+            cell.fieldValueTextView.htmlText = "→"
+            }
         }
 
         cell.iconView.image = FieldViewCell.iconForStat(stat: stat)
@@ -327,6 +327,7 @@ class AccountViewController: StatusesViewController, SubscriptionResponder {
             case .Statuses: self.pushToStatuses()
             case .Followers: self.pushToFollowers()
             case .Follows: self.pushToFollows()
+            case .Favourites: self.pushToFavourites()
             }
             }
         case .Statuses: return
