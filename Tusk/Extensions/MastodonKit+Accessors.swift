@@ -90,20 +90,42 @@ extension Status: Clonable {
 }
 
 extension Filter {
-    private static let RegexPrefix = "TuskRegex::"
+    enum Prefix: String, CaseIterable {
+        case Regex = "TuskRegex::"
+        case Warning = "TuskCW::"
+        
+        func matches(string: String) -> Bool {
+            return string.contains(self.rawValue)
+        }
+    }
     
     var isRegex: Bool {
-        return self.phrase.starts(with: Filter.RegexPrefix)
+        return Prefix.Regex.matches(string: self.phrase)
+    }
+    
+    var filtersWarnings: Bool {
+        return Prefix.Warning.matches(string: self.phrase)
+    }
+    
+    var content: String {
+        return Prefix.allCases.reduce(self.phrase, { (content, prefix) in
+            content.replacingOccurrences(of: prefix.rawValue, with: "")
+        })
     }
     
     var filterFunction: (Status) -> Bool {
         return { (status) in
-            if self.isRegex {
-                let regex = Regex(self.phrase.replacingOccurrences(of: Filter.RegexPrefix, with: ""))
-                return !regex.test(input: status.content)
+            var filterable = [status.content]
+            if self.filtersWarnings && !status.spoilerText.isEmpty {
+                filterable.append(status.spoilerText)
             }
             
-            return !status.content.contains(self.phrase)
+            if self.isRegex {
+                let regex = Regex(self.content)
+                return !filterable.map({ regex.test(input: $0) }).contains(true)
+            }
+            
+            return !filterable.map({ $0.contains(self.content) }).contains(true)
         }
     }
 }

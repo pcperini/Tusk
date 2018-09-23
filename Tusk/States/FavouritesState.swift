@@ -12,7 +12,7 @@ import ReSwift
 
 struct FavouritesState: StatusesState {
     var statuses: [Status] = []
-    var filters: [(Status) -> Bool] = []
+    var baseFilters: [(Status) -> Bool] = []
     
     var nextPage: RequestRange? = nil
     var previousPage: RequestRange? = nil

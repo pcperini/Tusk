@@ -12,7 +12,7 @@ import ReSwift
 
 struct MentionsState: StatusesState {
     var statuses: [Status] = []
-    var filters: [(Status) -> Bool] = [
+    var baseFilters: [(Status) -> Bool] = [
         { $0.visibility != .direct },
         { (status: Status) in
             status.mentions.first(where: { $0.id == GlobalStore.state.accounts.activeAccount?.account?.id }) != nil

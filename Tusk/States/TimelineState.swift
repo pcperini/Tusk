@@ -12,7 +12,7 @@ import ReSwift
 
 struct TimelineState: StatusesState {    
     var statuses: [Status] = []
-    var filters: [(Status) -> Bool] = [{ $0.visibility != .direct }]
+    var baseFilters: [(Status) -> Bool] = [{ $0.visibility != .direct }]
     
     var nextPage: RequestRange? = nil
     var previousPage: RequestRange? = nil

@@ -256,9 +256,13 @@
 		73AD8C2D213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
 		73AD8C2E213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
 		73AD8C2F213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
+		73B8E3912156B19300707906 /* FilterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B8E3902156B19300707906 /* FilterViewCell.swift */; };
 		73CBAE392124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
 		73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */; };
+		73CD37B12155583700723D63 /* FiltersState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD37B02155583700723D63 /* FiltersState.swift */; };
+		73CD37B22155583700723D63 /* FiltersState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD37B02155583700723D63 /* FiltersState.swift */; };
+		73CD37B32155583700723D63 /* FiltersState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD37B02155583700723D63 /* FiltersState.swift */; };
 		73D6CF352131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
 		73D6CF362131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
 		73D6CF372131C56A00990AA6 /* MastodonKit+Placeholders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */; };
@@ -398,7 +402,9 @@
 		739E91A6213C51B7005123AA /* Tusk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tusk.entitlements; sourceTree = "<group>"; };
 		739E91A7213C967D005123AA /* ErrorsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsState.swift; sourceTree = "<group>"; };
 		73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyLinkActivity.swift; sourceTree = "<group>"; };
+		73B8E3902156B19300707906 /* FilterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
+		73CD37B02155583700723D63 /* FiltersState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersState.swift; sourceTree = "<group>"; };
 		73D6CF342131C56A00990AA6 /* MastodonKit+Placeholders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonKit+Placeholders.swift"; sourceTree = "<group>"; };
 		73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMergeHandler.swift; sourceTree = "<group>"; };
 		73D6CF402133530700990AA6 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
@@ -556,6 +562,7 @@
 				7302301621306FF700BC1E9A /* FollowViewCell.xib */,
 				739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */,
 				739426DA21272A5F005CBEDA /* ImageAttachmentViewCell.xib */,
+				73B8E3902156B19300707906 /* FilterViewCell.swift */,
 				739842EC21531B8100C78B45 /* FilterViewCell.xib */,
 				73208E84212A41A400529FA3 /* TableViewCell.swift */,
 			);
@@ -602,7 +609,6 @@
 			children = (
 				7379C5B4211F3D4B003BEB84 /* AppState.swift */,
 				7379C5B9211F4180003BEB84 /* AuthState.swift */,
-				739E919E213AE922005123AA /* StatusUpdateState.swift */,
 				732BE20C211F4ACE0049ADBD /* TimelineState.swift */,
 				73208E88212B290500529FA3 /* MentionsState.swift */,
 				732BE218211F96600049ADBD /* MessagesState.swift */,
@@ -612,9 +618,11 @@
 				73208EB9212CC2AF00529FA3 /* AccountState.swift */,
 				73023006212F55BD00BC1E9A /* ContextsState.swift */,
 				73023002212F535000BC1E9A /* ContextState.swift */,
+				739E919E213AE922005123AA /* StatusUpdateState.swift */,
 				7317B2B3214ED21400512CE9 /* StoredDefaultsState.swift */,
 				739E91A7213C967D005123AA /* ErrorsState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
+				73CD37B02155583700723D63 /* FiltersState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -1033,6 +1041,7 @@
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
+				73B8E3912156B19300707906 /* FilterViewCell.swift in Sources */,
 				739E91A3213B3F68005123AA /* UITableView+Visibility.swift in Sources */,
 				73FBF8B7212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
@@ -1045,6 +1054,7 @@
 				73022FFB212F1C5600BC1E9A /* UIView+Layout.swift in Sources */,
 				7302304B213109E300BC1E9A /* Button.swift in Sources */,
 				73167BCF2136023600C0F28E /* ValidatedLabel.swift in Sources */,
+				73CD37B12155583700723D63 /* FiltersState.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -1124,6 +1134,7 @@
 				73023048213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE27F2123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				73AD8C2E213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
+				73CD37B22155583700723D63 /* FiltersState.swift in Sources */,
 				73D6CF3E2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				7377EB9D2149D5D50097EA73 /* View.swift in Sources */,
@@ -1203,6 +1214,7 @@
 				73023049213089E600BC1E9A /* FavouritesState.swift in Sources */,
 				732BE2802123972F0049ADBD /* MastodonKit+Comparable.swift in Sources */,
 				73AD8C2F213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
+				73CD37B32155583700723D63 /* FiltersState.swift in Sources */,
 				73D6CF3F2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
 				7377EB9E2149D5D50097EA73 /* View.swift in Sources */,

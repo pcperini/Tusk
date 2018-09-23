@@ -19,6 +19,7 @@ struct AppState: StateType {
     var mentions: MentionsState
     var notifications: NotificationsState
     var messages: MessagesState
+    var filters: FiltersState
     var favourites: FavouritesState
     var accounts: AccountsState
     var contexts: ContextsState
@@ -39,6 +40,7 @@ struct AppState: StateType {
             mentions: MentionsState.reducer(action: action, state: state?.mentions),
             notifications: NotificationsState.reducer(action: action, state: state?.notifications),
             messages: MessagesState.reducer(action: action, state: state?.messages),
+            filters: FiltersState.reducer(action: action, state: state?.filters),
             favourites: FavouritesState.reducer(action: action, state: state?.favourites),
             accounts: AccountsState.reducer(action: action, state: state?.accounts),
             contexts: ContextsState.reducer(action: action, state: state?.contexts),
@@ -52,10 +54,10 @@ struct AppState: StateType {
     func pollData() {
         guard let client = self.auth.client else { return }
         DispatchQueue.main.async {
-            GlobalStore.dispatch(TimelineState.PollFilters(client: client))
             GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
             GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
             GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
+            GlobalStore.dispatch(FiltersState.PollFilters(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollAccount(client: client, account: nil))
             GlobalStore.dispatch(StoredDefaultsState.LoadDefaults())

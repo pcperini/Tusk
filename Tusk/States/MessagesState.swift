@@ -14,7 +14,7 @@ import ReSwift
 
 struct MessagesState: StatusesState {
     var statuses: [Status] = []
-    var filters: [(Status) -> Bool] = [
+    var baseFilters: [(Status) -> Bool] = [
         { $0.visibility == .direct }
     ]
     

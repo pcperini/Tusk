@@ -87,3 +87,18 @@ extension Relationship: Equatable {
         )
     }
 }
+
+extension Filter: Paginatable {
+    static let sortedByPageIndex = true
+    public var hashValue: Int {
+        return self.content.hashValue
+    }
+    
+    public static func < (lhs: Filter, rhs: Filter) -> Bool {
+        return lhs.content < rhs.content
+    }
+    
+    public static func == (lhs: Filter, rhs: Filter) -> Bool {
+        return lhs.content == rhs.content
+    }
+}
