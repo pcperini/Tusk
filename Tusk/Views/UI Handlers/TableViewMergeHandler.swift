@@ -40,7 +40,7 @@ struct TableViewMergeHandler<DataType: Comparable> {
     
     var dataComparator: (DataType, DataType) -> Bool
     
-    mutating func mergeData(data newData: [DataType], pinToTop: Bool = false) {
+    mutating func mergeData(data newData: [DataType], animated: Bool = false, pinToTop: Bool = false) {
         let tableView = self.tableView
         
         defer { self.data = newData }
@@ -65,7 +65,8 @@ struct TableViewMergeHandler<DataType: Comparable> {
         let firstVisibleElement = oldData[firstVisibleIndex]
         let firstVisibleNewIndex = newData.index(of: firstVisibleElement) ?? 0
         
-        UIView.performWithoutAnimation {
+        let animationWrapper = animated ? { $0() } : UIView.performWithoutAnimation
+        animationWrapper {
             guard let tableView = tableView as? TableView else { return }
             tableView.appendBatchUpdates({
                 if (!diffState.removed.isEmpty) { tableView.deleteRows(at: diffState.removedIndexPaths, with: .none) }
@@ -76,12 +77,12 @@ struct TableViewMergeHandler<DataType: Comparable> {
             if (!diffState.inserted.isEmpty) {
                 tableView.scrollToRow(at: IndexPath(row: firstVisibleNewIndex, section: self.section),
                                       at: .top,
-                                      animated: false)
+                                      animated: animated)
             }
         }
         
         if (pinToTop) {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: animated)
         }
     }
     

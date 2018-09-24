@@ -73,3 +73,20 @@ struct StatusPlaceholder: StatusType {
     let inReplyToID: String?
     let mentions: [Mention]
 }
+
+extension Filter: FilterType {}
+protocol FilterType {
+    var id: Int { get }
+    var phrase: String { get }
+    var content: String { get }
+    var isRegex: Bool { get }
+    var filtersWarnings: Bool { get }
+}
+
+struct FilterPlaceholder: FilterType {
+    var id: Int { return NSNotFound }
+    var phrase: String
+    var content: String { return self.phrase }
+    var isRegex: Bool { return false }
+    var filtersWarnings: Bool { return false }
+}

@@ -95,10 +95,10 @@ extension Filter: Paginatable {
     }
     
     public static func < (lhs: Filter, rhs: Filter) -> Bool {
-        return lhs.content < rhs.content
+        return lhs.id < rhs.id
     }
     
     public static func == (lhs: Filter, rhs: Filter) -> Bool {
-        return lhs.content == rhs.content
+        return lhs.id == rhs.id
     }
 }

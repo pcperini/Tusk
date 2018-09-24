@@ -113,7 +113,12 @@ class SettingsViewController: UITableViewController {
     }
     
     func headerButtonWasPressed() {
-        
+        guard let client = GlobalStore.state.auth.client, let account = self.accountState?.account else { return }
+        self.mediaButtonWasPressed {
+            GlobalStore.dispatch(AccountState.UpdateHeader(client: client,
+                                                           account: account,
+                                                           value: $0))
+        }
     }
     
     private func mediaButtonWasPressed(completion: @escaping (MediaAttachment) -> Void) {

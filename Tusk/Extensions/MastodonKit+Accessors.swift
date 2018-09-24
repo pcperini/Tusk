@@ -128,4 +128,11 @@ extension Filter {
             return !filterable.map({ $0.contains(self.content) }).contains(true)
         }
     }
+    
+    static func phraseForContent(_ content: String, filtersWarnings: Bool, isRegex: Bool) -> String {
+        var content = content
+        if filtersWarnings { content = Prefix.Warning.rawValue + content }
+        if isRegex { content = Prefix.Regex.rawValue + content }
+        return content
+    }
 }

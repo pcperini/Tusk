@@ -9,6 +9,8 @@
 import Foundation
 
 public class Filter: Codable {
+    /// ID of the filter
+    public let id: Int
     /// String that contains keyword or phrase.
     public let phrase: String
     /// Array of strings that means filtering context. Each string is one of 'home', 'notifications', 'public', 'thread'. At least one context must be specified.
@@ -21,6 +23,7 @@ public class Filter: Codable {
     public let expiresAt: String?
     
     private enum CodingKeys: String, CodingKey {
+        case id
         case phrase
         case contexts = "context"
         case irreversible
