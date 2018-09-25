@@ -11,7 +11,7 @@
 import ReSwift
 import MastodonKit
 
-protocol Paginatable: Encodable, Decodable, Comparable, Hashable { static var sortedByPageIndex: Bool { get } }
+protocol Paginatable: Codable, Comparable, Hashable { static var sortedByPageIndex: Bool { get } }
 protocol PollAction: Action { var client: Client { get } }
 
 protocol PaginatableState: StateType {
