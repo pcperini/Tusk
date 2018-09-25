@@ -56,8 +56,13 @@ class FiltersViewController: UITableViewController, SubscriptionResponder {
     // MARK: Responders
     @objc func addButtonWasPressed(sender: UIBarButtonItem?) {
         self.filters.insert(FilterPlaceholder(phrase: ""), at: 0)
+        
         guard let tableView = self.tableView as? TableView else { return }
-        tableView.appendBatchUpdates({ tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .none) })
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.appendBatchUpdates({ tableView.insertRows(at: [indexPath], with: .none) })
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? FilterViewCell else { return }
+        cell.textField.becomeFirstResponder()
     }
     
     // MARK: Table View
@@ -78,10 +83,7 @@ class FiltersViewController: UITableViewController, SubscriptionResponder {
             GlobalStore.dispatch(FiltersState.SaveFilter(client: client,
                                                          phrase: phrase,
                                                          id: id))
-            if id == nil {
-                self.filters.remove(at: 0)
-                self.tableView.reloadData()
-            }
+            self.clearPlaceholders()
         }
         
         filterCell.filterDeleteWasTriggered = {
@@ -91,5 +93,11 @@ class FiltersViewController: UITableViewController, SubscriptionResponder {
         }
         
         return filterCell
+    }
+    
+    private func clearPlaceholders() {
+        let indices = self.filters.enumerated().compactMap({ $0.element is FilterPlaceholder ? $0.offset : nil })
+        self.filters = self.filters.filter({ $0 is Filter })
+        self.tableView.deleteRows(at: indices.map({ IndexPath(row: $0, section: 0) }), with: .none)
     }
 }
