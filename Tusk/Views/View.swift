@@ -19,4 +19,33 @@ import UIKit
         self.layer.borderColor = self.borderColor.cgColor
         self.layer.cornerRadius = self.cornerRadius
     }
+    
+    func pinSubview(subview: UIView, to attrs: [NSLayoutAttribute], withSizes sizes: [NSLayoutAttribute: CGFloat], safely: Bool = false) {
+        subview.removeConstraints(subview.constraints)        
+        self.addConstraints(attrs.map({ NSLayoutConstraint(item: self,
+                                                           attribute: safely ? $0.correspondingSafeAttribute : $0,
+                                                           relatedBy: .equal,
+                                                           toItem: subview,
+                                                           attribute: $0,
+                                                           multiplier: 1.0,
+                                                           constant: 0.0) }))
+        subview.addConstraints(sizes.map({ NSLayoutConstraint(item: subview,
+                                                              attribute: $0.key,
+                                                              relatedBy: .equal,
+                                                              toItem: nil,
+                                                              attribute: .notAnAttribute,
+                                                              multiplier: 1.0,
+                                                              constant: $0.value) }))
+    }
+}
+
+extension NSLayoutAttribute {
+    var correspondingSafeAttribute: NSLayoutAttribute {
+        switch self {
+        case .bottom: return .bottomMargin
+        case .top: return .topMargin
+        case .centerY: return .centerYWithinMargins
+        default: return self
+        }
+    }
 }
