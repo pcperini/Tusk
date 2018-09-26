@@ -130,24 +130,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             GlobalStore.state.storedDefaults.hideContentWarnings
         )
         
-        cell.attachmentWasTapped = { (attachment) in
-            self.presentAttachment(attachment: attachment, forStatus: displayStatus)
-        }
+        cell.attachmentWasTapped = ModalHandler.handleAttachmentForViewController(viewController: self, status: displayStatus)
         cell.accountElementWasTapped = { (account) in
-            guard let account = account else { return }
             self.pushToAccount(account: account)
         }
-        cell.linkWasTapped = { (url, text) in
-            if let mentionMatch = displayStatus.mentions.first(where: { url?.absoluteString == $0.url }) {
-                self.pushToAccount(account: AccountPlaceholder(id: mentionMatch.id))
-                return
-            }
-            
-            guard let url = url else { return }
-            self.openURL(url: url)
-        }
+        cell.linkWasTapped = ModalHandler.handleLinkForViewController(viewController: self)
         cell.contextPushWasTriggered = { (status) in
-            guard let status = status else { return }
             self.pushToContext(status: status)
         }
         cell.contentShouldReveal = {
@@ -289,11 +277,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         ])
         
         self.present(shareSheet, animated: true, completion: nil)
-    }
-    
-    func presentAttachment(attachment: Attachment, forStatus status: Status) {
-        let photoViewer = AttachmentsViewController(attachments: status.mediaAttachments, initialAttachment: attachment)
-        self.present(photoViewer, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

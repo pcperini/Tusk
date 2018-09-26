@@ -10,6 +10,8 @@ import UIKit
 import MastodonKit
 
 class FollowViewCell: TableViewCell {
+    static let rowHeight: CGFloat = 65.0
+    
     @IBOutlet var avatarView: AvatarView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!

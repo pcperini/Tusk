@@ -111,9 +111,3 @@ extension AuthViewController: UITextFieldDelegate {
         return true
     }
 }
-
-extension AuthViewController: SFSafariViewControllerDelegate {
-    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
-        print(URL)
-    }
-}

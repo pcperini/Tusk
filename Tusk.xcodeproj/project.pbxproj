@@ -253,6 +253,18 @@
 		739E91A8213C967D005123AA /* ErrorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A7213C967D005123AA /* ErrorsState.swift */; };
 		739E91A9213C967D005123AA /* ErrorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A7213C967D005123AA /* ErrorsState.swift */; };
 		739E91AA213C967D005123AA /* ErrorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E91A7213C967D005123AA /* ErrorsState.swift */; };
+		73A07E81215C135100A85466 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73A07E80215C135100A85466 /* Search.storyboard */; };
+		73A07E82215C135100A85466 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73A07E80215C135100A85466 /* Search.storyboard */; };
+		73A07E83215C135100A85466 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73A07E80215C135100A85466 /* Search.storyboard */; };
+		73A07E85215C135D00A85466 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E84215C135D00A85466 /* SearchViewController.swift */; };
+		73A07E86215C135D00A85466 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E84215C135D00A85466 /* SearchViewController.swift */; };
+		73A07E87215C135D00A85466 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E84215C135D00A85466 /* SearchViewController.swift */; };
+		73A07E89215C1E0B00A85466 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E88215C1E0B00A85466 /* SearchState.swift */; };
+		73A07E8A215C1E0B00A85466 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E88215C1E0B00A85466 /* SearchState.swift */; };
+		73A07E8B215C1E0B00A85466 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E88215C1E0B00A85466 /* SearchState.swift */; };
+		73A07E8D215C415200A85466 /* ModalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E8C215C415200A85466 /* ModalHandler.swift */; };
+		73A07E8E215C415200A85466 /* ModalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E8C215C415200A85466 /* ModalHandler.swift */; };
+		73A07E8F215C415200A85466 /* ModalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A07E8C215C415200A85466 /* ModalHandler.swift */; };
 		73AD8C2D213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
 		73AD8C2E213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
 		73AD8C2F213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */; };
@@ -401,6 +413,10 @@
 		739E91A2213B3F68005123AA /* UITableView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Visibility.swift"; sourceTree = "<group>"; };
 		739E91A6213C51B7005123AA /* Tusk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tusk.entitlements; sourceTree = "<group>"; };
 		739E91A7213C967D005123AA /* ErrorsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsState.swift; sourceTree = "<group>"; };
+		73A07E80215C135100A85466 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		73A07E84215C135D00A85466 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		73A07E88215C1E0B00A85466 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
+		73A07E8C215C415200A85466 /* ModalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHandler.swift; sourceTree = "<group>"; };
 		73AD8C2C213D9A4C00180F4F /* CopyLinkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyLinkActivity.swift; sourceTree = "<group>"; };
 		73B8E3902156B19300707906 /* FilterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
 		73CBAE382124EBB70048462A /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
@@ -502,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				73D6CF3C2132F2BD00990AA6 /* TableViewMergeHandler.swift */,
+				73A07E8C215C415200A85466 /* ModalHandler.swift */,
 			);
 			path = "UI Handlers";
 			sourceTree = "<group>";
@@ -600,6 +617,8 @@
 				7377EB862146F6A90097EA73 /* Settings */,
 				7377EB972149CB5C0097EA73 /* AuthViewController.swift */,
 				7377EB8F21498CF20097EA73 /* Auth.storyboard */,
+				73A07E84215C135D00A85466 /* SearchViewController.swift */,
+				73A07E80215C135100A85466 /* Search.storyboard */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -623,6 +642,7 @@
 				739E91A7213C967D005123AA /* ErrorsState.swift */,
 				73208E8C212B2A8600529FA3 /* Composable */,
 				73CD37B02155583700723D63 /* FiltersState.swift */,
+				73A07E88215C1E0B00A85466 /* SearchState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -664,8 +684,8 @@
 				739E91A6213C51B7005123AA /* Tusk.entitlements */,
 				73EAEC56211E41A900C2620F /* AppDelegate.swift */,
 				7379C5AA211E6D89003BEB84 /* View Controllers */,
-				732BE2322120CC2F0049ADBD /* Views */,
 				7379C5B8211F3D4E003BEB84 /* States */,
+				732BE2322120CC2F0049ADBD /* Views */,
 				73EAEC5F211E41AA00C2620F /* Assets.xcassets */,
 				73EAEC61211E41AA00C2620F /* LaunchScreen.storyboard */,
 				73EAEC64211E41AA00C2620F /* Info.plist */,
@@ -854,6 +874,7 @@
 				73EAEC5E211E41A900C2620F /* Main.storyboard in Resources */,
 				73208E7C212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				7377EB9021498CF20097EA73 /* Auth.storyboard in Resources */,
+				73A07E81215C135100A85466 /* Search.storyboard in Resources */,
 				73023027213077B200BC1E9A /* Notifications.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,6 +887,7 @@
 				732BE246212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73023028213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DC21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
+				73A07E82215C135100A85466 /* Search.storyboard in Resources */,
 				73167BC82135E80700C0F28E /* Compose.storyboard in Resources */,
 				73208E7D212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				730230402130887D00BC1E9A /* Favourites.storyboard in Resources */,
@@ -893,6 +915,7 @@
 				732BE247212222460049ADBD /* StatusViewCell.xib in Resources */,
 				73023029213077B200BC1E9A /* Notifications.storyboard in Resources */,
 				739426DD21272A5F005CBEDA /* ImageAttachmentViewCell.xib in Resources */,
+				73A07E83215C135100A85466 /* Search.storyboard in Resources */,
 				73167BC92135E80700C0F28E /* Compose.storyboard in Resources */,
 				73208E7E212A252900529FA3 /* StatusActionViewCell.xib in Resources */,
 				730230412130887D00BC1E9A /* Favourites.storyboard in Resources */,
@@ -1045,6 +1068,8 @@
 				739E91A3213B3F68005123AA /* UITableView+Visibility.swift in Sources */,
 				73FBF8B7212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
 				732BE20D211F4ACE0049ADBD /* TimelineState.swift in Sources */,
+				73A07E89215C1E0B00A85466 /* SearchState.swift in Sources */,
+				73A07E85215C135D00A85466 /* SearchViewController.swift in Sources */,
 				739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */,
 				732BE262212338EA0049ADBD /* TimestampLabel.swift in Sources */,
 				732BE24E2122240D0049ADBD /* ImageView.swift in Sources */,
@@ -1055,6 +1080,7 @@
 				7302304B213109E300BC1E9A /* Button.swift in Sources */,
 				73167BCF2136023600C0F28E /* ValidatedLabel.swift in Sources */,
 				73CD37B12155583700723D63 /* FiltersState.swift in Sources */,
+				73A07E8D215C415200A85466 /* ModalHandler.swift in Sources */,
 				732BE211211F93860049ADBD /* NotificationsState.swift in Sources */,
 				7379C5BA211F4180003BEB84 /* AuthState.swift in Sources */,
 				739426E321288375005CBEDA /* AttachmentsViewController.swift in Sources */,
@@ -1137,6 +1163,7 @@
 				73CD37B22155583700723D63 /* FiltersState.swift in Sources */,
 				73D6CF3E2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023044213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
+				73A07E86215C135D00A85466 /* SearchViewController.swift in Sources */,
 				7377EB9D2149D5D50097EA73 /* View.swift in Sources */,
 				739426E021272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE25F212327490049ADBD /* NotificationViewCell.swift in Sources */,
@@ -1167,6 +1194,7 @@
 				732BE267212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27C2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				7377EB992149CB5D0097EA73 /* AuthViewController.swift in Sources */,
+				73A07E8A215C1E0B00A85466 /* SearchState.swift in Sources */,
 				732BE24F2122240D0049ADBD /* ImageView.swift in Sources */,
 				7379C5B6211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE212211F93860049ADBD /* NotificationsState.swift in Sources */,
@@ -1177,6 +1205,7 @@
 				73FBF8BC212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22821208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8A212B290500529FA3 /* MentionsState.swift in Sources */,
+				73A07E8E215C415200A85466 /* ModalHandler.swift in Sources */,
 				73022FF0212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73022FF8212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				73023008212F55BD00BC1E9A /* ContextsState.swift in Sources */,
@@ -1217,6 +1246,7 @@
 				73CD37B32155583700723D63 /* FiltersState.swift in Sources */,
 				73D6CF3F2132F2BD00990AA6 /* TableViewMergeHandler.swift in Sources */,
 				73023045213089B800BC1E9A /* FavouritesViewController.swift in Sources */,
+				73A07E87215C135D00A85466 /* SearchViewController.swift in Sources */,
 				7377EB9E2149D5D50097EA73 /* View.swift in Sources */,
 				739426E121272A9C005CBEDA /* ImageAttachmentViewCell.swift in Sources */,
 				732BE260212327490049ADBD /* NotificationViewCell.swift in Sources */,
@@ -1247,6 +1277,7 @@
 				732BE268212345080049ADBD /* AccountViewController.swift in Sources */,
 				732BE27D2123972F0049ADBD /* MastodonKit+Accessors.swift in Sources */,
 				7377EB9A2149CB5D0097EA73 /* AuthViewController.swift in Sources */,
+				73A07E8B215C1E0B00A85466 /* SearchState.swift in Sources */,
 				732BE2502122240D0049ADBD /* ImageView.swift in Sources */,
 				7379C5B7211F3D4B003BEB84 /* AppState.swift in Sources */,
 				732BE213211F93860049ADBD /* NotificationsState.swift in Sources */,
@@ -1257,6 +1288,7 @@
 				73FBF8BD212E11CD009B2619 /* Sequence+Deduplication.swift in Sources */,
 				732BE22921208EA40049ADBD /* ActiveAccountViewController.swift in Sources */,
 				73208E8B212B290500529FA3 /* MentionsState.swift in Sources */,
+				73A07E8F215C415200A85466 /* ModalHandler.swift in Sources */,
 				73022FF1212E245800BC1E9A /* FollowsViewController.swift in Sources */,
 				73022FF9212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				73023009212F55BD00BC1E9A /* ContextsState.swift in Sources */,

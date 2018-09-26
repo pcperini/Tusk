@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Search-->
+        <scene sceneID="1mf-w4-I2v">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="gK4-Wl-7qb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMO-UT-CzE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3025" y="-1290"/>
+        </scene>
         <!--Compose-->
         <scene sceneID="hBi-gA-xr3">
             <objects>
@@ -43,7 +51,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Timeline" id="DcL-Xn-71m">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" image="SearchButton" id="ce2-MC-dzY"/>
+                        <barButtonItem key="leftBarButtonItem" image="SearchButton" id="ce2-MC-dzY">
+                            <connections>
+                                <segue destination="gK4-Wl-7qb" kind="show" id="etp-cX-XAm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ComposeButton" id="xE8-5B-EeN">
                             <connections>
                                 <segue destination="0Ly-KG-wp9" kind="presentation" identifier="" customClass="DeckSegue" customModule="DeckTransition" id="giz-yJ-VMY"/>

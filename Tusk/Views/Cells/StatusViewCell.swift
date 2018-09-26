@@ -41,10 +41,10 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var favouriteStatBadge: UIImageView!
     @IBOutlet var favouriteStatLabel: UILabel!
     
-    var accountElementWasTapped: ((Account?) -> Void)?
+    var accountElementWasTapped: ((AccountType) -> Void)?
     var linkWasTapped: ((URL?, String) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
-    var contextPushWasTriggered: ((Status?) -> Void)?
+    var contextPushWasTriggered: ((Status) -> Void)?
     var contentShouldReveal: (() -> Void)?
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
@@ -81,7 +81,7 @@ class StatusViewCell: TableViewCell {
                                           icon: UIImage(named: "ContextButton"),
                                           backgroundColor: UIColor(named: "ContextBackgroundColor"),
                                           padding: Int(self.frame.width / 8.0),
-                                          callback: { (_) in self.contextPushWasTriggered?(self.status); return false })
+                                          callback: { (_) in self.contextPushWasTriggered?(self.status!); return false })
         contextButton.tintColor = .lightGray
         self.rightButtons = [contextButton]
         self.rightExpansion.buttonIndex = 0
@@ -168,10 +168,15 @@ class StatusViewCell: TableViewCell {
     }
     
     @objc func avatarViewWasTapped(recognizer: UIGestureRecognizer!) {
+        let account: Account?
         switch recognizer {
-        case self.avatarTapRecognizer: self.accountElementWasTapped?(self.status?.account)
-        case self.reblogAvatarTapRecognizer: self.accountElementWasTapped?(self.originalStatus?.account)
+        case self.avatarTapRecognizer: account = self.status?.account
+        case self.reblogAvatarTapRecognizer: account = self.originalStatus?.account
         default: return
+        }
+        
+        if let account = account {
+            self.accountElementWasTapped?(account)
         }
     }
     
@@ -184,6 +189,12 @@ class StatusViewCell: TableViewCell {
 extension StatusViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         let substring = textView.attributedText.attributedSubstring(from: characterRange).string
+        
+        if let mentionMatch = self.status?.mentions.first(where: { URL.absoluteString == $0.url }) {
+            self.accountElementWasTapped?(AccountPlaceholder(id: mentionMatch.id))
+            return false
+        }
+        
         self.linkWasTapped?(URL, substring)
         return false
     }
