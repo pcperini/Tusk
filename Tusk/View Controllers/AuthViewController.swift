@@ -95,7 +95,6 @@ class AuthViewController: UIViewController, SubscriptionResponder {
             state.accessToken == nil &&
             state.oauthURL != nil) {
             let safariVC = SFSafariViewController(url: state.oauthURL!)
-            safariVC.delegate = self
             self.present(safariVC, animated: true, completion: nil)
             
         } else if (state.accessToken != nil) {
