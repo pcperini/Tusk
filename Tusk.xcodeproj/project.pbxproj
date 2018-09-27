@@ -241,6 +241,12 @@
 		739426E72128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
 		739426E82128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
 		739426E92128D0DD005CBEDA /* ToggleLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */; };
+		739574C6215D3D500044E52A /* HashtagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574C5215D3D500044E52A /* HashtagViewController.swift */; };
+		739574C7215D3D500044E52A /* HashtagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574C5215D3D500044E52A /* HashtagViewController.swift */; };
+		739574C8215D3D500044E52A /* HashtagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574C5215D3D500044E52A /* HashtagViewController.swift */; };
+		739574CA215D3DA80044E52A /* HashtagState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574C9215D3DA80044E52A /* HashtagState.swift */; };
+		739574CB215D3DA80044E52A /* HashtagState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574C9215D3DA80044E52A /* HashtagState.swift */; };
+		739574CC215D3DA80044E52A /* HashtagState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739574C9215D3DA80044E52A /* HashtagState.swift */; };
 		739842ED21531B8100C78B45 /* FilterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739842EC21531B8100C78B45 /* FilterViewCell.xib */; };
 		739842EE21531B8100C78B45 /* FilterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739842EC21531B8100C78B45 /* FilterViewCell.xib */; };
 		739842EF21531B8100C78B45 /* FilterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739842EC21531B8100C78B45 /* FilterViewCell.xib */; };
@@ -408,6 +414,8 @@
 		739426DE21272A9C005CBEDA /* ImageAttachmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentViewCell.swift; sourceTree = "<group>"; };
 		739426E221288375005CBEDA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
 		739426E62128D0DD005CBEDA /* ToggleLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLayoutConstraint.swift; sourceTree = "<group>"; };
+		739574C5215D3D500044E52A /* HashtagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagViewController.swift; sourceTree = "<group>"; };
+		739574C9215D3DA80044E52A /* HashtagState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagState.swift; sourceTree = "<group>"; };
 		739842EC21531B8100C78B45 /* FilterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewCell.xib; sourceTree = "<group>"; };
 		739E919E213AE922005123AA /* StatusUpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateState.swift; sourceTree = "<group>"; };
 		739E91A2213B3F68005123AA /* UITableView+Visibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Visibility.swift"; sourceTree = "<group>"; };
@@ -500,6 +508,7 @@
 				739426E221288375005CBEDA /* AttachmentsViewController.swift */,
 				732BE2332120CC610049ADBD /* PaginatingTableViewController.swift */,
 				73D6CF4821337C3F00990AA6 /* TableContainerViewController.swift */,
+				739574C5215D3D500044E52A /* HashtagViewController.swift */,
 				7317B2BB214F12D600512CE9 /* Alerts and Actions */,
 			);
 			path = Reusable;
@@ -643,6 +652,7 @@
 				73208E8C212B2A8600529FA3 /* Composable */,
 				73CD37B02155583700723D63 /* FiltersState.swift */,
 				73A07E88215C1E0B00A85466 /* SearchState.swift */,
+				739574C9215D3DA80044E52A /* HashtagState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -1064,6 +1074,7 @@
 				73EAEC57211E41A900C2620F /* AppDelegate.swift in Sources */,
 				732BE22F2120A9690049ADBD /* TabViewController.swift in Sources */,
 				73208E78212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
+				739574C6215D3D500044E52A /* HashtagViewController.swift in Sources */,
 				73B8E3912156B19300707906 /* FilterViewCell.swift in Sources */,
 				739E91A3213B3F68005123AA /* UITableView+Visibility.swift in Sources */,
 				73FBF8B7212DD42B009B2619 /* AccountStatusesViewController.swift in Sources */,
@@ -1099,6 +1110,7 @@
 				73022FFF212F2CF500BC1E9A /* Bundle+Info.swift in Sources */,
 				732BE219211F96600049ADBD /* MessagesState.swift in Sources */,
 				73208E81212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
+				739574CA215D3DA80044E52A /* HashtagState.swift in Sources */,
 				739E91A8213C967D005123AA /* ErrorsState.swift in Sources */,
 				73AD8C2D213D9A4C00180F4F /* CopyLinkActivity.swift in Sources */,
 				7317B2B4214ED21400512CE9 /* StoredDefaultsState.swift in Sources */,
@@ -1178,6 +1190,7 @@
 				73208EBB212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				732BE2302120A9690049ADBD /* TabViewController.swift in Sources */,
 				73167BC42135E7B700C0F28E /* ComposeViewController.swift in Sources */,
+				739574C7215D3D500044E52A /* HashtagViewController.swift in Sources */,
 				73208E79212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E86212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				73167BD02136023600C0F28E /* ValidatedLabel.swift in Sources */,
@@ -1210,6 +1223,7 @@
 				73022FF8212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				73023008212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE263212338EA0049ADBD /* TimestampLabel.swift in Sources */,
+				739574CB215D3DA80044E52A /* HashtagState.swift in Sources */,
 				73CBAE3A2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B4212DBF10009B2619 /* AccountsState.swift in Sources */,
 				73208E82212A3B3100529FA3 /* TimelineViewController.swift in Sources */,
@@ -1261,6 +1275,7 @@
 				73208EBC212CC2AF00529FA3 /* AccountState.swift in Sources */,
 				732BE2312120A9690049ADBD /* TabViewController.swift in Sources */,
 				73167BC52135E7B700C0F28E /* ComposeViewController.swift in Sources */,
+				739574C8215D3D500044E52A /* HashtagViewController.swift in Sources */,
 				73208E7A212A252000529FA3 /* StatusActionViewCell.swift in Sources */,
 				73208E87212A41A400529FA3 /* TableViewCell.swift in Sources */,
 				73167BD12136023600C0F28E /* ValidatedLabel.swift in Sources */,
@@ -1293,6 +1308,7 @@
 				73022FF9212F1B1B00BC1E9A /* AvatarView.swift in Sources */,
 				73023009212F55BD00BC1E9A /* ContextsState.swift in Sources */,
 				732BE264212338EA0049ADBD /* TimestampLabel.swift in Sources */,
+				739574CC215D3DA80044E52A /* HashtagState.swift in Sources */,
 				73CBAE3B2124EBB70048462A /* NSAttributedString+HTML.swift in Sources */,
 				73FBF8B5212DBF10009B2619 /* AccountsState.swift in Sources */,
 				73208E83212A3B3100529FA3 /* TimelineViewController.swift in Sources */,

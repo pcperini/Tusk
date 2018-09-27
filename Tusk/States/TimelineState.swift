@@ -16,9 +16,9 @@ struct TimelineState: StatusesState {
     
     var nextPage: RequestRange? = nil
     var previousPage: RequestRange? = nil
-    var paginatingData: PaginatingData<Status, Status> = PaginatingData<Status, Status>(provider: TimelineState.provider)
+    lazy var paginatingData: PaginatingData<Status, Status> = PaginatingData<Status, Status>(provider: self.provider)
     
-    static func provider(range: RequestRange? = nil) -> Request<[Status]> {
+    func provider(range: RequestRange? = nil) -> Request<[Status]> {
         guard let range = range else { return Timelines.home(range: .limit(40)) }
         return Timelines.home(range: range)
     }

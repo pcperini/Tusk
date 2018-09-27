@@ -11,21 +11,38 @@ import MastodonKit
 import ReSwift
 
 class SearchViewController: UITableViewController, SubscriptionResponder {
-    enum Sections: String, CaseIterable {
+    typealias Results = (accounts: [Account], statuses: [Status], hashtags: [String])
+    
+    enum Section: String, CaseIterable {
         case Accounts = "Accounts"
         case Statuses = "Posts"
         case Hashtags = "Hashtags"
+        
+        static func casesForResults(results: Results) -> [Section] {
+            return (
+                (results.accounts.isEmpty ? [] : [.Accounts]) +
+                (results.statuses.isEmpty ? [] : [.Statuses]) +
+                (results.hashtags.isEmpty ? [] : [.Hashtags])
+            )
+        }
     }
     
     lazy var subscriber: Subscriber = Subscriber(state: { $0.search }, newState: self.newState)
     
     @IBOutlet var searchBar: UISearchBar!
     private var searchTerm: String? = nil
-    private var results: (accounts: [Account], statuses: [Status], hashtags: [String]) = ([], [], []) {
+    
+    private var sections: [Section] { return Section.casesForResults(results: self.results) }
+    private var results: Results = ([], [], []) {
         didSet {
             guard self.results != oldValue else { return }
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.searchBar.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,8 +52,6 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.searchBar.becomeFirstResponder()
         self.tableView.visibleCells.forEach { (cell) in
             (cell as? StatusViewCell)?.hideSwipe(animated: true)
         }
@@ -54,26 +69,23 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
     
     // MARK: Table View
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return (
-            (self.results.accounts.isEmpty ? 0 : 1) +
-            (self.results.statuses.isEmpty ? 0 : 1)
-        )
+        return self.sections.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Sections.allCases[section].rawValue
+        return self.sections[section].rawValue
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch Sections.allCases[indexPath.section] {
+        switch self.sections[indexPath.section] {
         case .Accounts: return self.tableView(tableView, accountCellForRowAt: indexPath)
         case .Statuses: return self.tableView(tableView, statusCellForRowAt: indexPath)
-        case .Hashtags: return UITableViewCell()
+        case .Hashtags: return self.tableView(tableView, hashtagCellForRowAt: indexPath)
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Sections.allCases[section] {
+        switch self.sections[section] {
         case .Accounts: return self.results.accounts.count
         case .Statuses: return self.results.statuses.count
         case .Hashtags: return self.results.hashtags.count
@@ -117,8 +129,15 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
         return cell
     }
     
+    private func tableView(_ tableView: UITableView, hashtagCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HashtagCell") ?? UITableViewCell(style: .default,
+                                                                                                   reuseIdentifier: "HashtagCell")
+        cell.textLabel?.text = "#\(self.results.hashtags[indexPath.row])"
+        return cell
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch Sections.allCases[indexPath.section] {
+        switch self.sections[indexPath.section] {
         case .Accounts: return FollowViewCell.rowHeight
         case .Statuses: return UITableViewAutomaticDimension
         case .Hashtags: return UITableViewAutomaticDimension
@@ -126,10 +145,12 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch Sections.allCases[indexPath.section] {
+        self.searchBar.resignFirstResponder()
+        
+        switch self.sections[indexPath.section] {
         case .Accounts: self.pushAccount(account: self.results.accounts[indexPath.row])
         case .Statuses: self.pushContext(status: self.results.statuses[indexPath.row])
-        case .Hashtags: return
+        case .Hashtags: self.pushHashtag(hashtag: self.results.hashtags[indexPath.row])
         }
     }
     
@@ -146,6 +167,12 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
         self.performSegue(withIdentifier: "PushContextViewController", sender: status)
         GlobalStore.dispatch(ContextState.PollContext(client: client,
                                                       status: status))
+    }
+    
+    func pushHashtag(hashtag: String) {
+        guard let client = GlobalStore.state.auth.client else { return }
+        self.performSegue(withIdentifier: "PushHashtagViewController", sender: hashtag)
+        GlobalStore.dispatch(SearchState.PollHashtag(client: client, value: hashtag))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -167,6 +194,15 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
                     return
             }
             contextVC.status = status
+            }
+        case "PushHashtagViewController": do {
+            guard let hashtagVC = segue.destination as? HashtagViewController,
+                let tag = sender as? String else {
+                    segue.destination.dismiss(animated: true, completion: nil)
+                    return
+            }
+            hashtagVC.hashtag = tag
+            hashtagVC.title = "#\(tag)"
             }
         default: break
         }

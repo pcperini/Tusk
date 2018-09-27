@@ -11,11 +11,11 @@ import ReSwift
 import MastodonKit
 import SafariServices
 
-class NotificationsViewController: PaginatingTableViewController<MKNotification>, SubscriptionResponder {
+class NotificationsViewController: PaginatingTableViewController<MKNotif>, SubscriptionResponder {
     lazy var subscriber: Subscriber = Subscriber(state: { $0.notifications }, newState: self.newState)
     
-    var notifications: [MKNotification] = []
-    lazy private var tableMergeHandler: TableViewMergeHandler<MKNotification> = TableViewMergeHandler(tableView: self.tableView,
+    var notifications: [MKNotif] = []
+    lazy private var tableMergeHandler: TableViewMergeHandler<MKNotif> = TableViewMergeHandler(tableView: self.tableView,
                                                                                                       section: 0,
                                                                                                       data: nil,
                                                                                                       selectedElement: nil,
@@ -87,7 +87,7 @@ class NotificationsViewController: PaginatingTableViewController<MKNotification>
         }
     }
     
-    override func dataForRowAtIndexPath(indexPath: IndexPath) -> MKNotification? {
+    override func dataForRowAtIndexPath(indexPath: IndexPath) -> MKNotif? {
         if (self.notifications.isEmpty) { return nil }
         return self.notifications[indexPath.row]
     }

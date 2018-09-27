@@ -16,7 +16,7 @@ protocol StatusesState: StatusViewableState, PaginatableState where DataType == 
     var filters: [(Status) -> Bool] { get }
     
     init()
-    func pollStatuses(client: Client, range: RequestRange?)
+    mutating func pollStatuses(client: Client, range: RequestRange?)
     mutating func updateStatus(status: Status)
 }
 
@@ -55,7 +55,7 @@ extension StatusesState {
         return state
     }
     
-    func pollStatuses(client: Client, range: RequestRange? = nil) {
+    mutating func pollStatuses(client: Client, range: RequestRange? = nil) {
         self.paginatingData.pollData(client: client, range: range, existingData: self.statuses, filters: self.baseFilters) { (
             statuses: [Status],
             pagination: Pagination?

@@ -10,23 +10,24 @@ import Foundation
 import MastodonKit
 import ReSwift
 
-typealias MKNotification = MastodonKit.Notification // overloaded with UIKit.Notification
+typealias MKNotif = MastodonKit.Notification // overloaded with UIKit.Notification
 
 struct NotificationsState: PaginatableState {
-    typealias DataType = MKNotification
+    typealias DataType = MKNotif
     
-    struct SetNotifications: Action { let value: [MKNotification] }
+    struct SetNotifications: Action { let value: [MKNotif] }
     struct SetLastReadDate: Action { let value: Date }
     private struct SetPage: Action { let value: Pagination? }
     struct PollNotifications: Action { let client: Client }
     struct PollOlderNotifications: Action { let client: Client }
     struct PollNewerNotifications: Action { let client: Client }
     
-    var notifications: [MKNotification] = []
+    var notifications: [MKNotif] = []
     
     internal var nextPage: RequestRange? = nil
     internal var previousPage: RequestRange? = nil
-    internal var paginatingData: PaginatingData<MKNotification, MKNotification> = PaginatingData<MKNotification, MKNotification>(minimumPageSize: 0, provider: NotificationsState.provider)
+    internal lazy var paginatingData: PaginatingData<MKNotif, MKNotif> = PaginatingData<MKNotif, MKNotif>(minimumPageSize: 0,
+                                                                                                          provider: self.provider)
     
     private static let lastReadDefaultsKey = "notifications.lastRead"
     
@@ -55,9 +56,9 @@ struct NotificationsState: PaginatableState {
         return state
     }
     
-    func pollNotifications(client: Client, range: RequestRange? = nil) {
+    mutating func pollNotifications(client: Client, range: RequestRange? = nil) {
         self.paginatingData.pollData(client: client, range: range, existingData: self.notifications) { (
-            notifications: [MKNotification],
+            notifications: [MKNotif],
             pagination: Pagination?
         ) in
             GlobalStore.dispatch(SetNotifications(value: notifications))
@@ -72,7 +73,7 @@ struct NotificationsState: PaginatableState {
         UserDefaults.standard.synchronize()
     }
     
-    static func provider(range: RequestRange? = nil) -> Request<[MKNotification]> {
+    func provider(range: RequestRange? = nil) -> Request<[MKNotif]> {
         let range = range ?? .limit(30)
         return Notifications.all(range: range)
     }

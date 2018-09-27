@@ -20,9 +20,9 @@ protocol PaginatableState: StateType {
     
     var nextPage: RequestRange? { get set }
     var previousPage: RequestRange? { get set }
-    var paginatingData: PaginatingData<DataType, RequestType> { get set }
+    var paginatingData: PaginatingData<DataType, RequestType> { mutating get }
     
-    static func provider(range: RequestRange?) -> Request<[RequestType]>
+    func provider(range: RequestRange?) -> Request<[RequestType]>
 }
 
 import MastodonKit

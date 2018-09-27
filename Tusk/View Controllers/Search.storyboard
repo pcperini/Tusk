@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,7 @@
                         <outlet property="searchBar" destination="woH-d8-rkg" id="IfU-uk-0m8"/>
                         <segue destination="JWx-hT-GHG" kind="show" identifier="PushAccountViewController" id="SiV-Fk-BDr"/>
                         <segue destination="2kf-EO-Fi8" kind="show" identifier="PushContextViewController" id="Ait-oo-47c"/>
+                        <segue destination="AY6-nC-jfx" kind="show" identifier="PushHashtagViewController" id="B4m-4s-IUY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kY-BX-pCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,7 +48,7 @@
                 <viewControllerPlaceholder storyboardName="Account" id="JWx-hT-GHG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yh-0w-GNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2294" y="992"/>
+            <point key="canvasLocation" x="2297" y="555"/>
         </scene>
         <!--Context-->
         <scene sceneID="XKl-Ee-wF4">
@@ -54,7 +56,55 @@
                 <viewControllerPlaceholder storyboardName="Context" id="2kf-EO-Fi8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s69-7R-804" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="1063"/>
+            <point key="canvasLocation" x="2293" y="625"/>
+        </scene>
+        <!--Hashtag View Controller-->
+        <scene sceneID="tfR-uu-DpF">
+            <objects>
+                <viewController id="AY6-nC-jfx" customClass="HashtagViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZJV-FN-yfx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7O-uU-11G">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="stB-N0-4rp" kind="embed" id="j5x-rM-Bo2"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="COa-p6-pST" firstAttribute="trailing" secondItem="i7O-uU-11G" secondAttribute="trailing" id="YxK-4I-lg7"/>
+                            <constraint firstItem="i7O-uU-11G" firstAttribute="top" secondItem="ZJV-FN-yfx" secondAttribute="top" id="e6x-Vq-zPm"/>
+                            <constraint firstItem="i7O-uU-11G" firstAttribute="leading" secondItem="COa-p6-pST" secondAttribute="leading" id="qqA-ia-Tg2"/>
+                            <constraint firstItem="COa-p6-pST" firstAttribute="bottom" secondItem="i7O-uU-11G" secondAttribute="bottom" id="weC-dZ-ogH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="COa-p6-pST"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hY5-zL-EDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2529" y="1028"/>
+        </scene>
+        <!--Hashtag-->
+        <scene sceneID="ycq-v5-HCq">
+            <objects>
+                <tableViewController title="Hashtag" id="stB-N0-4rp" customClass="StatusesViewController" customModule="Tusk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="C0o-Qb-MdJ" customClass="TableView" customModule="Tusk" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="stB-N0-4rp" id="end-fv-4R6"/>
+                            <outlet property="delegate" destination="stB-N0-4rp" id="Dsw-wE-kRZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Timeline" id="FRM-yS-8Zj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nyr-AG-lYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3290" y="1028"/>
         </scene>
     </scenes>
 </document>
