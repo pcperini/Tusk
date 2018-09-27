@@ -15,14 +15,14 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
     
     enum Section: String, CaseIterable {
         case Accounts = "Accounts"
-        case Statuses = "Posts"
         case Hashtags = "Hashtags"
+        case Statuses = "Posts"
         
         static func casesForResults(results: Results) -> [Section] {
             return (
                 (results.accounts.isEmpty ? [] : [.Accounts]) +
-                (results.statuses.isEmpty ? [] : [.Statuses]) +
-                (results.hashtags.isEmpty ? [] : [.Hashtags])
+                (results.hashtags.isEmpty ? [] : [.Hashtags]) +
+                (results.statuses.isEmpty ? [] : [.Statuses])
             )
         }
     }
@@ -74,6 +74,11 @@ class SearchViewController: UITableViewController, SubscriptionResponder {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sections[section].rawValue
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        guard self.sections[section] == .Statuses else { return nil }
+        return "Posts are limited to those you've interacted with"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
