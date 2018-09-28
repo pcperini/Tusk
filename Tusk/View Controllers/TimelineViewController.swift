@@ -11,15 +11,6 @@ import ReSwift
 import MastodonKit
 
 class TimelineViewController: StatusesContainerViewController<TimelineState> {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let bar = self.navigationController?.navigationBar as! NavigationBar
-            bar.setShadowHidden(hidden: true, animated: true)
-        }
-    }
-    
     override func state(appState: AppState) -> TimelineState {
         return appState.timeline
     }
