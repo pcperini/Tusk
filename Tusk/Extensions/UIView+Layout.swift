@@ -63,3 +63,10 @@ extension UIView {
         })
     }
 }
+
+extension UIView {
+    class func perform(animated: Bool, _ actionsWithoutAnimation: () -> Void) {
+        let animationWrapper = animated ? { $0() } : self.performWithoutAnimation
+        animationWrapper(actionsWithoutAnimation)
+    }
+}

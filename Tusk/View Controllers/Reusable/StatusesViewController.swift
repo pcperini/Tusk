@@ -33,8 +33,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             guard let tableView = self.tableView as? TableView else { return }
             tableView.appendBatchUpdates({
                 if let oldValue = oldValue {
-                    tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
-                    tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .none)
+                    UIView.perform(animated: tableView.indexPathsForVisibleRows?.map({ $0.row }).contains(oldValue) ?? false) {
+                        tableView.deselectRow(at: IndexPath(row: oldValue, section: self.statusesSection), animated: true)
+                        tableView.deleteRows(at: [IndexPath(row: oldValue + 1, section: self.statusesSection)], with: .none)
+                    }
                 }
                 
                 if let selectedIndex = self.selectedStatusIndex {
@@ -74,6 +76,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     }
     
     // MARK: Table View
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.numberOfStatusRows
     }
@@ -168,7 +174,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
         }
         
-        self.selectedStatusIndex = statusIndex
+//        self.selectedStatusIndex = nil
+//        self.selectedStatusIndex = statusIndex
+        // DEBUG
+        if self.selectedStatusIndex != nil { self.selectedStatusIndex = nil }
+        else { self.selectedStatusIndex = statusIndex }
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
