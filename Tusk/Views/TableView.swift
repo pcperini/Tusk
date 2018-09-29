@@ -9,6 +9,7 @@
 import UIKit
 
 class TableView: UITableView {
+    private var cellHeights: [AnyHashable: CGFloat] = [:]
     private var updateQueue: [((() -> Void), ((Bool) -> Void)?)] = [] {
         didSet {
             if oldValue.isEmpty {
@@ -29,5 +30,13 @@ class TableView: UITableView {
             next.1?(completed)
             self.performNextBatchUpdates()
         }
+    }
+    
+    func rememberHeight(height: CGFloat, forCellWithID id: AnyHashable) {
+        self.cellHeights[id] = height
+    }
+    
+    func heightForCellWithID(id: AnyHashable) -> CGFloat? {
+        return self.cellHeights[id]
     }
 }

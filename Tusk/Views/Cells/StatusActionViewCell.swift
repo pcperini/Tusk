@@ -9,6 +9,8 @@
 import UIKit
 
 class StatusActionViewCell: UITableViewCell {
+    static let CellHeight: CGFloat = 40.0
+    
     var replyButtonWasTapped: (() -> Void)? = nil
     @IBOutlet var favouriteButton: UIButton!
     var favouritedButtonWasTapped: (() -> Void)? = nil

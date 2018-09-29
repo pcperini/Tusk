@@ -76,12 +76,34 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     }
     
     // MARK: Table View
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.numberOfStatusRows
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let statusIndex = self.statusIndexForIndexPath(indexPath: indexPath)
+        if (statusIndex == NSNotFound) { // Action Cell
+            return StatusActionViewCell.CellHeight
+        }
+        
+        let tableView = tableView as? TableView
+        let status = self.statuses[statusIndex]
+        
+        if let height = tableView?.heightForCellWithID(id: status.id) {
+            return height
+        }
+        
+        guard let cell: StatusViewCell = UINib.view(nibName: "StatusViewCell") else { return UITableViewAutomaticDimension }
+        cell.status = status.reblog ?? status
+        
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        
+        let size = CGSize(width: cell.frame.width, height: UILayoutFittingCompressedSize.height)
+        let height = cell.systemLayoutSizeFitting(size).height
+        tableView?.rememberHeight(height: height, forCellWithID: status.id)
+        
+        return height
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
