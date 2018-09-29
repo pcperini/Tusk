@@ -76,7 +76,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     }
     
     // MARK: Table View
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -174,11 +174,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
         }
         
-//        self.selectedStatusIndex = nil
-//        self.selectedStatusIndex = statusIndex
+        self.selectedStatusIndex = nil
+        self.selectedStatusIndex = statusIndex
         // DEBUG
-        if self.selectedStatusIndex != nil { self.selectedStatusIndex = nil }
-        else { self.selectedStatusIndex = statusIndex }
+//        if self.selectedStatusIndex != nil { self.selectedStatusIndex = nil }
+//        else { self.selectedStatusIndex = statusIndex }
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
