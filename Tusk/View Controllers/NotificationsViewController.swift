@@ -36,7 +36,7 @@ class NotificationsViewController: PaginatingTableViewController<MKNotif>, Subsc
         self.subscriber.stop()
     }
     
-    func pollNotifications(pageDirection: PageDirection = .Reload) {
+    func pollNotifications(pageDirection: PageDirection = .Reload(from: nil)) {
         guard let client = GlobalStore.state.auth.client else { return }
         let action: Action
         switch pageDirection {

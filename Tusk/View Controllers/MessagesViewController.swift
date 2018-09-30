@@ -21,7 +21,7 @@ class MessagesViewController: StatusesContainerViewController<MessagesState> {
         switch pageDirection {
         case .NextPage: return MessagesState.PollOlderStatuses(client: client)
         case .PreviousPage: return MessagesState.PollNewerStatuses(client: client)
-        case .Reload: return MessagesState.PollStatuses(client: client)
+        case .Reload: return MessagesState.PollStatuses(client: client, startingAt: nil)
         }
     }
 }

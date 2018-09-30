@@ -15,10 +15,14 @@ struct StoredDefaultsState: StateType {
     struct AddUnsuppressedStatusID: Action { let value: String }
     struct SetHideContentWarnings: Action { let value: Bool }
     struct SetDefaultPostVisibility: Action { let value: Visibility }
+    struct SetLastSeenID: Action { let context: String; let value: String }
+    struct SetLoadFromLastSeen: Action { let value: Bool }
     
     var unsuppressedStatusIDs: [String] = []
     var hideContentWarnings: Bool = true
     var defaultStatusVisibility: Visibility = .public
+    private var lastSeenIDs: [String: String] = [:]
+    var loadFromLastSeen: Bool = true
     
     static func reducer(action: Action, state: StoredDefaultsState?) -> StoredDefaultsState {
         var state = state ?? StoredDefaultsState()
@@ -33,6 +37,14 @@ struct StoredDefaultsState: StateType {
         case let action as SetDefaultPostVisibility: do {
             state.defaultStatusVisibility = action.value
             state.save(value: action.value.rawValue, forKey: "DefaultStatusVisibility")
+            }
+        case let action as SetLastSeenID: do {
+            state.lastSeenIDs[action.context] = action.value
+            state.save(value: state.lastSeenIDs, forKey: "LastSeenIDs")
+            }
+        case let action as SetLoadFromLastSeen: do {
+            state.loadFromLastSeen = action.value
+            state.save(value: action.value, forKey: "LoadFromLastSeen")
             }
         default: break
         }
@@ -54,6 +66,14 @@ struct StoredDefaultsState: StateType {
             let vis = Visibility(rawValue: rawVis) {
             self.defaultStatusVisibility = vis
         }
+        
+        self.lastSeenIDs = self.load(type: [String: String].self, key: "LastSeenIDs") ?? [:]
+        self.loadFromLastSeen = self.load(type: Bool.self, key: "LoadFromLastSeen") ?? true
+    }
+    
+    func lastSeenID(forContext context: String) -> String? {
+        guard self.loadFromLastSeen else { return nil }
+        return self.lastSeenIDs[context]
     }
     
     func load<T>(type: T.Type, key: String) -> T? {

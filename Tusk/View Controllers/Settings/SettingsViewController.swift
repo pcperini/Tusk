@@ -27,6 +27,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var metaLabelFields: [UITextField]!
     @IBOutlet var metaValueFields: [UITextField]!
     
+    @IBOutlet var loadFromLastSeenToggle: UISwitch!
     @IBOutlet var hideContentWarningsToggle: UISwitch!
     @IBOutlet var defaultStatusVisibilityIcon: UIImageView!
     
@@ -43,6 +44,7 @@ class SettingsViewController: UITableViewController {
         self.isBotToggle.isOn = self.accountState?.account?.bot ?? false
         self.isLockedToggle.isOn = self.accountState?.account?.locked ?? false
         self.hideContentWarningsToggle.isOn = self.defaultsState.hideContentWarnings
+        self.loadFromLastSeenToggle.isOn = self.defaultsState.loadFromLastSeen
         
         self.versionLabel.text = "\(Bundle.main.version) b\(Bundle.main.build)"
         self.bugIcon.tintColor = .white
@@ -150,6 +152,10 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func hideContentWarningsWasToggled(sender: UISwitch?) {
         GlobalStore.dispatch(StoredDefaultsState.SetHideContentWarnings(value: self.hideContentWarningsToggle.isOn))
+    }
+    
+    @IBAction func loadFromLastSeenWasToggled(sender: UISwitch?) {
+        GlobalStore.dispatch(StoredDefaultsState.SetLoadFromLastSeen(value: self.loadFromLastSeenToggle.isOn))
     }
     
     @IBAction func lockedToggled(sender: UISwitch?) {

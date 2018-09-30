@@ -12,8 +12,10 @@ import MastodonKit
 import SafariServices
 
 class StatusesViewController: PaginatingTableViewController<Status> {
+    var initialLastSeenID: String? = nil
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
+    
     lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               section: self.statusesSection,
                                                                                               data: nil,
@@ -22,11 +24,17 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     
     var nextPageAction: () -> Action? = { nil }
     var previousPageAction: () -> Action? = { nil }
-    var reloadAction: () -> Action? = { nil } { didSet { self.pollStatuses() } }
+    var reloadAction: (String?) -> Action? = { (_) in nil } {
+        didSet {
+            self.pollStatuses(pageDirection: .Reload(from: self.initialLastSeenID))
+        }
+    }
     
     var statusesSection: Int { return 0 }
     var numberOfStatusRows: Int { return self.statuses.count + (self.selectedStatusIndex == nil ? 0 : 1) }
     override var topIndexPath: IndexPath { return IndexPath(row: 0, section: self.statusesSection) }
+    
+    var didUpdateLastSeenData: ((Status) -> Void)? = nil
     
     private var selectedStatusIndex: Int? = nil {
         didSet {
@@ -53,12 +61,12 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         }
     }
     
-    func pollStatuses(pageDirection: PageDirection = .Reload) {
+    func pollStatuses(pageDirection: PageDirection = .Reload(from: nil)) {
         let possibleAction: Action?
         switch pageDirection {
         case .NextPage: possibleAction = self.nextPageAction()
         case .PreviousPage: possibleAction = self.previousPageAction()
-        case .Reload: possibleAction = self.reloadAction()
+        case .Reload(let from): possibleAction = self.reloadAction(from)
         }
         
         guard let action = possibleAction else { return }
@@ -132,7 +140,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                                                                       for: indexPath,
                                                                       usingNibNamed: "StatusViewCell")
         let status = self.statuses[statusIndex]
-        self.statusCellConfiguration(status: status)(cell)
+        self.statusCellConfiguration(status: status, indexPath: indexPath)(cell)
         
         return cell
     }
@@ -153,6 +161,19 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         
         self.selectedStatusIndex = nil
         self.selectedStatusIndex = statusIndex
+    }
+    
+    override func tableView(tableView: UITableView, didUpdateLastSeenData data: Status) {
+        // Find one above, since API requests are exclusive sets
+        let status: Status
+        if let index = self.statuses.index(of: data),
+            index > 0 {
+            status = self.statuses[index - 1]
+        } else {
+            status = data
+        }
+        
+        self.didUpdateLastSeenData?(status)
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {

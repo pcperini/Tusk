@@ -56,9 +56,9 @@ struct AppState: StateType {
     func pollData() {
         guard let client = self.auth.client else { return }
         DispatchQueue.main.async {
-            GlobalStore.dispatch(TimelineState.PollStatuses(client: client))
-            GlobalStore.dispatch(MentionsState.PollStatuses(client: client))
-            GlobalStore.dispatch(MessagesState.PollStatuses(client: client))
+            GlobalStore.dispatch(TimelineState.PollStatuses(client: client, startingAt: nil))
+            GlobalStore.dispatch(MentionsState.PollStatuses(client: client, startingAt: nil))
+            GlobalStore.dispatch(MessagesState.PollStatuses(client: client, startingAt: nil))
             GlobalStore.dispatch(FiltersState.PollFilters(client: client))
             GlobalStore.dispatch(NotificationsState.PollNotifications(client: client))
             GlobalStore.dispatch(AccountState.PollAccount(client: client, account: nil))

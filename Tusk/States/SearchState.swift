@@ -51,6 +51,6 @@ struct SearchState: StateType {
     mutating func pollHashtag(client: Client, hashtag: String) {
         var state = HashtagState()
         state.hashtag = hashtag
-        self.activeHashtag = HashtagState.reducer(action: HashtagState.PollStatuses(client: client), state: state)
+        self.activeHashtag = HashtagState.reducer(action: HashtagState.PollStatuses(client: client, startingAt: nil), state: state)
     }
 }

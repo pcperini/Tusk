@@ -43,7 +43,10 @@ extension StatusesState {
         case let action as SetPage: (state.nextPage, state.previousPage) = state.paginatingData.updatedPages(pagination: action.value,
                                                                                                              nextPage: state.nextPage,
                                                                                                              previousPage: state.previousPage)
-        case let action as PollStatuses: state.pollStatuses(client: action.client)
+        case let action as PollStatuses: do {
+            let range: RequestRange? = action.startingAt != nil ? .max(id: action.startingAt!, limit: nil) : nil
+            state.pollStatuses(client: action.client, range: range)
+            }
         case let action as PollOlderStatuses: state.pollStatuses(client: action.client, range: state.nextPage)
         case let action as PollNewerStatuses: state.pollStatuses(client: action.client, range: state.previousPage)
         case let action as UpdateStatus: state.updateStatus(status: action.value)
@@ -96,7 +99,7 @@ extension StatusesState {
 
 struct StatusesStateSetStatuses<State: StateType>: Action { let value: [Status] }
 struct StatusesStateSetPage<State: StateType>: Action { let value: Pagination? }
-struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client }
+struct StatusesStatePollStatuses<State: StateType>: PollAction { let client: Client; let startingAt: String? }
 struct StatusesStatePollOlderStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStatePollNewerStatuses<State: StateType>: PollAction { let client: Client }
 struct StatusesStateUpdateStatus: Action { let value: Status }

@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 import MastodonKit
 
-class TimelineViewController: StatusesContainerViewController<TimelineState> {
+class TimelineViewController: StatusesContainerViewController<TimelineState> {    
     override func state(appState: AppState) -> TimelineState {
         return appState.timeline
     }
@@ -19,7 +19,7 @@ class TimelineViewController: StatusesContainerViewController<TimelineState> {
         switch pageDirection {
         case .NextPage: return TimelineState.PollOlderStatuses(client: client)
         case .PreviousPage: return TimelineState.PollNewerStatuses(client: client)
-        case .Reload: return TimelineState.PollStatuses(client: client)
+        case .Reload(let from): return TimelineState.PollStatuses(client: client, startingAt: from)
         }
     }
 }

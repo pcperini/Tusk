@@ -21,7 +21,7 @@ class HashtagViewController: StatusesContainerViewController<HashtagState> {
         switch pageDirection {
         case .NextPage: return HashtagState.PollOlderStatuses(client: client)
         case .PreviousPage: return HashtagState.PollNewerStatuses(client: client)
-        case .Reload: return HashtagState.PollStatuses(client: client)
+        case .Reload: return HashtagState.PollStatuses(client: client, startingAt: nil)
         }
     }
 }

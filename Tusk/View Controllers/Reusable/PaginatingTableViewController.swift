@@ -12,7 +12,7 @@ import MastodonKit
 enum PageDirection {
     case NextPage
     case PreviousPage
-    case Reload
+    case Reload(from: String?)
 }
 
 class PaginatingTableViewController<DataType: Comparable>: UITableViewController {
@@ -25,7 +25,7 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
     var topIndexPath: IndexPath { return IndexPath(row: 0, section: 0) }
 
     private var state: State = .Resting
-    private lazy var lastSeenData: DataType? = self.dataForRowAtIndexPath(indexPath: self.topIndexPath)
+    private lazy var topSeenData: DataType? = self.dataForRowAtIndexPath(indexPath: self.topIndexPath)
     var navBar: NavigationBar? {
         return self.navigationController?.navigationBar as? NavigationBar
     }
@@ -108,17 +108,24 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
             self.pageControlBeganRefreshing()
             return
         }
-                
-        guard self.state == .Resting,
-            let topIndex = self.tableView.fullyVisibleIndexPaths().first,
-            let topData = self.dataForRowAtIndexPath(indexPath: topIndex) else { return }
-        guard let lastSeen = self.lastSeenData else {
-            self.lastSeenData = topData
-            return
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+            guard self.state == .Resting,
+                let topIndex = self.tableView.fullyVisibleIndexPaths().first,
+                let topData = self.dataForRowAtIndexPath(indexPath: topIndex) else { return }
+            guard let topSeen = self.topSeenData else {
+                self.topSeenData = topData
+                return
+            }
+        
+            self.tableView(tableView: self.tableView, didUpdateLastSeenData: topData)
+            
+            self.topSeenData = max(topData, topSeen)
+            self.updateUnreadIndicator()
         }
+    }
     
-        self.lastSeenData = max(topData, lastSeen)
-        self.updateUnreadIndicator()
+    func tableView(tableView: UITableView, didUpdateLastSeenData data: DataType) {
     }
     
     func dataForRowAtIndexPath(indexPath: IndexPath) -> DataType? {
@@ -127,7 +134,7 @@ class PaginatingTableViewController<DataType: Comparable>: UITableViewController
     
     func updateUnreadIndicator() {
         guard let data = self.dataForRowAtIndexPath(indexPath: self.topIndexPath),
-            let lastSeen = self.lastSeenData else { return }
+            let lastSeen = self.topSeenData else { return }
         self.navBar?.setShadowHidden(hidden: data <= lastSeen,
                                      animated: true)
     }

@@ -48,7 +48,7 @@ class FollowsViewController: PaginatingTableViewController<Account>, Subscriptio
         }
     }
     
-    func pollFollowers(pageDirection: PageDirection = .Reload) {
+    func pollFollowers(pageDirection: PageDirection = .Reload(from: nil)) {
         guard let client = GlobalStore.state.auth.client else { return }
         
         let possibleAction: Action?

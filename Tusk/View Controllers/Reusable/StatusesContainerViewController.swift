@@ -15,6 +15,7 @@ protocol StatusViewableState: StateType {
 }
 
 class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableState>: TableContainerViewController, SubscriptionResponder {
+    private var hasLoadedInitialState: Bool = false
     var statusesViewController: StatusesViewController? {
         return self.tableViewController as? StatusesViewController
     }
@@ -22,6 +23,9 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
     lazy var subscriber: Subscriber = Subscriber(state: { self.state(appState: $0) }, newState: { (state) in
         self.statusesViewController?.unsuppressedStatusIDs = GlobalStore.state.storedDefaults.unsuppressedStatusIDs
         self.statusesViewController?.updateStatuses(statuses: state.statuses)
+        if (self.isViewLoaded && !self.hasLoadedInitialState) {
+            self.loadInitialState()
+        }
     })
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +41,8 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
         fatalError("pollStatusesAction has no valid abstract implementation")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func loadInitialState() {
+        self.hasLoadedInitialState = true
         self.statusesViewController?.nextPageAction = {
             guard let client = GlobalStore.state.auth.client else { return nil }
             return self.pollStatusesAction(client: client, pageDirection: .NextPage)
@@ -49,9 +53,14 @@ class StatusesContainerViewController<StoreSubscriberStateType: StatusViewableSt
             return self.pollStatusesAction(client: client, pageDirection: .PreviousPage)
         }
         
-        self.statusesViewController?.reloadAction = {
+        self.statusesViewController?.initialLastSeenID = GlobalStore.state.storedDefaults.lastSeenID(forContext: "\(StoreSubscriberStateType.self)")
+        self.statusesViewController?.reloadAction = { (from) in
             guard let client = GlobalStore.state.auth.client else { return nil }
-            return self.pollStatusesAction(client: client, pageDirection: .Reload)
+            return self.pollStatusesAction(client: client, pageDirection: .Reload(from: from))
+        }
+        
+        self.statusesViewController?.didUpdateLastSeenData = {
+            GlobalStore.dispatch(StoredDefaultsState.SetLastSeenID(context: "\(StoreSubscriberStateType.self)", value: $0.id))
         }
     }
     

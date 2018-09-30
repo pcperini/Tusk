@@ -19,7 +19,7 @@ class FavouritesViewController: StatusesContainerViewController<FavouritesState>
         switch pageDirection {
         case .NextPage: return FavouritesState.PollOlderStatuses(client: client)
         case .PreviousPage: return FavouritesState.PollNewerStatuses(client: client)
-        case .Reload: return FavouritesState.PollStatuses(client: client)
+        case .Reload: return FavouritesState.PollStatuses(client: client, startingAt: nil)
         }
     }
 }

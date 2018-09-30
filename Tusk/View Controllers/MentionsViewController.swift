@@ -19,7 +19,7 @@ class MentionsViewController: StatusesContainerViewController<MentionsState> {
         switch pageDirection {
         case .NextPage: return MentionsState.PollOlderStatuses(client: client)
         case .PreviousPage: return MentionsState.PollNewerStatuses(client: client)
-        case .Reload: return MentionsState.PollStatuses(client: client)
+        case .Reload: return MentionsState.PollStatuses(client: client, startingAt: nil)
         }
     }
 }
