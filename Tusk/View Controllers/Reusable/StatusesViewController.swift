@@ -86,24 +86,11 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             return StatusActionViewCell.CellHeight
         }
         
-        let tableView = tableView as? TableView
+        guard let tableView = tableView as? TableView else { return UITableViewAutomaticDimension }
         let status = self.statuses[statusIndex]
-        
-        if let height = tableView?.heightForCellWithID(id: status.id) {
-            return height
-        }
-        
-        guard let cell: StatusViewCell = UINib.view(nibName: "StatusViewCell") else { return UITableViewAutomaticDimension }
-        cell.status = status.reblog ?? status
-        
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
-        let size = CGSize(width: cell.frame.width, height: UILayoutFittingCompressedSize.height)
-        let height = cell.systemLayoutSizeFitting(size).height
-        tableView?.rememberHeight(height: height, forCellWithID: status.id)
-        
-        return height
+        return tableView.heightForCellWithID(id: status.id,
+                                             nibName: "StatusViewCell",
+                                             configurator: self.statusCellConfiguration(status: status))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,40 +132,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                                                                       for: indexPath,
                                                                       usingNibNamed: "StatusViewCell")
         let status = self.statuses[statusIndex]
-        let displayStatus = status.reblog ?? status
+        self.statusCellConfiguration(status: status)(cell)
         
-        cell.originalStatus = nil
-        if (status != displayStatus) {
-            cell.originalStatus = status
-        }
-        
-        cell.isSupressingContent = (
-            displayStatus.warning != nil &&
-            !self.unsuppressedStatusIDs.contains(status.id) &&
-            GlobalStore.state.storedDefaults.hideContentWarnings
-        )
-        
-        cell.attachmentWasTapped = ModalHandler.handleAttachmentForViewController(viewController: self, status: displayStatus)
-        cell.accountElementWasTapped = { (account) in
-            self.pushToAccount(account: account)
-        }
-        cell.linkWasTapped = ModalHandler.handleLinkForViewController(viewController: self)
-        cell.contextPushWasTriggered = { (status) in
-            self.pushToContext(status: status)
-        }
-        cell.contentShouldReveal = {
-            if (self.unsuppressedStatusIDs.contains(status.id)) { return }
-            GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
-            
-            guard let tableView = tableView as? TableView else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                tableView.appendBatchUpdates({
-                    tableView.reloadRows(at: [indexPath], with: .none)
-                })
-            }
-        }
-        
-        cell.status = displayStatus
         return cell
     }
     
@@ -198,9 +153,6 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         
         self.selectedStatusIndex = nil
         self.selectedStatusIndex = statusIndex
-        // DEBUG
-//        if self.selectedStatusIndex != nil { self.selectedStatusIndex = nil }
-//        else { self.selectedStatusIndex = statusIndex }
     }
     
     override func dataForRowAtIndexPath(indexPath: IndexPath) -> Status? {
@@ -213,6 +165,47 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         guard let selectedIndex = self.selectedStatusIndex, selectedIndex < indexPath.row else { return indexPath.row }
         if (indexPath.row == selectedIndex + 1) { return NSNotFound }
         return indexPath.row - 1
+    }
+    
+    private func statusCellConfiguration(status: Status, indexPath: IndexPath? = nil) -> (StatusViewCell) -> Void {
+        return { (cell) in
+            let displayStatus = status.reblog ?? status
+            
+            cell.originalStatus = nil
+            if (status != displayStatus) {
+                cell.originalStatus = status
+            }
+            
+            cell.isSupressingContent = (
+                displayStatus.warning != nil &&
+                    !self.unsuppressedStatusIDs.contains(status.id) &&
+                    GlobalStore.state.storedDefaults.hideContentWarnings
+            )
+            
+            if let indexPath = indexPath { // Only enable visible responders
+                cell.attachmentWasTapped = ModalHandler.handleAttachmentForViewController(viewController: self, status: displayStatus)
+                cell.accountElementWasTapped = { (account) in
+                    self.pushToAccount(account: account)
+                }
+                cell.linkWasTapped = ModalHandler.handleLinkForViewController(viewController: self)
+                cell.contextPushWasTriggered = { (status) in
+                    self.pushToContext(status: status)
+                }
+                cell.contentShouldReveal = {
+                    if (self.unsuppressedStatusIDs.contains(status.id)) { return }
+                    GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                    
+                    guard let tableView = self.tableView as? TableView else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        tableView.appendBatchUpdates({
+                            tableView.reloadRows(at: [indexPath], with: .none)
+                        })
+                    }
+                }
+            }
+            
+            cell.status = displayStatus
+        }
     }
     
     private func statusesAreEqual(lhs: Status, rhs: Status) -> Bool {

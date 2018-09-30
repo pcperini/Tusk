@@ -31,12 +31,24 @@ class TableView: UITableView {
             self.performNextBatchUpdates()
         }
     }
-    
-    func rememberHeight(height: CGFloat, forCellWithID id: AnyHashable) {
+
+    func heightForCellWithID<CellType: UITableViewCell>(id: AnyHashable,
+                                                        nibName: String,
+                                                        configurator: ((CellType) -> Void)? = nil) -> CGFloat {
+        if let height = self.cellHeights[id] {
+            return height
+        }
+        
+        guard let cell: CellType = UINib.view(nibName: nibName) else { return UITableViewAutomaticDimension }
+        
+        configurator?(cell)
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        
+        let size = CGSize(width: cell.frame.width, height: UILayoutFittingCompressedSize.height)
+        let height = cell.systemLayoutSizeFitting(size).height
         self.cellHeights[id] = height
-    }
-    
-    func heightForCellWithID(id: AnyHashable) -> CGFloat? {
-        return self.cellHeights[id]
+        
+        return height
     }
 }
