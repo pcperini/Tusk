@@ -8,7 +8,8 @@
 
 import UIKit
 
-struct TableViewMergeHandler<DataType: Comparable> {
+struct TableViewMergeHandler<DataType> where DataType: Comparable {
+    // MARK: Diffing and Merging
     private struct DiffState {
         let removed: [(Int, DataType)]
         let inserted: [(Int, DataType)]
@@ -39,6 +40,12 @@ struct TableViewMergeHandler<DataType: Comparable> {
     var selectedElement: DataType? = nil
     
     var dataComparator: (DataType, DataType) -> Bool
+    
+    init(tableView: UITableView, section: Int, dataComparator: @escaping (DataType, DataType) -> Bool) {
+        self.tableView = tableView
+        self.section = section
+        self.dataComparator = dataComparator
+    }
     
     mutating func mergeData(data newData: [DataType], animated: Bool = false, pinToTop: Bool = false) {
         guard let tableView = self.tableView as? TableView else { return }
@@ -114,5 +121,33 @@ struct TableViewMergeHandler<DataType: Comparable> {
         }
         
         return DiffState(removed: removed, inserted: inserted, common: common)
+    }
+    
+    // MARK: Heights
+    private var cellHeights: [(data: DataType, height: CGFloat)] = []
+    
+    mutating func heightForCellWithData<CellType: UITableViewCell>(data: DataType,
+                                                                   nibName: String,
+                                                                   configurator: ((CellType) -> Void)? = nil) -> CGFloat {
+        if let match = self.cellHeights.first(where: { $0.data == data }),
+            self.dataComparator(match.data, data) {
+            return match.height
+        }
+
+        guard let cell: CellType = UINib.view(nibName: nibName) else { return UITableViewAutomaticDimension }
+        
+        configurator?(cell)
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        
+        let size = CGSize(width: cell.frame.width, height: UILayoutFittingCompressedSize.height)
+        let height = cell.systemLayoutSizeFitting(size).height
+        self.cellHeights.append((data, height))
+        
+        return height
+    }
+    
+    mutating func invalidateHeightForCellWithData(data: DataType) {
+        self.cellHeights = self.cellHeights.filter({ $0.data != data })
     }
 }
