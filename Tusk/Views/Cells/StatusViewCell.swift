@@ -12,34 +12,29 @@ import MGSwipeTableCell
 
 class StatusViewCell: TableViewCell {
     @IBOutlet var avatarView: AvatarView!
+    
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var timestampLabel: TimestampLabel!
     
     @IBOutlet var warningTextView: TextView!
-    @IBOutlet var warningHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var warningBottomConstraints: [ToggleLayoutConstraint]!
+    @IBOutlet var warningView: UIView!
     
     @IBOutlet var statusTextView: TextView!
-    @IBOutlet var statusBottomConstraint: ToggleLayoutConstraint!
-    @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var visibilityBadge: UIImageView!
     @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
-    @IBOutlet var attachmentBottomConstraint: ToggleLayoutConstraint!
-    @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet var reblogView: UIView!
     @IBOutlet var reblogAvatarView: ImageView!
     @IBOutlet var reblogLabel: UILabel!
-    @IBOutlet var reblogWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var reblogStatBadge: UIImageView!
     @IBOutlet var reblogStatLabel: UILabel!
     @IBOutlet var favouriteStatBadge: UIImageView!
     @IBOutlet var favouriteStatLabel: UILabel!
+    @IBOutlet var reblogView: UIView!
     
     var accountElementWasTapped: ((AccountType) -> Void)?
     var linkWasTapped: ((URL?, String) -> Void)?
@@ -101,26 +96,17 @@ class StatusViewCell: TableViewCell {
         self.usernameLabel.text = status.account.handle
         self.timestampLabel.date = status.createdAt
         
+        let image: UIImage?
         switch status.visibility {
-        case .private: do {
-            self.visibilityBadge.image = UIImage(named: "LockedBadge")
-            self.visibilityWidthConstraints.forEach { $0.toggle(on: true) }
-            }
-        case .direct: do {
-            self.visibilityBadge.image = UIImage(named: "MessageBadge")
-            self.visibilityWidthConstraints.forEach { $0.toggle(on: true) }
-            }
-        default: do {
-            self.visibilityWidthConstraints.forEach { $0.toggle(on: false) }
-            }
+        case .private: image = UIImage(named: "LockedBadge")
+        case .direct: image = UIImage(named: "MessageBadge")
+        default: image = nil
         }
+        self.visibilityBadge.image = image
         
-        let hideWarning = status.warning == nil
-        self.warningHeightConstraint.priority = hideWarning ? .defaultHigh : .init(rawValue: 1)
-        self.warningBottomConstraints.forEach { $0.toggle(on: !hideWarning) }
-        self.warningTextView.htmlText = status.warning
-        self.warningTextView.superview?.isHidden = hideWarning
-        self.warningTextView.setNeedsLayout()
+//        self.warningView.isHidden = status.warning == nil
+//        self.warningTextView.htmlText = status.warning
+//        self.warningTextView.setNeedsLayout()
         
         let hideTextView = (
             NSAttributedString(htmlString: status.content)?.string.isEmpty ?? true
@@ -128,18 +114,11 @@ class StatusViewCell: TableViewCell {
         )
         self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
         self.statusTextView.htmlText = hideTextView ? nil : status.content
-        self.statusHeightConstraint.priority = hideTextView ? .defaultHigh : .init(rawValue: 1)
-        self.statusBottomConstraint.toggle(on: !hideTextView)
         self.statusTextView.isHidden = hideTextView
         self.statusTextView.setNeedsLayout()
     
         let hideAttachmentView = status.mediaAttachments.isEmpty || self.isSupressingContent
         self.attachmentCollectionView.reloadData()
-        self.attachmentBottomConstraint.toggle(on: !hideAttachmentView)
-        self.attachmentHeightConstraint.constant = (
-            hideAttachmentView ? 0 :
-            self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
-        )
         self.attachmentCollectionView.isHidden = hideAttachmentView
         self.attachmentCollectionView.setNeedsLayout()
         
@@ -152,7 +131,7 @@ class StatusViewCell: TableViewCell {
             hasReblogInfo = true
         }
         
-        self.reblogWidthConstraints.forEach { $0.toggle(on: hasReblogInfo) }
+        self.reblogView.isHidden = !hasReblogInfo
         
         let favourited = status.favourited ?? false
         self.favouriteStatLabel.text = "\(status.favouritesCount)"
