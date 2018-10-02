@@ -215,7 +215,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                         GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
                     } else {
                         if (!self.unsuppressedStatusIDs.contains(status.id)) { return }
-                        GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                        GlobalStore.dispatch(StoredDefaultsState.RemoveUnsuppressedStatusID(value: status.id))
                     }
                     
                     guard let tableView = self.tableView as? TableView else { return }

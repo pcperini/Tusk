@@ -324,7 +324,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/UI Handlers/TableViewMergeHandler.swift"
-            timestampString = "560210454.510676"
+            timestampString = "560210743.2648261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -340,7 +340,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
-            timestampString = "560210454.511251"
+            timestampString = "560210743.265623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -420,7 +420,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
-            timestampString = "560210454.511358"
+            timestampString = "560210743.265789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -432,27 +432,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tusk/States/StoredDefaultsState.swift"
-            timestampString = "560210454.511431"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "reducer(action:state:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/UI Handlers/TableViewMergeHandler.swift"
-            timestampString = "560210454.5114729"
+            timestampString = "560210743.265901"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -468,7 +452,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/Views/Cells/StatusViewCell.swift"
-            timestampString = "560210454.511923"
+            timestampString = "560210743.266608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
@@ -484,7 +468,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tusk/View Controllers/Reusable/StatusesViewController.swift"
-            timestampString = "560210454.512"
+            timestampString = "560210743.266685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"

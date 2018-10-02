@@ -257,7 +257,7 @@
                     <constraint firstItem="uhm-Xu-mRY" firstAttribute="top" secondItem="nNf-bu-f87" secondAttribute="top" constant="18" id="DBb-S8-m6K"/>
                     <constraint firstItem="s9g-68-10Q" firstAttribute="top" secondItem="nNf-bu-f87" secondAttribute="top" constant="18" id="JcQ-U1-JA3"/>
                     <constraint firstAttribute="trailing" secondItem="uhm-Xu-mRY" secondAttribute="trailing" constant="18" id="e7S-Ju-7Sr"/>
-                    <constraint firstAttribute="bottom" secondItem="uhm-Xu-mRY" secondAttribute="bottom" constant="18" id="io7-cL-9Zl"/>
+                    <constraint firstAttribute="bottom" secondItem="uhm-Xu-mRY" secondAttribute="bottom" priority="999" constant="18" id="io7-cL-9Zl"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s9g-68-10Q" secondAttribute="bottom" constant="12" id="mMg-Ff-lkF"/>
                 </constraints>
             </tableViewCellContentView>
