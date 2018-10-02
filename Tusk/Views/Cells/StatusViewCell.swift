@@ -12,44 +12,40 @@ import MGSwipeTableCell
 
 class StatusViewCell: TableViewCell {
     @IBOutlet var avatarView: AvatarView!
+    
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var timestampLabel: TimestampLabel!
     
-    @IBOutlet var warningTextView: TextView!
-    @IBOutlet var warningHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var warningBottomConstraints: [ToggleLayoutConstraint]!
+    @IBOutlet var warningLabel: UILabel!
+    @IBOutlet var warningView: UIView!
     
     @IBOutlet var statusTextView: TextView!
-    @IBOutlet var statusBottomConstraint: ToggleLayoutConstraint!
-    @IBOutlet var statusHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var visibilityBadge: UIImageView!
     @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
-    @IBOutlet var attachmentBottomConstraint: ToggleLayoutConstraint!
-    @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet var reblogView: UIView!
     @IBOutlet var reblogAvatarView: ImageView!
     @IBOutlet var reblogLabel: UILabel!
-    @IBOutlet var reblogWidthConstraints: [ToggleLayoutConstraint]!
+    @IBOutlet var reblogView: UIView!
     
     @IBOutlet var reblogStatBadge: UIImageView!
     @IBOutlet var reblogStatLabel: UILabel!
     @IBOutlet var favouriteStatBadge: UIImageView!
     @IBOutlet var favouriteStatLabel: UILabel!
+    @IBOutlet var statsViews: [UIView]!
     
     var accountElementWasTapped: ((AccountType) -> Void)?
     var linkWasTapped: ((URL?, String) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
     var contextPushWasTriggered: ((Status) -> Void)?
-    var contentShouldReveal: (() -> Void)?
+    var contentShouldReveal: ((Bool) -> Void)?
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
     private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
-    private var cellLongPressRecognizer: UILongPressGestureRecognizer!
+    private var warningLongPressRecognizer: UILongPressGestureRecognizer!
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
@@ -67,9 +63,9 @@ class StatusViewCell: TableViewCell {
         self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
         
-        self.cellLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellWasLongPressed(recognizer:)))
-        self.cellLongPressRecognizer.minimumPressDuration = 0.25
-        self.addGestureRecognizer(self.cellLongPressRecognizer)
+        self.warningLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(warningViewWasLongPressed(recognizer:)))
+        self.warningLongPressRecognizer.minimumPressDuration = 0.01
+        self.warningView.addGestureRecognizer(self.warningLongPressRecognizer)
         
         self.statusTextView.delegate = self
         self.statusTextView.hideLinkCriteria = { (link) in
@@ -101,26 +97,17 @@ class StatusViewCell: TableViewCell {
         self.usernameLabel.text = status.account.handle
         self.timestampLabel.date = status.createdAt
         
+        let image: UIImage?
         switch status.visibility {
-        case .private: do {
-            self.visibilityBadge.image = UIImage(named: "LockedBadge")
-            self.visibilityWidthConstraints.forEach { $0.toggle(on: true) }
-            }
-        case .direct: do {
-            self.visibilityBadge.image = UIImage(named: "MessageBadge")
-            self.visibilityWidthConstraints.forEach { $0.toggle(on: true) }
-            }
-        default: do {
-            self.visibilityWidthConstraints.forEach { $0.toggle(on: false) }
-            }
+        case .private: image = UIImage(named: "LockedBadge")
+        case .direct: image = UIImage(named: "MessageBadge")
+        default: image = nil
         }
+        self.visibilityBadge.image = image
         
-        let hideWarning = status.warning == nil
-        self.warningHeightConstraint.priority = hideWarning ? .defaultHigh : .init(rawValue: 1)
-        self.warningBottomConstraints.forEach { $0.toggle(on: !hideWarning) }
-        self.warningTextView.htmlText = status.warning
-        self.warningTextView.superview?.isHidden = hideWarning
-        self.warningTextView.setNeedsLayout()
+        self.warningView.isHidden = status.warning == nil
+        self.warningLabel.text = String(htmlString: status.warning ?? "")
+        self.warningLabel.setNeedsLayout()
         
         let hideTextView = (
             NSAttributedString(htmlString: status.content)?.string.isEmpty ?? true
@@ -128,18 +115,11 @@ class StatusViewCell: TableViewCell {
         )
         self.statusTextView.emojis = status.emojis.map({ ($0.shortcode, $0.url) })
         self.statusTextView.htmlText = hideTextView ? nil : status.content
-        self.statusHeightConstraint.priority = hideTextView ? .defaultHigh : .init(rawValue: 1)
-        self.statusBottomConstraint.toggle(on: !hideTextView)
         self.statusTextView.isHidden = hideTextView
         self.statusTextView.setNeedsLayout()
     
         let hideAttachmentView = status.mediaAttachments.isEmpty || self.isSupressingContent
         self.attachmentCollectionView.reloadData()
-        self.attachmentBottomConstraint.toggle(on: !hideAttachmentView)
-        self.attachmentHeightConstraint.constant = (
-            hideAttachmentView ? 0 :
-            self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
-        )
         self.attachmentCollectionView.isHidden = hideAttachmentView
         self.attachmentCollectionView.setNeedsLayout()
         
@@ -148,11 +128,10 @@ class StatusViewCell: TableViewCell {
         
         if let originalStatus = self.originalStatus {
             self.reblogAvatarView.af_setImage(withURL: URL(string: originalStatus.account.avatar)!)
-            self.reblogLabel.text = originalStatus.account.displayName
+            self.reblogLabel.text = originalStatus.account.name
             hasReblogInfo = true
         }
-        
-        self.reblogWidthConstraints.forEach { $0.toggle(on: hasReblogInfo) }
+        self.reblogView.isHidden = !hasReblogInfo
         
         let favourited = status.favourited ?? false
         self.favouriteStatLabel.text = "\(status.favouritesCount)"
@@ -162,6 +141,9 @@ class StatusViewCell: TableViewCell {
         let reblogged = status.reblogged ?? false
         self.reblogStatLabel.text = "\(status.reblogsCount)"
         self.reblogStatBadge.tintColor = UIColor(named: reblogged ? "RebloggedBadgeColor" : "StatBadgeColor")
+        
+        self.statsViews.forEach { $0.isHidden = !(favourited || reblogged) }
+        self.reblogView.superview?.isHidden = !(favourited || reblogged || hasReblogInfo)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
@@ -180,9 +162,9 @@ class StatusViewCell: TableViewCell {
         }
     }
     
-    @objc func cellWasLongPressed(recognizer: UIGestureRecognizer!) {
-        guard self.isSupressingContent else { return }
-        self.contentShouldReveal?()
+    @objc func warningViewWasLongPressed(recognizer: UIGestureRecognizer!) {
+        guard self.status?.warning != nil else { return }
+        self.contentShouldReveal?(self.isSupressingContent)
     }
 }
 

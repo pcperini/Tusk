@@ -13,6 +13,7 @@ import MastodonKit
 struct StoredDefaultsState: StateType {
     struct LoadDefaults: Action {}
     struct AddUnsuppressedStatusID: Action { let value: String }
+    struct RemoveUnsuppressedStatusID: Action { let value: String }
     struct SetHideContentWarnings: Action { let value: Bool }
     struct SetDefaultPostVisibility: Action { let value: Visibility }
     struct SetLastSeenID: Action { let context: String; let value: String }
@@ -29,7 +30,8 @@ struct StoredDefaultsState: StateType {
         
         switch action {
         case is LoadDefaults: state.load()
-        case let action as AddUnsuppressedStatusID: state.addUnsuppressedStatusID(id: action.value)
+        case let action as AddUnsuppressedStatusID: state.updateUnsuppressedStatusID(id: action.value, remove: false)
+        case let action as RemoveUnsuppressedStatusID: state.updateUnsuppressedStatusID(id: action.value, remove: true)
         case let action as SetHideContentWarnings: do {
             state.hideContentWarnings = action.value
             state.save(value: action.value, forKey: "HideContentWarnings")
@@ -86,17 +88,23 @@ struct StoredDefaultsState: StateType {
         NSUbiquitousKeyValueStore.default.synchronize()
     }
     
-    mutating func addUnsuppressedStatusID(id: String) {
-        guard self.unsuppressedStatusIDs.index(of: id) == nil else { return }
-        
+    mutating func updateUnsuppressedStatusID(id: String, remove: Bool) {
         var stored = self.load(type: [String: Date].self, key: "UnsuppressedStatusIDs") ?? [:]
             .filter({ Date().timeIntervalSince($0.value) <= 24 * 60 * 60 })
         
-        guard stored.keys.index(of: id) == nil else { return }
+        if (remove) {
+            guard self.unsuppressedStatusIDs.index(of: id) != nil,
+                stored.keys.index(of: id) != nil else { return }
+            
+            stored = stored.filter({ $0.0 != id })
+        } else {
+            guard self.unsuppressedStatusIDs.index(of: id) == nil,
+                stored.keys.index(of: id) == nil else { return }
+            
+            stored[id] = Date()
+        }
         
-        stored[id] = Date()
         self.unsuppressedStatusIDs = Array(stored.keys)
-        
         self.save(value: stored, forKey: "UnsuppressedStatusIDs")
     }
 }

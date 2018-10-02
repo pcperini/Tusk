@@ -16,10 +16,8 @@ class StatusesViewController: PaginatingTableViewController<Status> {
     var statuses: [Status] = []
     var unsuppressedStatusIDs: [String] = []
     
-    lazy private var tableMergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
+    lazy private var mergeHandler: TableViewMergeHandler<Status> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               section: self.statusesSection,
-                                                                                              data: nil,
-                                                                                              selectedElement: nil,
                                                                                               dataComparator: self.statusesAreEqual)
     
     var nextPageAction: () -> Action? = { nil }
@@ -78,7 +76,7 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         self.endPaginating()
         
         self.statuses = statuses
-        self.tableMergeHandler.mergeData(data: statuses)
+        self.mergeHandler.mergeData(data: statuses)
         
         self.updateUnreadIndicator()
     }
@@ -94,11 +92,10 @@ class StatusesViewController: PaginatingTableViewController<Status> {
             return StatusActionViewCell.CellHeight
         }
         
-        guard let tableView = tableView as? TableView else { return UITableViewAutomaticDimension }
         let status = self.statuses[statusIndex]
-        return tableView.heightForCellWithID(id: status.id,
-                                             nibName: "StatusViewCell",
-                                             configurator: self.statusCellConfiguration(status: status))
+        return self.mergeHandler.heightForCellWithData(data: status,
+                                                            nibName: "StatusViewCell",
+                                                            configurator: self.statusCellConfiguration(status: status))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,9 +151,9 @@ class StatusesViewController: PaginatingTableViewController<Status> {
         var statusIndex: Int? = self.statusIndexForIndexPath(indexPath: indexPath)
         if (statusIndex == self.selectedStatusIndex) { statusIndex = nil }
         
-        self.tableMergeHandler.selectedElement = nil
+        self.mergeHandler.selectedElement = nil
         if let statusIndex = statusIndex {
-            self.tableMergeHandler.selectedElement = self.statuses[statusIndex]
+            self.mergeHandler.selectedElement = self.statuses[statusIndex]
         }
         
         self.selectedStatusIndex = nil
@@ -212,11 +209,17 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                 cell.contextPushWasTriggered = { (status) in
                     self.pushToContext(status: status)
                 }
-                cell.contentShouldReveal = {
-                    if (self.unsuppressedStatusIDs.contains(status.id)) { return }
-                    GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                cell.contentShouldReveal = { (shouldReveal) in
+                    if (shouldReveal) {
+                        if (self.unsuppressedStatusIDs.contains(status.id)) { return }
+                        GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                    } else {
+                        if (!self.unsuppressedStatusIDs.contains(status.id)) { return }
+                        GlobalStore.dispatch(StoredDefaultsState.RemoveUnsuppressedStatusID(value: status.id))
+                    }
                     
                     guard let tableView = self.tableView as? TableView else { return }
+                    self.mergeHandler.invalidateHeightForCellWithData(data: status)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                         tableView.appendBatchUpdates({
                             tableView.reloadRows(at: [indexPath], with: .none)

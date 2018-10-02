@@ -14,8 +14,6 @@ class FiltersViewController: UITableViewController, SubscriptionResponder {
     lazy var subscriber: Subscriber = Subscriber(state: { $0.filters }, newState: self.newState)
     lazy private var tableMergeHandler: TableViewMergeHandler<Filter> = TableViewMergeHandler(tableView: self.tableView,
                                                                                               section: 0,
-                                                                                              data: nil,
-                                                                                              selectedElement: nil,
                                                                                               dataComparator: self.filtersAreEqual)
     
     override func viewDidLoad() {

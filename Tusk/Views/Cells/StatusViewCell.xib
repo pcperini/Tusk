@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="448" id="Ty4-a5-hwL" customClass="StatusViewCell" customModule="Tusk" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="448" id="wEz-WR-QTw" customClass="StatusViewCell" customModule="Tusk" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="454"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ty4-a5-hwL" id="TeA-x8-Wcr">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wEz-WR-QTw" id="nNf-bu-f87">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="453.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="JHB-dv-MFO">
-                        <rect key="frame" x="12" y="12" width="351" height="429.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s9g-68-10Q" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
+                        <rect key="frame" x="18" y="18" width="50" height="50"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="999" constant="50" id="7rB-GA-vDE"/>
+                            <constraint firstAttribute="width" constant="50" id="t4R-uJ-YBR"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uhm-Xu-mRY">
+                        <rect key="frame" x="80" y="18" width="277" height="417.5"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWp-mM-0x0">
-                                <rect key="frame" x="62" y="0.0" width="289" height="21"/>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="y5J-XQ-BnF">
+                                <rect key="frame" x="0.0" y="0.0" width="277" height="20.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MC-c1-Ruy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOG-dl-0tX">
                                         <rect key="frame" x="0.0" y="0.0" width="109.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3T9-db-jxG">
-                                        <rect key="frame" x="113.5" y="0.0" width="66.5" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="@handle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0g-FL-MJP">
+                                        <rect key="frame" x="113.5" y="0.0" width="66.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDo-Ow-OmZ" customClass="TimestampLabel" customModule="Tusk" customModuleProvider="target">
-                                        <rect key="frame" x="256" y="0.0" width="33" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uau-fH-Bhy" customClass="TimestampLabel" customModule="Tusk" customModuleProvider="target">
+                                        <rect key="frame" x="244" y="0.0" width="33" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -45,124 +62,104 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullLength" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockedBadge" translatesAutoresizingMaskIntoConstraints="NO" id="oCf-bD-ZWs">
-                                        <rect key="frame" x="237" y="3" width="15" height="15"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockedBadge" translatesAutoresizingMaskIntoConstraints="NO" id="f3P-Bf-gZY">
+                                        <rect key="frame" x="225" y="3" width="15" height="15"/>
                                         <color key="tintColor" name="VisibilityBadgeColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="15" id="PJN-6q-tL1" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                            <constraint firstAttribute="height" priority="999" constant="15" id="zl4-7L-QZ5"/>
+                                            <constraint firstAttribute="width" constant="15" id="Vke-8X-9JG" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                            <constraint firstAttribute="height" priority="999" constant="15" id="irY-tp-d72"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="3T9-db-jxG" secondAttribute="bottom" id="AHx-iq-b7c"/>
-                                    <constraint firstItem="NDo-Ow-OmZ" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="top" id="AV8-VD-BS8"/>
-                                    <constraint firstItem="oCf-bD-ZWs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3T9-db-jxG" secondAttribute="trailing" id="BLa-Iv-N4i"/>
-                                    <constraint firstAttribute="bottom" secondItem="5MC-c1-Ruy" secondAttribute="bottom" id="C9E-gI-xpO"/>
-                                    <constraint firstAttribute="height" constant="21" id="Flf-aa-3yS"/>
-                                    <constraint firstAttribute="bottom" secondItem="NDo-Ow-OmZ" secondAttribute="bottom" id="HwM-Of-vrA"/>
-                                    <constraint firstAttribute="trailing" secondItem="NDo-Ow-OmZ" secondAttribute="trailing" id="MTH-n6-U2k"/>
-                                    <constraint firstItem="oCf-bD-ZWs" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="top" constant="3" id="XgX-bp-t7a"/>
-                                    <constraint firstItem="NDo-Ow-OmZ" firstAttribute="leading" secondItem="oCf-bD-ZWs" secondAttribute="trailing" constant="4" id="dST-nT-l1r" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                    <constraint firstItem="5MC-c1-Ruy" firstAttribute="leading" secondItem="qWp-mM-0x0" secondAttribute="leading" id="daO-U1-bzq"/>
-                                    <constraint firstItem="3T9-db-jxG" firstAttribute="leading" secondItem="5MC-c1-Ruy" secondAttribute="trailing" constant="4" id="f5f-n0-KRN"/>
-                                    <constraint firstAttribute="bottom" secondItem="oCf-bD-ZWs" secondAttribute="bottom" constant="3" id="sl3-gE-yj8"/>
-                                    <constraint firstItem="5MC-c1-Ruy" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="top" id="tHP-KC-XgW"/>
-                                    <constraint firstItem="3T9-db-jxG" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="top" id="zMJ-Hr-NYd"/>
+                                    <constraint firstAttribute="trailing" secondItem="uau-fH-Bhy" secondAttribute="trailing" id="DJm-Im-VTX"/>
+                                    <constraint firstAttribute="bottom" secondItem="uau-fH-Bhy" secondAttribute="bottom" id="FxC-mb-NB8"/>
+                                    <constraint firstItem="f3P-Bf-gZY" firstAttribute="centerY" secondItem="uau-fH-Bhy" secondAttribute="centerY" id="Nd1-D6-lYT"/>
+                                    <constraint firstItem="f3P-Bf-gZY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R0g-FL-MJP" secondAttribute="trailing" id="Tqy-tL-tQA"/>
+                                    <constraint firstItem="uau-fH-Bhy" firstAttribute="top" secondItem="y5J-XQ-BnF" secondAttribute="top" id="i2k-uR-Zwg"/>
+                                    <constraint firstItem="R0g-FL-MJP" firstAttribute="leading" secondItem="QOG-dl-0tX" secondAttribute="trailing" constant="4" id="mpj-yq-R3O"/>
+                                    <constraint firstAttribute="bottom" secondItem="QOG-dl-0tX" secondAttribute="bottom" id="oHg-Kv-PoU"/>
+                                    <constraint firstItem="R0g-FL-MJP" firstAttribute="top" secondItem="y5J-XQ-BnF" secondAttribute="top" id="pkU-55-IWh"/>
+                                    <constraint firstItem="QOG-dl-0tX" firstAttribute="top" secondItem="y5J-XQ-BnF" secondAttribute="top" id="v8F-kj-e1n"/>
+                                    <constraint firstItem="QOG-dl-0tX" firstAttribute="leading" secondItem="y5J-XQ-BnF" secondAttribute="leading" id="vzc-0l-tZs"/>
+                                    <constraint firstItem="uau-fH-Bhy" firstAttribute="leading" secondItem="f3P-Bf-gZY" secondAttribute="trailing" constant="4" id="wBn-MS-bnB" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                    <constraint firstAttribute="bottom" secondItem="R0g-FL-MJP" secondAttribute="bottom" id="wqX-xt-Dre"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3Y-z1-s31" customClass="AvatarView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="DZl-Qj-JMo"/>
-                                    <constraint firstAttribute="height" priority="999" constant="50" id="HLP-tZ-t2s"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZl-pT-ru1">
-                                <rect key="frame" x="62" y="29" width="289" height="37"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-ZT-6RK">
+                                <rect key="frame" x="0.0" y="28.5" width="277" height="20.5"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-r2-4ky" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                        <rect key="frame" x="24" y="0.0" width="265" height="37"/>
-                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                                        <color key="textColor" name="VisibilityBadgeColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" text="Content Warning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6T6-Aq-mII">
+                                        <rect key="frame" x="28" y="0.0" width="249" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlagBadge" translatesAutoresizingMaskIntoConstraints="NO" id="Mui-X4-lEZ">
-                                        <rect key="frame" x="3" y="3" width="15" height="15"/>
-                                        <color key="tintColor" name="VisibilityBadgeColor"/>
+                                        <color key="textColor" name="LockedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlagBadge" translatesAutoresizingMaskIntoConstraints="NO" id="UHK-ge-ebK">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <color key="tintColor" name="LockedColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="999" constant="15" id="as9-aa-4Qv" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                            <constraint firstAttribute="width" constant="15" id="hTS-sF-k0t" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                            <constraint firstAttribute="height" constant="20" id="8j0-xV-cXq"/>
+                                            <constraint firstAttribute="width" constant="20" id="icG-hn-ozN"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="DaO-r2-4ky" firstAttribute="top" secondItem="OZl-pT-ru1" secondAttribute="top" id="GHT-9n-me6"/>
-                                    <constraint firstAttribute="height" priority="1" id="Jso-wh-dZa"/>
-                                    <constraint firstAttribute="bottom" secondItem="DaO-r2-4ky" secondAttribute="bottom" id="Q0p-nD-rjo"/>
-                                    <constraint firstAttribute="trailing" secondItem="DaO-r2-4ky" secondAttribute="trailing" id="Vb1-zf-qOE"/>
-                                    <constraint firstItem="Mui-X4-lEZ" firstAttribute="leading" secondItem="OZl-pT-ru1" secondAttribute="leading" constant="3" id="gDW-0X-zCF"/>
-                                    <constraint firstItem="Mui-X4-lEZ" firstAttribute="top" secondItem="OZl-pT-ru1" secondAttribute="top" constant="3" id="tS9-2D-cS6"/>
-                                    <constraint firstItem="DaO-r2-4ky" firstAttribute="leading" secondItem="Mui-X4-lEZ" secondAttribute="trailing" constant="6" id="yDf-Zo-zh0"/>
+                                    <constraint firstItem="6T6-Aq-mII" firstAttribute="leading" secondItem="UHK-ge-ebK" secondAttribute="trailing" constant="8" id="5DU-AK-Td4"/>
+                                    <constraint firstItem="6T6-Aq-mII" firstAttribute="top" secondItem="ZH5-ZT-6RK" secondAttribute="top" id="5sz-h7-Pi5"/>
+                                    <constraint firstAttribute="bottom" secondItem="6T6-Aq-mII" secondAttribute="bottom" id="Md1-dU-QTx"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UHK-ge-ebK" secondAttribute="bottom" id="TVQ-k7-JCz"/>
+                                    <constraint firstItem="UHK-ge-ebK" firstAttribute="top" secondItem="ZH5-ZT-6RK" secondAttribute="top" id="UJM-8R-eFw"/>
+                                    <constraint firstAttribute="trailing" secondItem="6T6-Aq-mII" secondAttribute="trailing" id="p3m-0X-Qp7"/>
+                                    <constraint firstItem="UHK-ge-ebK" firstAttribute="leading" secondItem="ZH5-ZT-6RK" secondAttribute="leading" id="uBO-Ve-Sfm"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="RnT-f8-605">
-                                <rect key="frame" x="62" y="143" width="289" height="254"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkd-yU-K5K" customClass="TextView" customModule="Tusk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="57" width="277" height="131"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TcT-xL-nm9">
+                                <rect key="frame" x="0.0" y="196" width="277" height="163.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" priority="999" constant="200" identifier="HeightConstraint" id="CcT-Dn-F4o"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="Yak-EC-60U">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="cVf-wp-k7S">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <connections>
-                                    <outlet property="dataSource" destination="Ty4-a5-hwL" id="xNy-ZU-e11"/>
-                                    <outlet property="delegate" destination="Ty4-a5-hwL" id="hzk-6h-qpP"/>
-                                </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llc-aq-Ycl">
-                                <rect key="frame" x="62" y="409" width="289" height="20"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4HW-pv-Byd">
+                                <rect key="frame" x="0.0" y="367.5" width="277" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wi-h1-ZDU">
-                                        <rect key="frame" x="0.0" y="0.0" width="142" height="20"/>
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="tig-4l-zeE">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkl-TP-oHi">
-                                                <rect key="frame" x="42" y="0.0" width="100" height="20"/>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXi-qg-v3M">
+                                                <rect key="frame" x="42" y="0.0" width="100" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReblogBadge" translatesAutoresizingMaskIntoConstraints="NO" id="mAr-2l-kfP">
-                                                <rect key="frame" x="0.0" y="3" width="14" height="14"/>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReblogBadge" translatesAutoresizingMaskIntoConstraints="NO" id="m7d-oH-d7d">
+                                                <rect key="frame" x="0.0" y="18" width="14" height="14"/>
                                                 <color key="tintColor" name="VisibilityBadgeColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="14" id="juj-tY-Ozo" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="14" id="tHy-xG-lLv"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="14" id="f32-bH-BfO"/>
+                                                    <constraint firstAttribute="width" constant="14" id="k0j-uK-ula" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sKj-Yl-Nof" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="18" y="0.0" width="20" height="20"/>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEH-MZ-Bbt" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="18" y="15" width="20" height="20"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="MSb-iX-Aks" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="20" id="pdY-gf-VDl"/>
+                                                    <constraint firstAttribute="width" constant="20" id="5cf-hJ-iEM" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="20" id="L5x-yv-zBz"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="YES"/>
@@ -174,136 +171,94 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Dkl-TP-oHi" secondAttribute="bottom" id="6ED-Jw-lgQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="Dkl-TP-oHi" secondAttribute="trailing" id="Nfn-Tf-FJ8"/>
-                                            <constraint firstItem="mAr-2l-kfP" firstAttribute="centerY" secondItem="Dkl-TP-oHi" secondAttribute="centerY" id="Vi5-ht-CLf"/>
-                                            <constraint firstItem="Dkl-TP-oHi" firstAttribute="leading" secondItem="sKj-Yl-Nof" secondAttribute="trailing" constant="4" id="ZTq-I9-nKQ" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                            <constraint firstItem="sKj-Yl-Nof" firstAttribute="centerY" secondItem="Dkl-TP-oHi" secondAttribute="centerY" id="aXT-7D-dj7"/>
-                                            <constraint firstItem="mAr-2l-kfP" firstAttribute="leading" secondItem="3wi-h1-ZDU" secondAttribute="leading" id="cBi-C1-Mev"/>
-                                            <constraint firstItem="sKj-Yl-Nof" firstAttribute="leading" secondItem="mAr-2l-kfP" secondAttribute="trailing" constant="4" id="lQw-lo-dCi" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                            <constraint firstItem="Dkl-TP-oHi" firstAttribute="top" secondItem="3wi-h1-ZDU" secondAttribute="top" id="tiv-zr-rKw"/>
+                                            <constraint firstItem="MXi-qg-v3M" firstAttribute="top" secondItem="tig-4l-zeE" secondAttribute="top" id="4A0-Xv-Kys"/>
+                                            <constraint firstItem="iEH-MZ-Bbt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tig-4l-zeE" secondAttribute="top" id="5Oh-dP-7ex"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="iEH-MZ-Bbt" secondAttribute="bottom" id="Gvh-We-RT1"/>
+                                            <constraint firstAttribute="bottom" secondItem="MXi-qg-v3M" secondAttribute="bottom" id="NKd-Ed-LOA"/>
+                                            <constraint firstItem="iEH-MZ-Bbt" firstAttribute="centerY" secondItem="MXi-qg-v3M" secondAttribute="centerY" id="W8U-DJ-xAp"/>
+                                            <constraint firstItem="iEH-MZ-Bbt" firstAttribute="leading" secondItem="m7d-oH-d7d" secondAttribute="trailing" constant="4" id="fvx-G9-1Tm" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                            <constraint firstItem="m7d-oH-d7d" firstAttribute="leading" secondItem="tig-4l-zeE" secondAttribute="leading" id="kYU-0G-rv0"/>
+                                            <constraint firstAttribute="trailing" secondItem="MXi-qg-v3M" secondAttribute="trailing" id="yLy-Js-OD2"/>
+                                            <constraint firstItem="MXi-qg-v3M" firstAttribute="leading" secondItem="iEH-MZ-Bbt" secondAttribute="trailing" constant="4" id="zHy-ZG-ccv" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                            <constraint firstItem="m7d-oH-d7d" firstAttribute="centerY" secondItem="MXi-qg-v3M" secondAttribute="centerY" id="zN6-eP-4ci"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyr-tK-38f">
-                                        <rect key="frame" x="154" y="0.0" width="34.5" height="20"/>
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Yr8-VV-gyE">
+                                        <rect key="frame" x="154" y="0.0" width="34.5" height="50"/>
                                         <subviews>
-                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReblogBadge" translatesAutoresizingMaskIntoConstraints="NO" id="9ou-WB-QPT" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="3" width="14" height="14"/>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReblogBadge" translatesAutoresizingMaskIntoConstraints="NO" id="g90-7j-wUb" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="18" width="14" height="14"/>
                                                 <color key="tintColor" name="ContextBackgroundColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="14" id="byI-7t-Odx" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="14" id="lty-5c-31p"/>
+                                                    <constraint firstAttribute="width" constant="14" id="sdA-bo-uum" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="14" id="vSq-h4-jWE"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njr-zp-nPG">
-                                                <rect key="frame" x="19" y="0.0" width="15.5" height="20"/>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsT-zC-sMs">
+                                                <rect key="frame" x="19" y="0.0" width="15.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Njr-zp-nPG" firstAttribute="top" secondItem="Jyr-tK-38f" secondAttribute="top" id="JsY-4u-5gS"/>
-                                            <constraint firstItem="9ou-WB-QPT" firstAttribute="centerY" secondItem="Njr-zp-nPG" secondAttribute="centerY" id="Szk-K6-v1v"/>
-                                            <constraint firstItem="9ou-WB-QPT" firstAttribute="leading" secondItem="Jyr-tK-38f" secondAttribute="leading" id="Zcf-6N-5ka"/>
-                                            <constraint firstItem="Njr-zp-nPG" firstAttribute="leading" secondItem="9ou-WB-QPT" secondAttribute="trailing" constant="5" id="eD8-Fs-C68" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                            <constraint firstAttribute="trailing" secondItem="Njr-zp-nPG" secondAttribute="trailing" id="fmA-2r-euM"/>
-                                            <constraint firstAttribute="bottom" secondItem="Njr-zp-nPG" secondAttribute="bottom" id="kYn-rg-tNy"/>
+                                            <constraint firstAttribute="bottom" secondItem="wsT-zC-sMs" secondAttribute="bottom" id="O6f-Q9-B7Q"/>
+                                            <constraint firstItem="g90-7j-wUb" firstAttribute="centerY" secondItem="wsT-zC-sMs" secondAttribute="centerY" id="Rb2-LE-qu0"/>
+                                            <constraint firstItem="wsT-zC-sMs" firstAttribute="leading" secondItem="g90-7j-wUb" secondAttribute="trailing" constant="5" id="TxV-58-6mQ" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
+                                            <constraint firstItem="g90-7j-wUb" firstAttribute="leading" secondItem="Yr8-VV-gyE" secondAttribute="leading" id="cqG-1f-Q4k"/>
+                                            <constraint firstItem="wsT-zC-sMs" firstAttribute="top" secondItem="Yr8-VV-gyE" secondAttribute="top" id="eAp-r0-WuX"/>
+                                            <constraint firstAttribute="trailing" secondItem="wsT-zC-sMs" secondAttribute="trailing" id="eYf-1I-Hje"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKj-Gy-CTb">
-                                        <rect key="frame" x="192" y="0.0" width="34.5" height="20"/>
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Ufp-K7-MF8">
+                                        <rect key="frame" x="200.5" y="0.0" width="76.5" height="50"/>
                                         <subviews>
-                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FavouriteBadge" translatesAutoresizingMaskIntoConstraints="NO" id="l1t-0M-uoR" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="3" width="14" height="14"/>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FavouriteBadge" translatesAutoresizingMaskIntoConstraints="NO" id="WAr-mg-ikG" customClass="ImageView" customModule="Tusk" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="18" width="14" height="14"/>
                                                 <color key="tintColor" name="ContextBackgroundColor"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="14" id="Snl-Gy-aio" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="14" id="pVc-A4-UpK"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="14" id="Cwf-Db-JC7"/>
+                                                    <constraint firstAttribute="width" constant="14" id="kpI-FV-9jX" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="round" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q71-8R-nKL">
-                                                <rect key="frame" x="19" y="0.0" width="15.5" height="20"/>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjW-ks-yfR">
+                                                <rect key="frame" x="19" y="0.0" width="15.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="l1t-0M-uoR" firstAttribute="leading" secondItem="XKj-Gy-CTb" secondAttribute="leading" id="5E7-Iy-bj1"/>
-                                            <constraint firstItem="Q71-8R-nKL" firstAttribute="top" secondItem="XKj-Gy-CTb" secondAttribute="top" id="Qfl-dS-QN0"/>
-                                            <constraint firstItem="Q71-8R-nKL" firstAttribute="leading" secondItem="l1t-0M-uoR" secondAttribute="trailing" constant="5" id="Zxf-rT-WmI" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                            <constraint firstItem="l1t-0M-uoR" firstAttribute="centerY" secondItem="Q71-8R-nKL" secondAttribute="centerY" id="fHq-Al-dIn"/>
-                                            <constraint firstAttribute="trailing" secondItem="Q71-8R-nKL" secondAttribute="trailing" id="iln-pi-uGC"/>
-                                            <constraint firstAttribute="bottom" secondItem="Q71-8R-nKL" secondAttribute="bottom" id="qQk-sD-sfz"/>
+                                            <constraint firstItem="WAr-mg-ikG" firstAttribute="centerY" secondItem="MjW-ks-yfR" secondAttribute="centerY" id="4gZ-hv-mly"/>
+                                            <constraint firstAttribute="bottom" secondItem="MjW-ks-yfR" secondAttribute="bottom" id="HcZ-Ml-m8p"/>
+                                            <constraint firstItem="WAr-mg-ikG" firstAttribute="leading" secondItem="Ufp-K7-MF8" secondAttribute="leading" id="Pcx-hB-3Ng"/>
+                                            <constraint firstItem="MjW-ks-yfR" firstAttribute="top" secondItem="Ufp-K7-MF8" secondAttribute="top" id="mIv-dp-g0x"/>
+                                            <constraint firstItem="MjW-ks-yfR" firstAttribute="leading" secondItem="WAr-mg-ikG" secondAttribute="trailing" constant="5" id="mWP-nz-354" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Jyr-tK-38f" firstAttribute="top" secondItem="llc-aq-Ycl" secondAttribute="top" id="6bE-1H-kvt"/>
-                                    <constraint firstAttribute="bottom" secondItem="Jyr-tK-38f" secondAttribute="bottom" id="FjC-P6-YAb"/>
-                                    <constraint firstItem="3wi-h1-ZDU" firstAttribute="leading" secondItem="llc-aq-Ycl" secondAttribute="leading" id="GmO-Hm-05y"/>
-                                    <constraint firstItem="3wi-h1-ZDU" firstAttribute="top" secondItem="llc-aq-Ycl" secondAttribute="top" id="TtQ-Md-tjD"/>
-                                    <constraint firstItem="Jyr-tK-38f" firstAttribute="leading" secondItem="3wi-h1-ZDU" secondAttribute="trailing" constant="12" id="dfc-XT-QBa" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                    <constraint firstAttribute="bottom" secondItem="XKj-Gy-CTb" secondAttribute="bottom" id="euC-PB-1Rr"/>
-                                    <constraint firstAttribute="bottom" secondItem="3wi-h1-ZDU" secondAttribute="bottom" id="mZv-9l-JGb"/>
-                                    <constraint firstItem="XKj-Gy-CTb" firstAttribute="top" secondItem="llc-aq-Ycl" secondAttribute="top" id="ne6-a0-YUP"/>
-                                    <constraint firstAttribute="height" constant="20" id="pYI-F1-aSa"/>
-                                    <constraint firstItem="XKj-Gy-CTb" firstAttribute="leading" secondItem="Jyr-tK-38f" secondAttribute="trailing" constant="4" id="uGy-yO-HeX" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gg8-d9-eYv" customClass="TextView" customModule="Tusk" customModuleProvider="target">
-                                <rect key="frame" x="62" y="74" width="289" height="57"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" priority="1" id="Iiq-Ks-gCd"/>
-                                </constraints>
-                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </stackView>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="X3Y-z1-s31" firstAttribute="leading" secondItem="JHB-dv-MFO" secondAttribute="leading" id="0Wv-Mh-cPC"/>
-                            <constraint firstItem="RnT-f8-605" firstAttribute="leading" secondItem="Gg8-d9-eYv" secondAttribute="leading" id="0bX-kR-YvT"/>
-                            <constraint firstAttribute="trailing" secondItem="qWp-mM-0x0" secondAttribute="trailing" id="1im-Km-SET"/>
-                            <constraint firstItem="llc-aq-Ycl" firstAttribute="top" secondItem="RnT-f8-605" secondAttribute="bottom" constant="12" id="5Dg-yu-MM7" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                            <constraint firstItem="llc-aq-Ycl" firstAttribute="leading" secondItem="RnT-f8-605" secondAttribute="leading" id="BvL-ND-l1u"/>
-                            <constraint firstAttribute="trailing" secondItem="Gg8-d9-eYv" secondAttribute="trailing" id="CIU-Iz-t4J"/>
-                            <constraint firstItem="X3Y-z1-s31" firstAttribute="top" secondItem="JHB-dv-MFO" secondAttribute="top" id="KGM-uj-hHR"/>
-                            <constraint firstItem="OZl-pT-ru1" firstAttribute="top" secondItem="qWp-mM-0x0" secondAttribute="bottom" constant="8" id="LW7-Nk-zFF" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                            <constraint firstItem="qWp-mM-0x0" firstAttribute="top" secondItem="JHB-dv-MFO" secondAttribute="top" id="OtD-SV-CJx"/>
-                            <constraint firstItem="Gg8-d9-eYv" firstAttribute="top" secondItem="OZl-pT-ru1" secondAttribute="bottom" constant="8" id="bmx-z9-cnh" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                            <constraint firstItem="Gg8-d9-eYv" firstAttribute="leading" secondItem="qWp-mM-0x0" secondAttribute="leading" id="dnP-GG-UV0"/>
-                            <constraint firstItem="llc-aq-Ycl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Gg8-d9-eYv" secondAttribute="bottom" constant="8" id="f4C-uG-SAm"/>
-                            <constraint firstItem="qWp-mM-0x0" firstAttribute="leading" secondItem="X3Y-z1-s31" secondAttribute="trailing" constant="12" id="fBu-Hd-WNv"/>
-                            <constraint firstAttribute="trailing" secondItem="RnT-f8-605" secondAttribute="trailing" id="hXJ-G1-5ds"/>
-                            <constraint firstAttribute="trailing" secondItem="llc-aq-Ycl" secondAttribute="trailing" id="jFY-zu-LK2"/>
-                            <constraint firstAttribute="trailing" secondItem="OZl-pT-ru1" secondAttribute="trailing" id="jHC-Cw-p9w"/>
-                            <constraint firstItem="OZl-pT-ru1" firstAttribute="leading" secondItem="qWp-mM-0x0" secondAttribute="leading" id="ldg-v8-Sdw"/>
-                            <constraint firstItem="RnT-f8-605" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qWp-mM-0x0" secondAttribute="bottom" constant="12" id="n6j-lU-WQ2"/>
-                            <constraint firstItem="Gg8-d9-eYv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qWp-mM-0x0" secondAttribute="bottom" constant="4" id="pv0-bu-8ij"/>
-                            <constraint firstAttribute="bottom" secondItem="llc-aq-Ycl" secondAttribute="bottom" id="sXW-be-PGP"/>
-                            <constraint firstItem="RnT-f8-605" firstAttribute="top" secondItem="Gg8-d9-eYv" secondAttribute="bottom" constant="12" id="uUT-wX-4AF" customClass="ToggleLayoutConstraint" customModule="Tusk" customModuleProvider="target"/>
-                        </constraints>
-                    </view>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JHB-dv-MFO" firstAttribute="top" secondItem="TeA-x8-Wcr" secondAttribute="top" constant="12" id="0bY-hg-q8B"/>
-                    <constraint firstAttribute="bottom" secondItem="JHB-dv-MFO" secondAttribute="bottom" constant="12" id="2nO-nT-zZH"/>
-                    <constraint firstItem="JHB-dv-MFO" firstAttribute="leading" secondItem="TeA-x8-Wcr" secondAttribute="leading" constant="12" id="qbg-Pd-Uey"/>
-                    <constraint firstAttribute="trailing" secondItem="JHB-dv-MFO" secondAttribute="trailing" constant="12" id="uku-5C-nMf"/>
+                    <constraint firstItem="s9g-68-10Q" firstAttribute="leading" secondItem="nNf-bu-f87" secondAttribute="leading" constant="18" id="4Jn-Rg-Yya"/>
+                    <constraint firstItem="uhm-Xu-mRY" firstAttribute="leading" secondItem="s9g-68-10Q" secondAttribute="trailing" constant="12" id="BRf-AB-5TZ"/>
+                    <constraint firstItem="uhm-Xu-mRY" firstAttribute="top" secondItem="nNf-bu-f87" secondAttribute="top" constant="18" id="DBb-S8-m6K"/>
+                    <constraint firstItem="s9g-68-10Q" firstAttribute="top" secondItem="nNf-bu-f87" secondAttribute="top" constant="18" id="JcQ-U1-JA3"/>
+                    <constraint firstAttribute="trailing" secondItem="uhm-Xu-mRY" secondAttribute="trailing" constant="18" id="e7S-Ju-7Sr"/>
+                    <constraint firstAttribute="bottom" secondItem="uhm-Xu-mRY" secondAttribute="bottom" priority="999" constant="18" id="io7-cL-9Zl"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s9g-68-10Q" secondAttribute="bottom" constant="12" id="mMg-Ff-lkF"/>
                 </constraints>
             </tableViewCellContentView>
             <userDefinedRuntimeAttributes>
@@ -312,39 +267,27 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="attachmentBottomConstraint" destination="5Dg-yu-MM7" id="EeW-zh-ftZ"/>
-                <outlet property="attachmentCollectionView" destination="RnT-f8-605" id="y4t-w0-0mH"/>
-                <outlet property="attachmentHeightConstraint" destination="CcT-Dn-F4o" id="8ue-l0-Jrv"/>
-                <outlet property="avatarView" destination="X3Y-z1-s31" id="dFl-JB-OWu"/>
-                <outlet property="displayNameLabel" destination="5MC-c1-Ruy" id="WfF-8P-fuH"/>
-                <outlet property="favouriteStatBadge" destination="l1t-0M-uoR" id="Xft-rJ-Xom"/>
-                <outlet property="favouriteStatLabel" destination="Q71-8R-nKL" id="Iez-QV-fI2"/>
-                <outlet property="reblogAvatarView" destination="sKj-Yl-Nof" id="0Yk-KC-CRx"/>
-                <outlet property="reblogLabel" destination="Dkl-TP-oHi" id="yra-93-vGU"/>
-                <outlet property="reblogStatBadge" destination="9ou-WB-QPT" id="NVi-sX-W7u"/>
-                <outlet property="reblogStatLabel" destination="Njr-zp-nPG" id="5BR-QB-zzz"/>
-                <outlet property="reblogView" destination="3wi-h1-ZDU" id="oY5-Db-w0B"/>
-                <outlet property="statusBottomConstraint" destination="uUT-wX-4AF" id="3HS-Bc-VzI"/>
-                <outlet property="statusHeightConstraint" destination="Iiq-Ks-gCd" id="gpL-Ck-ufY"/>
-                <outlet property="statusTextView" destination="Gg8-d9-eYv" id="Q2B-ep-dCQ"/>
-                <outlet property="timestampLabel" destination="NDo-Ow-OmZ" id="Wdm-11-vpi"/>
-                <outlet property="usernameLabel" destination="3T9-db-jxG" id="BcG-M0-7aV"/>
-                <outlet property="visibilityBadge" destination="oCf-bD-ZWs" id="VjE-Pk-zZh"/>
-                <outlet property="warningHeightConstraint" destination="Jso-wh-dZa" id="b9z-Ty-wrg"/>
-                <outlet property="warningTextView" destination="DaO-r2-4ky" id="MQz-wR-tFy"/>
-                <outletCollection property="visibilityWidthConstraints" destination="dST-nT-l1r" collectionClass="NSMutableArray" id="G20-Hx-LTe"/>
-                <outletCollection property="visibilityWidthConstraints" destination="PJN-6q-tL1" collectionClass="NSMutableArray" id="5NV-NR-6Hf"/>
-                <outletCollection property="reblogWidthConstraints" destination="dfc-XT-QBa" collectionClass="NSMutableArray" id="Ecd-NJ-6Ao"/>
-                <outletCollection property="reblogWidthConstraints" destination="ZTq-I9-nKQ" collectionClass="NSMutableArray" id="XpM-jS-uRH"/>
-                <outletCollection property="reblogWidthConstraints" destination="MSb-iX-Aks" collectionClass="NSMutableArray" id="Esu-Ab-pBD"/>
-                <outletCollection property="reblogWidthConstraints" destination="lQw-lo-dCi" collectionClass="NSMutableArray" id="kdR-vd-tOx"/>
-                <outletCollection property="reblogWidthConstraints" destination="juj-tY-Ozo" collectionClass="NSMutableArray" id="5dw-T3-2pI"/>
-                <outletCollection property="backgroundColoredViews" destination="X3Y-z1-s31" collectionClass="NSMutableArray" id="qn4-QL-R3M"/>
-                <outletCollection property="warningBottomConstraints" destination="LW7-Nk-zFF" collectionClass="NSMutableArray" id="t9g-Ho-Ils"/>
-                <outletCollection property="warningBottomConstraints" destination="bmx-z9-cnh" collectionClass="NSMutableArray" id="318-cl-Ykq"/>
-                <outletCollection property="warningBottomConstraints" destination="as9-aa-4Qv" collectionClass="NSMutableArray" id="edt-WB-5TJ"/>
+                <outlet property="attachmentCollectionView" destination="TcT-xL-nm9" id="kyM-Ph-L6r"/>
+                <outlet property="avatarView" destination="s9g-68-10Q" id="JCU-Z2-BEt"/>
+                <outlet property="displayNameLabel" destination="QOG-dl-0tX" id="1qp-AS-KIW"/>
+                <outlet property="favouriteStatBadge" destination="WAr-mg-ikG" id="ZAF-H1-LDq"/>
+                <outlet property="favouriteStatLabel" destination="MjW-ks-yfR" id="3DJ-Fa-Knr"/>
+                <outlet property="reblogAvatarView" destination="iEH-MZ-Bbt" id="Qk6-iA-JGj"/>
+                <outlet property="reblogLabel" destination="MXi-qg-v3M" id="Utf-Bm-cfS"/>
+                <outlet property="reblogStatBadge" destination="g90-7j-wUb" id="Efb-ym-O6U"/>
+                <outlet property="reblogStatLabel" destination="wsT-zC-sMs" id="aCb-L6-K0c"/>
+                <outlet property="reblogView" destination="tig-4l-zeE" id="qCD-cn-x7f"/>
+                <outlet property="statusTextView" destination="zkd-yU-K5K" id="4zG-ms-Z2m"/>
+                <outlet property="timestampLabel" destination="uau-fH-Bhy" id="RVb-hj-Rnh"/>
+                <outlet property="usernameLabel" destination="R0g-FL-MJP" id="qPM-Aa-7QQ"/>
+                <outlet property="visibilityBadge" destination="f3P-Bf-gZY" id="Jrk-W6-Gvo"/>
+                <outlet property="warningLabel" destination="6T6-Aq-mII" id="UkJ-bz-Okf"/>
+                <outlet property="warningView" destination="ZH5-ZT-6RK" id="1bO-2E-jEN"/>
+                <outletCollection property="backgroundColoredViews" destination="s9g-68-10Q" collectionClass="NSMutableArray" id="xKb-4w-BWe"/>
+                <outletCollection property="statsViews" destination="Yr8-VV-gyE" collectionClass="NSMutableArray" id="kc3-Fi-4Uf"/>
+                <outletCollection property="statsViews" destination="Ufp-K7-MF8" collectionClass="NSMutableArray" id="ab6-Aj-3Wg"/>
             </connections>
-            <point key="canvasLocation" x="-200.5" y="158"/>
+            <point key="canvasLocation" x="573.60000000000002" y="155.62218890554723"/>
         </tableViewCell>
     </objects>
     <resources>
@@ -354,6 +297,9 @@
         <image name="ReblogBadge" width="20" height="23"/>
         <namedColor name="ContextBackgroundColor">
             <color red="0.89399999380111694" green="0.89399999380111694" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LockedColor">
+            <color red="0.47099998593330383" green="0.47099998593330383" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="VisibilityBadgeColor">
             <color white="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -9,7 +9,6 @@
 import UIKit
 
 class TableView: UITableView {
-    private var cellHeights: [AnyHashable: CGFloat] = [:]
     private var updateQueue: [((() -> Void), ((Bool) -> Void)?)] = [] {
         didSet {
             if oldValue.isEmpty {
@@ -30,25 +29,5 @@ class TableView: UITableView {
             next.1?(completed)
             self.performNextBatchUpdates()
         }
-    }
-
-    func heightForCellWithID<CellType: UITableViewCell>(id: AnyHashable,
-                                                        nibName: String,
-                                                        configurator: ((CellType) -> Void)? = nil) -> CGFloat {
-        if let height = self.cellHeights[id] {
-            return height
-        }
-        
-        guard let cell: CellType = UINib.view(nibName: nibName) else { return UITableViewAutomaticDimension }
-        
-        configurator?(cell)
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
-        let size = CGSize(width: cell.frame.width, height: UILayoutFittingCompressedSize.height)
-        let height = cell.systemLayoutSizeFitting(size).height
-        self.cellHeights[id] = height
-        
-        return height
     }
 }
