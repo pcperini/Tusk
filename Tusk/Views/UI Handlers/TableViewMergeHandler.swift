@@ -135,15 +135,20 @@ struct TableViewMergeHandler<DataType> where DataType: Comparable {
         }
 
         guard let cell: CellType = UINib.view(nibName: nibName) else { return UITableViewAutomaticDimension }
+//        cell.translatesAutoresizingMaskIntoConstraints = false
+//        cell.frame.size.width = self.tableView.frame.width
         
         configurator?(cell)
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
         
-        let size = CGSize(width: cell.frame.width, height: UILayoutFittingCompressedSize.height)
-        let height = cell.systemLayoutSizeFitting(size).height
-        self.cellHeights.append((data, height))
+        let size = CGSize(width: self.tableView.frame.width, height: UILayoutFittingCompressedSize.height)
+        cell.frame.size.height = cell.systemLayoutSizeFitting(size).height
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         
+        let height = cell.frame.height
+        self.cellHeights.append((data, cell.frame.height))
         return height
     }
     

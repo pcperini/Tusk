@@ -29,18 +29,19 @@ class StatusViewCell: TableViewCell {
     
     @IBOutlet var reblogAvatarView: ImageView!
     @IBOutlet var reblogLabel: UILabel!
+    @IBOutlet var reblogView: UIView!
     
     @IBOutlet var reblogStatBadge: UIImageView!
     @IBOutlet var reblogStatLabel: UILabel!
     @IBOutlet var favouriteStatBadge: UIImageView!
     @IBOutlet var favouriteStatLabel: UILabel!
-    @IBOutlet var reblogView: UIView!
+    @IBOutlet var statsViews: [UIView]!
     
     var accountElementWasTapped: ((AccountType) -> Void)?
     var linkWasTapped: ((URL?, String) -> Void)?
     var attachmentWasTapped: ((Attachment) -> Void)?
     var contextPushWasTriggered: ((Status) -> Void)?
-    var contentShouldReveal: (() -> Void)?
+    var contentShouldReveal: ((Bool) -> Void)?
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
     private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
@@ -127,10 +128,9 @@ class StatusViewCell: TableViewCell {
         
         if let originalStatus = self.originalStatus {
             self.reblogAvatarView.af_setImage(withURL: URL(string: originalStatus.account.avatar)!)
-            self.reblogLabel.text = originalStatus.account.displayName
+            self.reblogLabel.text = originalStatus.account.name
             hasReblogInfo = true
         }
-        
         self.reblogView.isHidden = !hasReblogInfo
         
         let favourited = status.favourited ?? false
@@ -141,6 +141,9 @@ class StatusViewCell: TableViewCell {
         let reblogged = status.reblogged ?? false
         self.reblogStatLabel.text = "\(status.reblogsCount)"
         self.reblogStatBadge.tintColor = UIColor(named: reblogged ? "RebloggedBadgeColor" : "StatBadgeColor")
+        
+        self.statsViews.forEach { $0.isHidden = !(favourited || reblogged) }
+        self.reblogView.superview?.isHidden = !(favourited || reblogged || hasReblogInfo)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
@@ -160,8 +163,8 @@ class StatusViewCell: TableViewCell {
     }
     
     @objc func warningViewWasLongPressed(recognizer: UIGestureRecognizer!) {
-        guard self.isSupressingContent else { return }
-        self.contentShouldReveal?()
+        guard self.status?.warning != nil else { return }
+        self.contentShouldReveal?(self.isSupressingContent)
     }
 }
 

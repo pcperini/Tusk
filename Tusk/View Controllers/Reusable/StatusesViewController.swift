@@ -209,9 +209,14 @@ class StatusesViewController: PaginatingTableViewController<Status> {
                 cell.contextPushWasTriggered = { (status) in
                     self.pushToContext(status: status)
                 }
-                cell.contentShouldReveal = {
-                    if (self.unsuppressedStatusIDs.contains(status.id)) { return }
-                    GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                cell.contentShouldReveal = { (shouldReveal) in
+                    if (shouldReveal) {
+                        if (self.unsuppressedStatusIDs.contains(status.id)) { return }
+                        GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                    } else {
+                        if (!self.unsuppressedStatusIDs.contains(status.id)) { return }
+                        GlobalStore.dispatch(StoredDefaultsState.AddUnsuppressedStatusID(value: status.id))
+                    }
                     
                     guard let tableView = self.tableView as? TableView else { return }
                     self.mergeHandler.invalidateHeightForCellWithData(data: status)
