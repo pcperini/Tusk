@@ -17,7 +17,7 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var timestampLabel: TimestampLabel!
     
-    @IBOutlet var warningTextView: TextView!
+    @IBOutlet var warningLabel: UILabel!
     @IBOutlet var warningView: UIView!
     
     @IBOutlet var statusTextView: TextView!
@@ -44,7 +44,7 @@ class StatusViewCell: TableViewCell {
     
     private var avatarTapRecognizer: UITapGestureRecognizer!
     private var reblogAvatarTapRecognizer: UITapGestureRecognizer!
-    private var cellLongPressRecognizer: UILongPressGestureRecognizer!
+    private var warningLongPressRecognizer: UILongPressGestureRecognizer!
     
     var originalStatus: Status?
     var status: Status? { didSet { self.updateStatus() } }
@@ -62,9 +62,9 @@ class StatusViewCell: TableViewCell {
         self.reblogAvatarTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarViewWasTapped(recognizer:)))
         self.reblogView.addGestureRecognizer(self.reblogAvatarTapRecognizer)
         
-        self.cellLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellWasLongPressed(recognizer:)))
-        self.cellLongPressRecognizer.minimumPressDuration = 0.25
-        self.addGestureRecognizer(self.cellLongPressRecognizer)
+        self.warningLongPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(warningViewWasLongPressed(recognizer:)))
+        self.warningLongPressRecognizer.minimumPressDuration = 0.01
+        self.warningView.addGestureRecognizer(self.warningLongPressRecognizer)
         
         self.statusTextView.delegate = self
         self.statusTextView.hideLinkCriteria = { (link) in
@@ -104,9 +104,9 @@ class StatusViewCell: TableViewCell {
         }
         self.visibilityBadge.image = image
         
-//        self.warningView.isHidden = status.warning == nil
-//        self.warningTextView.htmlText = status.warning
-//        self.warningTextView.setNeedsLayout()
+        self.warningView.isHidden = status.warning == nil
+        self.warningLabel.text = String(htmlString: status.warning ?? "")
+        self.warningLabel.setNeedsLayout()
         
         let hideTextView = (
             NSAttributedString(htmlString: status.content)?.string.isEmpty ?? true
@@ -159,7 +159,7 @@ class StatusViewCell: TableViewCell {
         }
     }
     
-    @objc func cellWasLongPressed(recognizer: UIGestureRecognizer!) {
+    @objc func warningViewWasLongPressed(recognizer: UIGestureRecognizer!) {
         guard self.isSupressingContent else { return }
         self.contentShouldReveal?()
     }
