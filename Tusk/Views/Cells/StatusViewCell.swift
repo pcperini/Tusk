@@ -12,6 +12,7 @@ import MGSwipeTableCell
 
 class StatusViewCell: TableViewCell {
     @IBOutlet var avatarView: AvatarView!
+    @IBOutlet var contentStack: UIStackView!
     
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
@@ -26,6 +27,7 @@ class StatusViewCell: TableViewCell {
     @IBOutlet var visibilityWidthConstraints: [ToggleLayoutConstraint]!
     
     @IBOutlet var attachmentCollectionView: UICollectionView!
+    @IBOutlet var attachmentHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var reblogAvatarView: ImageView!
     @IBOutlet var reblogLabel: UILabel!
@@ -121,6 +123,7 @@ class StatusViewCell: TableViewCell {
         let hideAttachmentView = status.mediaAttachments.isEmpty || self.isSupressingContent
         self.attachmentCollectionView.reloadData()
         self.attachmentCollectionView.isHidden = hideAttachmentView
+        self.attachmentHeightConstraint.constant = self.attachmentCollectionView.collectionViewLayout.collectionViewContentSize.height
         self.attachmentCollectionView.setNeedsLayout()
         
         var hasReblogInfo = false
@@ -144,6 +147,9 @@ class StatusViewCell: TableViewCell {
         
         self.statsViews.forEach { $0.isHidden = !(favourited || reblogged) }
         self.reblogView.superview?.isHidden = !(favourited || reblogged || hasReblogInfo)
+        
+        self.contentStack.setNeedsLayout()
+        self.contentStack.layoutIfNeeded()
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
